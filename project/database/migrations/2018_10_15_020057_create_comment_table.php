@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEditorRegistrationTable extends Migration
+class CreateCommentTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class CreateEditorRegistrationTable extends Migration
      */
     public function up()
     {
-        Schema::create('EditorRegistration', function (Blueprint $table) {
+        Schema::create('Comment', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('uid',30)->index();
-            $table->integer('score');
-            $table->dateTime('date_reg');
-            $table->integer('status')->default(0);
+            $table->integer('id_post');
+            $table->string('uid', 30);
+            $table->string('content');
+            $table->string('url_attach');
+            $table->dateTime('create_at');
+            $table->dateTime('update_at')->nullable();
         });
     }
 
@@ -29,6 +31,6 @@ class CreateEditorRegistrationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('EditorRegistration');
+        Schema::dropIfExists('Comment');
     }
 }
