@@ -43,14 +43,10 @@
                         <div class="col-lg-4" id="total-user">
                             @if(isset($user))
                                 <div class="card">
-
-
                                     {{count($user)}} Total Users
                                 </div>
                             @else
                                 <div class="card">
-
-
                                     0 Total Users
                                 </div>
                             @endif
@@ -59,24 +55,23 @@
                         <div class="col-lg-4" id="active-user">
                             @if(isset($user))
                                 <div class="card">
-                                   @phpgit a
-                                    $i= 0;
+                                    @php
+                                        $i= 0;
                                     @endphp
                                     @foreach($user as $data)
-                                         @php
-                                        $account = $data->account;
-                                         @endphp
+                                        @php
+                                            $account = $data->account;
+                                        @endphp
                                         @if($account['status'] == 1)
-                                             @php
-                                            $i++;
-                                             @endphp
-                                            @endif
+                                            @php
+                                                $i++;
+                                            @endphp
+                                        @endif
                                     @endforeach
                                     {{$i}} Total Active Users
                                 </div>
                             @else
                                 <div class="card">
-
                                     4 Total Active Users
                                 </div>
                             @endif
