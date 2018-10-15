@@ -48,9 +48,10 @@ Route::group(['prefix' => 'admin-cp'], function () {
     Route::get('/', function () {
         return view('admin.index');
     })->name('admin');
-    Route::get('members', function () {
-        return view('admin.member');
-    })->name('members');
+//    Route::get('members', function () {
+//        return view('admin.member');
+//    })->name('members');
+    Route::get('members', 'UserController@showAllUsers')->name('members');
     Route::get('charts', function () {
         return view('admin.charts');
     })->name('charts');
