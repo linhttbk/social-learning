@@ -21,6 +21,7 @@ class CreateGroupMemberTable extends Migration
             $table->integer('role')->default(0);
             $table->date('join_date');
             $table->string('add_uid',30); // foreign key
+            $table->timestamps();
         });
 
     }

@@ -17,6 +17,7 @@ class CreateTestTable extends Migration
             $table->integer('id',11);
             $table->integer('id_course')->nullable();
             $table->integer('id_chap')->nullable();
+            $table->timestamps();
         });
     }
 

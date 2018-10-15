@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSubjectRegTable extends Migration
+class CreateDocumentTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,15 @@ class CreateSubjectRegTable extends Migration
      */
     public function up()
     {
-        Schema::create('SubjectRegistration', function (Blueprint $table) {
+        Schema::create('document', function (Blueprint $table) {
             $table->integer('id',11);
-            $table->integer('id_subject');
+            $table-> integer('id_subject');
             $table->foreign('id_subject')->references('id')->on('Subject');
+            $table->string('url');
+            $table->string('des');
+            $table->string('uid',30);
+            $table->integer('status');
+            $table->timestamps();
         });
     }
 
@@ -27,6 +32,6 @@ class CreateSubjectRegTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('SubjectRegistration');
+        Schema::dropIfExists('document');
     }
 }
