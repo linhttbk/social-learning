@@ -41,15 +41,45 @@
                     <div id="title-card">Dash Board</div>
                     <div class="row">
                         <div class="col-lg-4" id="total-user">
-                            <div class="card">
-                                11 Total Users
-                            </div>
+                            @if(isset($user))
+                                <div class="card">
+
+
+                                    {{count($user)}} Total Users
+                                </div>
+                            @else
+                                <div class="card">
+
+
+                                    0 Total Users
+                                </div>
+                            @endif
 
                         </div>
                         <div class="col-lg-4" id="active-user">
-                            <div class="card">
-                                4 Total Active Users
-                            </div>
+                            @if(isset($user))
+                                <div class="card">
+                                   @phpgit a
+                                    $i= 0;
+                                    @endphp
+                                    @foreach($user as $data)
+                                         @php
+                                        $account = $data->account;
+                                         @endphp
+                                        @if($account['status'] == 1)
+                                             @php
+                                            $i++;
+                                             @endphp
+                                            @endif
+                                    @endforeach
+                                    {{$i}} Total Active Users
+                                </div>
+                            @else
+                                <div class="card">
+
+                                    4 Total Active Users
+                                </div>
+                            @endif
                         </div>
                         <div class="col-lg-4" id="add-new-user">
                             <div class="card">
@@ -64,52 +94,65 @@
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="table-responsive">
-                                    <table class="table table-striped table-hover" >
+                                    <table class="table table-striped table-hover">
                                         <thead>
-                                        <tr >
+
+                                        <tr>
                                             <th>No</th>
                                             <th>User's Id</th>
                                             <th>Name</th>
                                             <th>Email</th>
                                             <th>Phone</th>
-                                            <th>Grade</th>
+                                            <th>BirthDay</th>
+                                            <th>Sex</th>
                                             <th>Role</th>
                                             <th>Registered date</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                            <td>Otto</td>
+                                        @if(isset($user))
+                                            @foreach($user as $key => $data)
 
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                            <td>Otto</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                            <td>Otto</td>
+                                                <tr>
+                                                    <th scope="row">{{++$key}}</th>
+                                                    <td>{{$data['uid']}}</td>
+                                                    <td>{{$data['name']}}</td>
+                                                    <td>{{$data['email']}}</td>
+                                                    <td>{{$data['phone']}}</td>
+                                                    <td>{{$data['birthday']}}</td>
+                                                    <td>{{$data['sex']}}</td>
 
-                                        </tr>
+                                                    @switch($data['type'])
+                                                        @case(0)
+                                                        <td>Student</td>
+                                                        @break
+                                                        @case(1)
+                                                        <td>Teacher</td>
+                                                        @break
+                                                        @case(2)
+                                                        <td>Editor</td>
+                                                        @break
+                                                        @default
+                                                        <td>Student</td>
+                                                        @break
+                                                    @endswitch
+                                                    <td>{{$data['birthday']}}</td>
+                                                </tr>
+                                            @endforeach
+                                        @else
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Otto</td>
+
+                                            </tr>
+                                        @endif
+
                                         </tbody>
                                     </table>
                                 </div>
