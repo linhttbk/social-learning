@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTestHistoryTable extends Migration
+class CreateAccountTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateTestHistoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('TestHistory', function (Blueprint $table) {
-            $table->integer('id',11);
-            $table->integer('id_test');
-            $table->foreign('id_test')->references('id')->on('Test');
+        Schema::create('Account', function (Blueprint $table) {
             $table->string('uid',30);
-            $table->integer('score');
-            $table->dateTime('time_start');
-            $table->dateTime('time_finish');
+            $table->foreign('uid')->references('uid')->on('User');
+            $table->string('password');
+            $table->string('remember_token');
+            $table->integer('status');
+            $table->integer('active');
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ class CreateTestHistoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('TestHistory');
+        Schema::dropIfExists('Account');
     }
 }

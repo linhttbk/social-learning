@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGroupUserTable extends Migration
+class CreateLearningProgressTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,14 @@ class CreateGroupUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('GroupUser', function (Blueprint $table) {
+        Schema::create('LearningProgress', function (Blueprint $table) {
             $table->integer('id',11);
-            $table->string('title');
-            $table->string('thumb_url');
+            $table->integer('id_lesson');
+            $table->foreign('id_lesson')->references('id')->on('Lesson');
             $table->string('uid', 30);
-            $table->integer('mode');
-            $table->date('group_create_at');
-            $table->string('des');
+            $table->dateTime('time_start');
             $table->timestamps();
         });
-
     }
 
     /**
@@ -33,6 +30,6 @@ class CreateGroupUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('GroupUser');
+        Schema::dropIfExists('LearningProgress');
     }
 }

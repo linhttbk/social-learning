@@ -18,6 +18,7 @@ class CreateSubjectTable extends Migration
             $table->integer('id_parent')->nullable();
             $table->foreign('id_parent')->references('id')->on('Subject');
             $table->string('title');
+            $table->timestamps();
         });
     }
 

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGroupUserTable extends Migration
+class CreatePostTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,16 @@ class CreateGroupUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('GroupUser', function (Blueprint $table) {
-            $table->integer('id',11);
-            $table->string('title');
-            $table->string('thumb_url');
+        Schema::create('Post', function (Blueprint $table) {
+            $table->integer('id', 11);
+            $table->string('content');
+            $table->integer('id_group')->nullable();
+            $table->foreign('id_group')->references('id')->on('GroupUser');
             $table->string('uid', 30);
-            $table->integer('mode');
-            $table->date('group_create_at');
-            $table->string('des');
+            $table->dateTime('create_at');
+            $table->dateTime('update_at')->nullable();
             $table->timestamps();
         });
-
     }
 
     /**
@@ -33,6 +32,6 @@ class CreateGroupUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('GroupUser');
+        Schema::dropIfExists('Post');
     }
 }

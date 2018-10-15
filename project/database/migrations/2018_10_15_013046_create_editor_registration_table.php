@@ -19,6 +19,7 @@ class CreateEditorRegistrationTable extends Migration
             $table->integer('score');
             $table->dateTime('date_reg');
             $table->integer('status')->default(0);
+            $table->timestamps();
         });
     }
 
