@@ -23,6 +23,7 @@ class UserController extends Controller
 
     public function showAllUsers(){
         $user = User::all();
-        return view('admin.member')->with('user',$user);
+        $user_pagination = DB::table('User')->paginate(10);
+        return view('admin.member',compact('user','user_pagination'));
     }
 }

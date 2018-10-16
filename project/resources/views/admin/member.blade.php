@@ -84,7 +84,19 @@
                     </div>
                 </div>
                 <div>
-                    <div id="title-card">Data</div>
+                    <div id="title-card">
+                        <div style="display: inline-block;">Data user</div>
+                        <div style=" float:right;display: inline-block">
+
+                            <form class="input-group" name="form-search">
+                                <input type="text" class="form-control" placeholder="Search"/>
+                                <button class="input-group-addon" type="submit">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card">
@@ -101,23 +113,23 @@
                                             <th>BirthDay</th>
                                             <th>Sex</th>
                                             <th>Role</th>
-                                            <th>Registered date</th>
+                                            <th>Actions</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @if(isset($user))
-                                            @foreach($user as $key => $data)
+                                        @if(isset($user_pagination))
+                                            @foreach($user_pagination as $key => $data)
 
                                                 <tr>
-                                                    <th scope="row">{{++$key}}</th>
-                                                    <td>{{$data['uid']}}</td>
-                                                    <td>{{$data['name']}}</td>
-                                                    <td>{{$data['email']}}</td>
-                                                    <td>{{$data['phone']}}</td>
-                                                    <td>{{$data['birthday']}}</td>
-                                                    <td>{{$data['sex']}}</td>
+                                                    <th scope="row">{{$key + $user_pagination->firstItem()}}</th>
+                                                    <td>{{$data->uid}}</td>
+                                                    <td>{{$data->name}}</td>
+                                                    <td>{{$data->email}}</td>
+                                                    <td>{{$data->phone}}</td>
+                                                    <td>{{$data->birthday}}</td>
+                                                    <td>{{$data->sex}}</td>
 
-                                                    @switch($data['type'])
+                                                    @switch($data->type)
                                                         @case(0)
                                                         <td>Student</td>
                                                         @break
@@ -131,7 +143,10 @@
                                                         <td>Student</td>
                                                         @break
                                                     @endswitch
-                                                    <td>{{$data['birthday']}}</td>
+                                                    <td>
+                                                        <a><img src="{{asset('admin/img/icon/ic_edit.png')}}"></a>
+                                                        <a><img src="{{asset('admin/img/icon/ic_delete.png')}}"></a>
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                         @else
@@ -150,6 +165,7 @@
 
                                         </tbody>
                                     </table>
+                                    {{ $user_pagination->links() }}
                                 </div>
                             </div>
                         </div>

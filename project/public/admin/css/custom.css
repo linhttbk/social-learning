@@ -1,3 +1,7 @@
+*{
+    box-sizing: border-box;
+}
+
 section div div div[class='row'] div[class='col-lg-4'] {
     height: 200px;
     margin-bottom: 20px;
@@ -6,6 +10,7 @@ section div div div[class='row'] div[class='col-lg-4'] {
     text-align: center;
 
 }
+
 section div div div[class='row'] div[class='col-lg-4'] div {
     height: 100%;
     color: white;
@@ -13,6 +18,7 @@ section div div div[class='row'] div[class='col-lg-4'] div {
     font-size: 20px;
 
 }
+
 section div div div[class='row'] div[id='total-user'] div {
     background-color: #F3C900;
 
@@ -21,30 +27,56 @@ section div div div[class='row'] div[id='total-user'] div {
 section div div div[class='row'] div[id='active-user'] div {
     background-color: #3FCCF9;
 
-
 }
 
 section div div div[class='row'] div[id='add-new-user'] div {
     background-color: #88DE53;
 
-
 }
-section div div div[id='title-card']{
+
+section div div div[id='title-card'] {
     margin-bottom: 10px;
     font-size: 20px;
     font-weight: bold;
+    position: relative;
+    padding:10px 0px;
+    display: inline-block;
+    width: 100%;
 
 }
+
 section div div div[class='row'] div[class='col-lg-12'] div div table thead tr {
     background-color: #1888D6
 
 }
+
 section div div div[class='row'] div[class='col-lg-12'] div div table thead tr th {
-   color: white;
+    color: white;
 
 }
+
 section div div div[class='row'] div[class='col-lg-12'] div div table tbody tr:hover {
 
     background-color: #969c88;
 
 }
+
+.input-group {
+    border: 1px solid grey;
+    border-radius: 2px;
+    background-color: white;
+}
+
+.input-group input {
+    border: none;
+    font-size: 15px;
+
+}
+
+.input-group button {
+    background: #2196F3;
+    color: white;
+  border: none;
+}
+
+
