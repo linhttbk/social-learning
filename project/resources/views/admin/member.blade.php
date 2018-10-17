@@ -88,8 +88,8 @@
                         <div style="display: inline-block;">Data user</div>
                         <div style=" float:right;display: inline-block">
 
-                            <form class="input-group" name="form-search">
-                                <input type="text" class="form-control" placeholder="Search"/>
+                            <form class="input-group" name="form-search" action="{{route('search')}}" method="get">
+                                <input type="text" class="form-control" name="key-search" placeholder="Search"/>
                                 <button class="input-group-addon" type="submit">
                                     <i class="fa fa-search"></i>
                                 </button>
@@ -165,7 +165,13 @@
 
                                         </tbody>
                                     </table>
-                                    {{ $user_pagination->links() }}
+                                    @if (isset($user_pagination))
+                                        @if (isset($key_search))
+                                         {{ $user_pagination->appends(['key-search'=>$key_search])->links() }}
+                                        @else 
+                                            {{ $user_pagination->links() }}
+                                         @endif   
+                                    @endif
                                 </div>
                             </div>
                         </div>
