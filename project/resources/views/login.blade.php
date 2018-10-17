@@ -31,7 +31,7 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-12">
-                            <form id="login-form" action="https://phpoll.com/login/process" method="post" role="form"
+                            <form id="login-form" action="{{route('post_login')}}" method="post" role="form"
                                   style="display: block;" onsubmit="return onSubmitLogin()">
                                 <div class="form-group">
                                     <label>Tài khoản : </label>
@@ -68,6 +68,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                {{csrf_field()}}
                             </form>
                             <form id="register-form" action="https://phpoll.com/register/process" method="post"
                                   onsubmit=" return onSubmitCLick()"

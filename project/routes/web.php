@@ -40,9 +40,10 @@ Route::get('courses', function () {
 })->name('courses');
 Route::get('test', 'UserController@connect');
 
-Route::post('login', 'Auth\LoginController@postLogin');
+Route::post('post-login', 'Auth\LoginController@postLogin')->name('post_login');
 
-Route::get('logout', 'Auth\LoginController@getLogout');
+
+Route::get('logout', 'Auth\LoginController@getLogout')->name('logout');
 
 Route::group(['prefix' => 'admin-cp'], function () {
     Route::get('/', function () {
