@@ -334,6 +334,12 @@ section
 	color: #384158;
 }
 
+.avatar {
+	vertical-align: middle;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+}
 /*********************************
 3.2 Header Content
 *********************************/

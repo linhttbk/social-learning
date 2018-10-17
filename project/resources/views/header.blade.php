@@ -22,23 +22,23 @@
 								</ul>
 								@if(Auth::check())
 									<div class="top_bar_contact_list ml-auto">
-									<li class="nav-item dropdown">
-										<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-											Xin chào {{$user[0]->name}} <span class="caret"></span>
-										</a>
-									</li>
-									<li>
-										<div class="top_bar_login ml-auto">
-											<div class="login_button"><a href="{{route('login')}}" data-toggle="modal" data-target=".bs-example-modal-lg">Logout</a></div>
-										</div>
-										</div>
-									</li>
+										<li class="nav-item dropdown">
+											<a href="#" role="button">
+												<img class="avatar" src="{{asset('admin/img/avatar-1.jpg')}}" alt="Xin chào "> {{$user[0]->name}}
+											</a>
+										</li>
+										<li>
+											<div class="top_bar_login ml-auto">
+												<div class="login_button"><a href="{{route('logout')}}" data-toggle="modal" data-target=".bs-example-modal-lg">Logout</a></div>
+											</div>
 									</div>
-								@else
-									<div class="top_bar_login ml-auto">
-										<div class="login_button"><a href="{{route('login')}}" data-toggle="modal" data-target=".bs-example-modal-lg">Register or Login</a></div>
-									</div>
-								@endif
+									</li>
+							</div>
+							@else
+								<div class="top_bar_login ml-auto">
+									<div class="login_button"><a href="{{route('login')}}" data-toggle="modal" data-target=".bs-example-modal-lg">Register or Login</a></div>
+								</div>
+							@endif
 							</div>
 						</div>
 					</div>
