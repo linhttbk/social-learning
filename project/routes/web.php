@@ -59,5 +59,8 @@ Route::group(['prefix' => 'admin-cp'], function () {
     Route::get('forms', function () {
         return view('admin.forms');
     })->name('forms');
-Route::get('members/search', 'UserController@searchUser')->name('search');
+    Route::get('members/search', 'UserController@searchUser')->name('search');
+    Route::get('login',function (){
+       return view('admin.login');
+    });
 });
