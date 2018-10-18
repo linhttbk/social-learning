@@ -61,3 +61,5 @@ Route::group(['prefix' => 'admin-cp'], function () {
     })->name('forms');
 Route::get('members/search', 'UserController@searchUser')->name('search');
 });
+Route::post('register','RegisterController@regis');
+Route::get('user/activation/{token}', 'RegisterController@activateUser')->name('user.activate');

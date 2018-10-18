@@ -70,15 +70,16 @@
                                 </div>
                                 {{csrf_field()}}
                             </form>
-                            <form id="register-form" action="https://phpoll.com/register/process" method="post"
+                            <form id="register-form" action="{{url('register')}}" method="post"
                                   onsubmit=" return onSubmitCLick()"
                                   role="form" style="display: none;">
+                                <input type="hidden" name="_token" value="{{csrf_token()}}">
                                 <div class="form-group">
                                     <label>Loại đăng ký : </label>
-                                    <select class="form-control" id="mySelect" onchange="initValues()">
-                                        <option selected="selected" value="hs">Học sinh</option>
-                                        <option value="gv">Giáo viên</option>
-                                        <option value="kdv">Kiểm duyệt viên</option>
+                                    <select class="form-control" name="type" id="mySelect" onchange="initValues()">
+                                        <option selected="selected" value="0">Học sinh</option>
+                                        <option value="1">Giáo viên</option>
+                                        <option value="2">Kiểm duyệt viên</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -107,7 +108,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Ngày sinh : </label>
-                                    <input placeholder="Ngày sinh " style="height: 45px" id="datepicker"/>
+                                    <input placeholder="Ngày sinh " name="birthday" style="height: 45px" id="datepicker"/>
                                     <span id="birthday-error"
                                           class="input-error-msg"> Vui  lòng  chon ngay thang nam sinh</span>
                                 </div>
@@ -115,10 +116,10 @@
                                 <div class="form-group">
                                     <label>Giới tính : </label>
                                     <label class="radio-inline">
-                                        <input type="radio" name="optradio" checked>Nam
+                                        <input type="radio" name="sex" value="boy" checked>Nam
                                     </label>
                                     <label class="radio-inline">
-                                        <input type="radio" name="optradio">Nữ
+                                        <input type="radio" name="sex" value="girl">Nữ
                                     </label>
                                 </div>
                                 <div class="form-group">
@@ -142,14 +143,14 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Lớp : </label>
-                                    <select class="form-control">
-                                        <option>Lớp 10</option>
-                                        <option>Lớp 11</option>
-                                        <option>Lớp 12</option>
+                                    <select class="form-control" name="grade">
+                                        <option value="10">Lớp 10</option>
+                                        <option value="11">Lớp 11</option>
+                                        <option value="12">Lớp 12</option>
 
                                     </select>
                                 </div>
-                                <div class="form-group" id="teacher">
+                                <div class="form-group" id="teacher" name="subjectreg">
                                     <label>Môn giảng dạy : </label>
                                     <select class="form-control">
                                         <option class="fs-option">Toán</option>
@@ -159,7 +160,7 @@
                                         <option>Ngữ Văn</option>
                                     </select>
                                 </div>
-                                <div class="form-group" id="censors">
+                                <div class="form-group" id="censors" name="subjectreg">
                                     <label>Môn đăng ký kiểm duyệt : </label>
                                     <select class="form-control">
                                         <option>Toán</option>
@@ -185,6 +186,22 @@
             </div>
         </div>
     </div>
+     @if(Session::has('exist'))
+        <script type="text/javascript">
+            $("#register-form").delay(100).fadeIn(100);
+            $("#login-form").fadeOut(100);
+            $('#login-form-link').removeClass('active');
+            $('#register-form-link').addClass('active');
+        </script>
+    @endif
+    @if(Session::has('success'))
+        <script type="text/javascript">
+            $("#login-form").delay(100).fadeIn(100);
+            $("#register-form").fadeOut(100);
+            $('#register-form-link').removeClass('active');
+            $('#login-form-link').addClass('active');
+        </script>
+    @endif
 </div>
 </body>
 </html>
