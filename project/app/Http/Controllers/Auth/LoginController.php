@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Classes\ActivationService;
 
 class LoginController extends Controller
 {
@@ -39,7 +40,13 @@ class LoginController extends Controller
 //    {
 //        $this->middleware('guest')->except('logout');
 //    }
-
+    protected $redirectTo = '/';
+    protected $activationService;
+    public function __construct(ActivationService $activationService)
+    {
+        $this->middleware('guest', ['except' => 'logout']);
+        $this->activationService = $activationService;
+    }
     public function postLogin(Request $request)
     {
         $user = DB::table('user')
@@ -66,5 +73,14 @@ class LoginController extends Controller
     public  function getLogout(){
         Auth::logout();
         return redirect()->intended('login');
+    }
+      protected function authenticated(Request $request, $user)
+    {
+        if (!$user->active) {
+            $this->activationService->sendActivationMail($user);
+            auth()->logout();
+            return back()->with('warning', 'Bạn cần xác thực tài khoản, chúng tôi đã gửi mã xác thực vào email của bạn, hãy kiểm tra và làm theo hướng dẫn.');
+        }
+        return redirect()->intended($this->redirectPath());
     }
 }
