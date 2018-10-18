@@ -17,9 +17,10 @@ class CreateAccountTable extends Migration
             $table->string('uid',30);
             $table->foreign('uid')->references('uid')->on('User');
             $table->string('password');
-            $table->string('remember_token');
-            $table->integer('status');
-            $table->integer('active');
+            $table->string('remember_token')->nullable();
+            $table->integer('status')->default(0);
+            $table->integer('active')->default(0);
+            $table->boolean('emailverify')->default(false);
             $table->timestamps();
         });
     }

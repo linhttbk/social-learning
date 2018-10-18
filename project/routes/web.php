@@ -64,3 +64,5 @@ Route::group(['prefix' => 'admin-cp'], function () {
        return view('admin.login');
     });
 });
+Route::post('register','RegisterController@regis');
+Route::get('user/activation/{token}', 'RegisterController@activateUser')->name('user.activate');

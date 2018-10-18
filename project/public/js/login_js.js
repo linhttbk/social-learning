@@ -146,10 +146,11 @@ $(document).ready(function () {
 function initValues() {
     var type = document.getElementById("mySelect").value;
     document.getElementById("teacher").style.display = "none";
-    if (type == "hs") {
+    if (type == "0") {
         document.getElementById("teacher").style.display = "none";
+        document.getElementById("censors").style.display = "none";
         document.getElementById("register-submit").value = "Đăng ký";
-    } else if (type == "gv") {
+    } else if (type == "1") {
         document.getElementById("teacher").style.display = "block";
         document.getElementById("censors").style.display = "none";
         document.getElementById("register-submit").value = "Đăng ký";
@@ -201,9 +202,7 @@ function onSubmitCLick() {
     var validEmail = validateEmail();
     var validPhone = validatePhone();
     var validBirthday = validateBirthday();
-    if (validUserName && validPass && validFullName && retypePass && validEmail && validPhone && validBirthday) return true;
-    return false;
-
+    if (!(validUserName && validPass && validFullName && retypePass && validEmail && validPhone && validBirthday)) return false;
 }
 
 function validateUsername() {
