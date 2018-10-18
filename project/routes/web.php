@@ -68,5 +68,5 @@ Route::post('register','RegisterController@regis');
 
 Route::get('user/activation/{token}', 'RegisterController@activateUser')->name('user.activate');
 
-Route::get('user/activation/{token}', 'RegisterController@activateUser')->name('user.activate');
+
 
