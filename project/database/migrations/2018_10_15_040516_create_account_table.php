@@ -15,6 +15,7 @@ class CreateAccountTable extends Migration
     {
         Schema::create('Account', function (Blueprint $table) {
             $table->string('uid',30);
+            $table->primary('uid');
             $table->foreign('uid')->references('uid')->on('User');
             $table->string('password');
             $table->string('remember_token')->nullable();
