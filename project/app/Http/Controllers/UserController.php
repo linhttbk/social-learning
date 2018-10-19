@@ -27,6 +27,8 @@ class UserController extends Controller
         $user_pagination = DB::table('User')->paginate(10);
         return view('admin.member',compact('user','user_pagination'));
     }
+
+
     public function searchUser(Request $request){
             $user = User::all();
             $key_search = $request->input('key-search');
@@ -37,4 +39,19 @@ class UserController extends Controller
             ->paginate(10);
            return view('admin.member',compact('user','user_pagination','key_search'));
     }
+
+    public function deleteUser($uid){
+        $user = User::find($uid);
+        $user->delete();
+        return redirect('admin-cp/members')->with('error', 'Xóa người dùng thành công');
+    }
+
+    public  function getEditUser(){
+        return view('admin.edit-member');
+    }
+
+    public function postEditUser(){
+
+    }
+
 }

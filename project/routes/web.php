@@ -59,5 +59,8 @@ Route::group(['prefix' => 'admin-cp'], function () {
     Route::get('forms', function () {
         return view('admin.forms');
     })->name('forms');
-Route::get('members/search', 'UserController@searchUser')->name('search');
+    Route::get('members/search', 'UserController@searchUser')->name('search');
+    Route::get('members/delete/{uid}', 'UserController@deleteUser')->name('delete_User');
+    Route::get('member/get-edit-member', 'UserController@getEditUser')->name('get_edit_User');
+    Route::get('member/post-edit-member', 'UserController@postEditUser')->name('post_edit_User');
 });

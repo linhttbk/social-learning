@@ -86,6 +86,7 @@
                 <div>
                     <div id="title-card">
                         <div style="display: inline-block;">Data user</div>
+                        @include('errors.note')
                         <div style=" float:right;display: inline-block">
 
                             <form class="input-group" name="form-search" action="{{route('search')}}" method="get">
@@ -144,8 +145,8 @@
                                                         @break
                                                     @endswitch
                                                     <td>
-                                                        <a><img src="{{asset('admin/img/icon/ic_edit.png')}}"></a>
-                                                        <a><img src="{{asset('admin/img/icon/ic_delete.png')}}"></a>
+                                                        <a href="{{route('get_edit_User')}}"><img src="{{asset('admin/img/icon/ic_edit.png')}}"></a>
+                                                        <a href="{{route('delete_User', ['uid'=>$data->uid])}}"><img src="{{asset('admin/img/icon/ic_delete.png')}}"></a>
                                                     </td>
                                                 </tr>
                                             @endforeach
