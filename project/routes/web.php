@@ -38,6 +38,7 @@ Route::get('course', function () {
 Route::get('courses', function () {
     return view('courses');
 })->name('courses');
+
 Route::get('test', 'UserController@connect');
 
 Route::post('post-login', 'Auth\LoginController@postLogin')->name('post_login');
@@ -49,18 +50,47 @@ Route::group(['prefix' => 'admin-cp'], function () {
     Route::get('/', function () {
         return view('admin.index');
     })->name('admin');
-//    Route::get('members', function () {
-//        return view('admin.member');
-//    })->name('members');
-    Route::get('members', 'UserController@showAllUsers')->name('members');
-    Route::get('charts', function () {
-        return view('admin.charts');
-    })->name('charts');
-    Route::get('forms', function () {
-        return view('admin.forms');
-    })->name('forms');
+  
     Route::get('members/search', 'UserController@searchUser')->name('search');
+  
     Route::get('members/delete/{uid}', 'UserController@deleteUser')->name('delete_User');
+  
     Route::get('member/get-edit-member', 'UserController@getEditUser')->name('get_edit_User');
+  
     Route::get('member/post-edit-member', 'UserController@postEditUser')->name('post_edit_User');
+  
+    Route::get('login', function () {
+        return view('admin.login');
+    })->name('admin_login');
+
+    Route::post('login', 'Admin\AuthController@postLogin')->name('post-login');
+  
+    Route::get('logout','Admin\AdminController@logout')->name('post-logout');
+
+    Route::group(['middleware' => 'admin'], function () {
+        Route::get('/', function () {
+            return view('admin.index');
+        })->name('admin');
+      
+        Route::get('members', 'UserController@showAllUsers')->name('members');
+      
+        Route::get('charts', function () {
+            return view('admin.charts');
+        })->name('charts');
+      
+        Route::get('forms', function () {
+            return view('admin.forms');
+        })->name('forms');
+      
+        Route::get('members/search', 'UserController@searchUser')->name('search');
+      
+    });
+
+
 });
+Route::post('register', 'RegisterController@regis');
+
+Route::get('user/activation/{token}', 'RegisterController@activateUser')->name('user.activate');
+
+
+

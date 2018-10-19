@@ -41,9 +41,9 @@
                     <div id="title-card">Dash Board</div>
                     <div class="row">
                         <div class="col-lg-4" id="total-user">
-                            @if(isset($user))
+                            @if(isset($totalUser))
                                 <div class="card">
-                                    {{count($user)}} Total Users
+                                    {{$totalUser}} Total Users
                                 </div>
                             @else
                                 <div class="card">
@@ -53,28 +53,9 @@
 
                         </div>
                         <div class="col-lg-4" id="active-user">
-                            @if(isset($user))
-                                <div class="card">
-                                    @php
-                                        $i= 0;
-                                    @endphp
-                                    @foreach($user as $data)
-                                        @php
-                                            $account = $data->account;
-                                        @endphp
-                                        @if($account['status'] == 1)
-                                            @php
-                                                $i++;
-                                            @endphp
-                                        @endif
-                                    @endforeach
-                                    {{$i}} Total Active Users
-                                </div>
-                            @else
-                                <div class="card">
-                                    4 Total Active Users
-                                </div>
-                            @endif
+                            <div class="card">
+                                {{$totalActive}} Total Active Users
+                            </div>
                         </div>
                         <div class="col-lg-4" id="add-new-user">
                             <div class="card">
@@ -112,8 +93,8 @@
                                             <th>Email</th>
                                             <th>Phone</th>
                                             <th>BirthDay</th>
-                                            <th>Sex</th>
                                             <th>Role</th>
+                                            <th>Status</th>
                                             <th>Actions</th>
                                         </tr>
                                         </thead>
@@ -128,8 +109,6 @@
                                                     <td>{{$data->email}}</td>
                                                     <td>{{$data->phone}}</td>
                                                     <td>{{$data->birthday}}</td>
-                                                    <td>{{$data->sex}}</td>
-
                                                     @switch($data->type)
                                                         @case(0)
                                                         <td>Student</td>
@@ -144,6 +123,11 @@
                                                         <td>Student</td>
                                                         @break
                                                     @endswitch
+                                                    @if ($data->status==1)
+                                                        <td>Online</td>
+                                                    @else
+                                                        <td>Offline</td>
+                                                    @endif
                                                     <td>
                                                         <a href="{{route('get_edit_User')}}"><img src="{{asset('admin/img/icon/ic_edit.png')}}"></a>
                                                         <a href="{{route('delete_User', ['uid'=>$data->uid])}}"><img src="{{asset('admin/img/icon/ic_delete.png')}}"></a>
@@ -168,10 +152,10 @@
                                     </table>
                                     @if (isset($user_pagination))
                                         @if (isset($key_search))
-                                         {{ $user_pagination->appends(['key-search'=>$key_search])->links() }}
-                                        @else 
+                                            {{ $user_pagination->appends(['key-search'=>$key_search])->links() }}
+                                        @else
                                             {{ $user_pagination->links() }}
-                                         @endif   
+                                        @endif
                                     @endif
                                 </div>
                             </div>
