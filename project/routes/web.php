@@ -46,25 +46,30 @@ Route::post('post-login', 'Auth\LoginController@postLogin')->name('post_login');
 Route::get('logout', 'Auth\LoginController@getLogout')->name('logout');
 
 Route::group(['prefix' => 'admin-cp'], function () {
-    Route::get('/', function () {
-        return view('admin.index');
-    })->name('admin');
-//    Route::get('members', function () {
-//        return view('admin.member');
-//    })->name('members');
-    Route::get('members', 'UserController@showAllUsers')->name('members');
-    Route::get('charts', function () {
-        return view('admin.charts');
-    })->name('charts');
-    Route::get('forms', function () {
-        return view('admin.forms');
-    })->name('forms');
-    Route::get('members/search', 'UserController@searchUser')->name('search');
-    Route::get('login',function (){
-       return view('admin.login');
+    Route::get('login', function () {
+        return view('admin.login');
+    })->name('admin_login');
+
+    Route::post('login', 'Admin\AuthController@postLogin')->name('post-login');
+
+
+    Route::group(['middleware' => 'admin'], function () {
+        Route::get('/', function () {
+            return view('admin.index');
+        })->name('admin');
+        Route::get('members', 'UserController@showAllUsers')->name('members');
+        Route::get('charts', function () {
+            return view('admin.charts');
+        })->name('charts');
+        Route::get('forms', function () {
+            return view('admin.forms');
+        })->name('forms');
+        Route::get('members/search', 'UserController@searchUser')->name('search');
     });
+
+
 });
-Route::post('register','RegisterController@regis');
+Route::post('register', 'RegisterController@regis');
 
 Route::get('user/activation/{token}', 'RegisterController@activateUser')->name('user.activate');
 
