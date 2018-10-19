@@ -33,6 +33,7 @@
                         <div class="col-lg-12">
                             <form id="login-form" action="{{route('post_login')}}" method="post" role="form"
                                   style="display: block;" onsubmit="return onSubmitLogin()">
+                                @include('errors.note')
                                 <div class="form-group">
                                     <label>Tài khoản : </label>
                                     <input type="text" name="username" id="username" tabindex="1" class="form-control"

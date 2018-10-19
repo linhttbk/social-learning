@@ -67,4 +67,19 @@ class UserController extends Controller
             ->paginate(10);
         return view('admin.member', compact('totalUser', 'totalActive', 'user_pagination', 'key_search'));
     }
+
+    public function deleteUser($uid){
+        $user = User::find($uid);
+        $user->delete();
+        return redirect('admin-cp/members')->with('error', 'Xóa người dùng thành công');
+    }
+
+    public  function getEditUser(){
+        return view('admin.edit-member');
+    }
+
+    public function postEditUser(){
+
+    }
+
 }
