@@ -50,48 +50,56 @@ Route::group(['prefix' => 'admin-cp'], function () {
     Route::get('/', function () {
         return view('admin.index');
     })->name('admin');
-  
+
     Route::get('members/search', 'UserController@searchUser')->name('search');
-  
+
     Route::get('members/delete/{uid}', 'UserController@deleteUser')->name('delete_User');
-  
+
     Route::get('member/get-edit-member', 'UserController@getEditUser')->name('get_edit_User');
-  
+
     Route::get('member/post-edit-member', 'UserController@postEditUser')->name('post_edit_User');
-  
+
     Route::get('login', function () {
         return view('admin.login');
     })->name('admin_login');
 
     Route::post('login', 'Admin\AuthController@postLogin')->name('post-login');
-  
-    Route::get('logout','Admin\AdminController@logout')->name('post-logout');
+
+    Route::get('logout', 'Admin\AdminController@logout')->name('post-logout');
 
     Route::group(['middleware' => 'admin'], function () {
         Route::get('/', function () {
             return view('admin.index');
         })->name('admin');
-      
+
         Route::get('members', 'UserController@showAllUsers')->name('members');
-      
+
         Route::get('charts', function () {
             return view('admin.charts');
         })->name('charts');
-      
+
         Route::get('forms', function () {
             return view('admin.forms');
         })->name('forms');
-      
+
         Route::get('courses', function () {
-        	return view('admin.courses');
-    	})->name('courses');
+            return view('admin.courses');
+        })->name('courses');
 
         Route::get('members/search', 'UserController@searchUser')->name('search');
-      
+
+        Route::group(['prefix'=>'groups'],function (){
+            Route::get('/',function (){
+                return view('admin.group');
+            })->name('group-user');
+        });
+
     });
 
 
 });
+
+
 
 Route::post('register', 'RegisterController@regis');
 
