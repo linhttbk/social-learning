@@ -17,6 +17,8 @@ class AuthController extends Controller
         if (Auth::guard('admin')->attempt($credentials, false)) {
             // Authentication passed...
             return redirect()->intended(route('admin'));
+        }else{
+            return redirect()->back()->withErrors(['error'=>'Invalid username or password! Try again!']);
         }
     }
 
