@@ -82,12 +82,17 @@ Route::group(['prefix' => 'admin-cp'], function () {
             return view('admin.forms');
         })->name('forms');
       
+        Route::get('courses', function () {
+        	return view('admin.courses');
+    	})->name('courses');
+
         Route::get('members/search', 'UserController@searchUser')->name('search');
       
     });
 
 
 });
+
 Route::post('register', 'RegisterController@regis');
 
 Route::get('user/activation/{token}', 'RegisterController@activateUser')->name('user.activate');
