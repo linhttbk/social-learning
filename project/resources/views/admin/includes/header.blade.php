@@ -123,7 +123,7 @@
                         </ul>
                     </li>
                     <!-- Logout    -->
-                    <li class="nav-item"><a href="{{route('home')}}" class="nav-link logout"> <span
+                    <li class="nav-item"><a href="{{route('post-logout')}}" class="nav-link logout"> <span
                                 class="d-none d-sm-inline">Logout</span><i class="fa fa-sign-out"></i></a></li>
                 </ul>
             </div>

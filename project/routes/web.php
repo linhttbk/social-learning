@@ -51,7 +51,7 @@ Route::group(['prefix' => 'admin-cp'], function () {
     })->name('admin_login');
 
     Route::post('login', 'Admin\AuthController@postLogin')->name('post-login');
-
+    Route::get('logout','Admin\AdminController@logout')->name('post-logout');
 
     Route::group(['middleware' => 'admin'], function () {
         Route::get('/', function () {
