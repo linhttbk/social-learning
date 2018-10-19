@@ -4,8 +4,11 @@
         <div class="avatar"><img src="{{asset('admin/img/avatar-1.jpg')}}" alt="..."
                                  class="img-fluid rounded-circle"></div>
         <div class="title">
-            <h1 class="h4">Mark Stephen</h1>
-            <p>Web Designer</p>
+            <h1 class="h4">
+                {{Auth::guard('admin')->user()->uid}}
+
+                <h1>
+                    <p>Admin</p>
         </div>
     </div>
     <!-- Sidebar Navidation Menus--><span class="heading">Main</span>

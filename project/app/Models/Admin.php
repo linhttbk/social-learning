@@ -11,6 +11,7 @@ class Admin extends  Authenticatable
     use Notifiable;
     protected $table = 'Admin';
     protected $primaryKey = 'uid';
+    public $incrementing = false;
 
 
     /**

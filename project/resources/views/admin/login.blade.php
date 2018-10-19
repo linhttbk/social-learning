@@ -16,6 +16,11 @@
                 <p>Please enter your username and password</p>
             </div>
             <form id="Login" action="{{route('post-login')}}" method="post">
+                @if($errors->any())
+                    <div class="alert alert-danger">
+                        {{$errors->first('error')}}
+                    </div>
+                @endif
                 <div class="form-group">
 
 
@@ -25,7 +30,8 @@
 
                 <div class="form-group">
 
-                    <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Password">
+                    <input type="password" name="password" class="form-control" id="inputPassword"
+                           placeholder="Password">
 
                 </div>
                 <button type="submit" class="btn btn-primary">Login</button>
