@@ -76,7 +76,8 @@ class LoginController extends Controller
     }
       protected function authenticated(Request $request, $user)
     {
-        if (!$user->active) {
+        $account=Account::where('uid', $user->uid)->first();
+        if (!$account->emailverify) {
             $this->activationService->sendActivationMail($user);
             auth()->logout();
             return back()->with('warning', 'Bạn cần xác thực tài khoản, chúng tôi đã gửi mã xác thực vào email của bạn, hãy kiểm tra và làm theo hướng dẫn.');
