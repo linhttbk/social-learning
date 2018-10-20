@@ -49,9 +49,9 @@ class LoginController extends Controller
     }
     public function postLogin(Request $request)
     {
-        $user = DB::table('user')
-            ->join('account', 'user.uid', '=', 'account.uid')
-            ->where('user.uid','=',$request->username)
+        $user = DB::table('User')
+            ->join('Account', 'User.uid', '=', 'Account.uid')
+            ->where('User.uid','=',$request->username)
             ->get();
         $arr = ['uid' => $request->username, 'password' => $request->password];
         if($request->remember = 'Remember Me'){

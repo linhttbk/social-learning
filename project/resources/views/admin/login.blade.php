@@ -15,22 +15,27 @@
                 <h2>Admin Login</h2>
                 <p>Please enter your username and password</p>
             </div>
-            <form id="Login">
-
+            <form id="Login" action="{{route('post-login')}}" method="post">
+                @if($errors->any())
+                    <div class="alert alert-danger">
+                        {{$errors->first('error')}}
+                    </div>
+                @endif
                 <div class="form-group">
 
 
-                    <input type="text" class="form-control" id="inputEmail" placeholder="Username">
+                    <input type="text" name="uid" class="form-control" id="inputEmail" placeholder="Username">
 
                 </div>
 
                 <div class="form-group">
 
-                    <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                    <input type="password" name="password" class="form-control" id="inputPassword"
+                           placeholder="Password">
 
                 </div>
                 <button type="submit" class="btn btn-primary">Login</button>
-
+                {{csrf_field()}}
             </form>
         </div>
     </div>

@@ -1,8 +1,10 @@
 <?php
+
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-class CreateUserActivationsTable extends Migration
+
+class CreateAdminTable extends Migration
 {
     /**
      * Run the migrations.
@@ -11,15 +13,17 @@ class CreateUserActivationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_activations', function (Blueprint $table) {
-            $table->string('uid',30);
+        Schema::create('Admin', function (Blueprint $table) {
+            $table->string('uid', 30);
+            $table->string('email')->unique();
+            $table->string('name');
             $table->primary('uid');
-            $table->foreign('uid')->references('uid')->on('User');
-            $table->string('activation_code')->nullable();
-            $table->string('remember_token')->nullable();
+            $table->string('password');
+            $table->rememberToken();
             $table->timestamps();
         });
     }
+
     /**
      * Reverse the migrations.
      *
@@ -27,6 +31,6 @@ class CreateUserActivationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_activations');
+        Schema::dropIfExists('Admin');
     }
 }
