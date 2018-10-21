@@ -14,10 +14,11 @@ class CreateGroupUserTable extends Migration
     public function up()
     {
         Schema::create('GroupUser', function (Blueprint $table) {
-            $table->integer('id',11);
+            $table->integer('id', 11);
             $table->string('title');
             $table->string('thumb_url');
             $table->string('uid', 30);
+            $table->foreign('uid')->references('uid')->on('User')->onDelete('cascade');
             $table->integer('mode');
             $table->date('group_create_at');
             $table->string('des');
