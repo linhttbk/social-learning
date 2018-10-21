@@ -88,17 +88,14 @@ Route::group(['prefix' => 'admin-cp'], function () {
 
         Route::get('members/search', 'UserController@searchUser')->name('search');
 
-        Route::group(['prefix'=>'groups'],function (){
-            Route::get('/',function (){
-                return view('admin.group');
-            })->name('group-user');
+        Route::group(['prefix' => 'groups'], function () {
+            Route::get('/', 'Admin\GroupUserController@showAllGroupUser')->name('group-user');
         });
 
     });
 
 
 });
-
 
 
 Route::post('register', 'RegisterController@regis');
