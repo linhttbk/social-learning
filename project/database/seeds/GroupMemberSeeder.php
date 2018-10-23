@@ -22,7 +22,7 @@ class GroupMemberSeeder extends Seeder
             'id_group' => '1',
             'uid' => 'linhluv4',
             'add_uid' => 'linhluv2',
-            'join_date' => new DateTime('2018-10-20'),
+            'join_date' => new DateTime('2018-10-21'),
         ]];
 
         DB::table('GroupMember')->insert($data);
