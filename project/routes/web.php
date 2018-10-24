@@ -35,11 +35,10 @@ Route::get('course', function () {
     return view('course');
 })->name('course');
 
-Route::get('courses', function () {
-    return view('courses');
-})->name('courses');
+Route::get('courses', 'CoursesController@showAllCourses')->name('courses');
 
 Route::get('test', 'UserController@connect');
+Route::get('test2', 'CoursesController@showAllCourses');
 
 Route::post('post-login', 'Auth\LoginController@postLogin')->name('post_login');
 
@@ -84,7 +83,7 @@ Route::group(['prefix' => 'admin-cp'], function () {
 
         Route::get('courses', function () {
             return view('admin.courses');
-        })->name('courses');
+        })->name('admin-courses');
 
         Route::get('members/search', 'UserController@searchUser')->name('search');
 
