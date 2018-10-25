@@ -19,6 +19,7 @@ class CourseSeeder extends Seeder
                 'start_date' => new DateTime('2018-10-25'),
                 'end_date' => new DateTime('2019-03-25'),
                 'price' => 0,
+                'des'=>"English 10 basic with Native Speaker",
                 'uid' => 'teacher1',
                 'id_subject' =>6,
             ], [
@@ -26,6 +27,7 @@ class CourseSeeder extends Seeder
                 'start_date' => new DateTime('2018-10-25'),
                 'end_date' => new DateTime('2019-03-25'),
                 'price' => 0,
+                'des'=>"English 11 basic with Native Teacher",
                 'uid' => 'teacher2',
                 'id_subject' =>7,
             ], [
@@ -33,6 +35,7 @@ class CourseSeeder extends Seeder
                 'start_date' => new DateTime('2018-10-25'),
                 'end_date' => new DateTime('2019-03-25'),
                 'price' => 0,
+                'des'=>"English 12 basic with Native Teacher from Ha Noi University of science and technology",
                 'uid' => 'teacher1',
                 'id_subject' =>8,
             ], [
@@ -40,6 +43,7 @@ class CourseSeeder extends Seeder
                 'start_date' => new DateTime('2018-10-25'),
                 'end_date' => new DateTime('2019-03-25'),
                 'price' => 0,
+                'des'=>"Toan co ban lop 10 cho hoc sinh moi bat dau",
                 'uid' => 'teacher4',
                 'id_subject' =>9,
             ]
