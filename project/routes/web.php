@@ -43,7 +43,7 @@ Route::get('test2', 'CoursesController@showAllCourses');
 Route::post('post-login', 'Auth\LoginController@postLogin')->name('post_login');
 
 
-Route::get('logout', 'Auth\LoginController@getLogout')->name('logout');
+Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::group(['prefix' => 'admin-cp'], function () {
     Route::get('/', function () {

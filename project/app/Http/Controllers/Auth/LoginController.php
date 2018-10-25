@@ -62,7 +62,7 @@ class LoginController extends Controller
         if(Auth::attempt($arr,$remember)){
 //            dd($user);
             return view('index',compact('user'));
-//                return redirect()->intended('/');
+//                return redirect()->intended(route('home',['user'=>$user]));
         } else{
 //            dd("That bai");
             return back()->withInput()->with('error', 'Tài khoản hoặc mật khẩu chưa đúng');
@@ -83,5 +83,10 @@ class LoginController extends Controller
             return back()->with('warning', 'Bạn cần xác thực tài khoản, chúng tôi đã gửi mã xác thực vào email của bạn, hãy kiểm tra và làm theo hướng dẫn.');
         }
         return redirect()->intended($this->redirectPath());
+    }
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        return redirect(route('home'));
     }
 }
