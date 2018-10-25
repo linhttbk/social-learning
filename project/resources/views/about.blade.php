@@ -77,7 +77,7 @@
                 <!-- About Item -->
                 <div class="col-lg-4 about_col about_col_left">
                     <div class="about_item">
-                        <div class="about_item_image"><img src="images/about_1.jpg" alt=""></div>
+                        <div class="about_item_image"><img src="{{asset('images/about_1.jpg')}}" alt=""></div>
                         <div class="about_item_title"><a href="#">Our Stories</a></div>
                         <div class="about_item_text">
                             <p>Lorem ipsum dolor sit , consectet adipisi elit, sed do eiusmod tempor for enim en
@@ -89,7 +89,7 @@
                 <!-- About Item -->
                 <div class="col-lg-4 about_col about_col_middle">
                     <div class="about_item">
-                        <div class="about_item_image"><img src="images/about_2.jpg" alt=""></div>
+                        <div class="about_item_image"><img src="{{asset('images/about_2.jpg')}}" alt=""></div>
                         <div class="about_item_title"><a href="#">Our Mission</a></div>
                         <div class="about_item_text">
                             <p>Lorem ipsum dolor sit , consectet adipisi elit, sed do eiusmod tempor for enim en
@@ -101,7 +101,7 @@
                 <!-- About Item -->
                 <div class="col-lg-4 about_col about_col_right">
                     <div class="about_item">
-                        <div class="about_item_image"><img src="images/about_3.jpg" alt=""></div>
+                        <div class="about_item_image"><img src="{{asset('images/about_3.jpg')}}" alt=""></div>
                         <div class="about_item_title"><a href="#">Our Vision</a></div>
                         <div class="about_item_text">
                             <p>Lorem ipsum dolor sit , consectet adipisi elit, sed do eiusmod tempor for enim en
@@ -223,7 +223,7 @@
                 <!-- Team Item -->
                 <div class="col-lg-3 col-md-6 team_col">
                     <div class="team_item">
-                        <div class="team_image"><img src="images/team_1.jpg" alt=""></div>
+                        <div class="team_image"><img src="{{asset('images/team_1.jpg')}}" alt=""></div>
                         <div class="team_body">
                             <div class="team_title"><a href="#">Jacke Masito</a></div>
                             <div class="team_subtitle">Marketing & Management</div>
@@ -241,7 +241,7 @@
                 <!-- Team Item -->
                 <div class="col-lg-3 col-md-6 team_col">
                     <div class="team_item">
-                        <div class="team_image"><img src="images/team_2.jpg" alt=""></div>
+                        <div class="team_image"><img src="{{asset('images/team_2.jpg')}}" alt=""></div>
                         <div class="team_body">
                             <div class="team_title"><a href="#">William James</a></div>
                             <div class="team_subtitle">Designer & Website</div>
@@ -259,7 +259,7 @@
                 <!-- Team Item -->
                 <div class="col-lg-3 col-md-6 team_col">
                     <div class="team_item">
-                        <div class="team_image"><img src="images/team_3.jpg" alt=""></div>
+                        <div class="team_image"><img src="{{asset('images/team_3.jpg')}}" alt=""></div>
                         <div class="team_body">
                             <div class="team_title"><a href="#">John Tyler</a></div>
                             <div class="team_subtitle">Quantum mechanics</div>
@@ -277,7 +277,7 @@
                 <!-- Team Item -->
                 <div class="col-lg-3 col-md-6 team_col">
                     <div class="team_item">
-                        <div class="team_image"><img src="images/team_4.jpg" alt=""></div>
+                        <div class="team_image"><img src="{{asset('images/team_4.jpg')}}" alt=""></div>
                         <div class="team_body">
                             <div class="team_title"><a href="#">Veronica Vahn</a></div>
                             <div class="team_subtitle">Math & Physics</div>
@@ -379,22 +379,22 @@
                         <div class="owl-carousel owl-theme partners_slider">
 
                             <!-- Partner Item -->
-                            <div class="owl-item partner_item"><img src="images/partner_1.png" alt=""></div>
+                            <div class="owl-item partner_item"><img src="{{asset('images/partner_1.png')}}" alt=""></div>
 
                             <!-- Partner Item -->
-                            <div class="owl-item partner_item"><img src="images/partner_2.png" alt=""></div>
+                            <div class="owl-item partner_item"><img src="{{asset('images/partner_1.png')}}" alt=""></div>
 
                             <!-- Partner Item -->
-                            <div class="owl-item partner_item"><img src="images/partner_3.png" alt=""></div>
+                            <div class="owl-item partner_item"><img src="{{asset('images/partner_1.png')}}" alt=""></div>
 
                             <!-- Partner Item -->
-                            <div class="owl-item partner_item"><img src="images/partner_4.png" alt=""></div>
+                            <div class="owl-item partner_item"><img src="{{asset('images/partner_1.png')}}" alt=""></div>
 
                             <!-- Partner Item -->
-                            <div class="owl-item partner_item"><img src="images/partner_5.png" alt=""></div>
+                            <div class="owl-item partner_item"><img src="{{asset('images/partner_1.png')}}" alt=""></div>
 
                             <!-- Partner Item -->
-                            <div class="owl-item partner_item"><img src="images/partner_6.png" alt=""></div>
+                            <div class="owl-item partner_item"><img src="{{asset('images/partner_1.png')}}" alt=""></div>
 
                         </div>
                     </div>
