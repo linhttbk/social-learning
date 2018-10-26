@@ -12,6 +12,6 @@ class Account extends Authenticatable
     protected $primaryKey = 'uid';
 
     public  function  user(){
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo('App\Models\User','uid','uid');
     }
 }
