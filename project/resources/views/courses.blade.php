@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="{{asset('plugins/OwlCarousel2-2.2.1/animate.css')}}">
     <link rel="stylesheet" href="{{asset('css/courses.css')}}">
     <link rel="stylesheet" href="{{asset('css/courses_responsive.css')}}">
+@endsection
+@section('js')
+    <script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
+    <script src="{{asset('js/course.js')}}"></script>
+@endsection
 @section('content')
 
     <!-- Menu -->
@@ -92,7 +97,8 @@
                                         <div class="course">
                                             {{--<div class="course_image"><img src="images/course_4.jpg" alt=""></div>--}}
                                             <div class="course_body">
-                                                <h3 class="course_title"><a href="course.blade.php">{{$data->title}}</a>
+                                                <h3 class="course_title"><a
+                                                        href="{{route('course_detail',['id'=>$data->id])}}">{{$data->title}}</a>
                                                 </h3>
                                                 <div class="course_teacher"><a href="#">{{$data->name}}</a></div>
                                                 <div class="course_text">
@@ -101,7 +107,8 @@
                                                 </div>
                                             </div>
                                             <div class="course_footer">
-                                                <div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
+                                                <div
+                                                    class="course_footer_content d-flex flex-row align-items-center justify-content-start">
                                                     <div class="course_info">
                                                         <i class="fa fa-graduation-cap" aria-hidden="true"></i>
                                                         <span>{{$data->count_student}} Student</span>
@@ -209,7 +216,7 @@
                                 @if(!empty($result))
                                     @foreach($result as $key=>$data)
                                         @if($key >2)
-                                           @break
+                                            @break
                                         @endif
                                         <div class="latest d-flex flex-row align-items-start justify-content-start">
                                             {{--<div class="latest_image">--}}

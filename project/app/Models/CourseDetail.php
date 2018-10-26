@@ -11,5 +11,8 @@ class CourseDetail extends Model
     protected $primaryKey = ['id_course','id_chap'];
     public $incrementing = false;
 
-
+    public function chapter()
+    {
+        return $this->hasOne('App\Models\Chapter', 'id', 'id_chap');
+    }
 }

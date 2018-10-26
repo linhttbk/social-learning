@@ -36,6 +36,7 @@ Route::get('course', function () {
 })->name('course');
 
 Route::get('courses', 'CoursesController@showAllCourses')->name('courses');
+Route::get('course/{id}', 'CoursesController@showCourseDetail')->name('course_detail');
 
 Route::get('test', 'UserController@connect');
 Route::get('test2', 'CoursesController@showAllCourses');
