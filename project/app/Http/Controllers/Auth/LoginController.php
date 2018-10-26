@@ -52,7 +52,7 @@ class LoginController extends Controller
         $user = DB::table('User')
             ->join('Account', 'User.uid', '=', 'Account.uid')
             ->where('User.uid','=',$request->username)
-            ->get();
+            ->first();
         $arr = ['uid' => $request->username, 'password' => $request->password];
         if($request->remember = 'Remember Me'){
             $remember = true;
@@ -60,8 +60,8 @@ class LoginController extends Controller
             $remember = false;
         }
         if(Auth::attempt($arr,$remember)){
-//            dd($user);
-            return view('index',compact('user'));
+        // return  dd($user);
+            return redirect(route('home'));
 //                return redirect()->intended(route('home',['user'=>$user]));
         } else{
 //            dd("That bai");
