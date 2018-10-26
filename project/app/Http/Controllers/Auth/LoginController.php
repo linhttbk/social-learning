@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Account;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -42,41 +43,35 @@ class LoginController extends Controller
 //    }
     protected $redirectTo = '/';
     protected $activationService;
+
     public function __construct(ActivationService $activationService)
     {
         $this->middleware('guest', ['except' => 'logout']);
         $this->activationService = $activationService;
     }
+
     public function postLogin(Request $request)
     {
-        $user = DB::table('User')
-            ->join('Account', 'User.uid', '=', 'Account.uid')
-            ->where('User.uid','=',$request->username)
-            ->first();
         $arr = ['uid' => $request->username, 'password' => $request->password];
-        if($request->remember = 'Remember Me'){
+        if ($request->remember = 'Remember Me') {
             $remember = true;
         } else {
             $remember = false;
         }
-        if(Auth::attempt($arr,$remember)){
-        // return  dd($user);
-            return redirect(route('home'));
+        if (Auth::attempt($arr, $remember)) {
+            // return  dd($user);
+            return redirect()->intended();
 //                return redirect()->intended(route('home',['user'=>$user]));
-        } else{
+        } else {
 //            dd("That bai");
             return back()->withInput()->with('error', 'Tài khoản hoặc mật khẩu chưa đúng');
         }
 
     }
 
-    public  function getLogout(){
-        Auth::logout();
-        return redirect()->intended('login');
-    }
-      protected function authenticated(Request $request, $user)
+    protected function authenticated(Request $request, $user)
     {
-        $account=Account::where('uid', $user->uid)->first();
+        $account = Account::where('uid', $user->uid)->first();
         if (!$account->emailverify) {
             $this->activationService->sendActivationMail($user);
             auth()->logout();
@@ -84,9 +79,10 @@ class LoginController extends Controller
         }
         return redirect()->intended($this->redirectPath());
     }
+
     public function logout(Request $request)
     {
         Auth::logout();
-        return redirect(route('home'));
+        return redirect()->back();
     }
 }
