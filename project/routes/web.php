@@ -36,7 +36,14 @@ Route::get('course', function () {
 })->name('course');
 
 Route::get('courses', 'CoursesController@showAllCourses')->name('courses');
-Route::get('course/{id}', 'CoursesController@showCourseDetail')->name('course_detail');
+
+
+Route::group(['prefix' =>'course'],function (){
+
+    Route::get('/{id}', 'CoursesController@showCourseDetail')->name('course_detail');
+    Route::get('register/{id}','CourseRegistrationController@registerCourse')->name('register_course');
+
+});
 
 Route::get('test', 'UserController@connect');
 Route::get('test2', 'CoursesController@showAllCourses');
