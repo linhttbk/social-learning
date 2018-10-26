@@ -82,9 +82,7 @@ Route::group(['prefix' => 'admin-cp'], function () {
             return view('admin.forms');
         })->name('forms');
 
-        Route::get('courses', function () {
-            return view('admin.courses');
-        })->name('admin-courses');
+        Route::get('courses', 'CoursesController@showCoursesPag')->name('admin-courses');
 
         Route::get('members/search', 'UserController@searchUser')->name('search');
 

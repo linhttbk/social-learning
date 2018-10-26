@@ -37,4 +37,11 @@ class CoursesController extends Controller
         $course = Course::find($id);
         return view('course', compact('course'));
     }
+
+    public function showCoursesPag(){
+        $result = DB::table('Course')->select(array('Course.*', 'User.name', DB::raw('(Select Count(CourseRegistration.id_course) from CourseRegistration where CourseRegistration.id_course = Course.id) as count_student')))
+            ->leftJoin('User', 'Course.uid', '=', 'User.uid')
+            ->paginate(6);
+        return view('admin.courses', compact('result'));
+    }
 }
