@@ -38,270 +38,73 @@
             <!-- Courses -->
             <section class="client no-padding-top">
                 <div class="container-fluid">
-                    <div class="row courses_row">
-                        <!-- Work Amount  -->
-                        <div class="col-lg-4">
-                            <div class="work-amount card">
-                                <div class="card-close">
-                                    <div class="dropdown">
-                                        <button type="button" id="closeCard1" data-toggle="dropdown"
-                                                aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i
-                                                class="fa fa-ellipsis-v"></i></button>
-                                        <div aria-labelledby="closeCard1"
-                                             class="dropdown-menu dropdown-menu-right has-shadow">
-                                             <a href="#" class="dropdown-item remove">
-                                                <i class="fa fa-times"></i>Close</a><a href="#"
-                                                                                       class="dropdown-item edit"> 
-                                                <i class="fa fa-gear"></i>Edit</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="course">
-                                    <div class="course_image"><img src="images/course_1.jpg" alt="">
-                                    </div>
-                                    <div class="course_body">
-                                        <h3 class="course_title"><a href="course.blade.php">Software Training</a></h3>
-                                        <div class="course_teacher">Mr. John Taylor</div>
-                                        <div class="course_text">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipi elitsed do eiusmod tempor</p>
-                                        </div>
-                                    </div>
-                                    <div class="course_footer">
-                                        <div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
-                                            <div class="course_info">
-                                                <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                                                <span>20 Student</span>
-                                            </div>
-                                            <div class="course_info">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <span>5 Ratings</span>
-                                            </div>
-                                            <div class="course_price ml-auto">$130</div>
-                                        </div>
-                                    </div>  
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4">
-                            <div class="work-amount card">
-                                <div class="card-close">
-                                    <div class="dropdown">
-                                        <button type="button" id="closeCard1" data-toggle="dropdown"
-                                                aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i
-                                                class="fa fa-ellipsis-v"></i></button>
-                                        <div aria-labelledby="closeCard1"
-                                             class="dropdown-menu dropdown-menu-right has-shadow">
-                                             <a href="#" class="dropdown-item remove">
-                                                <i class="fa fa-times"></i>Close</a><a href="#"
-                                                                                       class="dropdown-item edit"> 
-                                                <i class="fa fa-gear"></i>Edit</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="course">
-                                    <div class="course_image"><img src="images/course_1.jpg" alt="">
-                                    </div>
-                                    <div class="course_body">
-                                        <h3 class="course_title"><a href="course.blade.php">Software Training</a></h3>
-                                        <div class="course_teacher">Mr. John Taylor</div>
-                                        <div class="course_text">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipi elitsed do eiusmod tempor</p>
-                                        </div>
-                                    </div>
-                                    <div class="course_footer">
-                                        <div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
-                                            <div class="course_info">
-                                                <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                                                <span>20 Student</span>
-                                            </div>
-                                            <div class="course_info">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <span>5 Ratings</span>
-                                            </div>
-                                            <div class="course_price ml-auto">$130</div>
-                                        </div>
-                                    </div>  
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4">
-                            <div class="work-amount card">
-                                <div class="card-close">
-                                    <div class="dropdown">
-                                        <button type="button" id="closeCard1" data-toggle="dropdown"
-                                                aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i
-                                                class="fa fa-ellipsis-v"></i></button>
-                                        <div aria-labelledby="closeCard1"
-                                             class="dropdown-menu dropdown-menu-right has-shadow">
-                                             <a href="#" class="dropdown-item remove">
-                                                <i class="fa fa-times"></i>Close</a><a href="#"
-                                                                                       class="dropdown-item edit"> 
-                                                <i class="fa fa-gear"></i>Edit</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="course">
-                                    <div class="course_image"><img src="images/course_1.jpg" alt="">
-                                    </div>
-                                    <div class="course_body">
-                                        <h3 class="course_title"><a href="course.blade.php">Software Training</a></h3>
-                                        <div class="course_teacher">Mr. John Taylor</div>
-                                        <div class="course_text">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipi elitsed do eiusmod tempor</p>
-                                        </div>
-                                    </div>
-                                    <div class="course_footer">
-                                        <div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
-                                            <div class="course_info">
-                                                <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                                                <span>20 Student</span>
-                                            </div>
-                                            <div class="course_info">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <span>5 Ratings</span>
-                                            </div>
-                                            <div class="course_price ml-auto">$130</div>
-                                        </div>
-                                    </div>  
-                                </div>
-                            </div>
-                        </div>
+                    <br>
+                    <div class="comment">
+                        <p><i class="fa fa-circle" style="color: #1CB94E"></i> Khóa học đang hoạt động</p>
+                        <p><i class="fa fa-circle" style="color: #8e81f1"></i> Khóa học đã kết thúc</p>
                     </div>
-
                     <div class="row courses_row">
                         <!-- Work Amount  -->
-                        <div class="col-lg-4">
-                            <div class="work-amount card">
-                                <div class="card-close">
-                                    <div class="dropdown">
-                                        <button type="button" id="closeCard1" data-toggle="dropdown"
-                                                aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i
-                                                class="fa fa-ellipsis-v"></i></button>
-                                        <div aria-labelledby="closeCard1"
-                                             class="dropdown-menu dropdown-menu-right has-shadow">
-                                             <a href="#" class="dropdown-item remove">
-                                                <i class="fa fa-times"></i>Close</a><a href="#"
-                                                                                       class="dropdown-item edit"> 
-                                                <i class="fa fa-gear"></i>Edit</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="course">
-                                    <div class="course_image"><img src="images/course_1.jpg" alt="">
-                                    </div>
-                                    <div class="course_body">
-                                        <h3 class="course_title"><a href="course.blade.php">Software Training</a></h3>
-                                        <div class="course_teacher">Mr. John Taylor</div>
-                                        <div class="course_text">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipi elitsed do eiusmod tempor</p>
-                                        </div>
-                                    </div>
-                                    <div class="course_footer">
-                                        <div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
-                                            <div class="course_info">
-                                                <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                                                <span>20 Student</span>
+                        <?php
+                        $date_now = new \Carbon\Carbon();
+                        ?>
+                        @if(isset($result))
+                            @foreach($result as $key => $data)
+                                <div class="col-lg-4">
+                                    <div class="work-amount card">
+                                        <div class="card-close">
+                                            <div class="dropdown">
+                                                <button type="button" id="closeCard1" data-toggle="dropdown"
+                                                        aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i
+                                                        class="fa fa-ellipsis-v"></i></button>
+                                                <div aria-labelledby="closeCard1"
+                                                     class="dropdown-menu dropdown-menu-right has-shadow">
+                                                    <a href="#" class="dropdown-item remove">
+                                                        <i class="fa fa-times"></i>Close</a><a href="#"
+                                                                                               class="dropdown-item edit">
+                                                        <i class="fa fa-gear"></i>Edit</a>
+                                                </div>
                                             </div>
-                                            <div class="course_info">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <span>5 Ratings</span>
-                                            </div>
-                                            <div class="course_price ml-auto">$130</div>
                                         </div>
-                                    </div>  
-                                </div>
-                            </div>
-                        </div>
+                                        <div class="course">
+                                            <div class="course_image"><img src="images/course_1.jpg" alt="">
+                                                @if($data->start_date < $date_now && $data->end_date > $date_now)
+                                                    <i class="fa fa-circle" aria-hidden="true" style="color: #1CB94E"></i>
+                                                @elseif($data->end_date < $date_now)
+                                                    <i class="fa fa-circle" aria-hidden="true" style="color: #8e81f1"></i>
+                                                @endif
+                                            </div>
 
-                        <div class="col-lg-4">
-                            <div class="work-amount card">
-                                <div class="card-close">
-                                    <div class="dropdown">
-                                        <button type="button" id="closeCard1" data-toggle="dropdown"
-                                                aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i
-                                                class="fa fa-ellipsis-v"></i></button>
-                                        <div aria-labelledby="closeCard1"
-                                             class="dropdown-menu dropdown-menu-right has-shadow">
-                                             <a href="#" class="dropdown-item remove">
-                                                <i class="fa fa-times"></i>Close</a><a href="#"
-                                                                                       class="dropdown-item edit"> 
-                                                <i class="fa fa-gear"></i>Edit</a>
+                                            <div class="course_body">
+                                                <h3 class="course_title"><a href="course.blade.php">{{$data->title}}</a></h3>
+                                                <div class="course_teacher">Mr. John Taylor</div>
+                                                <div class="course_text">
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipi elitsed do eiusmod tempor</p>
+                                                </div>
+                                            </div>
+                                            <div class="course_footer">
+                                                <div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
+                                                    <div class="course_info">
+                                                        <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                                                        <span>{{$data->count_student}}Học viên</span>
+                                                    </div>
+                                                    <div class="course_info">
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <span>5 Ratings</span>
+                                                    </div>
+                                                    <div class="course_price ml-auto">$130</div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="course">
-                                    <div class="course_image"><img src="images/course_1.jpg" alt="">
-                                    </div>
-                                    <div class="course_body">
-                                        <h3 class="course_title"><a href="course.blade.php">Software Training</a></h3>
-                                        <div class="course_teacher">Mr. John Taylor</div>
-                                        <div class="course_text">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipi elitsed do eiusmod tempor</p>
-                                        </div>
-                                    </div>
-                                    <div class="course_footer">
-                                        <div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
-                                            <div class="course_info">
-                                                <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                                                <span>20 Student</span>
-                                            </div>
-                                            <div class="course_info">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <span>5 Ratings</span>
-                                            </div>
-                                            <div class="course_price ml-auto">$130</div>
-                                        </div>
-                                    </div>  
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4">
-                            <div class="work-amount card">
-                                <div class="card-close">
-                                    <div class="dropdown">
-                                        <button type="button" id="closeCard1" data-toggle="dropdown"
-                                                aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i
-                                                class="fa fa-ellipsis-v"></i></button>
-                                        <div aria-labelledby="closeCard1"
-                                             class="dropdown-menu dropdown-menu-right has-shadow">
-                                             <a href="#" class="dropdown-item remove">
-                                                <i class="fa fa-times"></i>Close</a><a href="#"
-                                                                                       class="dropdown-item edit"> 
-                                                <i class="fa fa-gear"></i>Edit</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="course">
-                                    <div class="course_image"><img src="images/course_1.jpg" alt="">
-                                    </div>
-                                    <div class="course_body">
-                                        <h3 class="course_title"><a href="course.blade.php">Software Training</a></h3>
-                                        <div class="course_teacher">Mr. John Taylor</div>
-                                        <div class="course_text">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipi elitsed do eiusmod tempor</p>
-                                        </div>
-                                    </div>
-                                    <div class="course_footer">
-                                        <div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
-                                            <div class="course_info">
-                                                <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                                                <span>20 Student</span>
-                                            </div>
-                                            <div class="course_info">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <span>5 Ratings</span>
-                                            </div>
-                                            <div class="course_price ml-auto">$130</div>
-                                        </div>
-                                    </div>  
-                                </div>
-                            </div>
-                        </div>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
+                @if(isset($result))
+                    {{$result->links()}}
+                @endif
             </section>
             <!-- Page Footer-->
             <footer class="main-footer">
