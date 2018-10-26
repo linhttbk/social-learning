@@ -9,4 +9,6 @@ class CourseRegistration extends Model
     //
     protected $table = 'CourseRegistration';
 
+
+
 }
