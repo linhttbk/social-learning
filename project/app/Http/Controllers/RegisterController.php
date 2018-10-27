@@ -37,7 +37,7 @@ class RegisterController extends Controller
             $account=new Account();
             
             $account->uid=$req->usernamereg;
-            $account->password=$req->passwordreg;
+            $account->password=bcrypt($req->passwordreg);
             $account->status = 0;
 
         	$user->uid=$req->usernamereg;
@@ -72,8 +72,8 @@ class RegisterController extends Controller
      public function activateUser($token)
     {
         if ($user = $this->activationService->activateUser($token)) {
-            auth()->login($user);
-            return redirect('/login');
+            //auth()->login($user);
+            return redirect('login');
         }
         abort(404);
     }

@@ -59,10 +59,10 @@ class LoginController extends Controller
         } else {
             $remember = false;
         }
-        if(Auth::attempt($arr,$remember)){
+        if(Auth::guard('account')->attempt($arr,$remember)){
 //            dd($user);
             return view('index',compact('user'));
-//                return redirect()->intended('/');
+               
         } else{
 //            dd("That bai");
             return back()->withInput()->with('error', 'Tài khoản hoặc mật khẩu chưa đúng');
@@ -74,14 +74,14 @@ class LoginController extends Controller
         Auth::logout();
         return redirect()->intended('login');
     }
-      protected function authenticated(Request $request, $user)
-    {
-        $account=Account::where('uid', $user->uid)->first();
-        if (!$account->emailverify) {
-            $this->activationService->sendActivationMail($user);
-            auth()->logout();
-            return back()->with('warning', 'Bạn cần xác thực tài khoản, chúng tôi đã gửi mã xác thực vào email của bạn, hãy kiểm tra và làm theo hướng dẫn.');
-        }
-        return redirect()->intended($this->redirectPath());
-    }
+    // protected function authenticated(Request $request, $user)
+    // {
+    //     $account=Account::where('uid', $user->uid)->first();
+    //     if (!$account->emailverify) {
+    //         $this->activationService->sendActivationMail($user);
+    //         auth()->logout();
+    //         return back()->with('warning', 'Bạn cần xác thực tài khoản, chúng tôi đã gửi mã xác thực vào email của bạn, hãy kiểm tra và làm theo hướng dẫn.');
+    //     }
+    //     return redirect()->intended($this->redirectPath());
+    // }
 }
