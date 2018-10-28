@@ -26,7 +26,7 @@ class CreateUsersTable extends Migration
             $table->integer('type');
             $table->integer('grade')->nullable();
             $table->integer('id_sr')->nullable();
-            $table->foreign('id_sr')->references('id')->on('SubjectRegistration');
+            $table->foreign('id_sr')->references('id')->on('Subject');
             $table->string('avatar')->nullable();
             $table->rememberToken();
             $table->timestamps();

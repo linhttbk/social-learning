@@ -862,7 +862,7 @@ section
 .course_info_text a
 {
 	font-size: 14px;
-	color: #384158;
+	color: #14bdee;
 	-webkit-transition: all 200ms ease;
 	-moz-transition: all 200ms ease;
 	-ms-transition: all 200ms ease;
@@ -871,7 +871,7 @@ section
 }
 .course_info_text a:hover
 {
-	color: #14bdee;
+	color: #2484ee;
 }
 .rating_r
 {
@@ -1473,7 +1473,7 @@ section
 .teacher_name a
 {
 	font-family: 'Roboto Slab', serif;
-	font-size: 24px;
+	font-size: 18px;
 	font-weight: 700;
 	color: #384158;
 	-webkit-transition: all 200ms ease;
@@ -1883,4 +1883,10 @@ section
 .cr_list li a:hover
 {
 	color: #14bdee;
+}
+.not-found-course{
+    color: black;
+    font-weight: bold;
+    font-size: larger;
+    margin-left: 20px;
 }

@@ -8,7 +8,7 @@
     <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
     <ul class="list-unstyled">
         <li class="active"><a href="{{route('admin')}}">Home </a></li>
-        <li><a href="{{route('courses')}}">Courses</a></li>
+        <li><a href="{{route('admin-courses')}}">Courses</a></li>
         <li><a href="{{route('members')}}"> User Management </a></li>
         <li><a href="{{route('group-user')}}"> Group Management </a></li>
         <li><a href="{{route('document_management')}}"> Document Management </a></li>

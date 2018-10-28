@@ -48,31 +48,32 @@
                                     <label>Tài khoản : </label>
                                     <input type="text" name="usernamereg" id="usernamereg" tabindex="1"
                                            class="form-control" placeholder="Username" value="">
-                                    <span id="username-error" class="input-error-msg"> Vui  lòng  nhap tai khoan</span>
+                                    <span id="username-error" class="input-error-msg"> Vui  lòng  nhập tài khoản</span>
                                 </div>
                 <div class="form-group">
                                     <label>Mật khẩu : </label>
                                     <input type="password" name="passwordreg" id="passwordreg" tabindex="2"
                                            class="form-control" placeholder="Password">
-                                    <span id="pass-error" class="input-error-msg"> Vui long nhap mat khau</span>
+                                    <span id="pass-error" class="input-error-msg"> Vui lòng nhập mật khẩu</span>
                                 </div>
                 <div class="form-group">
                                     <label>Nhập lại mật khẩu: </label>
                                     <input type="password" name="repasswordreg" id="repasswordreg" tabindex="2"
                                            class="form-control" placeholder="Xác nhận mật khẩu">
-                                    <span id="repass-error" class="input-error-msg"> Mat khau khong trung khop</span>
+                                    <span id="repass-error" class="input-error-msg"> Mật khẩu không trùng khớp</span>
                                 </div>
                 <div class="form-group">
                                     <label>Họ tên : </label>
                                     <input type="text" name="name" id="name" tabindex="2" class="form-control"
                                            placeholder="Name">
-                                    <span id="name-error" class="input-error-msg"> Vui  lòng  nhap ten nguoi dung</span>
+                                    <span id="name-error" class="input-error-msg"> Vui  lòng  nhập tên người dùng</span>
                                 </div>
                 <div class="form-group">
                                     <label>Ngày sinh : </label>
                                     <input placeholder="Ngày sinh " style="height: 45px" id="datepicker"/>
                                     <span id="birthday-error"
-                                          class="input-error-msg"> Vui  lòng  chon ngay thang nam sinh</span>
+                                          class="input-error-msg"> Vui  lòng  chọn ngày tháng năm sinh
+                                    </span>
                                 </div>
 
                 <div class="form-group">
@@ -136,7 +137,7 @@
                                     <div class="row">
                                         <div class="col-sm-6 col-sm-offset-3">
                                             <input type="submit" name="register-submit" id="register-submit"
-                                                   tabindex="4" class="form-control btn btn-register" value="Đăng ký"
+                                                   tabindex="4" class="form-control btn btn-register" value="Thay đổi"
                                             >
                                         </div>
                                     </div>

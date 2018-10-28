@@ -27,9 +27,23 @@
     <link rel="stylesheet" href="{{asset('plugins/OwlCarousel2-2.2.1/owl.theme.default.css')}}">
     <link rel="stylesheet" href="{{asset('plugins/OwlCarousel2-2.2.1/animate.css')}}">
     <link rel="stylesheet" href="{{asset('css/main_styles.css')}}">
+    <link rel="stylesheet" href="{{asset('css/header.css')}}">
     <link rel="stylesheet" href="{{asset('css/responsive.css')}}">
 @endsection
-
+@section('js')
+    <script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
+    <script src="{{asset('styles/bootstrap4/popper.js')}}"></script>
+    <script src="{{asset('styles/bootstrap4/bootstrap.min.js')}}"></script>
+    <script src="{{asset('plugins/greensock/TweenMax.min.js')}}"></script>
+    <script src="{{asset('plugins/greensock/TimelineMax.min.js')}}"></script>
+    <script src="{{asset('plugins/scrollmagic/ScrollMagic.min.js')}}"></script>
+    <script src="{{asset('plugins/greensock/animation.gsap.min.js')}}"></script>
+    <script src="{{asset('plugins/greensock/ScrollToPlugin.min.js')}}"></script>
+    <script src="{{asset('plugins/OwlCarousel2-2.2.1/owl.carousel.js')}}"></script>
+    <script src="{{asset('plugins/easing/easing.js')}}"></script>
+    <script src="{{asset('plugins/parallax-js-master/parallax.min.js')}}"></script>
+    <script src="{{asset('js/custom.js')}}"></script>
+    @endsection
 <!-- Header -->
 @section('content')
     <!-- Menu -->
@@ -263,7 +277,7 @@
                     <div class="course">
                         <div class="course_image"><img src="images/course_1.jpg" alt=""></div>
                         <div class="course_body">
-                            <h3 class="course_title"><a href="course.blade.php">Software Training</a></h3>
+                            <h3 class="course_title"><a href="{{route('course')}}">Software Training</a></h3>
                             <div class="course_teacher">Mr. John Taylor</div>
                             <div class="course_text">
                                 <p>Lorem ipsum dolor sit amet, consectetur adipi elitsed do eiusmod tempor</p>
@@ -290,7 +304,7 @@
                     <div class="course">
                         <div class="course_image"><img src="images/course_2.jpg" alt=""></div>
                         <div class="course_body">
-                            <h3 class="course_title"><a href="course.blade.php">Developing Mobile Apps</a></h3>
+                            <h3 class="course_title"><a href="{{route('course')}}">Developing Mobile Apps</a></h3>
                             <div class="course_teacher">Ms. Lucius</div>
                             <div class="course_text">
                                 <p>Lorem ipsum dolor sit amet, consectetur adipi elitsed do eiusmod tempor</p>
@@ -317,7 +331,7 @@
                     <div class="course">
                         <div class="course_image"><img src="images/course_3.jpg" alt=""></div>
                         <div class="course_body">
-                            <h3 class="course_title"><a href="course.blade.php">Starting a Startup</a></h3>
+                            <h3 class="course_title"><a href="{{route('course')}}">Starting a Startup</a></h3>
                             <div class="course_teacher">Mr. Charles</div>
                             <div class="course_text">
                                 <p>Lorem ipsum dolor sit amet, consectetur adipi elitsed do eiusmod tempor</p>

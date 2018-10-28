@@ -19,6 +19,7 @@ class CreateCourseTable extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->double('price');
+            $table->string('des');
             $table->string('uid');
             $table->integer('id_subject');
             $table->foreign('id_subject')->references('id')->on('Subject');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Account;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -42,19 +43,17 @@ class LoginController extends Controller
 //    }
     protected $redirectTo = '/';
     protected $activationService;
+
     public function __construct(ActivationService $activationService)
     {
         $this->middleware('guest', ['except' => 'logout']);
         $this->activationService = $activationService;
     }
+
     public function postLogin(Request $request)
     {
-        $user = DB::table('User')
-            ->join('Account', 'User.uid', '=', 'Account.uid')
-            ->where('User.uid','=',$request->username)
-            ->get();
         $arr = ['uid' => $request->username, 'password' => $request->password];
-        if($request->remember = 'Remember Me'){
+        if ($request->remember = 'Remember Me') {
             $remember = true;
         } else {
             $remember = false;
@@ -64,6 +63,11 @@ class LoginController extends Controller
             return view('index',compact('user'));
                
         } else{
+        if (Auth::attempt($arr, $remember)) {
+            // return  dd($user);
+            return redirect()->intended();
+//                return redirect()->intended(route('home',['user'=>$user]));
+        } else {
 //            dd("That bai");
             return back()->withInput()->with('error', 'Tài khoản hoặc mật khẩu chưa đúng');
         }
@@ -74,14 +78,22 @@ class LoginController extends Controller
         Auth::logout();
         return redirect()->intended('login');
     }
-    // protected function authenticated(Request $request, $user)
-    // {
-    //     $account=Account::where('uid', $user->uid)->first();
-    //     if (!$account->emailverify) {
-    //         $this->activationService->sendActivationMail($user);
-    //         auth()->logout();
-    //         return back()->with('warning', 'Bạn cần xác thực tài khoản, chúng tôi đã gửi mã xác thực vào email của bạn, hãy kiểm tra và làm theo hướng dẫn.');
-    //     }
-    //     return redirect()->intended($this->redirectPath());
-    // }
+
+    protected function authenticated(Request $request, $user)
+    {
+        $account = Account::where('uid', $user->uid)->first();
+        if (!$account->emailverify) {
+            $this->activationService->sendActivationMail($user);
+            auth()->logout();
+            return back()->with('warning', 'Bạn cần xác thực tài khoản, chúng tôi đã gửi mã xác thực vào email của bạn, hãy kiểm tra và làm theo hướng dẫn.');
+        }
+        return redirect()->intended($this->redirectPath());
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        return redirect()->back();
+    }
+
 }

@@ -24,7 +24,7 @@
 									<div class="top_bar_contact_list ml-auto">
 										<li class="nav-item dropdown">
 											<a href="#" role="button">
-												<img class="avatar" src="{{asset('admin/img/avatar-1.jpg')}}" alt="Xin chào "> {{$user[0]->name}}
+												<img class="avatar" src="{{asset('admin/img/avatar-1.jpg')}}" alt="Xin chào "> {{((Auth::user())->user)->name}}
 											</a>
 										</li>
 										<li>

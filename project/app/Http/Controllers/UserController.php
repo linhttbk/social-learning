@@ -70,6 +70,7 @@ class UserController extends Controller
 
     public function deleteUser($uid){
         $user = User::find($uid);
+        if(!$user) return redirect('admin-cp/members')->with('error', 'Không tồn tại người dùng');
         $user->delete();
         return redirect('admin-cp/members')->with('error', 'Xóa người dùng thành công');
     }

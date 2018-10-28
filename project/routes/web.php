@@ -35,16 +35,23 @@ Route::get('course', function () {
     return view('course');
 })->name('course');
 
-Route::get('courses', function () {
-    return view('courses');
-})->name('courses');
+Route::get('courses', 'CoursesController@showAllCourses')->name('courses');
+
+
+Route::group(['prefix' =>'course'],function (){
+
+    Route::get('/{id}', 'CoursesController@showCourseDetail')->name('course_detail');
+    Route::get('register/{id}','CourseRegistrationController@registerCourse')->name('register_course');
+
+});
 
 Route::get('test', 'UserController@connect');
+Route::get('test2', 'CoursesController@showAllCourses');
 
 Route::post('post-login', 'Auth\LoginController@postLogin')->name('post_login');
 
 
-Route::get('logout', 'Auth\LoginController@getLogout')->name('logout');
+Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::group(['prefix' => 'admin-cp'], function () {
     Route::get('/', function () {
@@ -85,16 +92,12 @@ Route::group(['prefix' => 'admin-cp'], function () {
             return view('admin.forms');
         })->name('forms');
 
-        Route::get('courses', function () {
-            return view('admin.courses');
-        })->name('courses');
+        Route::get('courses', 'CoursesController@showCoursesPag')->name('admin-courses');
 
         Route::get('members/search', 'UserController@searchUser')->name('search');
 
-        Route::group(['prefix'=>'groups'],function (){
-            Route::get('/',function (){
-                return view('admin.group');
-            })->name('group-user');
+        Route::group(['prefix' => 'groups'], function () {
+            Route::get('/', 'Admin\GroupUserController@showAllGroupUser')->name('group-user');
         });
 
     });
@@ -103,10 +106,11 @@ Route::group(['prefix' => 'admin-cp'], function () {
 });
 
 
-
 Route::post('register', 'RegisterController@regis');
 
 Route::get('user/activation/{token}', 'RegisterController@activateUser')->name('user.activate');
+
+
 
 
 
