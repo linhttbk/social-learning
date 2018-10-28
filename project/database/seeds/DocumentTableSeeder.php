@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DocumentTableSeeder extends Seeder
 {
@@ -13,24 +14,22 @@ class DocumentTableSeeder extends Seeder
     {
         $document = array();
         for ($i = 0; $i < 15; $i++) {
-          $document[$i] = [
-              'id' => $i,
-              'id_subject' => 6,
-              'url' => '123',
-              'uid' => 'dinh thanh hai',
-              'status' => '0',
-              'des' => 'mon toan 10'
-          ];
+            $document[$i] = [
+                'id_subject' => 6,
+                'url' => 'https://docs.google.com/spreadsheets/d/1SEou2Fkq5BbeTJM25BhhbMn7isH_WHidliD79CNbS6o/edit#gid=135497270',
+                'uid' => 'linhluv1',
+                'status' => '0',
+                'des' => 'Tai lieu Tiếng Anh 10'
+            ];
         }
         for ($i = 15; $i < 25; $i++) {
-          $document[$i] = [
-              'id' => $i,
-              'id_subject' => 9,
-              'url' => '123',
-              'uid' => 'dinh thanh hai',
-              'status' => '0',
-              'des' => 'mon van 9'
-          ];
+            $document[$i] = [
+                'id_subject' => 9,
+                'url' => 'https://github.com/LeonelLopez84/lumen_crud/blob/735874067c810655db97db1e7bfe6fc9e4d29f31/apidoc.json',
+                'uid' => 'linhluv1',
+                'status' => '0',
+                'des' => 'Tai lieu Toan 10'
+            ];
         }
         DB::table('document')->insert($document);
     }
