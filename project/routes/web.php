@@ -81,6 +81,9 @@ Route::group(['prefix' => 'admin-cp'], function () {
 
         Route::get('members', 'UserController@showAllUsers')->name('members');
 
+        Route::get('document_management','DocumentController@showAllDocuments')->name('document_management');
+        Route::get('search_document','DocumentController@searchDocument')->name('search_document');
+
         Route::get('charts', function () {
             return view('admin.charts');
         })->name('charts');

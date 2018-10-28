@@ -1,19 +1,17 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Account extends Authenticatable
+class User extends Authenticatable
 {
-    //
-    protected $table = 'Account';
-    protected $primaryKey = 'uid';
+    use Notifiable;
+    protected $table = "Account";
+    protected $primaryKey = "uid";
 
-    public  function  user(){
-        return $this->belongsTo('App\Models\User','uid','uid');
-    }
 
     /**
      * The attributes that are mass assignable.
@@ -21,7 +19,7 @@ class Account extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'uid', 'password',
+        'uid',  'password', 'active'
     ];
 
     /**

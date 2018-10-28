@@ -58,6 +58,11 @@ class LoginController extends Controller
         } else {
             $remember = false;
         }
+        if(Auth::guard('account')->attempt($arr,$remember)){
+//            dd($user);
+            return view('index',compact('user'));
+               
+        } else{
         if (Auth::attempt($arr, $remember)) {
             // return  dd($user);
             return redirect()->intended();
@@ -67,6 +72,11 @@ class LoginController extends Controller
             return back()->withInput()->with('error', 'Tài khoản hoặc mật khẩu chưa đúng');
         }
 
+    }
+
+    public  function getLogout(){
+        Auth::logout();
+        return redirect()->intended('login');
     }
 
     protected function authenticated(Request $request, $user)
@@ -85,4 +95,5 @@ class LoginController extends Controller
         Auth::logout();
         return redirect()->back();
     }
+
 }
