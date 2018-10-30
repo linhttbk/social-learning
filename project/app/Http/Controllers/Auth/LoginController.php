@@ -7,8 +7,8 @@ use App\Models\Account;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use App\Classes\ActivationService;
+use Illuminate\Support\Facades\URL;
 
 class LoginController extends Controller
 {
@@ -59,8 +59,8 @@ class LoginController extends Controller
             $remember = false;
         }
         if (Auth::attempt($arr, $remember)) {
-            // return  dd($user);
-            return redirect()->intended();
+//             return  dd($request->urlback);
+            return redirect()->intended($request->urlback);
 //                return redirect()->intended(route('home',['user'=>$user]));
         } else {
 //            dd("That bai");

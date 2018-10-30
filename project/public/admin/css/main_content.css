@@ -1,0 +1,79 @@
+@import "reset.css";
+
+/* Content */
+.clear { clear: both; }
+
+
+
+/* General widgets styles */
+
+.widget { background: #f9f9f9; border: 1px solid #cdcdcd; margin-top: 10px; clear: both; }
+.widget .title { height: 36px; background: #efefef url(../images/backgrounds/titleBg.png) repeat-x; border-bottom: 1px solid #cdcdcd; }
+.widget .title .titleIcon { float: left; padding: 11px 11px; border-right: 1px solid #D5D5D5; }
+
+.toggle { background: #f9f9f9; border: 1px solid #cdcdcd; margin-top: 32px; clear: both; border-bottom: none; }
+.toggle .title { height: 36px; background: #efefef url(../images/backgrounds/titleBg.png) repeat-x; border-bottom: 1px solid #cdcdcd; cursor: pointer; }
+.toggle .title h6 { float: left; font-size: 12px; font-weight: bold; padding: 9px 12px 8px 12px; display: block; }
+.toggle .titleIcon { float: left; padding: 11px 11px; border-right: 1px solid #D5D5D5; }
+.toggle .body, .toggle .menu_body { padding: 12px 14px; border-bottom: 1px solid #cdcdcd; }
+.toggle .inactive { color: #2B6893; }
+
+
+.widget .loader { float: right; margin: 12px 12px 0 0; }
+.widget .title h6 { float: left; font-size: 12px; font-weight: bold; padding: 9px 12px 8px 12px; }
+.widget .content { padding: 14px; }
+.widget .body { padding: 12px 14px; }
+.widget > p { padding: 12px; }
+
+/* Tabs */
+
+ul.tabs { background: url(../images/backgrounds/titleBg.png) repeat-x; height: 36px; border-bottom: 1px solid #CDCDCD; }
+ul.tabs li { float: left; height: 36px; line-height: 38px; border-left: none; overflow: hidden; position: relative; font-size: 15px; border-right: 1px solid #cdcdcd; }
+ul.tabs li a { display: block; padding: 0px 12px; outline: none; color: #424242; font-size: 12px; font-weight: bold; }
+ul.tabs li a:hover { color: #797979; }
+html ul.tabs li.activeTab  { background-color: #f9f9f9; height: 37px; }
+.rightTabs .activeTab { height: 36px!important; }
+html ul.tabs li.activeTab a { color: #2E6B9B; }
+
+.tab_container { overflow: hidden; width: 100%; }
+.tab_content { padding: 10px 12px; }
+
+.rightTabs { position: relative; }
+.rightTabs ul.tabs { float: right; background: none; height: 38px; position: absolute; top: 0; right: 0; border-bottom: none; }
+.rightTabs ul.tabs li { border-left: 1px solid #cdcdcd; border-right: none; }
+
+
+/* button */
+.button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 7px 18px 8px 18px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+/* form*/
+.formSubmit { text-align: right;}
+
+/* error */
+.input-error-msg{
+    color: #ff424f;
+    font-size: 1.2rem;
+    padding: 8px 0 2px;
+    display: none;
+}
+
+.datepicker {
+    font-size: 0.875em;
+}
+/* solution 2: the original datepicker use 20px so replace with the following:*/
+
+.datepicker td, .datepicker th {
+    width: 1.5em;
+    height: 1.5em;
+}
