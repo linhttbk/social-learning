@@ -41,6 +41,7 @@
                                     <span id="username-login-error"
                                           class="input-error-msg"> Vui  lòng  nhap tai khoan</span>
                                 </div>
+                                <input type="hidden" name="urlback" value="{{\Illuminate\Support\Facades\URL::previous()}}">
                                 <div class="form-group">
                                     <label>Mật khẩu : </label>
                                     <input type="password" name="password" id="password" tabindex="2"

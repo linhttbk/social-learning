@@ -1,21 +1,23 @@
-$(function () {
+/*
+    Tabs
+ */
 
-    $('#login-form-link').click(function (e) {
-        $("#login-form").delay(100).fadeIn(100);
-        $("#register-form").fadeOut(100);
-        $('#register-form-link').removeClass('active');
-        $(this).addClass('active');
-        e.preventDefault();
-    });
-    $('#register-form-link').click(function (e) {
-        $("#register-form").delay(100).fadeIn(100);
-        $("#login-form").fadeOut(100);
-        $('#login-form-link').removeClass('active');
-        $(this).addClass('active');
-        e.preventDefault();
-    });
+$.fn.contentTabs = function(){
+    $(this).find(".tab_content").hide(); //Hide all content
+    $(this).find("ul.tabs li:first").addClass("activeTab").show(); //Activate first tab
+    $(this).find(".tab_content:first").show(); //Show first tab content
 
-});
+    $("ul.tabs li").click(function() {
+        $(this).parent().parent().find("ul.tabs li").removeClass("activeTab"); //Remove any "active" class
+        $(this).addClass("activeTab"); //Add "active" class to selected tab
+        $(this).parent().parent().find(".tab_content").hide(); //Hide all tab content
+        var activeTab = $(this).find("a").attr("href"); //Find the rel attribute value to identify the active tab + content
+        $(activeTab).show(); //Fade in the active content
+        return false;
+    });
+};
+
+
 $(document).ready(function () {
     $('#datepicker').datepicker({
         uiLibrary: 'bootstrap'
@@ -154,10 +156,6 @@ function initValues() {
         document.getElementById("teacher").style.display = "block";
         document.getElementById("censors").style.display = "none";
         document.getElementById("register-submit").value = "Đăng ký";
-    } else {
-        document.getElementById("teacher").style.display = "none";
-        document.getElementById("censors").style.display = "block";
-        document.getElementById("register-submit").value = "Làm bài test";
     }
 }
 

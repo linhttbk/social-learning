@@ -45,7 +45,7 @@ class UserController extends Controller
         }
 
         $user_pagination = DB::table('User')->join('Account', 'User.uid', '=', 'Account.uid')->paginate(10);
-        return view('admin.member', compact('totalUser', 'totalActive', 'user_pagination'));
+        return view('admin.member.member', compact('totalUser', 'totalActive', 'user_pagination'));
     }
 
     public function searchUser(Request $request)
@@ -76,7 +76,7 @@ class UserController extends Controller
     }
 
     public  function getEditUser(){
-        return view('admin.edit-member');
+        return view('admin.member.edit-member');
     }
 
     public function postEditUser(){

@@ -113,4 +113,3 @@ Route::get('user/activation/{token}', 'RegisterController@activateUser')->name('
 
 
 
-
