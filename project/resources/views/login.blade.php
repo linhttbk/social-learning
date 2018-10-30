@@ -41,7 +41,8 @@
                                     <span id="username-login-error"
                                           class="input-error-msg"> Vui  lòng  nhap tai khoan</span>
                                 </div>
-                                <input type="hidden" name="urlback" value="{{\Illuminate\Support\Facades\URL::previous()}}">
+                                <input type="hidden" name="urlback"
+                                       value="{{Request::is('admin-cp/*')?'/':\Illuminate\Support\Facades\URL::previous()}}">
                                 <div class="form-group">
                                     <label>Mật khẩu : </label>
                                     <input type="password" name="password" id="password" tabindex="2"
@@ -110,7 +111,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Ngày sinh : </label>
-                                    <input placeholder="Ngày sinh " name="birthday" style="height: 45px" id="datepicker"/>
+                                    <input placeholder="Ngày sinh " name="birthday" style="height: 45px"
+                                           id="datepicker"/>
                                     <span id="birthday-error"
                                           class="input-error-msg"> Vui  lòng  chon ngay thang nam sinh</span>
                                 </div>
@@ -188,7 +190,7 @@
             </div>
         </div>
     </div>
-     @if(Session::has('exist'))
+    @if(Session::has('exist'))
         <script type="text/javascript">
             $("#register-form").delay(100).fadeIn(100);
             $("#login-form").fadeOut(100);

@@ -41,11 +41,12 @@ class LoginController extends Controller
 //    {
 //        $this->middleware('guest')->except('logout');
 //    }
-    protected $redirectTo = '/';
+    protected $redirectTo = '/  ';
     protected $activationService;
 
     public function __construct(ActivationService $activationService)
     {
+
         $this->middleware('guest', ['except' => 'logout']);
         $this->activationService = $activationService;
     }

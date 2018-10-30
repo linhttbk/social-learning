@@ -16,9 +16,8 @@
 
 @endsection
 @section('js')
-    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
+
 @endsection
 @section('content')
     <div class="content-inner">
@@ -110,7 +109,7 @@
 
                                         <div class="form-group">
                                             <label>Ngày sinh : </label>
-                                            <input placeholder="Ngày sinh " name="birthday" id="datepicker"  class="form-control">
+                                            <input placeholder="Ngày sinh " name="birthday" id="datepicker"   class="form-control">
                                             <span id="birthday-error"
                                                   class="input-error-msg"> Vui  lòng  chon ngay thang nam sinh</span>
                                         </div>

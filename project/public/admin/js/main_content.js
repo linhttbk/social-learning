@@ -17,8 +17,11 @@ $.fn.contentTabs = function(){
     });
 };
 
-
 $(document).ready(function () {
+    var main = $('#form');
+    // Tabs
+    main.contentTabs();
+
     $('#datepicker').datepicker({
         uiLibrary: 'bootstrap'
     });
@@ -27,8 +30,6 @@ $(document).ready(function () {
     $(window).onload = initValues();
 
 
-    var username_login_input = document.getElementById("username");
-    var password_login_input = document.getElementById("password");
     var username_input = document.getElementById("usernamereg");
     var password_input = document.getElementById("passwordreg");
     var name_input = document.getElementById("name");
@@ -37,28 +38,6 @@ $(document).ready(function () {
     var phone_input = document.getElementById("phone");
     var birthday_input = document.getElementById("datepicker");
 
-    username_login_input.onblur = function () {
-        validUserNameLogin();
-    };
-    username_login_input.onfocus = function () {
-
-        username_login_input.style.borderColor = "#ccc";
-        username_login_input.style.backgroundColor = "#ffffff";
-        document.getElementById("username-login-error").style.display = "none";
-
-    };
-
-    password_login_input.onblur = function () {
-        validPasswordLogin();
-    };
-
-    password_login_input.onfocus = function () {
-
-        password_login_input.style.borderColor = "#ccc";
-        password_login_input.style.backgroundColor = "#ffffff";
-        document.getElementById("pass-login-error").style.display = "none";
-
-    };
 
     username_input.onblur = function () {
         validateUsername();
@@ -159,38 +138,8 @@ function initValues() {
     }
 }
 
-function onSubmitLogin() {
-    var validUserName = validUserNameLogin();
-    var validPass = validPasswordLogin();
-    if (validUserName && validPass) return true;
-    return false;
-}
 
-function validUserNameLogin() {
-    var username = document.getElementById("username").value;
-    username = username.trim();
-    if (username == null || username === "") {
-        document.getElementById("username-login-error").style.display = "block";
-        document.getElementById("username").style.borderColor = "#ff424f";
-        document.getElementById("username").style.backgroundColor = "#ffd0e5";
-        document.getElementById("username-login-error").textContent = "Vui long nhap ten tai khoan";
-        return false;
-    }
-    return true;
-}
 
-function validPasswordLogin() {
-    var password = document.getElementById("password").value;
-    password = password.trim();
-    if (password == null || password === "") {
-        document.getElementById("pass-login-error").style.display = "block";
-        document.getElementById("password").style.borderColor = "#ff424f";
-        document.getElementById("password").style.backgroundColor = "#ffd0e5";
-        document.getElementById("pass-login-error").textContent = "Vui long nhap mat khau";
-        return false;
-    }
-    return true;
-}
 
 function onSubmitCLick() {
     var validUserName = validateUsername();

@@ -48,7 +48,7 @@ Route::group(['prefix' =>'course'],function (){
 Route::get('test', 'UserController@connect');
 Route::get('test2', 'CoursesController@showAllCourses');
 
-Route::post('post-login', 'Auth\LoginController@postLogin')->name('post_login');
+Route::post('login', 'Auth\LoginController@postLogin')->name('post_login');
 
 
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
