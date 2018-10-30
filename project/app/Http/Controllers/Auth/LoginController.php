@@ -58,11 +58,6 @@ class LoginController extends Controller
         } else {
             $remember = false;
         }
-        if(Auth::guard('account')->attempt($arr,$remember)){
-//            dd($user);
-            return view('index',compact('user'));
-               
-        } else{
         if (Auth::attempt($arr, $remember)) {
 //             return  dd($request->urlback);
             return redirect()->intended($request->urlback);
