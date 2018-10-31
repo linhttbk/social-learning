@@ -2,12 +2,12 @@
     Tabs
  */
 
-$.fn.contentTabs = function(){
+$.fn.contentTabs = function () {
     $(this).find(".tab_content").hide(); //Hide all content
     $(this).find("ul.tabs li:first").addClass("activeTab").show(); //Activate first tab
     $(this).find(".tab_content:first").show(); //Show first tab content
 
-    $("ul.tabs li").click(function() {
+    $("ul.tabs li").click(function () {
         $(this).parent().parent().find("ul.tabs li").removeClass("activeTab"); //Remove any "active" class
         $(this).addClass("activeTab"); //Add "active" class to selected tab
         $(this).parent().parent().find(".tab_content").hide(); //Hide all tab content
@@ -18,6 +18,7 @@ $.fn.contentTabs = function(){
 };
 
 $(document).ready(function () {
+
     var main = $('#form');
     // Tabs
     main.contentTabs();
@@ -25,6 +26,7 @@ $(document).ready(function () {
     $('#datepicker').datepicker({
         uiLibrary: 'bootstrap'
     });
+
     document.getElementById("teacher").style.display = "none";
     document.getElementById("censors").style.display = "none";
     $(window).onload = initValues();
@@ -41,6 +43,7 @@ $(document).ready(function () {
 
     username_input.onblur = function () {
         validateUsername();
+
     };
     username_input.onfocus = function () {
 
@@ -127,18 +130,17 @@ $(document).ready(function () {
 function initValues() {
     var type = document.getElementById("mySelect").value;
     document.getElementById("teacher").style.display = "none";
+
     if (type == "0") {
         document.getElementById("teacher").style.display = "none";
         document.getElementById("censors").style.display = "none";
-        document.getElementById("register-submit").value = "Đăng ký";
+
     } else if (type == "1") {
         document.getElementById("teacher").style.display = "block";
         document.getElementById("censors").style.display = "none";
-        document.getElementById("register-submit").value = "Đăng ký";
     }
+
 }
-
-
 
 
 function onSubmitCLick() {
