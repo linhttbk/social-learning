@@ -519,7 +519,7 @@
                                             <div class="feature_text ml-auto">
                                                 @if($course->start_date > Carbon\Carbon::now())
                                                     <a
-                                                        class="btn btn-primary btn-xs" href="{{route('register_course',['id'=>$course->id])}}"> Register
+                                                        class="btn btn-primary btn-xs" href="{{route('course-reg',['id'=>$course->id])}}"> Register
                                                     </a>
                                                 @else
                                                     <a
