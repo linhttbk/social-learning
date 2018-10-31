@@ -10,6 +10,7 @@ class Account extends Authenticatable
     //
     protected $table = 'Account';
     protected $primaryKey = 'uid';
+    public $incrementing = false;
 
     public  function  user(){
         return $this->belongsTo('App\Models\User','uid','uid');

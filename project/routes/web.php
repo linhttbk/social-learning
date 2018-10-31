@@ -41,7 +41,8 @@ Route::get('courses', 'CoursesController@showAllCourses')->name('courses');
 Route::group(['prefix' =>'course'],function (){
 
     Route::get('/{id}', 'CoursesController@showCourseDetail')->name('course_detail');
-    Route::get('register/{id}','CourseRegistrationController@registerCourse')->name('register_course');
+    Route::post('register/{id}','CourseRegistrationController@registerCourse')->name('buy_course');
+    Route::get('/register-course/{id}','CourseRegistrationController@goToBuyCourse')->name('course-reg');
 
 });
 
