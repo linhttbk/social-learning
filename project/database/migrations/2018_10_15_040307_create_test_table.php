@@ -17,6 +17,8 @@ class CreateTestTable extends Migration
             $table->integer('id',11);
             $table->integer('id_course')->nullable();
             $table->integer('id_chap')->nullable();
+            $table->foreign('id_chap')->references('id')->on('Chapter');
+            $table->foreign('id_course')->references('id')->on('Course');
             $table->timestamps();
         });
     }
