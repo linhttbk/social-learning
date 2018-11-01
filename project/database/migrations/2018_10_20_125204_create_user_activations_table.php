@@ -14,7 +14,7 @@ class CreateUserActivationsTable extends Migration
         Schema::create('user_activations', function (Blueprint $table) {
             $table->string('uid',30);
             $table->primary('uid');
-            $table->foreign('uid')->references('uid')->on('User');
+            $table->foreign('uid')->references('uid')->on('User')->onDelete('cascade');
             $table->string('activation_code')->nullable();
             $table->string('remember_token')->nullable();
             $table->timestamps();

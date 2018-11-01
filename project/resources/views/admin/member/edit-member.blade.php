@@ -38,12 +38,12 @@
             <div class="container-fluid">
                 <div class="wrapper">
                     {{--form--}}
-                    <form enctype="multipart/form-data" method="post" action="" id="form" class="form">
+                    <form enctype="multipart/form-data" method="post" action="{{$user->uid}}" id="form" class="form">
                         <fieldset>
                             <div class="widget">
                                 <div class="title">
                                     <img class="titleIcon" src="">
-                                    <h6>Cập nhật Người dùng</h6>
+                                    <h6>Cập nhật Người dùng {{$user->name}}</h6>
                                 </div>
 
                                 <ul class="tabs">
@@ -57,28 +57,35 @@
                                         <input type="hidden" name="_token" value="{{csrf_token()}}">
                                         <div class="form-group">
                                             <label>Loại đăng ký : </label>
-                                            <select class="form-control" name="type" id="mySelect" onchange="initValues()">
-                                                <option selected="selected" value="0">Học sinh</option>
-                                                <option value="1">Giáo viên</option>
-                                                <option value="2">Kiểm duyệt viên</option>
+                                            <select class="form-control" name="type" id="mySelect" onchange="initValues()" disabled>
+                                                <option
+                                                        <?php if($user->type == 0) echo "selected"?>
+                                                value="0">Học sinh</option>
+                                                <option
+                                                        <?php if($user->type == 1) echo "selected"?>
+                                                        value="1">Giáo viên</option>
+                                                <option
+                                                        <?php if($user->type == 2) echo "selected"?>
+                                                        value="2">Kiểm duyệt viên</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label>Tài khoản : </label>
-                                            <input type="text" name="usernamereg" id="usernamereg" tabindex="1"
-                                                   class="form-control" placeholder="Username" value="">
+                                            <input type="text" name="username" id="usernamereg" tabindex="1" disabled
+                                                   class="form-control" placeholder="Username" value="{{$user->uid}}">
                                             <span id="username-error" class="input-error-msg"> Vui  lòng  nhap tai khoan</span>
                                         </div>
                                         <div class="form-group">
+                                            <input type="checkbox" name="changePassword" id="changePassword">
                                             <label>Mật khẩu : </label>
-                                            <input type="password" name="passwordreg" id="passwordreg" tabindex="2"
-                                                   class="form-control" placeholder="Password">
+                                            <input type="password" name="password" id="passwordreg" tabindex="2"
+                                                   class="form-control password" placeholder="Password" disabled>
                                             <span id="pass-error" class="input-error-msg"> Vui long nhap mat khau</span>
                                         </div>
                                         <div class="form-group">
                                             <label>Nhập lại mật khẩu: </label>
-                                            <input type="password" name="repasswordreg" id="repasswordreg" tabindex="2"
-                                                   class="form-control" placeholder="Xác nhận mật khẩu">
+                                            <input type="password" name="repassword" id="repasswordreg" tabindex="2"
+                                                   class="form-control password" placeholder="Xác nhận mật khẩu" disabled>
                                             <span id="repass-error" class="input-error-msg"> Mat khau khong trung khop</span>
                                         </div>
                                     </div>
@@ -88,28 +95,35 @@
                                         <div class="form-group">
                                             <label>Họ tên : </label>
                                             <input type="text" name="name" id="name" tabindex="2" class="form-control"
-                                                   placeholder="Name">
+                                                   placeholder="Name" value="{{$user->name}}">
                                             <span id="name-error" class="input-error-msg"> Vui  lòng  nhap ten nguoi dung</span>
                                         </div>
 
                                         <div class="form-group">
                                             <label>Giới tính : </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="sex" value="boy" checked>Nam
+                                                <input type="radio" name="sex" value="male"
+                                                       <?php if($user->sex == "male") echo "checked"?>
+                                                >Nam
                                             </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="sex" value="girl">Nữ
+                                                <input type="radio" name="sex" value="female"
+                                                        <?php if($user->sex == "female") echo "checked"?>
+                                                >Nữ
                                             </label>
                                         </div>
 
                                         <div class="form-group">
                                             <label>Avatar : </label>
                                             <input type="file" name="image" id="image" size="25">
+                                            <img alt="Avatar" src="{{asset("upload/avatar/".$user->avatar)}}" style="width:100px;height:70px"/>
+                                            <input type="hidden" name="img_currenrt" value="{{asset("upload/avatar/".$user->avatar)}}"/>
                                         </div>
 
                                         <div class="form-group">
                                             <label>Ngày sinh : </label>
-                                            <input placeholder="Ngày sinh " name="birthday" id="datepicker"   class="form-control">
+                                            <input placeholder="Ngày sinh " name="birthday" id="datepicker"
+                                                   value="{{date("d-m-Y", strtotime($user->birthday))}}" class="form-control">
                                             <span id="birthday-error"
                                                   class="input-error-msg"> Vui  lòng  chon ngay thang nam sinh</span>
                                         </div>
@@ -117,13 +131,13 @@
                                         <div class="form-group">
                                             <label>Email : </label>
                                             <input type="email" name="email" id="email" tabindex="1" class="form-control"
-                                                   placeholder="Email Address" value="">
+                                                   placeholder="Email Address" value="{{$user->email}}">
                                             <span id="mail-error" class="input-error-msg"> Vui  lòng  nhap email kich hoat tai khoan</span>
                                         </div>
                                         <div class="form-group">
                                             <label>Điện thoại : </label>
                                             <input type="text" name="phone" id="phone" tabindex="1" class="form-control"
-                                                   placeholder="Phone" value="">
+                                                   placeholder="Phone" value="{{$user->phone}}">
                                             <span id="phone-error"
                                                   class="input-error-msg"> Vui  lòng  nhap so dien thoai</span>
                                         </div>
@@ -135,36 +149,42 @@
                                         <div class="form-group">
                                             <label>Trường : </label>
                                             <input type="text" name="school" id="school" tabindex="1" class="form-control"
-                                                   placeholder="Trường" value="">
+                                                   placeholder="Trường" value="{{$user->school}}">
 
                                         </div>
                                         <div class="form-group">
                                             <label>Lớp : </label>
-                                            <select class="form-control" name="grade">
-                                                <option value="10">Lớp 10</option>
-                                                <option value="11">Lớp 11</option>
-                                                <option value="12">Lớp 12</option>
+                                            <select class="form-control" name="grade" disabled>
+                                                <option
+                                                        <?php if($user->grade == 10) echo "selected"?>
+                                                        value="10">Lớp 10</option>
+                                                <option
+                                                    <?php if($user->grade == 11) echo "selected"?>
+                                                        value="11">Lớp 11</option>
+                                                <option
+                                                    <?php if($user->grade == 12) echo "selected"?>
+                                                        value="12">Lớp 12</option>
 
                                             </select>
                                         </div>
                                         <div class="form-group" id="teacher" name="subjectreg">
                                             <label>Môn giảng dạy : </label>
-                                            <select class="form-control">
-                                                <option class="fs-option">Toán</option>
-                                                <option class="fs-option">Lý</option>
-                                                <option class="fs-option">Hóa</option>
-                                                <option>Tiếng Anh</option>
-                                                <option>Ngữ Văn</option>
+                                            <select class="form-control" disabled>
+                                                @foreach($subject as $sub)
+                                                    @if($sub->id > 5)
+                                                    <option class="fs-option" <?php if($user->id_sr == $sub->id) echo selected?>>{{$sub->title}}</option>
+                                                    @endif
+                                                @endforeach
                                             </select>
                                         </div>
                                         <div class="form-group" id="censors" name="subjectreg">
                                             <label>Môn đăng ký kiểm duyệt : </label>
-                                            <select class="form-control">
-                                                <option>Toán</option>
-                                                <option>Lý</option>
-                                                <option>Hóa</option>
-                                                <option>Tiếng Anh</option>
-                                                <option>Ngữ Văn</option>
+                                            <select class="form-control" disabled>
+                                                <@foreach($subject as $sub)
+                                                    @if($sub->id < 6)
+                                                        <option class="fs-option" <?php if($user->id_sr == $sub->id) echo selected?>>{{$sub->title}}</option>
+                                                    @endif
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -179,8 +199,6 @@
                     </form>
                 </div>
                 <!-- Form -->
-
-
             </div>
         </section>
         <!-- Page Footer-->

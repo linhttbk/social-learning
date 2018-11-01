@@ -63,9 +63,9 @@ Route::group(['prefix' => 'admin-cp'], function () {
 
     Route::get('members/delete/{uid}', 'UserController@deleteUser')->name('delete_User');
 
-    Route::get('member/get-edit-member', 'UserController@getEditUser')->name('get_edit_User');
+    Route::get('member/edit-member/{uid}', 'UserController@getEditUser')->name('get_edit_User');
 
-    Route::get('member/post-edit-member', 'UserController@postEditUser')->name('post_edit_User');
+    Route::post('member/edit-member/{uid}', 'UserController@postEditUser')->name('post_edit_User');
 
     Route::get('login', function () {
         return view('admin.login');
