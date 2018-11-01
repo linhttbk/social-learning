@@ -205,10 +205,11 @@
                                                     @else
                                                         @foreach($chapters as $key => $chapter)
                                                             @php
-                                                                $lesson = $chapter->lessons
+                                                                $lesson = $chapter->lessons;
+                                                                 $test = $chapter->test;
                                                             @endphp
 
-                                                            @if($lesson->isEmpty())
+                                                            @if($lesson->isEmpty()&& empty($test))
 
                                                                 <li>
                                                                     <div class="dropdown_item">
@@ -218,6 +219,7 @@
                                                                         </div>
                                                                         <div class="dropdown_item_text">
                                                                             <p>{{$chapter->des}}</p>
+
                                                                         </div>
                                                                     </div>
                                                                 </li>
@@ -247,6 +249,15 @@
                                                                                 </div>
                                                                             </li>
                                                                         @endforeach
+                                                                    </ul>
+                                                                    <ul>
+                                                                        @if(!empty($test))
+                                                                            <div class="dropdown_item"><img
+                                                                                    src="{{asset('images/ic_test.png')}}"/>
+                                                                                <span class="title-test">Test</span>
+                                                                                <div class="description-test">Description</div>
+                                                                            </div>
+                                                                        @endif
                                                                     </ul>
                                                                 </li>
                                                             @endif
@@ -519,7 +530,8 @@
                                             <div class="feature_text ml-auto">
                                                 @if($course->start_date > Carbon\Carbon::now())
                                                     <a
-                                                        class="btn btn-primary btn-xs" href="{{route('course-reg',['id'=>$course->id])}}"> Register
+                                                        class="btn btn-primary btn-xs"
+                                                        href="{{route('course-reg',['id'=>$course->id])}}"> Register
                                                     </a>
                                                 @else
                                                     <a
