@@ -300,3 +300,15 @@ function isValidPhoneNumber(phone) {
     return re.test(phone)
 
 }
+/*
+ Thay doi mat khau
+ */
+$("#changePassword").change(function () {
+    if($(this).is(":checked")){
+        $(".password").removeAttr('disabled');
+    }
+    else
+    {
+        $(".password").attr('disabled', '');
+    }
+});
