@@ -5,6 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/project/tests" isTestSource="true" packagePrefix="Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/project/app" isTestSource="false" packagePrefix="App\" />
     </content>
+    <content url="file://$MODULE_DIR$" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
