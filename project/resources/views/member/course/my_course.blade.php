@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{asset('plugins/OwlCarousel2-2.2.1/owl.carousel.css')}}">
     <link rel="stylesheet" href="{{asset('plugins/OwlCarousel2-2.2.1/owl.theme.default.css')}}">
     <link rel="stylesheet" href="{{asset('plugins/OwlCarousel2-2.2.1/animate.css')}}">
-    <link rel="stylesheet" href="{{asset('css/courses_responsive.css')}}">
+    <link rel="stylesheet" href="{{asset('css/course_responsive.css')}}">
     <link rel="stylesheet" href="{{asset('css/my_course.css')}}">
 
 @endsection
@@ -99,7 +99,22 @@
                         @endif
                     </div>
                 </div>
-
+                <div class="col-lg-4">
+                    <div class="sidebar">
+                        <div class="sidebar_section">
+                            <div class="sidebar_section_title"> Thông báo</div>
+                        </div>
+                        <div class="notify-item" >
+                            <a href="#"> Bài học x của khóa học y cần phải mở ngày hôm
+                                nay </a><span>By Admin 5 phut truoc</span></div>
+                        <div class="notify-item" style="color: red">
+                            <a href="#"> Bài học x của khóa học y cần phải mở ngày hôm
+                                nay </a><span>By Admin 5 phut truoc</span></div>
+                        <div class="notify-all" >
+                            <a href="#" class="btn btn-primary">Xem tat ca</a>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </div>

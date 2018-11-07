@@ -1119,6 +1119,7 @@ section {
 .sidebar {
     width: 100%;
     padding-left: 40px;
+
 }
 
 .sidebar_section:not(:last-child) {
@@ -1148,25 +1149,43 @@ section {
     border-bottom: solid 1px #e5e5e5;
 }
 
+.feature_title {
+    padding-left: 31px;
+}
+
+.feature_title i {
+    position: absolute;
+    top: calc(50% - 1px);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    left: 0;
+    font-size: 18px;
+    color: #14bdee;
+}
+
 /*.sub-menu {*/
-    /*display: none;*/
-    /*margin-left: 20px;*/
+/*display: none;*/
+/*margin-left: 20px;*/
 /*}*/
 
 /*.sub-menu li {*/
-    /*display: none;*/
-    /*position: relative;*/
+/*display: none;*/
+/*position: relative;*/
 /*}*/
 
 .sidebar_categories ul li:hover {
     border-bottom: solid 1px #e5e5e5;
 }
 
-.sidebar_categories ul li:hover .sub-menu{
-    display:inline-block;
+.sidebar_categories ul li:hover .sub-menu {
+    display: inline-block;
 
 }
-.sidebar_categories ul li:hover .sub-menu > li{
+
+.sidebar_categories ul li:hover .sub-menu > li {
     display: block;
 
 }
@@ -1201,7 +1220,8 @@ section {
 .sidebar_categories ul li:hover a::before {
     color: #14bdee;
 }
-.sidebar_categories ul li  ul[class = 'sub-menu'] li:hover a {
+
+.sidebar_categories ul li ul[class = 'sub-menu'] li:hover a {
     color: #ee0005;
 }
 
@@ -1723,4 +1743,32 @@ section {
 .cr_list li a:hover {
     color: #14bdee;
 }
+.sidebar{
+    background-color: #F2F4F5;
+padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.notify-item{
+    margin-bottom: 10px;
+}
+.notify-item a {
+    color: #ee000f;
+}
+
+.notify-item a:hover {
+    color: #14bdee;
+    text-decoration: underline;
+
+}
+
+.notify-item span {
+    margin-left: 10px;
+    color: #aba9a6;
+}
+.notify-all{
+    text-align: center;
+    margin-top: 30px;
+}
+
 
