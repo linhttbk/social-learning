@@ -30,4 +30,14 @@ class CoursesController extends Controller
             ->paginate(6);
         return view('admin.courses.courses', compact('result'));
     }
+    public function showAllCoursesUser($id){
+        $result = DB::table('Course')->select(array('Course.*', 'User.*', DB::raw('(Select Count(CourseRegistration.id_course) from CourseRegistration where CourseRegistration.id_course = Course.id) as count_student')))
+            ->join('User', 'Course.uid', '=', 'User.uid')
+            ->join('CourseRegistration','Course.id', '=', 'CourseRegistration.id_course')
+            ->where('CourseRegistration.uid' ,'=',$id)
+            ->paginate(6);
+        $subject = DB::table('Subject')->get();
+        return view('member.course.my_course', compact('result', 'subject'));
+
+    }
 }

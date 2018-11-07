@@ -54,6 +54,11 @@ Route::post('login', 'Auth\LoginController@postLogin')->name('post_login');
 
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
+Route::group(['prefix' => 'user','middleware' => 'auth'], function (){
+    Route::get('/{id}/courses','CoursesController@showAllCoursesUser')->name('user-courses');
+
+});
+
 Route::group(['prefix' => 'admin-cp'], function () {
     Route::get('/', function () {
         return view('admin.index');
