@@ -47,7 +47,7 @@
                                                              alt="Xin chào "> {{((Auth::user())->user)->name}}
                                             </a>
                                             <ul class="sub-menu">
-                                                <li><a href="#">Hồ sơ cá nhân</a></li>
+                                                <li><a href="{{route('user-profile',['id'=>(Auth::user())->uid])}}">Hồ sơ cá nhân</a></li>
                                                 <li><a href={{route('user-courses',['id'=>(Auth::user())->uid])}}>Khóa học của tôi</a></li>
                                                 <li><a href="{{route('logout')}}">Đăng xuất</a></li>
                                             </ul>

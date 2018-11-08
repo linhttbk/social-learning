@@ -56,7 +56,7 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::group(['prefix' => 'user','middleware' => 'auth'], function (){
     Route::get('/{id}/courses','CoursesController@showAllCoursesUser')->name('user-courses');
-
+    Route::get('/{id}/profile','ProfileController@showProfileUser')->name('user-profile');
 });
 
 Route::group(['prefix' => 'admin-cp'], function () {

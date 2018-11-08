@@ -80,12 +80,10 @@
       <path value="$PROJECT_DIR$/project/vendor/phpunit/php-timer" />
       <path value="$PROJECT_DIR$/project/vendor/phpunit/php-token-stream" />
       <path value="$PROJECT_DIR$/project/vendor/bonecms/laravel-captcha" />
+      <path value="$PROJECT_DIR$/vendor/captcha-com/captcha" />
+      <path value="$PROJECT_DIR$/vendor/captcha-com/laravel-captcha" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.1" />
-  <component name="PhpUnit">
-    <phpunit_settings>
-      <PhpUnitSettings load_method="CUSTOM_LOADER" custom_loader_path="$PROJECT_DIR$/project/vendor/autoload.php" />
-    </phpunit_settings>
-  </component>
 </project>
