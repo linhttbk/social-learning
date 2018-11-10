@@ -403,8 +403,8 @@ body.vjs-full-window {
   margin-top: -0.75em;
   margin-left: -1.5em; }
 
-/*.video-js:hover .vjs-big-play-button,
-.video-js .vjs-big-play-button:focus {
+/*.tivi-js:hover .vjs-big-play-button,
+.tivi-js .vjs-big-play-button:focus {
   border-color: #fff;
   background-color: #73859f;
   background-color: rgba(115, 133, 159, 0.5);

@@ -2052,7 +2052,7 @@
 ;(function($, window, document, undefined) {
 
 	/**
-	 * Creates the video plugin.
+	 * Creates the tivi plugin.
 	 * @class The Video Plugin
 	 * @param {Owl} carousel - The Owl Carousel
 	 */
@@ -2065,7 +2065,7 @@
 		this._core = carousel;
 
 		/**
-		 * Cache all video URLs.
+		 * Cache all tivi URLs.
 		 * @protected
 		 * @type {Object}
 		 */
@@ -2097,7 +2097,7 @@
 			}, this),
 			'refreshed.owl.carousel': $.proxy(function(e) {
 				if (e.namespace && this._core.is('resizing')) {
-					this._core.$stage.find('.cloned .owl-video-frame').remove();
+					this._core.$stage.find('.cloned .owl-tivi-frame').remove();
 				}
 			}, this),
 			'changed.owl.carousel': $.proxy(function(e) {
@@ -2110,7 +2110,7 @@
 					return;
 				}
 
-				var $element = $(e.content).find('.owl-video');
+				var $element = $(e.content).find('.owl-tivi');
 
 				if ($element.length) {
 					$element.css('display', 'none');
@@ -2125,7 +2125,7 @@
 		// register event handlers
 		this._core.$element.on(this._handlers);
 
-		this._core.$element.on('click.owl.video', '.owl-video-play-icon', $.proxy(function(e) {
+		this._core.$element.on('click.owl.video', '.owl-tivi-play-icon', $.proxy(function(e) {
 			this.play(e);
 		}, this));
 	};
@@ -2141,10 +2141,10 @@
 	};
 
 	/**
-	 * Gets the video ID and the type (YouTube/Vimeo/vzaar only).
+	 * Gets the tivi ID and the type (YouTube/Vimeo/vzaar only).
 	 * @protected
-	 * @param {jQuery} target - The target containing the video data.
-	 * @param {jQuery} item - The item containing the video.
+	 * @param {jQuery} target - The target containing the tivi data.
+	 * @param {jQuery} item - The item containing the tivi.
 	 */
 	Video.prototype.fetch = function(target, item) {
 			var type = (function() {
@@ -2172,7 +2172,7 @@
 					https://vimeo.com/groups/:group/videos/:id
 					https://app.vzaar.com/videos/:id
 
-					Visual example: https://regexper.com/#(http%3A%7Chttps%3A%7C)%5C%2F%5C%2F(player.%7Cwww.%7Capp.)%3F(vimeo%5C.com%7Cyoutu(be%5C.com%7C%5C.be%7Cbe%5C.googleapis%5C.com)%7Cvzaar%5C.com)%5C%2F(video%5C%2F%7Cvideos%5C%2F%7Cembed%5C%2F%7Cchannels%5C%2F.%2B%5C%2F%7Cgroups%5C%2F.%2B%5C%2F%7Cwatch%5C%3Fv%3D%7Cv%5C%2F)%3F(%5BA-Za-z0-9._%25-%5D*)(%5C%26%5CS%2B)%3F
+					Visual example: https://regexper.com/#(http%3A%7Chttps%3A%7C)%5C%2F%5C%2F(player.%7Cwww.%7Capp.)%3F(vimeo%5C.com%7Cyoutu(be%5C.com%7C%5C.be%7Cbe%5C.googleapis%5C.com)%7Cvzaar%5C.com)%5C%2F(tivi%5C%2F%7Cvideos%5C%2F%7Cembed%5C%2F%7Cchannels%5C%2F.%2B%5C%2F%7Cgroups%5C%2F.%2B%5C%2F%7Cwatch%5C%3Fv%3D%7Cv%5C%2F)%3F(%5BA-Za-z0-9._%25-%5D*)(%5C%26%5CS%2B)%3F
 			*/
 
 			id = url.match(/(http:|https:|)\/\/(player.|www.|app.)?(vimeo\.com|youtu(be\.com|\.be|be\.googleapis\.com)|vzaar\.com)\/(video\/|videos\/|embed\/|channels\/.+\/|groups\/.+\/|watch\?v=|v\/)?([A-Za-z0-9._%-]*)(\&\S+)?/);
@@ -2188,7 +2188,7 @@
 			}
 			id = id[6];
 		} else {
-			throw new Error('Missing video URL.');
+			throw new Error('Missing tivi URL.');
 		}
 
 		this._videos[url] = {
@@ -2198,16 +2198,16 @@
 			height: height
 		};
 
-		item.attr('data-video', url);
+		item.attr('data-tivi', url);
 
 		this.thumbnail(target, this._videos[url]);
 	};
 
 	/**
-	 * Creates video thumbnail.
+	 * Creates tivi thumbnail.
 	 * @protected
-	 * @param {jQuery} target - The target containing the video data.
-	 * @param {Object} info - The video info object.
+	 * @param {jQuery} target - The target containing the tivi data.
+	 * @param {Object} info - The tivi info object.
 	 * @see `fetch`
 	 */
 	Video.prototype.thumbnail = function(target, video) {
@@ -2220,19 +2220,19 @@
 			lazyClass = '',
 			settings = this._core.settings,
 			create = function(path) {
-				icon = '<div class="owl-video-play-icon"></div>';
+				icon = '<div class="owl-tivi-play-icon"></div>';
 
 				if (settings.lazyLoad) {
-					tnLink = '<div class="owl-video-tn ' + lazyClass + '" ' + srcType + '="' + path + '"></div>';
+					tnLink = '<div class="owl-tivi-tn ' + lazyClass + '" ' + srcType + '="' + path + '"></div>';
 				} else {
-					tnLink = '<div class="owl-video-tn" style="opacity:1;background-image:url(' + path + ')"></div>';
+					tnLink = '<div class="owl-tivi-tn" style="opacity:1;background-image:url(' + path + ')"></div>';
 				}
 				target.after(tnLink);
 				target.after(icon);
 			};
 
-		// wrap video content into owl-video-wrapper div
-		target.wrap('<div class="owl-video-wrapper"' + dimensions + '></div>');
+		// wrap tivi content into owl-tivi-wrapper div
+		target.wrap('<div class="owl-tivi-wrapper"' + dimensions + '></div>');
 
 		if (this._core.settings.lazyLoad) {
 			srcType = 'data-src';
@@ -2252,7 +2252,7 @@
 		} else if (video.type === 'vimeo') {
 			$.ajax({
 				type: 'GET',
-				url: '//vimeo.com/api/v2/video/' + video.id + '.json',
+				url: '//vimeo.com/api/v2/tivi/' + video.id + '.json',
 				jsonp: 'callback',
 				dataType: 'jsonp',
 				success: function(data) {
@@ -2275,27 +2275,27 @@
 	};
 
 	/**
-	 * Stops the current video.
+	 * Stops the current tivi.
 	 * @public
 	 */
 	Video.prototype.stop = function() {
 		this._core.trigger('stop', null, 'video');
-		this._playing.find('.owl-video-frame').remove();
-		this._playing.removeClass('owl-video-playing');
+		this._playing.find('.owl-tivi-frame').remove();
+		this._playing.removeClass('owl-tivi-playing');
 		this._playing = null;
 		this._core.leave('playing');
 		this._core.trigger('stopped', null, 'video');
 	};
 
 	/**
-	 * Starts the current video.
+	 * Starts the current tivi.
 	 * @public
 	 * @param {Event} event - The event arguments.
 	 */
 	Video.prototype.play = function(event) {
 		var target = $(event.target),
 			item = target.closest('.' + this._core.settings.itemClass),
-			video = this._videos[item.attr('data-video')],
+			video = this._videos[item.attr('data-tivi')],
 			width = video.width || '100%',
 			height = video.height || this._core.$stage.height(),
 			html;
@@ -2315,7 +2315,7 @@
 			html = '<iframe width="' + width + '" height="' + height + '" src="//www.youtube.com/embed/' +
 				video.id + '?autoplay=1&rel=0&v=' + video.id + '" frameborder="0" allowfullscreen></iframe>';
 		} else if (video.type === 'vimeo') {
-			html = '<iframe src="//player.vimeo.com/video/' + video.id +
+			html = '<iframe src="//player.vimeo.com/tivi/' + video.id +
 				'?autoplay=1" width="' + width + '" height="' + height +
 				'" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
 		} else if (video.type === 'vzaar') {
@@ -2324,13 +2324,13 @@
 				'src="//view.vzaar.com/' + video.id + '/player?autoplay=true"></iframe>';
 		}
 
-		$('<div class="owl-video-frame">' + html + '</div>').insertAfter(item.find('.owl-video'));
+		$('<div class="owl-tivi-frame">' + html + '</div>').insertAfter(item.find('.owl-tivi'));
 
-		this._playing = item.addClass('owl-video-playing');
+		this._playing = item.addClass('owl-tivi-playing');
 	};
 
 	/**
-	 * Checks whether an video is currently in full screen mode or not.
+	 * Checks whether an tivi is currently in full screen mode or not.
 	 * @todo Bad style because looks like a readonly method but changes members.
 	 * @protected
 	 * @returns {Boolean}

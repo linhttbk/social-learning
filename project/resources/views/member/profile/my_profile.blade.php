@@ -89,7 +89,7 @@
                             <div class="row">
                                 <div class="col-sm-6 col-sm-offset-3">
                                     <input type="submit" name="login-submit" id="info-submit" tabindex="4"
-                                           class="form-control btn btn-save" value="Lưu thay đổi">
+                                           class="form-control btn btn-login" value="Lưu thay đổi">
                                 </div>
                             </div>
                         </div>
