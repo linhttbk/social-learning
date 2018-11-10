@@ -10,9 +10,9 @@
 
     <!-- Header -->
 
-    @extends('header');
+    @extends('header')
 
-    <@yield('content')
+    @yield('content')
 
 <!-- Footer -->
     <footer class="footer">

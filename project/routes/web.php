@@ -47,6 +47,12 @@ Route::group(['prefix' =>'course'],function (){
 
 });
 
+Route::group(['prefix'=>'groups'],function (){
+    Route::get('/',function (){
+        return view('group.group_page');
+    })->name('group_page');
+});
+
 Route::get('test', 'UserController@connect');
 Route::get('test2', 'CoursesController@showAllCourses');
 
