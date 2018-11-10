@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{{asset('css/bootstrap4/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('plugins/font-awesome-4.7.0/css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('plugins/colorbox/colorbox.css')}}">
-    <link rel="stylesheet" href="{{asset('plugins/plugins/video-js/video-js.css')}}">
+    <link rel="stylesheet" href="{{asset('tivi')}}">
     <link rel="stylesheet" href="{{asset('css/blog.css')}}">
     <link rel="stylesheet" href="{{asset('css/blog_responsive.css')}}">
 @endsection
@@ -262,7 +262,6 @@
 {{--<script src="styles/bootstrap4/bootstrap.min.js"></script>--}}
 {{--<script src="plugins/easing/easing.js"></script>--}}
 {{--<script src="plugins/masonry/masonry.js"></script>--}}
-{{--<script src="plugins/video-js/video.min.js"></script>--}}
-{{--<script src="plugins/parallax-js-master/parallax.min.js"></script>--}}
+{{--<script src="plugins/video-js/video.min.js"></script>-tivi{--<tivit src="plugins/parallax-js-master/parallax.min.js"></script>--}}
 {{--<script src="js/blog.js"></script>--}}
 

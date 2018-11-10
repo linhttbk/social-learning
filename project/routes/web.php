@@ -43,6 +43,7 @@ Route::group(['prefix' =>'course'],function (){
     Route::get('/{id}', 'CoursesController@showCourseDetail')->name('course_detail');
     Route::post('register/{id}','CourseRegistrationController@registerCourse')->name('buy_course');
     Route::get('/register-course/{id}','CourseRegistrationController@goToBuyCourse')->name('course-reg');
+    Route::get('/join-course/{id}', 'JoinCourseController@showViewCourse')->name('join-course');
 
 });
 
