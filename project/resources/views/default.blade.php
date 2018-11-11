@@ -10,7 +10,7 @@
 
     <!-- Header -->
 
-    @extends('header')
+    @include('header')
 
     @yield('content')
 
