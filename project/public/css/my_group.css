@@ -1,0 +1,110 @@
+.container-group {
+    padding: 10px;
+    width: 100%;
+    margin-top: 130px;
+    background: #ddd;
+
+}
+
+.group-infor {
+    margin-top: 10px;
+    padding-left: 50px;
+    padding-right: 20px;
+}
+
+.group-information {
+
+}
+
+.group-information div a {
+    color: black;
+    font-size: x-large;
+    font-weight: normal;
+    text-decoration: none;
+    line-height: 0.5;
+}
+
+.group-information div a:hover {
+    color: black;
+    text-decoration: underline;
+}
+
+.group-type span {
+    font-weight: bold;
+    color: #90949c;
+}
+
+.menu-group {
+    margin-top: 20px;
+}
+
+.menu-group ul li {
+    margin-top: 10px;
+
+}
+
+.menu-group ul li a {
+    font-size: large;
+    width: 100%;
+    display: block;
+    padding: 10px 4px 10px 10px;
+}
+
+.menu-group ul li a:hover {
+    text-decoration: none;
+    background: white;
+    border: #bebebe solid 1px;
+    font-weight: bold;
+    color: black;
+
+}
+
+.menu-item-link.active {
+    text-decoration: none;
+    background: white;
+    border: #bebebe solid 1px;
+    font-weight: bold;
+    color: black;
+}
+
+.box-create-post {
+    padding: 5px;
+    background: white;
+}
+
+.option-post {
+    margin: 5px 10px;
+    border-bottom: #ddd solid 1px;
+}
+
+.content-post {
+    margin: 5px 10px;
+    padding: 10px 0;
+    border-bottom: #ddd solid 1px;
+}
+
+.content-post img {
+    width: 50px;
+    height: 50px;
+
+}
+
+.content-post form textarea {
+    width: 100%;
+    display: block;
+    resize: none;
+    border: none;
+}
+
+.post-helper {
+    margin: 10px 10px;
+    text-align: right;
+}
+
+.post-helper a {
+    background-color: #365899;
+    color: white;
+    border: none;
+    padding: 4px 10px;
+    border-radius: 2px;
+}

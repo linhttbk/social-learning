@@ -38,19 +38,19 @@ Route::get('course', function () {
 Route::get('courses', 'CoursesController@showAllCourses')->name('courses');
 
 
-Route::group(['prefix' =>'course'],function (){
+Route::group(['prefix' => 'course'], function () {
 
     Route::get('/{id}', 'CoursesController@showCourseDetail')->name('course_detail');
-    Route::post('register/{id}','CourseRegistrationController@registerCourse')->name('buy_course');
-    Route::get('/register-course/{id}','CourseRegistrationController@goToBuyCourse')->name('course-reg');
+    Route::post('register/{id}', 'CourseRegistrationController@registerCourse')->name('buy_course');
+    Route::get('/register-course/{id}', 'CourseRegistrationController@goToBuyCourse')->name('course-reg');
     Route::get('/join-course/{id}', 'JoinCourseController@showViewCourse')->name('join-course');
 
 });
 
-Route::group(['prefix'=>'groups'],function (){
-    Route::get('/',function (){
-        return view('group.group_page');
-    })->name('group_page');
+Route::group(['prefix' => 'groups'], function () {
+    Route::get('/', 'GroupMemberController@showGroups')->name('group_page');
+
+    Route::get('/{groupId}', 'GroupMemberController@showMyGroup')->name('my_group');
 });
 
 Route::get('test', 'UserController@connect');
@@ -61,9 +61,9 @@ Route::post('login', 'Auth\LoginController@postLogin')->name('post_login');
 
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::group(['prefix' => 'user','middleware' => 'auth'], function (){
-    Route::get('/{id}/courses','CoursesController@showAllCoursesUser')->name('user-courses');
-    Route::get('/{id}/profile','ProfileController@showProfileUser')->name('user-profile');
+Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
+    Route::get('/{id}/courses', 'CoursesController@showAllCoursesUser')->name('user-courses');
+    Route::get('/{id}/profile', 'ProfileController@showProfileUser')->name('user-profile');
 });
 
 Route::group(['prefix' => 'admin-cp'], function () {
@@ -94,8 +94,8 @@ Route::group(['prefix' => 'admin-cp'], function () {
 
         Route::get('members', 'UserController@showAllUsers')->name('members');
 
-        Route::get('document_management','DocumentController@showAllDocuments')->name('document_management');
-        Route::get('search_document','DocumentController@searchDocument')->name('search_document');
+        Route::get('document_management', 'DocumentController@showAllDocuments')->name('document_management');
+        Route::get('search_document', 'DocumentController@searchDocument')->name('search_document');
 
         Route::get('charts', function () {
             return view('admin.charts');
