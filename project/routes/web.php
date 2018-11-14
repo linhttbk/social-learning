@@ -12,7 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('index');
+    $result = \Illuminate\Support\Facades\DB::table('Course')->select(array('Course.*', 'User.*', DB::raw('(Select Count(CourseRegistration.id_course) from CourseRegistration where CourseRegistration.id_course = Course.id) as count_student')))
+        ->join('User', 'Course.uid', '=', 'User.uid')
+        ->paginate(6);
+    return view('index', compact('result'));
 })->name('home');
 
 Route::get('login', function () {
