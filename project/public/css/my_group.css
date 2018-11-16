@@ -108,3 +108,12 @@
     padding: 4px 10px;
     border-radius: 2px;
 }
+.comment{
+    padding-top: 30px;
+}
+#comment-post{
+    display: none;
+}
+.card{
+    margin-top: 20px !important;
+}
