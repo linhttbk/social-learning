@@ -1,0 +1,52 @@
+version: '3'
+services:
+
+  # The Application
+  course:
+    build:
+      context: ../course
+      dockerfile: Dockerfile
+    working_dir: /var/www/html/course
+    links: 
+    - db
+    volumes:
+    - ../course :/var/www/html/course
+    ports:
+      - 8410:80
+  user:
+    build:
+      context: ../user
+      dockerfile: Dockerfile
+    working_dir: /var/www/html/user
+    links: 
+    - db
+    volumes:
+    - ../user :/var/www/html/user
+    ports:
+      - 8420:80
+
+  api-gateway:
+    build:
+      context: ../api-gateway
+      dockerfile: Dockerfile
+    working_dir: /var/www/html/api-gateway
+    volumes:
+    - ../api-gateway :/var/www/html/api-gateway
+    ports:
+      - 8430:80
+  
+
+  db:
+    image: mysql:5.6
+    volumes:
+      - dbdata:/var/lib/mysql
+    environment:
+      - "MYSQL_DATABASE=Slearning"
+      - "MYSQL_USER=root"
+      - "MYSQL_PASSWORD=Linhlol123@"
+      - "MYSQL_ROOT_PASSWORD=Linhlol123@"
+    ports:
+        - "33061:3306"
+
+volumes:
+  dbdata:
