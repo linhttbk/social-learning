@@ -10,7 +10,9 @@ RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/bin/composer
 COPY httpd.conf /etc/httpd/conf/httpd.conf
 COPY . /var/www/html/course
+#COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 WORKDIR /var/www/html/course
 
+#ENTRYPOINT ["entrypoint.sh"]
 
 CMD     ["/usr/sbin/httpd","-D","FOREGROUND"]
