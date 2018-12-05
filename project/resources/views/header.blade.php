@@ -22,38 +22,108 @@
                                 </li>
                             </ul>
                             @if(Auth::check())
-                                {{--<div class="top_bar_contact_list ml-auto">--}}
-                                {{--<li class="nav-item-dropdown">--}}
-                                {{--<a>--}}
-                                {{--<img class="avatar" src="{{asset('admin/img/avatar-1.jpg')}}" alt="Xin chào "> {{((Auth::user())->user)->name}}--}}
-                                {{--</a>--}}
-                                {{--<ul class="sub-menu">--}}
-                                {{--<li><a href="#">WordPress</a></li>--}}
-                                {{--<li><a href="#"><a href="https://thachpham.com/category/seo" data-wpel-link="internal">SEO</a></a></li>--}}
-                                {{--<li><a href="#">Hosting</a></li>--}}
-                                {{--</ul>--}}
-                                {{--</li>--}}
-                                {{--<li>--}}
-                                {{--<div class="top_bar_login ml-auto">--}}
-                                {{--<div class="login_button"><a href="{{route('logout')}}" data-toggle="modal" data-target=".bs-example-modal-lg">Logout</a></div>--}}
-                                {{--</div>--}}
-                                {{--</div>--}}
-                                {{--</li>--}}
-                                {{--</div>--}}
-
                                 <div id="menu">
                                     <ul>
                                         <li><a href="#"><img class="avatar" src="{{asset('admin/img/avatar-1.jpg')}}"
                                                              alt="Xin chào "> {{((Auth::user())->user)->name}}
                                             </a>
                                             <ul class="sub-menu">
-                                                <li><a href="{{route('user-profile',['id'=>(Auth::user())->uid])}}">Hồ sơ cá nhân</a></li>
-                                                <li><a href={{route('user-courses',['id'=>(Auth::user())->uid])}}>Khóa học của tôi</a></li>
+                                                <li><a href="{{route('user-profile',['id'=>(Auth::user())->uid])}}">Hồ
+                                                        sơ cá nhân</a></li>
+                                                <li><a href={{route('user-courses',['id'=>(Auth::user())->uid])}}>Khóa
+                                                        học của tôi</a></li>
                                                 <li><a href="{{route('logout')}}">Đăng xuất</a></li>
                                             </ul>
                                         </li>
                                     </ul>
+                                    <!-- Notifications-->
                                 </div>
+                                <li style="display: inline; position:relative;" class="nav-item-dropmenu"><a
+                                        id="notifications"
+                                        rel="nofollow" data-target="#"
+                                        href="#"
+                                        class="badge-notifications"
+                                        data-badge="27"
+                                        data-toggle="dropdown"
+                                        aria-haspopup="true"
+                                        aria-expanded="false"
+                                        class="nav-link"><i
+                                            class="fa fa-bell-o" style="color: white"></i></a>
+
+                                    <ul class="dropdown-menu">
+                                        <li class="head text-light bg-blue">
+                                            <div class="row">
+                                                <div class="col-lg-12 col-sm-12 col-12">
+                                                    <span>Notifications (3)</span>
+                                                    <a href="#" id="mark-notifications" class="float-right text-light">Mark all as read</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <ul class="notifications-item">
+                                            <li class="notification-box bg-gray">
+                                                <a href="#">
+
+                                                    <div class="row">
+                                                        <div class="col-lg-3 col-sm-3 col-3 text-center">
+                                                            <img src="{{asset('images/avatar_default.jpg')}}"
+                                                                 class=" rounded-circle">
+                                                        </div>
+                                                        <div class="col-lg-8 col-sm-8 col-8">
+                                                            <strong class="text-info">David John<span>
+                                                            Lorem ipsum dolor sit amet, consectetur 222k2k2k2k2kk2k2k2k22kk2kk2k2
+                                                        </span></strong>
+
+                                                            <small class="text-warning">27.11.2015, 15:00</small>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li class="notification-box">
+                                                <a href="#">
+
+                                                    <div class="row">
+                                                        <div class="col-lg-3 col-sm-3 col-3 text-center">
+                                                            <img src="{{asset('admin/img/avatar-0.jpg')}}"
+                                                                 class="rounded-circle">
+                                                        </div>
+                                                        <div class="col-lg-8 col-sm-8 col-8">
+                                                            <strong class="text-info">David John <span>
+                                                            Lorem ipsum dolor sit amet, consectetur 222k2k2k2k2kk2k2k2k22kk2kk2k2
+                                                        </span></strong>
+
+                                                            <small class="text-warning">27.11.2015, 15:00</small>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li class="notification-box bg-gray">
+                                                <a href="#">
+
+                                                    <div class="row">
+                                                        <div class="col-lg-3 col-sm-3 col-3 text-center">
+                                                            <img src="{{asset('admin/img/avatar-0.jpg')}}"
+                                                                 class=" rounded-circle">
+                                                        </div>
+                                                        <div class="col-lg-8 col-sm-8 col-8">
+                                                            <strong class="text-info">David John<span>
+                                                            Lorem ipsum dolor sit amet, consectetur 222k2k2k2k2kk2k2k2k22kk2kk2k2
+                                                        </span></strong>
+
+                                                            <small class="text-warning">27.11.2015, 15:00</small>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+
+                                        </ul>
+
+                                        <li class="footer bg-blue text-center">
+                                            <a href="" class="text-light">View All</a>
+                                        </li>
+                                    </ul>
+
+
+                                </li>
                             @else
                                 <div class="top_bar_login ml-auto">
                                     <div class="login_button"><a href="{{route('login')}}" data-toggle="modal"

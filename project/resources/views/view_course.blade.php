@@ -15,6 +15,7 @@
     <script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
     <script src="{{asset('js/course.js')}}"></script>
     <script src="{{asset('js/view_course.js')}}"></script>
+    <script src="{{asset('js/header.js')}}"></script>
     <script type='text/javascript' src='tivi/jwplayer.js'></script>
     <script type='text/javascript'>
         jQuery('document').ready(function(){
