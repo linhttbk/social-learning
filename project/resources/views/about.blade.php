@@ -9,6 +9,13 @@
     <link rel="stylesheet" href="{{asset('plugins/OwlCarousel2-2.2.1/animate.css')}}">
     <link rel="stylesheet" href="{{asset('css/about.css')}}">
     <link rel="stylesheet" href="{{asset('css/about_responsive.css')}}">
+    <link rel="stylesheet" href="{{asset('css/header.css')}}">
+@endsection
+@section('js')
+    <script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
+    <script src="{{asset('js/header_search.js')}}"></script>
+    <script src="{{asset('js/header.js')}}"></script>
+@endsection
 @section('content')
     <!-- Menu -->
 
@@ -379,22 +386,28 @@
                         <div class="owl-carousel owl-theme partners_slider">
 
                             <!-- Partner Item -->
-                            <div class="owl-item partner_item"><img src="{{asset('images/partner_1.png')}}" alt=""></div>
+                            <div class="owl-item partner_item"><img src="{{asset('images/partner_1.png')}}" alt="">
+                            </div>
 
                             <!-- Partner Item -->
-                            <div class="owl-item partner_item"><img src="{{asset('images/partner_1.png')}}" alt=""></div>
+                            <div class="owl-item partner_item"><img src="{{asset('images/partner_1.png')}}" alt="">
+                            </div>
 
                             <!-- Partner Item -->
-                            <div class="owl-item partner_item"><img src="{{asset('images/partner_1.png')}}" alt=""></div>
+                            <div class="owl-item partner_item"><img src="{{asset('images/partner_1.png')}}" alt="">
+                            </div>
 
                             <!-- Partner Item -->
-                            <div class="owl-item partner_item"><img src="{{asset('images/partner_1.png')}}" alt=""></div>
+                            <div class="owl-item partner_item"><img src="{{asset('images/partner_1.png')}}" alt="">
+                            </div>
 
                             <!-- Partner Item -->
-                            <div class="owl-item partner_item"><img src="{{asset('images/partner_1.png')}}" alt=""></div>
+                            <div class="owl-item partner_item"><img src="{{asset('images/partner_1.png')}}" alt="">
+                            </div>
 
                             <!-- Partner Item -->
-                            <div class="owl-item partner_item"><img src="{{asset('images/partner_1.png')}}" alt=""></div>
+                            <div class="owl-item partner_item"><img src="{{asset('images/partner_1.png')}}" alt="">
+                            </div>
 
                         </div>
                     </div>
