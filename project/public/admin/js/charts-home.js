@@ -10,8 +10,17 @@ $(document).ready(function () {
     if ($(window).outerWidth() < 576) {
         legendState = false;
     }
+    var data_visiters = [];
+    var data_viewers = [];
+    var labels_month = [1,2,3];
+    if (typeof chart_visitors !== 'undefined' && typeof chart_viewers !== 'undefined'  && typeof label_month !== 'undefined') {
+        data_visiters = JSON.parse("[" + chart_visitors + "]");
+        data_viewers = JSON.parse("[" + chart_viewers + "]");
+        labels_month = JSON.parse("[" + label_month + "]");
 
+    }
     var LINECHART = $('#lineCahrt');
+
     var myLineChart = new Chart(LINECHART, {
         type: 'line',
         options: {
@@ -34,7 +43,7 @@ $(document).ready(function () {
             }
         },
         data: {
-            labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17"],
+            labels: labels_month,
             datasets: [
                 {
                     label: "Page Visitors",
@@ -56,7 +65,7 @@ $(document).ready(function () {
                     pointHoverBorderWidth: 2,
                     pointRadius: 1,
                     pointHitRadius: 0,
-                    data: [50, 20, 60, 31, 52, 22, 40, 25, 30, 68, 56, 40, 60, 43, 55, 39, 47],
+                    data: data_visiters,
                     spanGaps: false
                 },
                 {
@@ -79,13 +88,12 @@ $(document).ready(function () {
                     pointHoverBorderWidth: 2,
                     pointRadius: 1,
                     pointHitRadius: 10,
-                    data: [20, 7, 35, 17, 26, 8, 18, 10, 14, 46, 30, 30, 14, 28, 17, 25, 17, 40],
+                    data: data_viewers,
                     spanGaps: false
                 }
             ]
         }
     });
-
 
 
     // ------------------------------------------------------- //
@@ -149,7 +157,6 @@ $(document).ready(function () {
     });
 
 
-
     // ------------------------------------------------------- //
     // Pie Chart
     // ------------------------------------------------------ //
@@ -197,20 +204,20 @@ $(document).ready(function () {
     var barChartHome = new Chart(BARCHARTHOME, {
         type: 'bar',
         options:
-        {
-            scales:
             {
-                xAxes: [{
+                scales:
+                    {
+                        xAxes: [{
+                            display: false
+                        }],
+                        yAxes: [{
+                            display: false
+                        }],
+                    },
+                legend: {
                     display: false
-                }],
-                yAxes: [{
-                    display: false
-                }],
+                }
             },
-            legend: {
-                display: false
-            }
-        },
         data: {
             labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "November", "December"],
             datasets: [
@@ -250,5 +257,7 @@ $(document).ready(function () {
             ]
         }
     });
+
+
 
 });

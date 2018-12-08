@@ -55,7 +55,8 @@
                                             <div class="row">
                                                 <div class="col-lg-12 col-sm-12 col-12">
                                                     <span>Notifications (3)</span>
-                                                    <a href="#" id="mark-notifications" class="float-right text-light">Mark all as read</a>
+                                                    <a href="#" id="mark-notifications" class="float-right text-light">Mark
+                                                        all as read</a>
                                                 </div>
                                             </div>
                                         </li>
@@ -117,7 +118,7 @@
 
                                         </ul>
 
-                                        <li class="footer bg-blue text-center">
+                                        <li class="footer-notificatons">
                                             <a href="" class="text-light">View All</a>
                                         </li>
                                     </ul>
@@ -155,7 +156,7 @@
                                 <li><a href="{{route('about')}}">About</a></li>
                                 <li><a href="{{route('courses')}}">Courses</a></li>
                                 <li><a href="{{route('blog')}}">Blog</a></li>
-                                <li><a href="#">Page</a></li>
+                                <li><a href="{{route('group_page')}}">Groups</a></li>
                                 <li><a href="{{route('contact')}}">Contact</a></li>
                             </ul>
                             <div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>
