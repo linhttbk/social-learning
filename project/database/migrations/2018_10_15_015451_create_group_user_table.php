@@ -16,7 +16,7 @@ class CreateGroupUserTable extends Migration
         Schema::create('GroupUser', function (Blueprint $table) {
             $table->integer('id', 11);
             $table->string('title');
-            $table->string('thumb_url');
+            $table->string('thumb_url')->nullable();
             $table->string('uid', 30);
             $table->foreign('uid')->references('uid')->on('User')->onDelete('cascade');
             $table->integer('mode');

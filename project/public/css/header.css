@@ -22,7 +22,6 @@
     display: inline-block;
     width: 120px;
     height: 40px;
-    line-height: 40px;
     margin-left: -5px;
 }
 
@@ -170,10 +169,11 @@
 
 }
 
-.footer bg-blue text-center{
+.footer-notificatons {
     padding: 5px 15px;
     border-radius: 0px 0px 3px 3px;
     background-color: #444444;
+    text-align: center;
 }
 
 .notification-box {
@@ -202,7 +202,7 @@
 
 }
 
-#mark-notifications:hover, .footer:hover {
+#mark-notifications:hover, .footer-notificatons:hover {
     text-decoration: underline;
     text-decoration-color: white;
 }

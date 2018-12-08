@@ -34,7 +34,7 @@ class ActivationService
         $account->emailverify = true;
         $account->save();
         $this->userActivation->deleteActivation($token);
-
+        
         return $user;
     }
 

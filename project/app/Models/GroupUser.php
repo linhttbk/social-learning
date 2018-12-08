@@ -14,7 +14,13 @@ class GroupUser extends Model
         return $this->belongsTo('User', 'uid', 'uid');
     }
 
-    public function groupMember(){
-        return $this->hasOne('GroupMember','id_group','id');
+    public function groupMember()
+    {
+        return $this->hasOne('GroupMember', 'id_group', 'id');
+    }
+
+    public function members()
+    {
+        return $this->hasManyThrough('App\Models\User', 'App\Models\GroupMember', 'id_group', 'uid', 'id', 'uid');
     }
 }

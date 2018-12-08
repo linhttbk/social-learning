@@ -70,9 +70,7 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
 });
 
 Route::group(['prefix' => 'admin-cp'], function () {
-    Route::get('/', function () {
-        return view('admin.index');
-    })->name('admin');
+
 
     Route::get('members/search', 'UserController@searchUser')->name('search');
 
@@ -91,9 +89,7 @@ Route::group(['prefix' => 'admin-cp'], function () {
     Route::get('logout', 'Admin\AdminController@logout')->name('post-logout');
 
     Route::group(['middleware' => 'admin'], function () {
-        Route::get('/', function () {
-            return view('admin.index');
-        })->name('admin');
+        Route::get('/', 'Admin\AdminController@index')->name('admin');
 
         Route::get('members', 'UserController@showAllUsers')->name('members');
 

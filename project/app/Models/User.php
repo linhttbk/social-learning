@@ -18,8 +18,24 @@ class User extends Authenticatable
 
     public function account()
     {
-        return $this->hasOne('App\Models\Account','uid','uid');
+        return $this->hasOne('App\Models\Account', 'uid', 'uid');
     }
+
+    public function myGroups()
+    {
+        return $this->hasMany('App\Models\GroupUser', 'uid', 'uid');
+    }
+
+
+
+    public function myJoinGroups()
+    {
+        return $this->hasManyThrough('App\Models\GroupUser', 'App\Models\GroupMember', 'uid', 'id', 'uid', 'id_group')
+            ->where('GroupMember.role', '!=', '2');
+    }
+
+
+
     /**
      * The attributes that are mass assignable.
      *
