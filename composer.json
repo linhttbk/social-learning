@@ -1,5 +1,6 @@
 {
     "require": {
-        "captcha-com/laravel-captcha": "4.2.5"
+        "captcha-com/laravel-captcha": "4.2.5",
+      "ext-json": "*"
     }
 }

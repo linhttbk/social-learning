@@ -9,10 +9,12 @@
     <link rel="stylesheet" href="{{asset('plugins/OwlCarousel2-2.2.1/animate.css')}}">
     <link rel="stylesheet" href="{{asset('css/course.css')}}">
     <link rel="stylesheet" href="{{asset('css/course_responsive.css')}}">
+    <link rel="stylesheet" href="{{asset('css/header.css')}}">
 @endsection
 @section('js')
     <script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
     <script src="{{asset('js/course.js')}}"></script>
+    <script src="{{asset('js/header.js')}}"></script>
 @endsection
 
 @section('content')
@@ -255,7 +257,9 @@
                                                                             <div class="dropdown_item"><img
                                                                                     src="{{asset('images/ic_test.png')}}"/>
                                                                                 <span class="title-test">Test</span>
-                                                                                <div class="description-test">Description</div>
+                                                                                <div class="description-test">
+                                                                                    Description
+                                                                                </div>
                                                                             </div>
                                                                         @endif
                                                                     </ul>
@@ -267,8 +271,9 @@
                                             </div>
                                         </div>
                                         <div>
-                                            <a  href='{{route('join-course',['id'=>($course->id)])}}'>
-                                                <input type="button" name="join-course" class="form-control btn btn-save" value="Tham gia">
+                                            <a href='{{route('join-course',['id'=>($course->id)])}}'>
+                                                <input type="button" name="join-course"
+                                                       class="form-control btn btn-save" value="Tham gia">
                                             </a>
                                         </div>
                                     </div>

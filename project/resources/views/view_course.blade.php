@@ -15,7 +15,25 @@
     <script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
     <script src="{{asset('js/course.js')}}"></script>
     <script src="{{asset('js/view_course.js')}}"></script>
+<<<<<<< HEAD
     @endsection
+=======
+    <script src="{{asset('js/header.js')}}"></script>
+    <script type='text/javascript' src='tivi/jwplayer.js'></script>
+    <script type='text/javascript'>
+        jQuery('document').ready(function(){
+            jwplayer('mediaspace').setup({
+                'flashplayer': 'tivi/player.swf',
+                'file': 'https://www.youtube.com/watch?v=zAEYQ6FDO5U',
+                'title': 'Bài 1: Bigbag',
+                'width': '1020',
+                'height': '500',
+                'autoplay' : true
+            });
+        })
+    </script>
+@endsection
+>>>>>>> b8fc619d282d5d82a53f3926c98d20afd329f129
 @section("content")
 
     <!-- Home -->

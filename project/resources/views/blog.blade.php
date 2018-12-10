@@ -7,8 +7,14 @@
     <link rel="stylesheet" href="{{asset('tivi')}}">
     <link rel="stylesheet" href="{{asset('css/blog.css')}}">
     <link rel="stylesheet" href="{{asset('css/blog_responsive.css')}}">
+    <link rel="stylesheet" href="{{asset('css/header.css')}}">
 @endsection
-    <!-- Menu -->
+@section('js')
+    <script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
+    <script src="{{asset('js/header_search.js')}}"></script>
+    <script src="{{asset('js/header.js')}}"></script>
+@endsection
+<!-- Menu -->
 @section('content')
     <div class="menu d-flex flex-column align-items-end justify-content-start text-right menu_mm trans_400">
         <div class="menu_close_container">
@@ -255,7 +261,7 @@
         </div>
     </div>
 @endsection
-    <!-- Footer -->
+<!-- Footer -->
 
 {{--<script src="js/jquery-3.2.1.min.js"></script>--}}
 {{--<script src="styles/bootstrap4/popper.js"></script>--}}
