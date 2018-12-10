@@ -22,10 +22,11 @@
                                 </li>
                             </ul>
                             @if(Auth::check())
-                                <div id="menu">
+                                <div id="menu-user">
                                     <ul>
-                                        <li><a href="#"><img class="avatar" src="{{asset('admin/img/avatar-1.jpg')}}"
-                                                             alt="Xin chào "> {{((Auth::user())->user)->name}}
+                                        <li class="infor-user"><a href="#"><img class="avatar"
+                                                                                src="{{asset('admin/img/avatar-1.jpg')}}"
+                                                                                alt="Xin chào "> {{((Auth::user())->user)->name}}
                                             </a>
                                             <ul class="sub-menu">
                                                 <li><a href="{{route('user-profile',['id'=>(Auth::user())->uid])}}">Hồ

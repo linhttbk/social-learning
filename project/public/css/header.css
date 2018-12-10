@@ -6,32 +6,39 @@
 }
 
 /*==Style cho menu===*/
-#menu {
-    margin-left: auto !important;;
+#menu-user {
+    margin-left: auto;
 }
 
-#menu ul {
+#menu-user ul {
     z-index: 99;
     background: #14BDEE;
     list-style-type: none;
     text-align: center;
 }
 
-#menu li {
+#menu-user li {
     color: #f1f1f1;
-    display: inline-block;
-    width: 120px;
+    display: block;
     height: 40px;
-    margin-left: -5px;
+    width: 120px;
+    line-height: 40px;
+    position: relative;
+
 }
 
-#menu a {
+.infor-user a {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+#menu-user ul li a {
     text-decoration: none;
     color: #fff;
     display: block;
 }
 
-#menu a:hover {
+#menu-user ul li a:hover {
     background: #12a4ee;
     color: white;
 }
@@ -41,21 +48,17 @@
     display: none;
 }
 
-#menu li {
-    position: relative;
-}
-
 .sub-menu {
     display: none;
     position: absolute;
 }
 
-#menu li:hover .sub-menu {
+#menu-user li:hover .sub-menu {
     display: block;
 }
 
 .sub-menu li {
-    margin-left: 0 !important;
+    margin-left: 0;
 }
 
 .badge-notifications {

@@ -16,7 +16,7 @@ class GroupUser extends Model
 
     public function groupMember()
     {
-        return $this->hasOne('GroupMember', 'id_group', 'id');
+        return $this->hasMany('App\Models\GroupMember', 'id_group', 'id');
     }
 
     public function members()

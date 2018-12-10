@@ -15,6 +15,8 @@
 
     <script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
     <script src="{{asset('js/header_search.js')}}"></script>
+    <script src="{{asset('js/group_page.js')}}"></script>
+
 
 @endsection
 @section('content')
@@ -31,10 +33,11 @@
                 </div>
                 @if(((Auth::user())->user)->type == 1)
                     <div class="col-sm-2" style="text-align: center">
-                        <a href="#" type="button" class="btn btn-default btn-sm"
-                           style="text-align: center; background-color: #4bc136; color: white">
+                        <button type="button" id="createGroup" class="btn btn-default btn-sm"
+                                style="text-align: center; background-color: #4bc136; color: white">
                             <i class="fa fa-plus" aria-hidden="true"></i>
-                            Tạo nhóm</a>
+                            Tạo nhóm
+                        </button>
                     </div>
                 @endif
             </div>
@@ -280,6 +283,84 @@
             </div>
         @endif
 
+    </div>
+
+    <div class="modal" id="dialogGroup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true"
+         style="display: none;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" id="dialogHeader">
+                    <h5 class="modal-title" id="exampleModalLabel">Tạo nhóm mới</h5>
+                    <button type="button" id="icClose" class="close-button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                @if(isset($message))
+                    <span class="alert alert-danger">$message</span>
+                @endif
+                <span class="alert alert-danger" id="message-error"></span>
+                <div class="modal-body-dialog">
+                    <div class="dialog-description">
+                        <div class="dialog-description-header">
+                            <i></i>
+                            <div><span>Nhóm là không gian tuyệt vời để hoàn thành công việc và chỉ liên lạc với những người bạn muốn. Hãy chia sẻ ảnh và video, trò chuyện, lên kế hoạch và nhiều hoạt động khác.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form id="form-create-group" action="{{route('create_group')}}" method="post" role="form" onsubmit="return onFormSubmit()" >
+                    <div><h5>Đặt tên nhóm</h5></div>
+                    <input type="text" placeholder="Tên nhóm" name="title" id="name-group-input">
+                    <div><h5>Mô tả về nhóm</h5></div>
+                    <input type="text" placeholder="Mô tả" name="description" id="desc-input">
+
+                    <div>
+                        <div class="title-mode-group"><h5>Chọn quyền riêng tư</h5></div>
+                    </div>
+
+                    <div class="mode-group">
+                        <div class="mode-group-header">
+                            <i class="mode-icon public" id="icon-form-group"></i>
+                            <div>
+                                <h5 id="title-mode">Nhóm công khai</h5>
+                                <i class="dropdown-mode"></i>
+                                <span
+                                    id="desc-mode">Bất cứ ai cũng tìm được nhóm, xem thành viên và những gì họ đăng.</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="footer-mode-select">
+                        <input type="submit" value="Tạo">
+                    </div>
+                    <input type="hidden" id="value-mode" value="0" name="mode">
+                    {{csrf_field()}}
+                </form>
+                <div class="dropdown-select-mode" id="dropdown-select">
+                    <ul>
+                        <li id="select-mode-private">
+                            <a href="#">
+                                <div>
+                                    <i class="mode-icon private"></i>
+                                    <h5 class="title-mode-select">Nhóm kín</h5>
+                                    <span class="des-mode">Bất cứ ai cũng tìm thấy nhóm và biết được người nào điều hành nhóm. Chỉ thành viên mới xem được ai tham gia nhóm và nội dung họ đăng.</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li id="select-mode-public">
+                            <a href="#">
+                                <div>
+                                    <i class="mode-icon public"></i>
+                                    <h5 class="title-mode-select">Nhóm công khai</h5>
+                                    <span class="des-mode">Bất cứ ai cũng tìm được nhóm, xem thành viên và những gì họ đăng.</span>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 
 @endsection

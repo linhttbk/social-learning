@@ -54,9 +54,12 @@ Route::group(['prefix' => 'groups'], function () {
     Route::get('/', 'GroupMemberController@showGroups')->name('group_page');
 
     Route::get('/{groupId}', 'GroupMemberController@showMyGroup')->name('my_group');
+    Route::post('create', 'GroupMemberController@create')->name('create_group');
 });
 
-Route::get('test', 'UserController@connect');
+Route::get('test', function () {
+    return view('test');
+});
 Route::get('test2', 'CoursesController@showAllCourses');
 
 Route::post('login', 'Auth\LoginController@postLogin')->name('post_login');
