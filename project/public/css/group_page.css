@@ -1087,3 +1087,217 @@ section {
     color: #14bdee;
 }
 
+/*Dialog create group page*/
+#dialogGroup {
+    position: absolute;
+}
+
+.modal-dialog {
+    margin-top: 30px;
+    position: relative;
+}
+
+#dialogHeader {
+    background-color: #F5F6F7;
+    padding: 5px 5px 0 5px;
+    opacity: 1.0;
+    z-index: 9999;
+}
+
+.close-button {
+    padding: 5px;
+    margin-top: -15px;
+    background: transparent;
+    border: none;
+    font-size: 18px;
+}
+
+.close-button span {
+    color: #828282;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.close-button:hover span {
+    color: black;
+}
+
+.dialog-description {
+
+    overflow: auto;
+    margin: 10px 10px 5px 10px;
+    border: 1px solid #dddfe2;
+    border-radius: 3px;
+
+}
+
+.dialog-description div i {
+    float: left;
+    width: 76px;
+    height: 92px;
+    background-image: url("../images/des_group.png");
+}
+
+.dialog-description-header {
+
+}
+
+.dialog-description div div {
+    margin-left: 86px;
+    display: block;
+    height: 92px;
+    display: table;
+}
+
+.dialog-description div div span {
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 12px;
+    white-space: normal;
+    color: #90949c;
+}
+
+form {
+    margin: 5px 10px 10px 10px;
+    position: relative;
+
+}
+
+form input[type=text] {
+    margin-top: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #bdc7d8;
+    padding: 4px;
+    display: block;
+    width: 100%;
+}
+
+.title-mode-group {
+    display: inline;
+}
+
+.title-mode-group h5 {
+    display: inline;
+}
+
+.mode-group {
+    overflow: auto;
+    border: 1px solid #dddfe2;
+    border-radius: 3px;
+}
+
+.mode-icon {
+    float: left;
+    margin: 8px;
+    background-image: url("../images/des_group.png");
+
+}
+
+.private {
+    width: 24px;
+    height: 24px;
+    background-position: -25px -93px;
+}
+
+.public {
+    width: 24px;
+    height: 24px;
+    background-position: 0px -93px;
+}
+
+.mode-group div div {
+    margin-left: 30px;
+    display: block;
+
+}
+
+.mode-group div div h5 {
+    display: inline;
+}
+
+.mode-group div div span {
+    display: block;
+    font-size: 12px;
+    color: #90949c;
+}
+
+.dropdown-mode {
+    float: right;
+    margin: 8px;
+    width: 8px;
+    height: 4px;
+    background-position: -21px -118px;
+    background-image: url("../images/des_group.png");
+}
+
+.dropdown-select-mode {
+    margin-left: 10px;
+    margin-right: 10px;
+    display: none;
+    margin-top: -70px;
+    z-index: 3000;
+    background: white;
+    border: 1px solid #dddfe2;
+    -moz-box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+
+}
+
+.dropdown-select-mode ul {
+    display: block;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.dropdown-select-mode ul li:hover {
+    background-color: #4267b2;
+    border-color: #29487d;
+    color: #fff;
+}
+
+.dropdown-select-mode ul li a div {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.dropdown-select-mode ul li:hover .des-mode {
+    color: #fff;
+}
+
+.dropdown-select-mode ul li:hover .title-mode-select {
+    color: #fff;
+}
+
+.des-mode {
+    color: #90949c;
+}
+
+.dropdown-select-mode h5 {
+    color: #384158;;
+}
+
+.footer-mode-select {
+    margin-top: 12px;
+    border-top: 1px solid #dddfe2;
+}
+
+input[type=submit] {
+    margin-top: 12px;
+    float: right;
+    border: none;
+    width: 87px;
+    text-align: center;
+    height: 30px;
+    font-weight: bold;
+    background-color: #14BDEE;
+    color: white;
+}
+
+input[type=submit]:hover {
+    background-color: #365899;
+}
+
+#message-error {
+    display: none;
+}

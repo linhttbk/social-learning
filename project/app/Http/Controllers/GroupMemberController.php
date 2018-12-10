@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\GroupMember;
 use App\Models\GroupUser;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -15,6 +16,7 @@ class GroupMemberController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+
     }
 
     function showGroups()
@@ -22,41 +24,37 @@ class GroupMemberController extends Controller
         $user = Auth::user()->user;
         $listGroups = $user->myGroups;
         $listJoinGroups = $user->myJoinGroups;
-
-//        $listOtherGroups = DB::table('GroupUser')->whereNotIn('id', function ($query) {
-//            $query->select('id_group')->from('GroupMember')->where('uid', '=', (Auth::user()->user)->uid);
-//        })->get();
-
         $listOtherGroups = GroupUser::whereNotIn('id', function ($query) {
             $query->select('id_group')->from('GroupMember')->where('uid', '=', (Auth::user()->user)->uid);
         })->get();
-        $count1 = $listGroups->count();
-        $count2 = $listJoinGroups->count();
-        $count3 = $listOtherGroups->count();
-        $resultGroups = $listGroups->chunk($count1 % 2 == 0 ? $count1 / 2 : $count1 / 2 + 1);
-        $resultJoinGroup = $listJoinGroups->chunk($count2 % 2 == 0 ? $count2 / 2 : $count2 / 2 + 1);
-        $resultOther = $listOtherGroups->chunk($count3 % 2 == 0 ? $count3 / 2 : $count3 / 2 + 1);
-        //dd($listOtherGroups);
         return view('group.group_page', ['listGroups' => $listGroups, 'listJoinGroups' => $listJoinGroups, 'listOtherGroups' => $listOtherGroups]);
     }
 
     function showMyGroup($idGroup)
     {
+
         return view('group.my_group');
     }
 
-    function partition($list, $p)
+
+    function create(Request $request)
     {
-        $listlen = count($list);
-        $partlen = floor($listlen / $p);
-        $partrem = $listlen % $p;
-        $partition = array();
-        $mark = 0;
-        for ($px = 0; $px < $p; $px++) {
-            $incr = ($px < $partrem) ? $partlen + 1 : $partlen;
-            $partition[$px] = array_slice($list, $mark, $incr);
-            $mark += $incr;
+
+        $groupUser = new GroupUser();
+        $groupUser->title = $request->title;
+        $groupUser->des = $request->description;
+        $groupUser->uid = Auth::user()->uid;
+        $groupUser->group_create_at = Carbon::now();
+        $groupUser->mode = $request->mode;
+        $groupMember = new GroupMember();
+        $groupMember->uid = Auth::user()->uid;
+        $groupMember->add_uid = Auth::user()->uid;
+        $groupMember->join_date = $groupUser->group_create_at;
+        $groupMember->role = 2;
+        if ($groupUser->save() && $groupUser->groupMember()->save($groupMember)) {
+            return redirect()->route('my_group', ['groupId' => $groupUser->id]);
+        } else {
+            return back()->withErrors('message', 'Co loi trong qua trinh tao nhom');
         }
-        return $partition;
     }
 }
