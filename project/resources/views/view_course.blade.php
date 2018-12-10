@@ -15,6 +15,9 @@
     <script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
     <script src="{{asset('js/course.js')}}"></script>
     <script src="{{asset('js/view_course.js')}}"></script>
+<<<<<<< HEAD
+    @endsection
+=======
     <script src="{{asset('js/header.js')}}"></script>
     <script type='text/javascript' src='tivi/jwplayer.js'></script>
     <script type='text/javascript'>
@@ -30,6 +33,7 @@
         })
     </script>
 @endsection
+>>>>>>> b8fc619d282d5d82a53f3926c98d20afd329f129
 @section("content")
 
     <!-- Home -->
@@ -107,8 +111,8 @@
                                                         </div>
                                                         <div class="dropdown_item_text">
                                                             <ol>
-                                                                <li><a title="Video" href='javascript:void(0)'>Xem video</a></li>
-                                                                <li><a title="Tải tài liệu" href='javascript:void(0)'>Tải tài liệu</a></li>
+                                                                <li><a title="Video" href=''>Xem video</a></li>
+                                                                <li><a title="Tải tài liệu" href=''>Tải tài liệu</a></li>
                                                             </ol>
                                                         </div>
                                                     </div>
@@ -132,10 +136,10 @@
                 </div>
                 <div class="col-lg-4">
                     <div id="mediaspace" style="margin:5px;">
-                        <video width="1000" height="500" controls>
-                            <source src="https://www.youtube.com/watch?v=zAEYQ6FDO5U" type="video/mp4">
-                            <source src="https://www.youtube.com/watch?v=zAEYQ6FDO5U" type="video/ogg">
-                            Your browser does not support the video tag.
+                        <video width="950" height="450" controls>
+                            <source src="{{asset('upload/video/bai1abc.mp4')}}" type="video/mp4">
+                            <source src="mov_bbb.ogg" type="video/ogg">
+                            Your browser does not support HTML5 video.
                         </video>
                     </div>
                 </div>
