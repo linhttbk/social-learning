@@ -59,16 +59,17 @@
                             </div>
                         </div>
                         <div class="col-lg-4" id="add-new-user">
-                            <div class="card">
-                                Add New Doc
-                            </div>
-                        </div>
+                                <div class="card">
+                                    <a href="{{route('add_doccument')}}">
+                                    Add New Doc
+                                </a>
+                                </div>
                     </div>
                 </div>
                 <div>
                     <div id="title-card">
                         <div style="display: inline-block;">Data Document</div>
-                        <!-- @include('errors.note') -->
+                        @include('errors.note')
                         <div style=" display: block">
                             <label class="col-sm-3 form-control-label">Select</label>
                             <table class="table table-striped table-hover">
@@ -86,47 +87,46 @@
                                 </th>
                                 <th>
                                     <div class="col-sm-9" id="1" style="display: block;">
-                                        <select name="subject_reg" id="subject_reg" class="form-control mb-3" onchange="initSelectValueDocumentReg()">
-                                            <option value="6" id="toan" selected="selected">toán 10</option>
-                                            <option value="7" id="toan">toán 11</option>
-                                            <option value="8" id="toan">toán 12</option>
+                                        <select id="subject_reg1" class="form-control mb-3" onchange="initSelectValueDocumentReg()">
+                                            <option value="Toán 10" id="toan" selected="selected">Toán 10</option>
+                                            <option value="Toán 11" id="toan">Toán 11</option>
+                                            <option value="Toán 12" id="toan">Toán 12</option>
                                         </select>
                                     </div>
                                     <div class="col-sm-9" id="2" style="display: none;">
-                                        <select name="subject_reg" id="subject_reg" class="form-control mb-3" onchange="initSelectValueDocumentReg()">
-                                            <option id="ly">lý 10</option>
-                                            <option id="ly">lý 11</option>
-                                            <option id="ly">lý 12</option>
+                                        <select id="subject_reg2" class="form-control mb-3" onchange="initSelectValueDocumentReg()">
+                                            <option id="ly" value="Lý 10" selected="selected">lý 10</option>
+                                            <option id="ly" value="Lý 11">lý 11</option>
+                                            <option id="ly" value="Lý 12">lý 12</option>
                                         </select>
                                     </div>
                                     <div class="col-sm-9" id="4" style="display: none;">
-                                        <select name="subject_reg" id="subject_reg" class="form-control mb-3" onchange="initSelectValueDocumentReg()">
-                                            <option value="9" id="van">văn 10</option>
-                                            <option value="10" id="van">văn 11</option>
-                                            <option value="11" id="van">văn 12</option>
+                                        <select id="subject_reg4" class="form-control mb-3" onchange="initSelectValueDocumentReg()">
+                                            <option value="Văn 10" id="van" selected="selected">văn 10</option>
+                                            <option value="Văn 11" id="van">văn 11</option>
+                                            <option value="Văn 12" id="van">văn 12</option>
                                         </select>
                                     </div>
                                     <div class="col-sm-9" id="3" style="display: none;">
-                                        <select name="subject_reg" id="subject_reg" class="form-control mb-3" onchange="initSelectValueDocumentReg()">
-                                            <option id="hoa">hóa 10</option>
-                                            <option id="hoa">hóa 11</option>
-                                            <option id="hoa">hóa 12</option>
+                                        <select id="subject_reg3" class="form-control mb-3" onchange="initSelectValueDocumentReg()">
+                                            <option id="hoa" value="Hóa Học 10" selected="selected">hóa 10</option>
+                                            <option id="hoa" value="Hóa Học 11">hóa 11</option>
+                                            <option id="hoa" value="Hóa Học 12">hóa 12</option>
                                         </select>
                                     </div>
                                     <div class="col-sm-9" id="5" style="display: none;">
-                                        <select name="subject_reg" id="subject_reg" class="form-control mb-3" onchange="initSelectValueDocumentReg()">
-                                            <option id="anh">tiếng anh 10</option>
-                                            <option id="anh">tiếng anh 11</option>
-                                            <option id="anh">tiếng anh 12</option>
+                                        <select id="subject_reg5" class="form-control mb-3" onchange="initSelectValueDocumentReg()">
+                                            <option id="anh" value="Tiếng Anh 10" selected="selected">tiếng anh 10</option>
+                                            <option id="anh" value="Tiếng Anh 11">tiếng anh 11</option>
+                                            <option id="anh" value="Tiếng Anh 12">tiếng anh 12</option>
                                         </select>
                                     </div> 
                                 </th>
                                 <th>
-                                    <form class="input-group" name="form-search" action="{{route('search')}}" method="get">
-                                        <ul style="display: none;">
-                                            <li id="subject_select" value=""></li>
-                                            <li id="subject_reg_select" value=""></li>
-                                        </ul>
+                                    <form class="input-group" name="form-search" action="{{route('search_document')}}" method="get">
+                                        <select name="subject_hide_select" style="display: none;">
+                                            <option id="subject_reg_select" value="Toán 10"></option>
+                                        </select>
                                         <input type="text" class="form-control" name="key-search" placeholder="Search"/>
                                         <button class="input-group-addon" type="submit">
                                             <i class="fa fa-search"></i>
@@ -146,7 +146,7 @@
                                         <thead>
                                         <tr>
                                             <th>Id Document</th>
-                                            <th>Id Subject</th>
+                                            <th>Subject</th>
                                             <th>Url</th>
                                             <th>Des</th>
                                             <th>User Id</th>
@@ -159,8 +159,8 @@
                                             @foreach($document_pagination as $key => $data)
                                                 <tr>
                                                     <td>{{$data->id}}</td>
-                                                    <td>{{$data->id_subject}}</td>
-                                                    <td>{{$data->url}}</td>
+                                                    <td>{{$data->title}}</td>
+                                                    <td><a href="{{$data->url}}"> link tài liệu tham khảo</td>
                                                     <td>{{$data->des}}</td>
                                                     <td>{{$data->uid}}</td>
                                                     @if ($data->status==1)
@@ -169,8 +169,13 @@
                                                         <td>Not read</td>
                                                     @endif
                                                     <td>
+
+                                                        <a href="{{route('edit_document', ['id'=>$data->id])}}"><img src="{{asset('admin/img/icon/ic_edit.png')}}"></a>
+                                                        <a href="{{route('delete_document', ['id'=>$data->id])}}"><img src="{{asset('admin/img/icon/ic_delete.png')}}"></a>
+
                                                         <a href=""><img src="{{asset('admin/img/icon/ic_edit.png')}}"></a>
                                                         <a href=""><img src="{{asset('admin/img/icon/ic_delete.png')}}"></a>
+
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -227,24 +232,28 @@
                 document.getElementById("3").style.display = "none";
                 document.getElementById("4").style.display = "none";
                 document.getElementById("5").style.display = "none";
+                document.getElementById("subject_reg_select").value = document.getElementById("toan").value;
             } else if (type == "2") {
                 document.getElementById("1").style.display = "none";
                 document.getElementById("2").style.display = "block";
                 document.getElementById("3").style.display = "none";
                 document.getElementById("4").style.display = "none";
                 document.getElementById("5").style.display = "none";
+                 document.getElementById("subject_reg_select").value = document.getElementById("ly").value;
             } else if (type == "3") {
                 document.getElementById("1").style.display = "none";
                 document.getElementById("2").style.display = "none";
                 document.getElementById("3").style.display = "block";
                 document.getElementById("4").style.display = "none";
                 document.getElementById("5").style.display = "none";
+                document.getElementById("subject_reg_select").value = document.getElementById("hoa").value;
             } else if (type == "4") {
                 document.getElementById("1").style.display = "none";
                 document.getElementById("2").style.display = "none";
                 document.getElementById("3").style.display = "none";
                 document.getElementById("4").style.display = "block";
                 document.getElementById("5").style.display = "none";
+                document.getElementById("subject_reg_select").value = document.getElementById("van").value;
             }
             else {
                 document.getElementById("1").style.display = "none";
@@ -252,11 +261,36 @@
                 document.getElementById("3").style.display = "none";
                 document.getElementById("4").style.display = "none";
                 document.getElementById("5").style.display = "block";
+                document.getElementById("subject_reg_select").value = document.getElementById("anh").value;
             }
-            document.getElementById("subject_select").value = type;
         }
-        function initSelectValueDocumentReg(){
-            document.getElementById("subject_reg_select").value = document.getElementById("subject_reg").value;
-        } 
+    function initSelectValueDocumentReg(){
+        var type = document.getElementById("subject").value;
+            if (type == "1") {
+                var e = document.getElementById("subject_reg1");
+                var strUser = e.options[e.selectedIndex].value;
+                document.getElementById("subject_reg_select").value=strUser;
+            }
+            else if (type == "2") {
+                var e = document.getElementById("subject_reg2");
+                var strUser = e.options[e.selectedIndex].value;
+                document.getElementById("subject_reg_select").value=strUser;
+            }
+            else if (type == "3") {
+                var e = document.getElementById("subject_reg3");
+                var strUser = e.options[e.selectedIndex].value;
+                document.getElementById("subject_reg_select").value=strUser;
+            }
+            else if (type == "4") {
+                var e = document.getElementById("subject_reg4");
+                var strUser = e.options[e.selectedIndex].value;
+                document.getElementById("subject_reg_select").value=strUser;
+            }
+            else if (type == "5") {
+                var e = document.getElementById("subject_reg5");
+                var strUser = e.options[e.selectedIndex].value;
+                document.getElementById("subject_reg_select").value=strUser;
+            }
+    } 
     </script>
 @endsection

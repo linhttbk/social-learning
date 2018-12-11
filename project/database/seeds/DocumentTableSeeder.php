@@ -28,7 +28,16 @@ class DocumentTableSeeder extends Seeder
                 'url' => 'https://github.com/LeonelLopez84/lumen_crud/blob/735874067c810655db97db1e7bfe6fc9e4d29f31/apidoc.json',
                 'uid' => 'linhluv1',
                 'status' => '0',
-                'des' => 'Tai lieu Toan 10'
+                'des' => 'Tai lieu Toán 10'
+            ];
+        }
+        for ($i = 25; $i < 50; $i++) {
+            $document[$i] = [
+                'id_subject' => 15,
+                'url' => 'https://github.com/LeonelLopez84/lumen_crud/blob/735874067c810655db97db1e7bfe6fc9e4d29f31/apidoc.json',
+                'uid' => 'linhluv1',
+                'status' => '0',
+                'des' => 'Tai lieu Hoá 10'
             ];
         }
         DB::table('document')->insert($document);
