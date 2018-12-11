@@ -9,17 +9,20 @@
     <link rel="stylesheet" href="{{asset('plugins/OwlCarousel2-2.2.1/animate.css')}}">
     <link rel="stylesheet" href="{{asset('css/course_responsive.css')}}">
     <link rel="stylesheet" href="{{asset('css/join_course.css')}}">
-
 @endsection
+
 @section('js')
+
     <script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
     <script src="{{asset('js/course.js')}}"></script>
     <script src="{{asset('js/view_course.js')}}"></script>
 <<<<<<< HEAD
+<<<<<<< HEAD
     @endsection
 =======
+=======
+>>>>>>> 3a1944b7292bd67cac6a3dc84182918dd519de89
     <script src="{{asset('js/header.js')}}"></script>
-    <script type='text/javascript' src='tivi/jwplayer.js'></script>
     <script type='text/javascript'>
         jQuery('document').ready(function(){
             jwplayer('mediaspace').setup({
@@ -32,8 +35,12 @@
             });
         })
     </script>
+
 @endsection
+<<<<<<< HEAD
 >>>>>>> b8fc619d282d5d82a53f3926c98d20afd329f129
+=======
+>>>>>>> 3a1944b7292bd67cac6a3dc84182918dd519de89
 @section("content")
 
     <!-- Home -->

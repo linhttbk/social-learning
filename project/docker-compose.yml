@@ -1,5 +1,6 @@
 version: '3'
 services:
+<<<<<<< HEAD
 #  proxy:
 #    image: traefik
 #    command: --web --docker --docker.domain=docker.localhost
@@ -9,11 +10,14 @@ services:
 #    volumes:
 #      - /var/run/docker.sock:/var/run/docker.sock
   # The Application
+=======
+>>>>>>> 3a1944b7292bd67cac6a3dc84182918dd519de89
   app:
     build:
       context: .
       dockerfile: Dockerfile
     working_dir: /var/www/html/project
+<<<<<<< HEAD
 #    labels:
 #      - "traefik.enable=true"
 #      - "traefik.frontend.rule=Host:course.localhost"
@@ -27,25 +31,20 @@ services:
           aliases:
             - project.local
 
-  db:
-    image: mysql:5.6
-    volumes:
-      - dbdata:/var/lib/mysql
-    environment:
-      - "MYSQL_DATABASE=Slearning"
-      - "MYSQL_USER=root"
-      - "MYSQL_PASSWORD=Linhlol123@"
-      - "MYSQL_ROOT_PASSWORD=Linhlol123@"
+=======
+    links:
+    - db
     ports:
-        - "33061:3306"
-    networks:
-      - webgateway
-
-
+    - 8400:80
+>>>>>>> 3a1944b7292bd67cac6a3dc84182918dd519de89
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: Linhlol123@
+      MYSQL_DATABASE: Slearning
+      MYSQL_USER: linhtt
+      MYSQL_PASSWORD: Linhlol123@
+    ports:
+    - 33061:3306
 volumes:
   dbdata:
-networks:
-  webgateway:
-    driver: bridge
-
-
