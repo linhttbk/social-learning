@@ -1,6 +1,7 @@
 {
     "require": {
         "captcha-com/laravel-captcha": "4.2.5",
-      "ext-json": "*"
+      "ext-json": "*",
+        "league/flysystem-aws-s3-v3": "^1.0"
     }
 }
