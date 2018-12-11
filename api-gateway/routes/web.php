@@ -12,5 +12,21 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return "Api-gateway project";
+});
+Route::get('test', function () {
+    return "test fucntion";
+});
+
+Route::group(['prefix' => 'user'], function () {
+    Route::get('/{id}/courses', 'CourseController@showCourseById');
+
+});
+Route::group(['prefix' => 'admin'], function () {
+    Route::get('checkLogin', 'UserController@checkLogin')->name('check-admin-login');
+    Route::post('doLogin', 'UserController@doLogin')->name('check-admin-login');
+
+});
+Route::get('login', function () {
+    return view('login');
 });

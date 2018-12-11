@@ -11,12 +11,15 @@
     <link rel="stylesheet" href="{{asset('css/my_profile.css')}}">
     <link href="https://cdn.rawgit.com/atatanasov/gijgo/master/dist/combined/css/gijgo.min.css" rel="stylesheet"
           type="text/css"/>
+    <link rel="stylesheet" href="{{asset('css/header.css')}}">
 @endsection
 @section('js')
     <script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
+    <script src="{{asset('js/header_search.js')}}"></script>
     <script src="https://cdn.rawgit.com/atatanasov/gijgo/master/dist/combined/js/gijgo.min.js"
             type="text/javascript"></script>
     <script type="text/javascript" src="{{asset('js/login_js.js')}}"></script>
+    <script src="{{asset('js/header.js')}}"></script>
 @endsection
 @section('content')
     <div class="home">

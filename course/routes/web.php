@@ -12,9 +12,14 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return "Course Service";
 });
 
-Route::get('test','Controller@index');
-Route::get('test3','Controller@index');
-Route::get('course','CourseController@showAllCourses');
+Route::get('test', 'Controller@index');
+Route::get('test2', 'Controller@test');
+
+Route::group(['prefix' => 'user'], function () {
+    Route::get('/{id}/courses', 'CourseController@showAllCourses');
+    Route::get('/{id}/courses2', 'CourseController@getAllCourses');
+
+});

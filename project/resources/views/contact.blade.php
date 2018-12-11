@@ -5,6 +5,12 @@
     <link rel="stylesheet" href="{{asset('plugins/font-awesome-4.7.0/css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/contact.css')}}">
     <link rel="stylesheet" href="{{asset('css/contact_responsive.css')}}">
+    <link rel="stylesheet" href="{{asset('css/header.css')}}">
+@endsection
+@section('js')
+    <script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
+    <script src="{{asset('js/header_search.js')}}"></script>
+    <script src="{{asset('js/header.js')}}"></script>
 @endsection
 @section('content')
     <div class="menu d-flex flex-column align-items-end justify-content-start text-right menu_mm trans_400">

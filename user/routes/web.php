@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('doLogin', 'Admin\AdminController@doLogin');
+Route::get('login', function () {
+    return 'Login Form';
+})->name('login');

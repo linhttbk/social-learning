@@ -6,6 +6,12 @@
     <link rel="stylesheet" href="{{asset('plugins/colorbox/colorbox.css')}}">
     <link rel="stylesheet" href="{{asset('css/blog_single.css')}}">
     <link rel="stylesheet" href="{{asset('css/blog_single_responsive.css')}}">
+    <link rel="stylesheet" href="{{asset('css/header.css')}}">
+@endsection
+@section('js')
+    <script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
+    <script src="{{asset('js/header_search.js')}}"></script>
+    <script src="{{asset('js/header.js')}}"></script>
 @endsection
     <!-- Menu -->
 @section('content')
