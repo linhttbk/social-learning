@@ -190,7 +190,7 @@
                                     </div>
                                 </div><!-- End tab_container-->
 
-                                <div class="form-group formSubmit" >
+                                <div class="form-group formSubmit" onsubmit="return OnsubmitClick()" >
                                             <input type="submit" class="button" value="Chỉnh sửa">
                                             <input type="reset" class="button" value="Hủy bỏ">
                                 </div>

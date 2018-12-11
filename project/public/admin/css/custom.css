@@ -46,14 +46,13 @@ section div div div[id='title-card'] {
 }
 
 section div div div[class='row'] div[class='col-lg-12'] div div table thead tr {
-    background-color: #1888D6
+    background-color: #1888D6;
+    table-layout: fixed;
 
 }
 
 section div div div[class='row'] div[class='col-lg-12'] div div table thead tr th {
     color: white;
-
-}
 
 section div div div[class='row'] div[class='col-lg-12'] div div table tbody tr:hover {
 

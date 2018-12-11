@@ -99,7 +99,11 @@ Route::group(['prefix' => 'admin-cp'], function () {
 
         Route::get('document_management', 'DocumentController@showAllDocuments')->name('document_management');
         Route::get('search_document', 'DocumentController@searchDocument')->name('search_document');
-
+        Route::post('document_management/edit_document/{id}','DocumentController@postEditDocument')->name('post_edit_document');
+        Route::get('document_management/edit_document/{id}','DocumentController@getEditDocument')->name('edit_document');
+        Route::get('document_management/delete_document/{id}','DocumentController@deleteDocument')->name('delete_document');
+        Route::get('document_management/add_doccumeny','DocumentController@getAddDocument')->name('add_doccument');
+        Route::post('document_management/add_doccumeny','DocumentController@postAddDocument')->name('post_add_document');
         Route::get('charts', function () {
             return view('admin.charts');
         })->name('charts');
