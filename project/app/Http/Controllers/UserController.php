@@ -7,6 +7,7 @@ use App\Models\User;
 use File;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -81,12 +82,14 @@ class UserController extends Controller
     public function getEditUser($uid)
     {
         $user = User::find($uid);
-        $subject = DB::table('subject')->get();
+        $subject = DB::table('Subject')->get();
         return view('admin.member.edit-member', ['user' => $user, 'subject' => $subject, 'action' => 0]);
     }
 
     public function postEditUser($uid, Request $request)
     {
+
+
 //        dd(\Illuminate\Support\Facades\File::exists($request->img_currenrt));
         $user = User::find($uid);
         $account = Account::find($uid);
@@ -100,19 +103,19 @@ class UserController extends Controller
             $account->password = bcrypt($request->password);
         }
         if (!empty($request->image)) {
-            $file_name = $request->file("image")->getClientOriginalName();
-            $user->avatar = $file_name;
-            $request->file("image")->move("upload/avatar/", $file_name);
-            if (File::exists($request->img_currenrt)) {
-                File::delete($request->img_currenrt);
-            }
-        }
-        else
-        {
+            $currentAvatar = $user->avatar;
+            $file = $request->file('image');
+            $imageName = time() . '.' . $request->image->getClientOriginalExtension();
+            $filePath = 'images/' . $imageName;
+            if (!empty($currentAvatar)) Storage::disk('s3')->delete($currentAvatar);
+            Storage::disk('s3')->put($filePath, file_get_contents($file), 'public');
+            $imageSave = 'https://s3-ap-southeast-1.amazonaws.com/slearningteam/images/' . $imageName;
+            $user->avatar = $imageSave;
+        } else {
             echo "Không có file";
         }
         $user->save();
         $account->save();
         return redirect('admin-cp/members')->with('error', 'Cập nhật thành công');
-        }
+    }
 }
