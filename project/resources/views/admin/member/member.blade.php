@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{asset('admin/css/style.default.css')}}" id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="{{asset('admin/css/custom.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/css/member.css')}}">
     <link rel="shortcut icon" href="{{asset('admin/img/favicon.ico')}}">
 @endsection
 @section('js')
@@ -58,7 +59,8 @@
                             </div>
                         </div>
                         <div class="col-lg-4" id="add-new-user">
-                            <div class="card">
+                            <div class="card" id="card-add-user">
+                                <div id="card-overlay">+</div>
                                 Add New User
                             </div>
                         </div>

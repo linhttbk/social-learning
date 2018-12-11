@@ -9,9 +9,9 @@ RUN yum install -y php71w php71w-common php71w-gd php71w-phar php71w-xml php71w-
 RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/bin/composer
 COPY httpd.conf /etc/httpd/conf/httpd.conf
-COPY . /var/www/html/course
-RUN chown -R apache:apache /var/www/html/course
-RUN chmod -R 777 /var/www/html/course/storage
+COPY . /var/www/html/project
+RUN chown -R apache:apache /var/www/html/project
+RUN chmod -R 777 /var/www/html/project/storage
 #RUN setsebool -P httpd_enable_homedirs true
 #RUN chcon -R -t httpd_sys_content_t /var/www/html/
 #RUN firewall-cmd --zone=public --add-port=80/tcp 
