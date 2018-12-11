@@ -15,9 +15,7 @@
     <script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
     <script src="{{asset('js/course.js')}}"></script>
     <script src="{{asset('js/view_course.js')}}"></script>
-<<<<<<< HEAD
     @endsection
-=======
     <script src="{{asset('js/header.js')}}"></script>
     <script type='text/javascript' src='tivi/jwplayer.js'></script>
     <script type='text/javascript'>
@@ -33,7 +31,6 @@
         })
     </script>
 @endsection
->>>>>>> ea5be4624fefcec9991c60c0c8d0e91043015e0b
 @section("content")
 
     <!-- Home -->
