@@ -15,6 +15,8 @@ class UserTableSeeder extends Seeder
         $users = array();
         $account = array();
         for ($i = 0; $i < 25; $i++) {
+            $day = random_int(1, 28);
+            $month = random_int(1, 12);
             $users[$i] = [
                 'uid' => 'linhluv' . $i,
                 'name' => 'Than Tai Linh',
@@ -22,6 +24,8 @@ class UserTableSeeder extends Seeder
                 'phone' => '0964988900',
                 'birthday' => new DateTime('1997-11-20'),
                 'email' => 'linhcuong1212' . $i . '@gmail.com',
+                'school' => 'THPT Chu Văn An',
+                'created_at' => new DateTime('2018-' . $month . '-' . $day),
                 'type' => 0
             ];
             $account[$i] = [
@@ -29,7 +33,7 @@ class UserTableSeeder extends Seeder
                 'uid' => 'linhluv' . $i,
                 'password' => bcrypt('123456'),
                 'remember_token' => str_random(10),
-                'status' => 1,
+                'status' => random_int(0, 1),
                 'active' => 0
             ];
         }

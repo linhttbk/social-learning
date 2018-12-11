@@ -9,6 +9,7 @@ class GroupMember extends Model
     //
     protected $table = 'GroupMember';
 
+
     public function members()
     {
         return $this->hasMany('User', 'uid', 'uid');
@@ -16,6 +17,6 @@ class GroupMember extends Model
 
     public function groupUser()
     {
-        return $this->belongsTo('GroupUser', 'id_group',);
+        return $this->belongsTo('GroupUser', 'id_group');
     }
 }

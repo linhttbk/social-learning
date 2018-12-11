@@ -1,4 +1,4 @@
-<?php
+/<?php
 
 /*
 |--------------------------------------------------------------------------
@@ -54,9 +54,12 @@ Route::group(['prefix' => 'groups'], function () {
     Route::get('/', 'GroupMemberController@showGroups')->name('group_page');
 
     Route::get('/{groupId}', 'GroupMemberController@showMyGroup')->name('my_group');
+    Route::post('create', 'GroupMemberController@create')->name('create_group');
 });
 
-Route::get('test', 'UserController@connect');
+Route::get('test', function () {
+    return view('test');
+});
 Route::get('test2', 'CoursesController@showAllCourses');
 
 Route::post('login', 'Auth\LoginController@postLogin')->name('post_login');
@@ -70,9 +73,7 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
 });
 
 Route::group(['prefix' => 'admin-cp'], function () {
-    Route::get('/', function () {
-        return view('admin.index');
-    })->name('admin');
+
 
     Route::get('members/search', 'UserController@searchUser')->name('search');
 
@@ -91,9 +92,7 @@ Route::group(['prefix' => 'admin-cp'], function () {
     Route::get('logout', 'Admin\AdminController@logout')->name('post-logout');
 
     Route::group(['middleware' => 'admin'], function () {
-        Route::get('/', function () {
-            return view('admin.index');
-        })->name('admin');
+        Route::get('/', 'Admin\AdminController@index')->name('admin');
 
         Route::get('members', 'UserController@showAllUsers')->name('members');
 

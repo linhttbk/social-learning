@@ -169,8 +169,13 @@
                                                         <td>Not read</td>
                                                     @endif
                                                     <td>
+
                                                         <a href="{{route('edit_document', ['id'=>$data->id])}}"><img src="{{asset('admin/img/icon/ic_edit.png')}}"></a>
                                                         <a href="{{route('delete_document', ['id'=>$data->id])}}"><img src="{{asset('admin/img/icon/ic_delete.png')}}"></a>
+
+                                                        <a href=""><img src="{{asset('admin/img/icon/ic_edit.png')}}"></a>
+                                                        <a href=""><img src="{{asset('admin/img/icon/ic_delete.png')}}"></a>
+
                                                     </td>
                                                 </tr>
                                             @endforeach

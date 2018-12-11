@@ -42,6 +42,7 @@ $(document).ready(function()
         setHeader();
     });
 
+
     initMenu();
     initHeaderSearch();
     initTabs();

@@ -9,10 +9,12 @@
     <link rel="stylesheet" href="{{asset('plugins/OwlCarousel2-2.2.1/animate.css')}}">
     <link rel="stylesheet" href="{{asset('css/course_reg.css')}}">
     <link rel="stylesheet" href="{{asset('css/course_responsive.css')}}">
+    <link rel="stylesheet" href="{{asset('css/header.css')}}">
 @endsection
 @section('js')
     <script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
     <script src="{{asset('js/course_reg.js')}}"></script>
+    <script src="{{asset('js/header.js')}}"></script>
 @endsection
 
 @section('content')

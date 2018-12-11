@@ -312,3 +312,17 @@ $("#changePassword").change(function () {
         $(".password").attr('disabled', '');
     }
 });
+/*
+ Check all
+ */
+$("#check-all").change(function () {
+    $(".checkitem").prop("checked", $(this).prop("checked"))
+})
+$(".checkitem").change(function () {
+    if($(this).prop("checked") == false){
+        $("#check-all").prop("checked", false)
+    }
+    if($(".checkitem:checked").length == $(".checkitem").length){
+        $("#check-all").prop("checked", true)
+    }
+})

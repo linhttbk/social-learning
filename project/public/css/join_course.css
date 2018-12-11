@@ -918,7 +918,10 @@ section
     font-weight: bold;
     font-size: larger;
 }
-
+video{
+    padding-top: 20px;
+    border: #0b2e13;
+}
 
 /*********************************
 8. Sidebar
