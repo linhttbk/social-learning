@@ -7,6 +7,8 @@
           <resourceRoots>
             <path value="file://$PROJECT_DIR$/project/public/images" />
             <path value="file://$PROJECT_DIR$/project/public" />
+            <path value="file://$PROJECT_DIR$" />
+            <path value="file://$PROJECT_DIR$/project/public/upload/video" />
           </resourceRoots>
         </entryData>
       </entry>

@@ -75,7 +75,7 @@
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td><input type="checkbox"></td>
+                                        <td><input type="checkbox" class="checkitem"></td>
                                         <td><a>Group A</a></td>
                                         <td> This is group A</td>
                                         <td> Public</td>
@@ -87,7 +87,7 @@
 
                                     </tr>
                                     <tr>
-                                        <td><input type="checkbox"></td>
+                                        <td><input type="checkbox" class="checkitem"></td>
                                         <td><a>Group A</a></td>
                                         <td> This is group A</td>
                                         <td> Public</td>
@@ -99,7 +99,7 @@
 
                                     </tr>
                                     <tr>
-                                        <td><input type="checkbox"></td>
+                                        <td><input type="checkbox" class="checkitem"></td>
                                         <td><a>Group A</a></td>
                                         <td> This is group A</td>
                                         <td> Public</td>
@@ -111,7 +111,7 @@
 
                                     </tr>
                                     <tr>
-                                        <td><input type="checkbox"></td>
+                                        <td><input type="checkbox" class="checkitem"></td>
                                         <td><a>Group A</a></td>
                                         <td> This is group A</td>
                                         <td> Public</td>
@@ -155,4 +155,5 @@
             </div>
         </footer>
     </div>
+
 @endsection
