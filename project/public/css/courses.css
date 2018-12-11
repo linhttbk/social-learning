@@ -1150,6 +1150,8 @@ section {
 
 .sub-menu {
     display: none;
+    z-index: 999;
+    background-color: white;
 
 }
 

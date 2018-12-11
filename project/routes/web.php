@@ -58,7 +58,7 @@ Route::group(['prefix' => 'groups'], function () {
 });
 
 Route::get('test', function () {
-    return view('test');
+    return view('member.course.quiz');
 });
 Route::get('test2', 'CoursesController@showAllCourses');
 
