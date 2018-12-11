@@ -1,78 +1,22 @@
 version: '3'
 services:
-#  proxy:
-#    image: traefik
-#    command: --web --docker --docker.domain=docker.localhost
-#    ports:
-#      - "82:80"
-#      - "8080:8080"
-#    volumes:
-#      - /var/run/docker.sock:/var/run/docker.sock
-  # The Application
-  course:
+  app:
     build:
-      context: ../course
+      context: .
       dockerfile: Dockerfile
-    working_dir: /var/www/html/course
-#    labels:
-#      - "traefik.enable=true"
-#      - "traefik.frontend.rule=Host:course.localhost"
-#      - "traefik.backend=course"
-    links: 
+    working_dir: /var/www/html/project
+    links:
     - db
     ports:
-      - 8410:80
-    networks:
-      webgateway:
-          aliases:
-            - course.local
-  user:
-    build:
-      context: ../user
-      dockerfile: Dockerfile
-    working_dir: /var/www/html/user
-    links: 
-    - db
-    ports:
-      - 8420:80
-
-
-  api-gateway:
-    build:
-      context: ../api-gateway
-      dockerfile: Dockerfile
-    working_dir: /var/www/html/api-gateway
-#    labels:
-#      - "traefik.enable=true"
-#      - "traefik.frontend.rule=Host:api-gateway.localhost"
-#      - "traefik.backend=api-gateway"
-    ports:
-      - 8430:80
-    networks:
-      webgateway:
-        - webgateway
-
-  
-
+    - 8400:80
   db:
-    image: mysql:5.6
-    volumes:
-      - dbdata:/var/lib/mysql
+    image: mysql:5.7
     environment:
-      - "MYSQL_DATABASE=Slearning"
-      - "MYSQL_USER=root"
-      - "MYSQL_PASSWORD=Linhlol123@"
-      - "MYSQL_ROOT_PASSWORD=Linhlol123@"
+      MYSQL_ROOT_PASSWORD: Linhlol123@
+      MYSQL_DATABASE: Slearning
+      MYSQL_USER: linhtt
+      MYSQL_PASSWORD: Linhlol123@
     ports:
-        - "33061:3306"
-    networks:
-      - webgateway
-
-
+    - 33061:3306
 volumes:
   dbdata:
-networks:
-  webgateway:
-    driver: bridge
-
-
