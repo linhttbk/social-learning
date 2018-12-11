@@ -270,7 +270,6 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        <hr>
                                         <div>
                                             <a href='{{route('join-course',['id'=>($course->id)])}}'>
                                                 <input type="button" name="join-course"

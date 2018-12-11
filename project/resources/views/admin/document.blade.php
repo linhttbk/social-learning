@@ -169,8 +169,8 @@
                                                         <td>Not read</td>
                                                     @endif
                                                     <td>
-                                                        <a href="{{route('get_edit_User')}}"><img src="{{asset('admin/img/icon/ic_edit.png')}}"></a>
-                                                        <a href="{{route('delete_User', ['uid'=>$data->uid])}}"><img src="{{asset('admin/img/icon/ic_delete.png')}}"></a>
+                                                        <a href=""><img src="{{asset('admin/img/icon/ic_edit.png')}}"></a>
+                                                        <a href=""><img src="{{asset('admin/img/icon/ic_delete.png')}}"></a>
                                                     </td>
                                                 </tr>
                                             @endforeach

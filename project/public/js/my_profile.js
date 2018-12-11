@@ -1,16 +1,11 @@
-$(document).ready(function () {
-    $('#datepicker').datepicker({
-        uiLibrary: 'bootstrap'
-    });
-    var birthday_input = document.getElementById("datepicker");
-});
-
-$("#changePassword").change(function () {
+$("#changeInfo").change(function () {
     if($(this).is(":checked")){
-        $(".password").removeAttr('disabled');
+        $("#display").removeAttr('disabled');
+        $("#datepicker").removeAttr('disabled');
     }
     else
     {
-        $(".password").attr('disabled', '');
+        $("#display").attr('disabled');
+        $("#datepicker").attr('disabled');
     }
 });
