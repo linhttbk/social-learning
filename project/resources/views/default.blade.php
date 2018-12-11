@@ -57,6 +57,17 @@
 
     });
 </script>
+<script>
+    $("#changeInfo").change(function () {
+        if($(this).is(":checked")){
+            $(".displayItem").removeAttr('disabled');
+        }
+        else
+        {
+            $(".displayItem").attr('disabled', '');
+        }
+    });
+</script>
 
 </body>
 </html>
