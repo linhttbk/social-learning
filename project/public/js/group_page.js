@@ -59,6 +59,7 @@ function onFormSubmit() {
         document.getElementById('message-error').innerHTML = 'Ban chua dien mo ta';
         return false;
     }
-    alert('hello')
     return true;
 }
+
+

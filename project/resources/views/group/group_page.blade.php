@@ -151,12 +151,23 @@
                                                         class="name-group">{{$dataJoin->title}}</span></a><br/>
                                                 <span> {{($dataJoin->members)->count() }} thành viên</span>
                                             </div>
-                                            <div class="col-sm-3">
-                                                <button type="button" class="btn btn-default btn-sm"
-                                                        style="text-align: center">
-                                                    <i class="fa fa-check" aria-hidden="true"></i>
-                                                    Da tham gia
-                                                </button>
+                                            <div id="root-request" class="col-sm-3">
+                                                <div>
+                                                    <button id="btn-infor" type="button"
+                                                            style="text-align: center">
+                                                        <i class="fa fa-check" aria-hidden="true"></i>
+                                                        Đã tham gia
+
+                                                    </button>
+                                                    <ul id="menu-request" class="sub-item-request">
+                                                        <li><a href="{{route('my_group',['groupId'=>$dataReg->id ])}}">Xem
+                                                                nhóm</a></li>
+                                                        <li>
+                                                            <a href="{{route('cancel-group',['groupId'=>$dataReg->id ])}}">Rời
+                                                                nhóm</a></li>
+                                                    </ul>
+                                                </div>
+
                                             </div>
                                         </div>
 
@@ -186,12 +197,23 @@
                                                         class="name-group">{{$dataJoin->title}}</span></a><br/>
                                                 <span> {{($dataJoin->members)->count() }} thành viên</span>
                                             </div>
-                                            <div class="col-sm-3">
-                                                <button type="button" class="btn btn-default btn-sm"
-                                                        style="text-align: center">
-                                                    <i class="fa fa-check" aria-hidden="true"></i>
-                                                    Da tham gia
-                                                </button>
+                                            <div id="root-request" class="col-sm-3">
+                                                <div>
+                                                    <button id="btn-infor" type="button"
+                                                            style="text-align: center">
+                                                        <i class="fa fa-check" aria-hidden="true"></i>
+                                                        Đã tham gia
+
+                                                    </button>
+                                                    <ul id="menu-request" class="sub-item-request">
+                                                        <li><a href="{{route('my_group',['groupId'=>$dataReg->id ])}}">Xem
+                                                                nhóm</a></li>
+                                                        <li>
+                                                            <a href="{{route('cancel-group',['groupId'=>$dataReg->id ])}}">Rời
+                                                                nhóm</a></li>
+                                                    </ul>
+                                                </div>
+
                                             </div>
                                         </div>
 
@@ -232,15 +254,22 @@
                                                 <span> {{($dataReg->members)->count() }} thành viên</span>
                                             </div>
                                             <div id="root-request" class="col-sm-3">
-                                                <button type="button" class="btn btn-default btn-sm"
-                                                        style="text-align: center">
-                                                    <i class="fa fa-check" aria-hidden="true"></i>
-                                                    Chờ xét duyệt
-                                                </button>
-                                                <ul class="sub-item-request">
-                                                    <li><a href="#">Xem nhom</a></li>
-                                                    <li><a href="#">Huy yeu cau</a></li>
-                                                </ul>
+                                                <div>
+                                                    <button id="btn-infor" type="button"
+                                                            style="text-align: center">
+                                                        <i class="fa fa-check" aria-hidden="true"></i>
+                                                        Chờ xét duyệt
+
+                                                    </button>
+                                                    <ul id="menu-request" class="sub-item-request">
+                                                        <li><a href="{{route('my_group',['groupId'=>$dataReg->id ])}}">Xem
+                                                                nhóm</a></li>
+                                                        <li>
+                                                            <a href="{{route('cancel-request',['groupId'=>$dataReg->id ])}}">Hủy
+                                                                yêu cầu</a></li>
+                                                    </ul>
+                                                </div>
+
                                             </div>
 
                                         </div>
@@ -271,12 +300,24 @@
                                                         class="name-group">{{$dataRequest->title}}</span></a><br/>
                                                 <span> {{($dataRequest->members)->count() }} thành viên</span>
                                             </div>
-                                            <div class="col-sm-3">
-                                                <button type="button" class="btn btn-default btn-sm"
-                                                        style="text-align: center">
-                                                    <i class="fa fa-check" aria-hidden="true"></i>
-                                                    Chờ xét duyệt
-                                                </button>
+                                            <div id="root-request" class="col-sm-3">
+                                                <div>
+                                                    <button id="btn-infor" type="button"
+                                                            style="text-align: center">
+                                                        <i class="fa fa-check" aria-hidden="true"></i>
+                                                        Chờ xét duyệt
+
+                                                    </button>
+                                                    <ul id="menu-request" class="sub-item-request">
+                                                        <li>
+                                                            <a href="{{route('my_group',['groupId'=>$dataRequest->id ])}}">Xem
+                                                                nhóm</a></li>
+                                                        <li>
+                                                            <a href="{{route('cancel-request',['groupId'=>$dataRequest->id ])}}">Hủy
+                                                                yêu cầu</a></li>
+
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -352,7 +393,9 @@
                                                 <span> {{($dataOther->members)->count() }} thành viên</span>
                                             </div>
                                             <div class="col-sm-3">
-                                                <a id="request-group" href="#" class="btn btn-default btn-sm">
+                                                <a id="request-group"
+                                                   href="{{route('request-group',['id'=>$dataOther->id])}}"
+                                                   class="btn btn-default btn-sm">
                                                     <i class="fa fa-plus" aria-hidden="true"></i>
                                                     Tham gia
                                                 </a>

@@ -1311,12 +1311,16 @@ input[type=submit]:hover {
 #root-request {
     position: relative;
 }
+#btn-infor{
+   position: relative;
+}
 
 .sub-item-request {
     padding: 10px 0;
     margin-top: 10px;
     background: white;
-    display: block;
+    display: none;
+    z-index: 200;
     position: relative;
     width: 150%;
     border: 1px solid #75777a;
@@ -1340,28 +1344,46 @@ input[type=submit]:hover {
     transform: rotate(45deg);
 }
 
-.sub-item-request li {
+#menu-request li {
     color: black;
     display: block;
 }
 
-.sub-item-request li a {
+#menu-request li a {
     color: black;
     display: block;
     text-align: center;
 }
 
-.sub-item-request li:hover {
+#menu-request li:hover {
     color: white;
 }
 
-.sub-item-request li:hover a {
+#menu-request li:hover a {
     background-color: #365899;
 }
-.sub-item-request li a:hover {
+
+#menu-request li a:hover {
     background-color: #365899;
     color: white;
 }
-#root-request button:hover .sub-item-request {
+
+#root-request div:hover #menu-request{
     display: block;
+
 }
+#btn-infor{
+    background-color: #E9EBEE;
+    padding: .25rem .5rem;
+    font-size: .875rem;
+    line-height: 1.5;
+    border-radius: .2rem;
+    display: inline-block;
+    font-weight: 400;
+    border: 1px solid transparent;
+    margin: 0;
+    overflow: visible;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+

@@ -56,7 +56,10 @@ Route::group(['prefix' => 'groups'], function () {
     Route::get('/{groupId}', 'GroupMemberController@showMyGroup')->name('my_group');
     Route::post('create', 'GroupMemberController@create')->name('create_group');
 
-    Route::get('/request/{id}','GroupMemberController@requestGroups')->name('request-group');
+    Route::get('/request/{id}', 'GroupMemberController@requestGroups')->name('request-group');
+
+    Route::get('/cancel_request/{groupId}', 'GroupMemberController@cancelRequestGroup')->name('cancel-request');
+    Route::get('/cancel_group/{groupId}', 'GroupMemberController@quitGroup')->name('cancel-group');
 });
 
 Route::get('test', function () {
@@ -81,7 +84,7 @@ Route::group(['prefix' => 'admin-cp'], function () {
     Route::get('members/add', function () {
         return view('admin.member.add-member');
     })->name('add-member');
-    Route::post('members/add-member','UserController@addUser')->name('add-user');
+    Route::post('members/add-member', 'UserController@addUser')->name('add-user');
     Route::get('members/delete/{uid}', 'UserController@deleteUser')->name('delete_User');
 
     Route::get('member/edit-member/{uid}', 'UserController@getEditUser')->name('get_edit_User');

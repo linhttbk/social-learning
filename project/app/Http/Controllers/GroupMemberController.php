@@ -79,4 +79,26 @@ class GroupMemberController extends Controller
             return back()->withInput()->with('error', 'Co loi khi gui yeu cau, vui long thu lai sau!');
         }
     }
+
+    function cancelRequestGroup($groupId)
+    {
+        $groupRequest = GroupRequest::where('id_group', $groupId);
+        if ($groupRequest->delete()) {
+            return back()->withInput()->with('success', 'Huy thanh cong');
+        } else {
+            return back()->withInput()->with('error', 'Huy that bai');
+        }
+
+
+    }
+
+    function quitGroup($groupId)
+    {
+        $uid = Auth::user()->uid;
+        $groupMember = GroupMember::where('uid', $uid)->where('id_group', $groupId);
+        $groupRequest = GroupRequest::where('uid', $uid)->where('id_group', $groupId)->where('status', 1);
+        $groupMember->delete();
+        $groupRequest->delete();
+        return back()->withInput()->with('success', 'Thoat nhom thanh cong');
+    }
 }
