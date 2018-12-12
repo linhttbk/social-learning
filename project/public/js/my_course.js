@@ -154,3 +154,5 @@ $(document).ready(function()
     }
 
 });
+
+<!-- raty -->

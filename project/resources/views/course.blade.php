@@ -270,14 +270,7 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        <div>
-                                            <a href='{{route('join-course',['id'=>($course->id)])}}'>
-                                                <input type="button" name="join-course"
-                                                       class="form-control btn btn-save" value="Tham gia">
-                                            </a>
-                                        </div>
                                     </div>
-
                                     <!-- Reviews -->
                                     <div class="tab_panel tab_panel_3">
                                         <div class="tab_panel_title">Course Review</div>

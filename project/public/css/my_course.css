@@ -964,7 +964,7 @@ section {
 }
 
 .course_info:first-child {
-    margin-right: 18px;
+    margin-right: 10px;
 }
 
 .course_info i {
@@ -1111,7 +1111,7 @@ section {
     padding-left: 20px;
     text-align: right;
 }
-
+.raty img{width:16px !important;height:16px; !important;}
 /*********************************
 8. Sidebar
 *********************************/

@@ -17,17 +17,17 @@
     <script src="{{asset('js/course.js')}}"></script>
     <script src="{{asset('js/view_course.js')}}"></script>
     <script src="{{asset('js/header.js')}}"></script>
-    <script type='text/javascript'>
-        jQuery('document').ready(function(){
-            jwplayer('mediaspace').setup({
-                'flashplayer': 'tivi/player.swf',
-                'file': 'https://www.youtube.com/watch?v=zAEYQ6FDO5U',
-                'title': 'Bài 1: Bigbag',
-                'width': '1020',
-                'height': '500',
-                'autoplay' : true
-            });
-        })
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myVideo");
+            isSupp = x.canPlayType("video/mp4");
+            if (isSupp == "") {
+                x.src = "mov_bbb.ogg";
+            } else {
+                x.src = "{{asset('upload/video/bai1abc.mp4')}}";
+            }
+            x.load();
+        }
     </script>
 
 @endsection
@@ -55,9 +55,9 @@
 
     <!-- Join Course -->
     <div class="profile">
-        <div class="container_course">
+        <div class="container">
             <div class="row">
-                <div class="col-lg-8" style="border-right: 1px solid #000">
+                <div class="col-sm-3" id="list_lesson">
                     <ul class="dropdowns">
                         @php $chapters = $course->chapters
                         @endphp
@@ -108,8 +108,8 @@
                                                         </div>
                                                         <div class="dropdown_item_text">
                                                             <ol>
-                                                                <li><a title="Video" href=''>Xem video</a></li>
-                                                                <li><a title="Tải tài liệu" href=''>Tải tài liệu</a></li>
+                                                                <li><a title="Video" class="video" onclick="myFunction()">Xem video</a></li>
+                                                                <li><a  title="Tải tài liệu" href=''>Tải tài liệu</a></li>
                                                             </ol>
                                                         </div>
                                                     </div>
@@ -131,13 +131,60 @@
                         @endif
                     </ul>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-sm-7">
                     <div id="mediaspace" style="margin:5px;">
-                        <video width="700" height="400" controls>
-                            <source src="{{asset('upload/video/bai1abc.mp4')}}" type="video/mp4">
-                            <source src="mov_bbb.ogg" type="video/ogg">
+                        <video id="myVideo" width="700" height="400" controls src="{{asset('upload/video/bai2.mp4')}}">
                             Your browser does not support HTML5 video!
                         </video>
+                        {{--<iframe id="myVideo" width="700" height="400" src="https://www.youtube.com/embed/dRu9hULOqYY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>--}}
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="box-right">
+                        <div class="tittle-box-right">
+                            <h2> Thống kê truy cập </h2>
+                        </div>
+                        <div class="content-box">
+                            <center>
+                                <!-- Histats.com  START  (standard)-->
+                                <script type="text/javascript">document.write(unescape("%3Cscript src=%27http://s10.histats.com/js15.js%27 type=%27text/javascript%27%3E%3C/script%3E"));</script>
+                                <a href="http://www.histats.com" target="_blank" title="hit counter" ><script  type="text/javascript" >
+                                        try {Histats.start(1,2138481,4,401,118,80,"00011111");
+                                            Histats.track_hits();} catch(err){};
+                                    </script></a>
+                                <noscript><a href="http://www.histats.com" target="_blank"><img  src="http://sstatic1.histats.com/0.gif?2138481&101" alt="hit counter" border="0"></a></noscript>
+                                <!-- Histats.com  END  -->
+                            </center>
+                        </div>
+                    </div>
+                    <div class="box-right">
+                        <div class="title tittle-box-right">
+                            <h2> Hỗ trợ trực tuyến </h2>
+                        </div>
+                        <div class="content-box">
+                            <div class='support'>
+                                <p>
+                                    <img style="margin-bottom:-3px" src="{{asset('images/phone.png')}}"> 0981.240.434
+                                </p>
+
+                                <p>
+                                    <a rel="nofollow" href="mailto:huybuivan5797@gmail.com">
+                                        <img style="margin-bottom:-3px" src="{{asset('images/email.png')}}"> Email: huybuivan5797@gmail.com
+                                    </a>
+                                </p>
+                                <p>Facebook: <a href="https://www.facebook.com/huy.buivan.127"> Bùi Văn Huy</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-right">
+                        <div class="title tittle-box-right">
+                            <h2> Quảng cáo </h2>
+                        </div>
+                        <div class="content-box">
+                            <a href="">
+                                <img  style="width: 188px" src="{{asset('images/ads.png')}}">
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
