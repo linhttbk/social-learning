@@ -268,7 +268,7 @@
                                 <div class="course">
                                     <div class="course_image"><img src="images/course_1.jpg" alt=""></div>
                                     <div class="course_body">
-                                        <h3 class="course_title"><a href="{{route('course_detail',['id'=>$data->id])}}">{{$data->title}}</a></h3>
+                                        <h3 class="course_title"><a href="<?php ?>{{route('course_detail',['id'=>$data->id])}}">{{$data->title}}</a></h3>
                                         <div class="course_teacher">{{$data->name}}</div>
                                         <div class="course_text">
                                             <p>Lorem ipsum dolor sit amet, consectetur adipi elitsed do eiusmod tempor</p>

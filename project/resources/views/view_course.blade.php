@@ -18,13 +18,13 @@
     <script src="{{asset('js/view_course.js')}}"></script>
     <script src="{{asset('js/header.js')}}"></script>
     <script>
-        function myFunction() {
+        function myFunction(name) {
             var x = document.getElementById("myVideo");
             isSupp = x.canPlayType("video/mp4");
             if (isSupp == "") {
                 x.src = "mov_bbb.ogg";
             } else {
-                x.src = "{{asset('upload/video/bai1abc.mp4')}}";
+                x.src = "{{asset("upload/video")}}"+"/"+name;
             }
             x.load();
         }
@@ -108,7 +108,7 @@
                                                         </div>
                                                         <div class="dropdown_item_text">
                                                             <ol>
-                                                                <li><a title="Video" class="video" onclick="myFunction()">Xem video</a></li>
+                                                                <li><a title="Video" class="video" onclick="myFunction('{{$data->url}}')">Xem video</a></li>
                                                                 <li><a  title="Tải tài liệu" href=''>Tải tài liệu</a></li>
                                                             </ol>
                                                         </div>
