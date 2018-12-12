@@ -18,6 +18,12 @@ class CoursesController extends Controller
 
     }
 
+    public function showCourseDetailRegistered($id)
+    {
+        $course = Course::find($id);
+        return view('view_course', compact('course'));
+    }
+
     public function showCourseDetail($id)
     {
         $course = Course::find($id);

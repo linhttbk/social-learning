@@ -15,6 +15,18 @@
     <script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
     <script src="{{asset('js/courses.js')}}"></script>
     <script src="{{asset('js/header.js')}}"></script>
+    <script type="text/javascript" src="{{asset('raty/jquery.raty.min.js')}}"></script>
+    <script type="text/javascript">
+        $(function() {
+            $.fn.raty.defaults.path = "{{asset('raty/img')}}";
+            $('.raty').raty({
+                score: function() {
+                    return $(this).attr('data-score');
+                },
+                readOnly  : true,
+            });
+        });
+    </script>
 @endsection
 @section('content')
 
@@ -85,12 +97,10 @@
                                                     class="course_footer_content d-flex flex-row align-items-center justify-content-start">
                                                     <div class="course_info">
                                                         <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                                                        <span>{{$data->count_student}} Student</span>
+                                                        <span>{{$data->count_student}}</span>
                                                     </div>
-                                                    <div class="course_info">
-                                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                                        <span>5 Ratings</span>
-                                                    </div>
+                                                    <span class='raty' style = 'margin:5px' id='9' data-score=4></span>
+                                                    | Tổng số: <b  class='rate_count'>8</b>
                                                     <div class="course_price ml-auto">
                                                         @if($data->price==0)
                                                             Free
