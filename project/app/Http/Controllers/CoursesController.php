@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class CoursesController extends Controller
@@ -27,7 +28,14 @@ class CoursesController extends Controller
     public function showCourseDetail($id)
     {
         $course = Course::find($id);
-        return view('course', compact('course'));
+        $check_registered_course = DB::table("courseregistration")->where([["id_course", "=", $id],["uid", "=", Auth::user()->uid]])->get();
+//        dd($check_registered_course);
+        if(empty($check_registered_course[0])){
+            return view('course', compact('course'));
+        } else {
+            return view('view_course', compact('course'));
+        }
+
     }
 
     public function showCoursesPag(){
