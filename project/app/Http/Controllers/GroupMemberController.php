@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\GroupMember;
+use App\Models\GroupRequest;
 use App\Models\GroupUser;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -24,10 +25,14 @@ class GroupMemberController extends Controller
         $user = Auth::user()->user;
         $listGroups = $user->myGroups;
         $listJoinGroups = $user->myJoinGroups;
+        $listRequestGroups = $user->myRequestGroups;
         $listOtherGroups = GroupUser::whereNotIn('id', function ($query) {
             $query->select('id_group')->from('GroupMember')->where('uid', '=', (Auth::user()->user)->uid);
+        })->whereNotIn('id', function ($query) {
+            $query->select('id_group')->from('GroupRequest')->where('uid', '=', (Auth::user()->user)->uid)->where('status', '=', 0);
         })->get();
-        return view('group.group_page', ['listGroups' => $listGroups, 'listJoinGroups' => $listJoinGroups, 'listOtherGroups' => $listOtherGroups]);
+        return view('group.group_page', ['listGroups' => $listGroups, 'listJoinGroups' => $listJoinGroups
+            , 'listOtherGroups' => $listOtherGroups, 'listRequestGroups' => $listRequestGroups]);
     }
 
     function showMyGroup($idGroup)
@@ -55,6 +60,23 @@ class GroupMemberController extends Controller
             return redirect()->route('my_group', ['groupId' => $groupUser->id]);
         } else {
             return back()->withErrors('message', 'Co loi trong qua trinh tao nhom');
+        }
+    }
+
+    function requestGroups($id)
+    {
+        $groupRequest = new GroupRequest();
+        $groupRequest->uid = Auth::user()->uid;
+        $groupRequest->id_group = $id;
+        if (GroupRequest::where('uid', '=', Auth::user()->uid)->where('id_group', '=', $id)->first()) {
+            return back()->withInput()->with('error', 'Co loi khi gui yeu cau, vui long thu lai sau!.');
+        }
+        $groupRequest->request_time = Carbon::now();
+        $groupRequest->status = 0;
+        if ($groupRequest->save()) {
+            return back()->withInput()->with('success', 'Hay cho admin cua nhom chap nhan yeu cau cua ban.');
+        } else {
+            return back()->withInput()->with('error', 'Co loi khi gui yeu cau, vui long thu lai sau!');
         }
     }
 }

@@ -42,12 +42,12 @@
             <div id="content-error">
                    <span id="form-error"
                          class="alert alert-danger"> Vui  lòng  nhap day du thong tin</span></div>
-            @if(isset($error))
+            @if(Session::has('error'))
                 <span id="form-error" style="display: block;margin: 0 30px"
-                      class="alert alert-danger">{{$error}}</span>
-            @elseif(isset($success))
+                      class="alert alert-danger">{{Session::get('error')}}</span>
+            @elseif(Session::has('success'))
                 <span id="form-error" style="display: block;margin: 0 30px"
-                      class="alert alert-success">{{$success}}</span>
+                      class="alert alert-success">{{Session::get('success')}}</span>
             @endif
 
             <div class="container-fluid">

@@ -71,7 +71,7 @@
                 </div>
 
             </div>
-            @captcha
+            <img src="{{Captcha::src()}}">
             <div class="error-captcha"></div>
             <form method="post" action="{{route('buy_course',['id'=>$id])}}">
                 @csrf

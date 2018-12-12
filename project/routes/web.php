@@ -55,6 +55,8 @@ Route::group(['prefix' => 'groups'], function () {
 
     Route::get('/{groupId}', 'GroupMemberController@showMyGroup')->name('my_group');
     Route::post('create', 'GroupMemberController@create')->name('create_group');
+
+    Route::get('/request/{id}','GroupMemberController@requestGroups')->name('request-group');
 });
 
 Route::get('test', function () {
