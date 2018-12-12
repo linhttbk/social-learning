@@ -27,11 +27,16 @@ class User extends Authenticatable
     }
 
 
-
     public function myJoinGroups()
     {
         return $this->hasManyThrough('App\Models\GroupUser', 'App\Models\GroupMember', 'uid', 'id', 'uid', 'id_group')
             ->where('GroupMember.role', '!=', '2');
+    }
+
+    public function myRequestGroups()
+    {
+        return $this->hasManyThrough('App\Models\GroupUser', 'App\Models\GroupRequest', 'uid', 'id', 'uid', 'id_group')
+            ->where('GroupRequest.status', '=', '0');
     }
 
 

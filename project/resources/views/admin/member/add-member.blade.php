@@ -7,19 +7,21 @@
     <!-- Fontastic Custom icon font-->
     <link rel="stylesheet" href="{{asset('admin/css/fontastic.css')}}}">
     <!-- Google fonts - Poppins -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+    <link rel="stylesheet" href="{{asset('admin/css/font_family_poppins.css')}}">
     <!-- theme stylesheet-->
     <link rel="stylesheet" href="{{asset('admin/css/style.default.css')}}" id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
-    <link rel="stylesheet" href="{{asset('admin/css/member.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/css/custom.css')}}">
     <link rel="stylesheet" href="{{asset('admin/css/main_content.css')}}">
     <link rel="shortcut icon" href="{{asset('admin/img/favicon.ico')}}">
+    <link rel="stylesheet" href="{{asset('admin/css/add-member.css')}}">
 
 @endsection
 @section('js')
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    <script src="{{asset('admin/js/html5.shiv.3.7.3.min.js')}}"></script>
+    <script src="{{asset('admin/js/respond.min.js')}}"></script><![endif]-->
+    <script src="{{asset('admin/js/add-member.js')}}"></script>
 @endsection
 @section('content')
     <div class="content-inner">
@@ -37,15 +39,29 @@
             </ul>
         </div>
         <section class="tables">
+            <div id="content-error">
+                   <span id="form-error"
+                         class="alert alert-danger"> Vui  lòng  nhap day du thong tin</span></div>
+            @if(Session::has('error'))
+                <span id="form-error" style="display: block;margin: 0 30px"
+                      class="alert alert-danger">{{Session::get('error')}}</span>
+            @elseif(Session::has('success'))
+                <span id="form-error" style="display: block;margin: 0 30px"
+                      class="alert alert-success">{{Session::get('success')}}</span>
+            @endif
+
             <div class="container-fluid">
                 <div class="wrapper">
                     {{--form--}}
-                    <form enctype="multipart/form-data" method="post" action="" id="form" class="form">
+                    <form enctype="multipart/form-data" method="post" action="{{route('add-user')}}" id="form"
+                          class="form"
+                          onsubmit="return onSubmitAddUserCLick()">
                         <fieldset>
                             <div class="widget">
                                 <div class="title">
                                     <img class="titleIcon" src="">
                                     <h6>Cập nhật Người dùng</h6>
+
                                 </div>
 
                                 <ul class="tabs">
@@ -59,7 +75,8 @@
                                         <input type="hidden" name="_token" value="{{csrf_token()}}">
                                         <div class="form-group">
                                             <label>Loại đăng ký : </label>
-                                            <select class="form-control" name="type" id="mySelect" onchange="initValues()">
+                                            <select class="form-control" name="type" id="mySelect"
+                                                    onchange="initValues()">
                                                 <option selected="selected" value="0">Học sinh</option>
                                                 <option value="1">Giáo viên</option>
                                                 <option value="2">Kiểm duyệt viên</option>
@@ -69,7 +86,8 @@
                                             <label>Tài khoản : </label>
                                             <input type="text" name="usernamereg" id="usernamereg" tabindex="1"
                                                    class="form-control" placeholder="Username" value="">
-                                            <span id="username-error" class="input-error-msg"> Vui  lòng  nhap tai khoan</span>
+                                            <span id="username-error"
+                                                  class="input-error-msg"> Vui  lòng  nhap tai khoan</span>
                                         </div>
                                         <div class="form-group">
                                             <label>Mật khẩu : </label>
@@ -81,7 +99,8 @@
                                             <label>Nhập lại mật khẩu: </label>
                                             <input type="password" name="repasswordreg" id="repasswordreg" tabindex="2"
                                                    class="form-control" placeholder="Xác nhận mật khẩu">
-                                            <span id="repass-error" class="input-error-msg"> Mat khau khong trung khop</span>
+                                            <span id="repass-error"
+                                                  class="input-error-msg"> Mat khau khong trung khop</span>
                                         </div>
                                     </div>
 
@@ -102,7 +121,10 @@
 
                                         <div class="form-group">
                                             <label>Ngày sinh : </label>
-                                            <input placeholder="Ngày sinh " name="birthday" style="height: 45px" id="datepicker"/>
+                                            <input placeholder="Ngày sinh " name="birthday" id="datepicker"
+
+                                                   class="form-control">
+
                                             <span id="birthday-error"
                                                   class="input-error-msg"> Vui  lòng  chon ngay thang nam sinh</span>
                                         </div>
@@ -118,7 +140,8 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Email : </label>
-                                            <input type="email" name="email" id="email" tabindex="1" class="form-control"
+                                            <input type="email" name="email" id="email" tabindex="1"
+                                                   class="form-control"
                                                    placeholder="Email Address" value="">
                                             <span id="mail-error" class="input-error-msg"> Vui  lòng  nhap email kich hoat tai khoan</span>
                                         </div>
@@ -136,7 +159,8 @@
 
                                         <div class="form-group">
                                             <label>Trường : </label>
-                                            <input type="text" name="school" id="school" tabindex="1" class="form-control"
+                                            <input type="text" name="school" id="school" tabindex="1"
+                                                   class="form-control"
                                                    placeholder="Trường" value="">
 
                                         </div>
@@ -172,7 +196,7 @@
                                     </div>
                                 </div><!-- End tab_container-->
 
-                                <div class="form-group formSubmit" >
+                                <div class="form-group formSubmit">
                                     <input type="submit" class="button" value="Thêm mới">
                                     <input type="reset" class="button" value="Hủy bỏ"
                                     >

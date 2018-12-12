@@ -46,37 +46,44 @@
                     <form>
                         <div class="form-group">
                             <label>Họ tên : </label>
-                            <input style="color: black" type="text" name="name" id="name" tabindex="2" class="form-control displayItem"
+                            <input style="color: black" type="text" name="name" id="name" tabindex="2"
+                                   class="form-control displayItem"
                                    placeholder="Name" value="{{$user[0]->name}}" disabled>
                         </div>
                         <div class="form-group">
                             <label>Ngày sinh : </label>
-                            <input class="displayItem" style="color: black" placeholder="Ngày sinh" name="birthday" style="height: 45px"
+                            <input class="displayItem" style="color: black" placeholder="Ngày sinh" name="birthday"
+                                   style="height: 45px"
                                    id="datepicker" value="{{$user[0]->birthday}}" disabled/>
                         </div>
 
                         <div class="form-group">
                             <label>Giới tính : </label>
                             <label class="radio-inline">
-                                <input class="displayItem" type="radio" name="sex" value="male" <?php if(($user[0]->sex=="male")) echo "checked"?> disabled>Nam
+                                <input class="displayItem" type="radio" name="sex" value="male"
+                                       <?php if (($user[0]->sex == "male")) echo "checked"?> disabled>Nam
                             </label>
                             <label class="radio-inline">
-                                <input class="displayItem" type="radio" name="sex" value="female" <?php if(($user[0]->sex !="male")) echo "checked"?> disabled>Nữ
+                                <input class="displayItem" type="radio" name="sex" value="female"
+                                       <?php if (($user[0]->sex != "male")) echo "checked"?> disabled>Nữ
                             </label>
                         </div>
                         <div class="form-group">
                             <label>Email : </label>
-                            <input style="color: black" type="email" name="email" id="email" tabindex="1" class="form-control displayItem"
+                            <input style="color: black" type="email" name="email" id="email" tabindex="1"
+                                   class="form-control displayItem"
                                    placeholder="Email Address" value="{{$user[0]->email}}" disabled>
                         </div>
                         <div class="form-group">
                             <label>Điện thoại : </label>
-                            <input style="color: black" type="text" name="phone" id="phone" tabindex="1" class="form-control displayItem"
+                            <input style="color: black" type="text" name="phone" id="phone" tabindex="1"
+                                   class="form-control displayItem"
                                    placeholder="Phone" value="{{$user[0]->phone}}" disabled>
                         </div>
                         <div class="form-group">
                             <label>Trường : </label>
-                            <input style="color: black" type="text" name="school" id="school" tabindex="1" class="form-control displayItem"
+                            <input style="color: black" type="text" name="school" id="school" tabindex="1"
+                                   class="form-control displayItem"
                                    placeholder="Trường" value="{{$user[0]->school}}" disabled>
                         </div>
                         <div class="form-group">
@@ -100,9 +107,15 @@
                 <div class="col-lg-4">
                     <div class="avatar-uploader">
                         <div class="avatar-uploader__avatar">
-                            <div class="avatar-uploader__avatar-image" style="background-image: url(https://cf.shopee.vn/file/3012b97d6540abb019ca2109dea3941b_tn)"></div>
+                            <div class="avatar-uploader__avatar-image"
+                            >
+                                <img class="rounded-circle" style="width: 100px; height: 100px;background-position: center center;
+  background-repeat: no-repeat;"
+                                     src="{{empty($user[0]->avatar)?asset('images/avatar_default.jpg'):$user[0]->avatar}}">
+                            </div>
                         </div>
-                        <input class="avatar-uploader__file-input displayItem" type="file" accept=".jpg,.jpeg,.png" disabled>
+                        <input class="avatar-uploader__file-input displayItem" type="file" accept=".jpg,.jpeg,.png"
+                               disabled>
                         {{--<button class="btn btn-light btn--m btn--inline">Chọn ảnh</button>--}}
                         <div class="avatar-uploader__text-container">
                             <div class="avatar-uploader__text">Dụng lượng file tối đa 1 MB</div>

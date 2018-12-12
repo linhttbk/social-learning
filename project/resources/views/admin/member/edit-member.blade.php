@@ -7,10 +7,12 @@
     <!-- Fontastic Custom icon font-->
     <link rel="stylesheet" href="{{asset('admin/css/fontastic.css')}}}">
     <!-- Google fonts - Poppins -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+    <link rel="stylesheet" href="{{asset('admin/css/font_family_poppins.css')}}">
     <!-- theme stylesheet-->
     <link rel="stylesheet" href="{{asset('admin/css/style.default.css')}}" id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="{{asset('admin/css/custom.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/css/member.css')}}">
     <link rel="stylesheet" href="{{asset('admin/css/main_content.css')}}">
     <link rel="shortcut icon" href="{{asset('admin/img/favicon.ico')}}">
 
@@ -211,10 +213,6 @@
                                 <div class="form-group formSubmit" onsubmit="return OnsubmitClick()" >
                                             <input type="submit" class="button" value="Chỉnh sửa">
                                             <input type="reset" class="button" value="Hủy bỏ">
-
-                                <div class="form-group formSubmit">
-                                    <input type="submit" class="button" value="Chỉnh sửa">
-                                    <input type="reset" class="button" value="Hủy bỏ">
 
                                 </div>
                             </div>

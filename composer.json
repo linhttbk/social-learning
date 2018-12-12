@@ -1,6 +1,7 @@
 {
     "require": {
         "captcha-com/laravel-captcha": "4.2.5",
-      "ext-json": "*"
+      "ext-json": "*",
+        "bonecms/laravel-captcha": "^2.1"
     }
 }

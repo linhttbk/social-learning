@@ -142,6 +142,20 @@ function initValues() {
 
 }
 
+function onSubmitAddUserCLick() {
+    var validUserName = validateUsername();
+    var validPass = validatePassword();
+    var validFullName = validateFullName();
+    var retypePass = retypePassword();
+    var validEmail = validateEmail();
+    var validPhone = validatePhone();
+    var validBirthday = validateBirthday();
+    if (!(validUserName && validPass && validFullName && retypePass && validEmail && validPhone && validBirthday)) {
+        document.getElementById('content-error').style.display = 'block';
+        return false;
+    }
+}
+
 
 function onSubmitCLick() {
     var validUserName = validateUsername();
@@ -300,15 +314,15 @@ function isValidPhoneNumber(phone) {
     return re.test(phone)
 
 }
+
 /*
  Thay doi mat khau
  */
 $("#changePassword").change(function () {
-    if($(this).is(":checked")){
+    if ($(this).is(":checked")) {
         $(".password").removeAttr('disabled');
     }
-    else
-    {
+    else {
         $(".password").attr('disabled', '');
     }
 });
@@ -319,10 +333,10 @@ $("#check-all").change(function () {
     $(".checkitem").prop("checked", $(this).prop("checked"))
 })
 $(".checkitem").change(function () {
-    if($(this).prop("checked") == false){
+    if ($(this).prop("checked") == false) {
         $("#check-all").prop("checked", false)
     }
-    if($(".checkitem:checked").length == $(".checkitem").length){
+    if ($(".checkitem:checked").length == $(".checkitem").length) {
         $("#check-all").prop("checked", true)
     }
 })

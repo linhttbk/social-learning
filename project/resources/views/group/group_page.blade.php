@@ -203,6 +203,91 @@
                 </div>
             </div>
         @endif
+        @if(!$listRequestGroups->isEmpty())
+            <div class="header-list-group">
+                <div>Nhóm đang chờ</div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card-group">
+                        <div class="list-group-member-item">
+                            @php
+                                $countReg =  $listRequestGroups->count();
+                                $avgReg = (int)($countReg/2) + $countReg % 2;
+                            @endphp
+                            @foreach($listRequestGroups as $keyReg => $dataReg)
+                                @if($keyReg==$avgReg)
+                                    @break
+                                @endif
+                                <div class="row">
+                                    <div class=" col-sm-3">
+                                        <img src="http://api.randomuser.me/portraits/men/49.jpg" alt="Scott Stevens"
+                                             class="rounded-circle"/>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <div class="row">
+                                            <div class="col-sm-9">
+                                                <a href="#"><span
+                                                        class="name-group">{{$dataReg->title}}</span></a><br/>
+                                                <span> {{($dataReg->members)->count() }} thành viên</span>
+                                            </div>
+                                            <div id="root-request" class="col-sm-3">
+                                                <button type="button" class="btn btn-default btn-sm"
+                                                        style="text-align: center">
+                                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                                    Chờ xét duyệt
+                                                </button>
+                                                <ul class="sub-item-request">
+                                                    <li><a href="#">Xem nhom</a></li>
+                                                    <li><a href="#">Huy yeu cau</a></li>
+                                                </ul>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card-group">
+                        <div class="list-group-member-item">
+
+                            @foreach($listRequestGroups as $key2 => $dataRequest)
+                                @if($key2 < $avgReg)
+                                    @continue
+                                @endif
+                                <div class="row">
+                                    <div class=" col-sm-3">
+                                        <img src="http://api.randomuser.me/portraits/men/49.jpg" alt="Scott Stevens"
+                                             class="rounded-circle"/>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <div class="row">
+                                            <div class="col-sm-9">
+                                                <a href="#"><span
+                                                        class="name-group">{{$dataRequest->title}}</span></a><br/>
+                                                <span> {{($dataRequest->members)->count() }} thành viên</span>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <button type="button" class="btn btn-default btn-sm"
+                                                        style="text-align: center">
+                                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                                    Chờ xét duyệt
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
         @if(!$listOtherGroups->isEmpty())
             <div class="header-list-group">
                 <div>Nhom khac</div>
@@ -232,11 +317,12 @@
                                                 <span> {{($dataOther->members)->count() }} thành viên</span>
                                             </div>
                                             <div class="col-sm-3">
-                                                <button type="button" class="btn btn-default btn-sm"
-                                                        style="text-align: center">
+                                                <a id="request-group"
+                                                   href="{{route('request-group',['id'=>$dataOther->id])}}"
+                                                   class="btn btn-default btn-sm">
                                                     <i class="fa fa-plus" aria-hidden="true"></i>
                                                     Tham gia
-                                                </button>
+                                                </a>
                                             </div>
                                         </div>
 
@@ -266,11 +352,10 @@
                                                 <span> {{($dataOther->members)->count() }} thành viên</span>
                                             </div>
                                             <div class="col-sm-3">
-                                                <button type="button" class="btn btn-default btn-sm"
-                                                        style="text-align: center">
+                                                <a id="request-group" href="#" class="btn btn-default btn-sm">
                                                     <i class="fa fa-plus" aria-hidden="true"></i>
                                                     Tham gia
-                                                </button>
+                                                </a>
                                             </div>
                                         </div>
 
@@ -282,6 +367,7 @@
                 </div>
             </div>
         @endif
+
 
     </div>
 
@@ -309,7 +395,8 @@
                         </div>
                     </div>
                 </div>
-                <form id="form-create-group" action="{{route('create_group')}}" method="post" role="form" onsubmit="return onFormSubmit()" >
+                <form id="form-create-group" action="{{route('create_group')}}" method="post" role="form"
+                      onsubmit="return onFormSubmit()">
                     <div><h5>Đặt tên nhóm</h5></div>
                     <input type="text" placeholder="Tên nhóm" name="title" id="name-group-input">
                     <div><h5>Mô tả về nhóm</h5></div>

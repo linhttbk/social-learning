@@ -55,6 +55,8 @@ Route::group(['prefix' => 'groups'], function () {
 
     Route::get('/{groupId}', 'GroupMemberController@showMyGroup')->name('my_group');
     Route::post('create', 'GroupMemberController@create')->name('create_group');
+
+    Route::get('/request/{id}','GroupMemberController@requestGroups')->name('request-group');
 });
 
 Route::get('test', function () {
@@ -76,7 +78,10 @@ Route::group(['prefix' => 'admin-cp'], function () {
 
 
     Route::get('members/search', 'UserController@searchUser')->name('search');
-
+    Route::get('members/add', function () {
+        return view('admin.member.add-member');
+    })->name('add-member');
+    Route::post('members/add-member','UserController@addUser')->name('add-user');
     Route::get('members/delete/{uid}', 'UserController@deleteUser')->name('delete_User');
 
     Route::get('member/edit-member/{uid}', 'UserController@getEditUser')->name('get_edit_User');
@@ -98,11 +103,11 @@ Route::group(['prefix' => 'admin-cp'], function () {
 
         Route::get('document_management', 'DocumentController@showAllDocuments')->name('document_management');
         Route::get('search_document', 'DocumentController@searchDocument')->name('search_document');
-        Route::post('document_management/edit_document/{id}','DocumentController@postEditDocument')->name('post_edit_document');
-        Route::get('document_management/edit_document/{id}','DocumentController@getEditDocument')->name('edit_document');
-        Route::get('document_management/delete_document/{id}','DocumentController@deleteDocument')->name('delete_document');
-        Route::get('document_management/add_doccumeny','DocumentController@getAddDocument')->name('add_doccument');
-        Route::post('document_management/add_doccumeny','DocumentController@postAddDocument')->name('post_add_document');
+        Route::post('document_management/edit_document/{id}', 'DocumentController@postEditDocument')->name('post_edit_document');
+        Route::get('document_management/edit_document/{id}', 'DocumentController@getEditDocument')->name('edit_document');
+        Route::get('document_management/delete_document/{id}', 'DocumentController@deleteDocument')->name('delete_document');
+        Route::get('document_management/add_doccumeny', 'DocumentController@getAddDocument')->name('add_doccument');
+        Route::post('document_management/add_doccumeny', 'DocumentController@postAddDocument')->name('post_add_document');
         Route::get('charts', function () {
             return view('admin.charts');
         })->name('charts');
