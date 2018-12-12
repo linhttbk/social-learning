@@ -1,4 +1,4 @@
-*{
+* {
     box-sizing: border-box;
 }
 
@@ -39,7 +39,7 @@ section div div div[id='title-card'] {
     font-size: 20px;
     font-weight: bold;
     position: relative;
-    padding:10px 0px;
+    padding: 10px 0px;
     display: inline-block;
     width: 100%;
 
@@ -53,6 +53,7 @@ section div div div[class='row'] div[class='col-lg-12'] div div table thead tr {
 
 section div div div[class='row'] div[class='col-lg-12'] div div table thead tr th {
     color: white;
+}
 
 section div div div[class='row'] div[class='col-lg-12'] div div table tbody tr:hover {
 
@@ -75,7 +76,14 @@ section div div div[class='row'] div[class='col-lg-12'] div div table tbody tr:h
 .input-group button {
     background: #2196F3;
     color: white;
-  border: none;
+    border: none;
 }
 
+.header {
 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}

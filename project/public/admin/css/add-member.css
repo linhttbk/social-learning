@@ -1,0 +1,23 @@
+.input-error-msg {
+    font-size: 12px;
+    font-weight: normal;
+    color: red;
+}
+
+#content-error {
+    padding: 0 30px;
+    display: none;
+}
+
+#form-error {
+    font-size: 18px;
+
+}
+
+section {
+    padding: 0 0;
+}
+
+.widget {
+    margin-top: 5px;
+}
