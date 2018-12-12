@@ -39,6 +39,10 @@ class User extends Authenticatable
             ->where('GroupRequest.status', '=', '0');
     }
 
+    public function mySubject()
+    {
+        return $this->hasOne('App\Models\Subject', 'id', 'id_sr');
+    }
 
 
     /**

@@ -11,11 +11,11 @@
                         <div class="footer_section footer_about">
                             <div class="footer_logo_container">
                                 <a href="#">
-                                    <div class="footer_logo_text">Unic<span>at</span></div>
+                                    <div class="footer_logo_text">S<span>-Learning</span></div>
                                 </a>
                             </div>
                             <div class="footer_about_text">
-                                <p>Lorem ipsum dolor sit ametium, consectetur adipiscing elit.</p>
+                                <p>Mạng xã hội học tập hàng đầu Việt Nam</p>
                             </div>
                             <div class="footer_social">
                                 <ul>
@@ -34,12 +34,12 @@
 
                         <!-- Footer Contact -->
                         <div class="footer_section footer_contact">
-                            <div class="footer_title">Contact Us</div>
+                            <div class="footer_title">Liên hệ với chúng tôi</div>
                             <div class="footer_contact_info">
                                 <ul>
-                                    <li>Email: Info.deercreative@gmail.com</li>
-                                    <li>Phone: +(88) 111 555 666</li>
-                                    <li>40 Baria Sreet 133/2 New York City, United States</li>
+                                    <li>Email: slearning@bkteam.edu.vn</li>
+                                    <li>Phone: +(84) 0964988900</li>
+                                    <li>Số 14 Lê Thanh Nghị Hai Bà Trưng Hà Nội</li>
                                 </ul>
                             </div>
                         </div>
@@ -53,11 +53,10 @@
                             <div class="footer_title">Contact Us</div>
                             <div class="footer_links_container">
                                 <ul>
-                                    <li><a href="{{route('home')}}">Home</a></li>
-                                    <li><a href="{{route('about')}}">About</a></li>
-                                    <li><a href="{{route('courses')}}">Courses</a></li>
-                                    <li><a href="{{route('blog')}}">Blog</a></li>
-                                    <li><a href="#">Page</a></li>
+                                    <li><a href="{{route('home')}}">Trang chủ</a></li>
+                                    <li><a href="{{route('about')}}">Về chúng tôi</a></li>
+                                    <li><a href="{{route('courses')}}">Khóa học</a></li>
+                                    <li><a href="{{route('group_page')}}">Nhóm học tập</a></li>
                                     <li><a href="{{route('contact')}}">Contact</a></li>
                                     <li><a href="#">Events</a></li>
                                     <li><a href="#">Gallery</a></li>
@@ -94,15 +93,14 @@
                 <div class="cr_text">
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     Copyright &copy;<script>document.write(new Date().getFullYear());</script>
-                    All rights reserved | This template is made with <i class="fa fa-heart-o"
-                                                                        aria-hidden="true"></i> by <a
-                        href="https://colorlib.com" target="_blank">Colorlib</a>
+                    All rights reserved <i class="fa fa-heart-o"
+                                           aria-hidden="true"></i> by <a
+                        href="https://www.facebook.com/linktrollteam1" target="_blank">BKTeam</a>
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
                 <div class="ml-lg-auto cr_links">
                     <ul class="cr_list">
-                        <li><a href="#">Copyright notification</a></li>
-                        <li><a href="#">Terms of Use</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Điều khoản sử dụng</a></li>
+                        <li><a href="#">Chính sách quyền riêng tư</a></li>
                     </ul>
                 </div>
             </div>

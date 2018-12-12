@@ -12,7 +12,6 @@
 
 @endsection
 @section('js')
-
     <script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
     <script src="{{asset('js/header_search.js')}}"></script>
     <script src="{{asset('js/group_page.js')}}"></script>
@@ -43,6 +42,15 @@
             </div>
         </div>
     </div>
+    @if(Session::has('error'))
+        <div class="alert alert-danger alert-dismissible" style="margin: 0 20px">
+            <strong>{{Session::get('error')}}</strong>
+        </div>
+    @elseif(Session::has('success'))
+        <div class="alert alert-success alert-dismissible" style="margin: 0 20px">
+            <strong>{{Session::get('success')}}</strong>
+        </div>
+    @endif
     <div class="list-group">
         @if(!$listGroups->isEmpty())
             <div class="header-list-group">
@@ -72,12 +80,24 @@
                                                         class="name-group">{{$dataGroup->title}}</span></a><br/>
                                                 <span> {{($dataGroup->members)->count() }} thành viên</span>
                                             </div>
-                                            <div class="col-sm-3">
-                                                <button type="button" class="btn btn-default btn-sm"
-                                                        style="text-align: center">
-                                                    <i class="fa fa-check" aria-hidden="true"></i>
-                                                    Da tham gia
-                                                </button>
+                                            <div id="root-request" class="col-sm-3">
+                                                <div>
+                                                    <button id="btn-infor" type="button"
+                                                            style="text-align: center">
+                                                        <i class="fa fa-check" aria-hidden="true"></i>
+                                                        Đã tham gia
+
+                                                    </button>
+                                                    <ul id="menu-request" class="sub-item-request">
+                                                        <li>
+                                                            <a href="{{route('my_group',['groupId'=>$dataGroup->id ])}}">Xem
+                                                                nhóm</a></li>
+                                                        <li>
+                                                            <a href="{{route('go-setting',['groupId'=>$dataGroup->id ])}}">Cài
+                                                                đặt nhóm</a></li>
+                                                    </ul>
+                                                </div>
+
                                             </div>
                                         </div>
 
@@ -106,12 +126,24 @@
                                                         class="name-group">{{$dataGroup->title}}</span></a><br/>
                                                 <span> {{($dataGroup->members)->count() }} thành viên</span>
                                             </div>
-                                            <div class="col-sm-3">
-                                                <button type="button" class="btn btn-default btn-sm"
-                                                        style="text-align: center">
-                                                    <i class="fa fa-check" aria-hidden="true"></i>
-                                                    Da tham gia
-                                                </button>
+                                            <div id="root-request" class="col-sm-3">
+                                                <div>
+                                                    <button id="btn-infor" type="button"
+                                                            style="text-align: center">
+                                                        <i class="fa fa-check" aria-hidden="true"></i>
+                                                        Đã tham gia
+
+                                                    </button>
+                                                    <ul id="menu-request" class="sub-item-request">
+                                                        <li>
+                                                            <a href="{{route('my_group',['groupId'=>$dataGroup->id ])}}">Xem
+                                                                nhóm</a></li>
+                                                        <li>
+                                                            <a href="{{route('go-setting',['groupId'=>$dataGroup->id ])}}">Cài
+                                                                đặt nhóm</a></li>
+                                                    </ul>
+                                                </div>
+
                                             </div>
                                         </div>
 
@@ -160,10 +192,10 @@
 
                                                     </button>
                                                     <ul id="menu-request" class="sub-item-request">
-                                                        <li><a href="{{route('my_group',['groupId'=>$dataReg->id ])}}">Xem
+                                                        <li><a href="{{route('my_group',['groupId'=>$dataJoin->id ])}}">Xem
                                                                 nhóm</a></li>
                                                         <li>
-                                                            <a href="{{route('cancel-group',['groupId'=>$dataReg->id ])}}">Rời
+                                                            <a href="{{route('cancel-group',['groupId'=>$dataJoin->id ])}}">Rời
                                                                 nhóm</a></li>
                                                     </ul>
                                                 </div>
@@ -206,10 +238,10 @@
 
                                                     </button>
                                                     <ul id="menu-request" class="sub-item-request">
-                                                        <li><a href="{{route('my_group',['groupId'=>$dataReg->id ])}}">Xem
+                                                        <li><a href="{{route('my_group',['groupId'=>$dataJoin->id ])}}">Xem
                                                                 nhóm</a></li>
                                                         <li>
-                                                            <a href="{{route('cancel-group',['groupId'=>$dataReg->id ])}}">Rời
+                                                            <a href="{{route('cancel-group',['groupId'=>$dataJoin->id ])}}">Rời
                                                                 nhóm</a></li>
                                                     </ul>
                                                 </div>

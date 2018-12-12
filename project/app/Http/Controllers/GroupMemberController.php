@@ -101,4 +101,15 @@ class GroupMemberController extends Controller
         $groupRequest->delete();
         return back()->withInput()->with('success', 'Thoat nhom thanh cong');
     }
+
+    function gotoSetting($groupId)
+    {
+        $uid = Auth::user()->uid;
+        if (!GroupMember::where('uid', $uid)->where('id_group', $groupId)->where('role', 2)->first()) {
+            return redirect('home');
+        } else {
+            return back()->withInput()->with('error', 'Ban khong co quyen chinh sua nhom nay!');
+        }
+    }
+
 }

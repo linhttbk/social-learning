@@ -15,7 +15,8 @@ Route::get('/', function () {
     $result = \Illuminate\Support\Facades\DB::table('Course')->select(array('Course.*', 'User.*', DB::raw('(Select Count(CourseRegistration.id_course) from CourseRegistration where CourseRegistration.id_course = Course.id) as count_student')))
         ->join('User', 'Course.uid', '=', 'User.uid')
         ->paginate(6);
-    return view('index', compact('result'));
+    $teachers = \App\Models\User::where('type', 1)->limit(4)->get();
+    return view('index', ['result' => $result, 'teachers' => $teachers]);
 })->name('home');
 
 Route::get('login', function () {
@@ -55,12 +56,16 @@ Route::group(['prefix' => 'groups'], function () {
     Route::get('/', 'GroupMemberController@showGroups')->name('group_page');
 
     Route::get('/{groupId}', 'GroupMemberController@showMyGroup')->name('my_group');
+
     Route::post('create', 'GroupMemberController@create')->name('create_group');
 
     Route::get('/request/{id}', 'GroupMemberController@requestGroups')->name('request-group');
 
     Route::get('/cancel_request/{groupId}', 'GroupMemberController@cancelRequestGroup')->name('cancel-request');
+
     Route::get('/cancel_group/{groupId}', 'GroupMemberController@quitGroup')->name('cancel-group');
+
+    Route::get('/{groupId}/settings', 'GroupMemberController@gotoSetting')->name('go-setting');
 });
 
 Route::get('test', function () {

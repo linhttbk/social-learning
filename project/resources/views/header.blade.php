@@ -10,15 +10,15 @@
                         <div class="top_bar_content d-flex flex-row align-items-center justify-content-start">
                             <ul class="top_bar_contact_list">
                                 <li>
-                                    <div class="question">Have any questions?</div>
+                                    <div class="question">Bạn có câu hỏi nào?</div>
                                 </li>
                                 <li>
                                     <i class="fa fa-phone" aria-hidden="true"></i>
-                                    <div>001-1234-88888</div>
+                                    <div>0964988900</div>
                                 </li>
                                 <li>
                                     <i class="fa fa-envelope-o" aria-hidden="true"></i>
-                                    <div>info.deercreative@gmail.com</div>
+                                    <div>slearning@bkteam.edu.vn</div>
                                 </li>
                             </ul>
                             @if(Auth::check())
@@ -129,8 +129,7 @@
                             @else
                                 <div class="top_bar_login ml-auto">
                                     <div class="login_button"><a href="{{route('login')}}" data-toggle="modal"
-                                                                 data-target=".bs-example-modal-lg">Register or
-                                            Login</a></div>
+                                                                 data-target=".bs-example-modal-lg">Đăng ký hoặc đăng nhập</a></div>
                                 </div>
                             @endif
                         </div>
@@ -147,24 +146,22 @@
                 <div class="col">
                     <div class="header_content d-flex flex-row align-items-center justify-content-start">
                         <div class="logo_container">
-                            <a href="#">
-                                <div class="logo_text">Unic<span>at</span></div>
+                            <a href="{{route('home')}}">
+                                <div class="logo_text">S<span>Learning</span></div>
                             </a>
                         </div>
                         <nav class="main_nav_contaner ml-auto">
                             <ul class="main_nav">
-                                <li><a href="{{route('home')}}">Home</a></li>
-                                <li><a href="{{route('about')}}">About</a></li>
-                                <li><a href="{{route('courses')}}">Courses</a></li>
-                                <li><a href="{{route('blog')}}">Blog</a></li>
-                                <li><a href="{{route('group_page')}}">Groups</a></li>
-                                <li><a href="{{route('contact')}}">Contact</a></li>
+                                <li><a href="{{route('home')}}">Trang chủ</a></li>
+                                <li><a href="{{route('about')}}">Về chúng tôi</a></li>
+                                <li><a href="{{route('courses')}}">Khóa học</a></li>
+                                <li><a href="{{route('group_page')}}">Nhóm học tập</a></li>
+                                <li><a href="{{route('contact')}}">Liên hệ</a></li>
                             </ul>
                             <div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>
 
                             <!-- Hamburger -->
 
-                            <div class="shopping_cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></div>
                             <div class="hamburger menu_mm">
                                 <i class="fa fa-bars menu_mm" aria-hidden="true"></i>
                             </div>
