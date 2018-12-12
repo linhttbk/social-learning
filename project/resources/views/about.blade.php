@@ -17,35 +17,7 @@
     <script src="{{asset('js/header.js')}}"></script>
 @endsection
 @section('content')
-    <!-- Menu -->
 
-    <div class="menu d-flex flex-column align-items-end justify-content-start text-right menu_mm trans_400">
-        <div class="menu_close_container">
-            <div class="menu_close">
-                <div></div>
-                <div></div>
-            </div>
-        </div>
-        <div class="search">
-            <form action="#" class="header_search_form menu_mm">
-                <input type="search" class="search_input menu_mm" placeholder="Search" required="required">
-                <button
-                    class="header_search_button d-flex flex-column align-items-center justify-content-center menu_mm">
-                    <i class="fa fa-search menu_mm" aria-hidden="true"></i>
-                </button>
-            </form>
-        </div>
-        <nav class="menu_nav">
-            <ul class="menu_mm">
-                <li class="menu_mm"><a href="index.html">Home</a></li>
-                <li class="menu_mm"><a href="#">About</a></li>
-                <li class="menu_mm"><a href="#">Courses</a></li>
-                <li class="menu_mm"><a href="#">Blog</a></li>
-                <li class="menu_mm"><a href="#">Page</a></li>
-                <li class="menu_mm"><a href="contact.blade.php">Contact</a></li>
-            </ul>
-        </nav>
-    </div>
 
     <!-- Home -->
 
@@ -56,8 +28,8 @@
                     <div class="col">
                         <div class="breadcrumbs">
                             <ul>
-                                <li><a href="index.html">Home</a></li>
-                                <li>About</li>
+                                <li><a href="{{route('home')}}">Trang chủ</a></li>
+                                <li>Về chúng tôi</li>
                             </ul>
                         </div>
                     </div>
@@ -73,9 +45,8 @@
             <div class="row">
                 <div class="col">
                     <div class="section_title_container text-center">
-                        <h2 class="section_title">Welcome To Unicat E-Learning</h2>
-                        <div class="section_subtitle"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                                vel gravida arcu Vestibulum</p></div>
+                        <h2 class="section_title">Chào mừng đến với SLearning</h2>
+                        <div class="section_subtitle"><p>Mạng xã hội học tập miễn phí hàng đầu Việt Nam</p></div>
                     </div>
                 </div>
             </div>
@@ -85,10 +56,10 @@
                 <div class="col-lg-4 about_col about_col_left">
                     <div class="about_item">
                         <div class="about_item_image"><img src="{{asset('images/about_1.jpg')}}" alt=""></div>
-                        <div class="about_item_title"><a href="#">Our Stories</a></div>
+                        <div class="about_item_title"><a href="#">Câu chuyện của chúng tôi</a></div>
                         <div class="about_item_text">
-                            <p>Lorem ipsum dolor sit , consectet adipisi elit, sed do eiusmod tempor for enim en
-                                consectet adipisi elit, sed do consectet adipisi elit, sed doadesg.</p>
+                            <p>Hồi còn là sinh viên, tôi không có nhiều tiền để nghĩ đến mua một vài khóa học online
+                                nâng cao kiến thức...</p>
                         </div>
                     </div>
                 </div>
@@ -97,10 +68,10 @@
                 <div class="col-lg-4 about_col about_col_middle">
                     <div class="about_item">
                         <div class="about_item_image"><img src="{{asset('images/about_2.jpg')}}" alt=""></div>
-                        <div class="about_item_title"><a href="#">Our Mission</a></div>
+                        <div class="about_item_title"><a href="#">Sứ mệnh</a></div>
                         <div class="about_item_text">
-                            <p>Lorem ipsum dolor sit , consectet adipisi elit, sed do eiusmod tempor for enim en
-                                consectet adipisi elit, sed do consectet adipisi elit, sed doadesg.</p>
+                            <p>Cung cấp những khóa học miễn phí với chất lượng giảng dạy đến từ giáo sư tiến sĩ đầu
+                                ngành...</p>
                         </div>
                     </div>
                 </div>
@@ -109,10 +80,10 @@
                 <div class="col-lg-4 about_col about_col_right">
                     <div class="about_item">
                         <div class="about_item_image"><img src="{{asset('images/about_3.jpg')}}" alt=""></div>
-                        <div class="about_item_title"><a href="#">Our Vision</a></div>
+                        <div class="about_item_title"><a href="#">Tầm nhìn </a></div>
                         <div class="about_item_text">
-                            <p>Lorem ipsum dolor sit , consectet adipisi elit, sed do eiusmod tempor for enim en
-                                consectet adipisi elit, sed do consectet adipisi elit, sed doadesg.</p>
+                            <p>Xây dựng mạng xã hội học tập lớn nhất từ trước đến nay, đem cơ hội học tập đến nhiều
+                                người có hoàn cảnh khó khăn...</p>
                         </div>
                     </div>
                 </div>
@@ -129,10 +100,9 @@
             <div class="row">
                 <div class="col">
                     <div class="section_title_container text-center">
-                        <h2 class="section_title">Why Choose Us</h2>
-                        <div class="section_subtitle"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                                vel gravida arcu. Vestibulum feugiat, sapien ultrices fermentum congue, quam velit
-                                venenatis sem</p></div>
+                        <h2 class="section_title">Tại sao lại chọn chúng tôi?</h2>
+                        <div class="section_subtitle"><p>Chúng tôi cung cấp các khóa học hoàn toàn miễn phí với chất
+                                lượng cao luôn làm hài lòng tất cả.</p></div>
                     </div>
                 </div>
             </div>
@@ -148,7 +118,7 @@
 
                                 <div class="accordion_container">
                                     <div class="accordion d-flex flex-row align-items-center">
-                                        <div>Award for Best School 2017</div>
+                                        <div>Giải Best Website 2018</div>
                                     </div>
                                     <div class="accordion_panel">
                                         <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
