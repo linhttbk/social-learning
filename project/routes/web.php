@@ -51,6 +51,9 @@ Route::group(['prefix' => 'course'], function () {
     Route::post('register/{id}', 'CourseRegistrationController@registerCourse')->name('buy_course');
     Route::get('/register-course/{id}', 'CourseRegistrationController@goToBuyCourse')->name('course-reg');
     Route::get('/join-course/{id}', 'JoinCourseController@showViewCourse')->name('join-course');
+    Route::get('/join-course/{id}/{id_chap}/quiz/{id_quiz}', 'QuizController@showQuiz')->name('do-quiz');
+    Route::post('submit', 'QuizController@submitQuiz')->name('submit-quiz');
+
 
 });
 
@@ -68,10 +71,14 @@ Route::group(['prefix' => 'groups'], function () {
     Route::get('/cancel_group/{groupId}', 'GroupMemberController@quitGroup')->name('cancel-group');
 
     Route::get('/{groupId}/settings', 'GroupMemberController@gotoSetting')->name('go-setting');
+
+    Route::post('/{groupId}/post', 'GroupMemberController@postData')->name('my_post_data');
+    Route::get('/{groupId}/user_group', 'GroupMemberController@showUserGroup')->name('user_my_group');
+
 });
 
 Route::get('test', function () {
-    return view('test');
+    return view('welcome');
 });
 Route::get('test2', 'CoursesController@showAllCourses');
 
@@ -119,6 +126,11 @@ Route::group(['prefix' => 'admin-cp'], function () {
         Route::get('document_management/delete_document/{id}', 'DocumentController@deleteDocument')->name('delete_document');
         Route::get('document_management/add_doccumeny', 'DocumentController@getAddDocument')->name('add_doccument');
         Route::post('document_management/add_doccumeny', 'DocumentController@postAddDocument')->name('post_add_document');
+
+        Route::get('course_plan','CoursesController@getCoursePlan')->name('course_plan');
+        Route::post('course_plan','CoursePlanController@getCourseDetail')->name('search_course_plan');
+        Route::get('courseplan/{$idcourse,$idchap}','CoursePlanController@getCoursePlanWith')->name('get_course_plan');
+
         Route::get('charts', function () {
             return view('admin.charts');
         })->name('charts');

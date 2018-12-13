@@ -70,7 +70,7 @@
                                 @endif
                                 <div class="row">
                                     <div class=" col-sm-3">
-                                        <img src="http://api.randomuser.me/portraits/men/49.jpg" alt="Scott Stevens"
+                                        <img src="{{empty($dataGroup->thumb_url)?asset('images/bg_group_default.jpg'):$dataGroup->thumb_url}}" alt="Scott Stevens"
                                              class="rounded-circle"/>
                                     </div>
                                     <div class="col-sm-9">
@@ -116,7 +116,7 @@
                                 @endif
                                 <div class="row">
                                     <div class=" col-sm-3">
-                                        <img src="http://api.randomuser.me/portraits/men/49.jpg" alt="Scott Stevens"
+                                        <img src="{{empty($dataGroup->thumb_url)?asset('images/bg_group_default.jpg'):$dataGroup->thumb_url}}" alt="Scott Stevens"
                                              class="rounded-circle"/>
                                     </div>
                                     <div class="col-sm-9">
@@ -173,7 +173,7 @@
                                 @endif
                                 <div class="row">
                                     <div class=" col-sm-3">
-                                        <img src="http://api.randomuser.me/portraits/men/49.jpg" alt="Scott Stevens"
+                                        <img src="{{empty($dataJoin->thumb_url)?asset('images/bg_group_default.jpg'):$dataJoin->thumb_url}}" alt="Scott Stevens"
                                              class="rounded-circle"/>
                                     </div>
                                     <div class="col-sm-9">
@@ -219,7 +219,7 @@
                                 @endif
                                 <div class="row">
                                     <div class=" col-sm-3">
-                                        <img src="http://api.randomuser.me/portraits/men/49.jpg" alt="Scott Stevens"
+                                        <img src="{{empty($dataJoin->thumb_url)?asset('images/bg_group_default.jpg'):$dataJoin->thumb_url}}" alt="Scott Stevens"
                                              class="rounded-circle"/>
                                     </div>
                                     <div class="col-sm-9">
@@ -275,7 +275,7 @@
                                 @endif
                                 <div class="row">
                                     <div class=" col-sm-3">
-                                        <img src="http://api.randomuser.me/portraits/men/49.jpg" alt="Scott Stevens"
+                                        <img src="{{empty($dataReg->thumb_url)?asset('images/bg_group_default.jpg'):$dataReg->thumb_url}}" alt="Scott Stevens"
                                              class="rounded-circle"/>
                                     </div>
                                     <div class="col-sm-9">
@@ -322,7 +322,7 @@
                                 @endif
                                 <div class="row">
                                     <div class=" col-sm-3">
-                                        <img src="http://api.randomuser.me/portraits/men/49.jpg" alt="Scott Stevens"
+                                        <img src="{{empty($dataRequest->thumb_url)?asset('images/bg_group_default.jpg'):$dataRequest->thumb_url}}" alt="Scott Stevens"
                                              class="rounded-circle"/>
                                     </div>
                                     <div class="col-sm-9">
@@ -379,7 +379,7 @@
                                 @endif
                                 <div class="row">
                                     <div class=" col-sm-3">
-                                        <img src="http://api.randomuser.me/portraits/men/49.jpg" alt="Scott Stevens"
+                                        <img src="{{empty($dataOther->thumb_url)?asset('images/bg_group_default.jpg'):$dataOther->thumb_url}}" alt="Scott Stevens"
                                              class="rounded-circle"/>
                                     </div>
                                     <div class="col-sm-9">
@@ -414,7 +414,7 @@
                                 @endif
                                 <div class="row">
                                     <div class=" col-sm-3">
-                                        <img src="http://api.randomuser.me/portraits/men/49.jpg" alt="Scott Stevens"
+                                        <img src="{{empty($dataOther->thumb_url)?asset('images/bg_group_default.jpg'):$dataOther->thumb_url}}" alt="Scott Stevens"
                                              class="rounded-circle"/>
                                     </div>
                                     <div class="col-sm-9">

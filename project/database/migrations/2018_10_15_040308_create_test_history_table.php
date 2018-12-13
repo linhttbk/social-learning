@@ -14,10 +14,11 @@ class CreateTestHistoryTable extends Migration
     public function up()
     {
         Schema::create('TestHistory', function (Blueprint $table) {
-            $table->integer('id',11);
+            $table->integer('id', 11);
             $table->integer('id_test');
             $table->foreign('id_test')->references('id')->on('Test');
-            $table->string('uid',30);
+            $table->string('uid', 30);
+            $table->foreign('uid')->references('uid')->on('User');
             $table->integer('score');
             $table->dateTime('time_start');
             $table->dateTime('time_finish');

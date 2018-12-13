@@ -268,7 +268,7 @@
                 </div>
             </div>
             <div class="row courses_row">
-                @if(!empty($result))
+            @if(!empty($result))
                     @foreach($result as $data)
                         <!-- Course -->
                             <div class="col-lg-4 course_col">
@@ -336,7 +336,33 @@
                             </div>
                         </div>
             @endif
-
+            @else
+                <!-- Course -->
+                    <div class="col-lg-4 course_col">
+                        <div class="course">
+                            <div class="course_image"><img src="images/course_1.jpg" alt=""></div>
+                            <div class="course_body">
+                                <h3 class="course_title"><a href="{{route('course')}}">Software Training</a></h3>
+                                <div class="course_teacher">Mr. John Taylor</div>
+                                <div class="course_text">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipi elitsed do eiusmod tempor</p>
+                                </div>
+                            </div>
+                            <div class="course_footer">
+                                <div
+                                    class="course_footer_content d-flex flex-row align-items-center justify-content-start">
+                                    <div class="course_info">
+                                        <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                                        <span>20</span>
+                                    </div>
+                                    <span class='raty' style='margin:5px' id='9' data-score=4></span>
+                                    | Tổng số: <b class='rate_count'>8</b>
+                                    <div class="course_price ml-auto">$130</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
             </div>
             <div class="row">
                 <div class="col">

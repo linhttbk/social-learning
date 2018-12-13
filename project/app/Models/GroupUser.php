@@ -11,7 +11,7 @@ class GroupUser extends Model
     //
     public function owner()
     {
-        return $this->belongsTo('User', 'uid', 'uid');
+        return $this->belongsTo('App\Models\User', 'uid', 'uid');
     }
 
     public function groupMember()
@@ -21,6 +21,7 @@ class GroupUser extends Model
 
     public function members()
     {
-        return $this->hasManyThrough('App\Models\User', 'App\Models\GroupMember', 'id_group', 'uid', 'id', 'uid');
+        return $this->hasManyThrough('App\Models\User', 'App\Models\GroupMember', 'id_group', 'uid', 'id', 'uid')
+            ->where('GroupMember.role', '!=', 2);
     }
 }

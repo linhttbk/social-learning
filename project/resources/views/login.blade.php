@@ -34,6 +34,12 @@
                             <form id="login-form" action="{{route('post_login')}}" method="post" role="form"
                                   style="display: block;" onsubmit="return onSubmitLogin()">
                                 @include('errors.note')
+                                <div class="form-error">
+                                    @if(Session::has('success'))
+                                        <span id="form-error" style="display: block;margin: 0 30px"
+                                              class="alert alert-success">{{Session::get('success')}}</span>
+                                    @endif
+                                </div>
                                 <div class="form-group">
                                     <label>Tài khoản : </label>
                                     <input type="text" name="username" id="username" tabindex="1" class="form-control"
@@ -73,9 +79,21 @@
                                 </div>
                                 {{csrf_field()}}
                             </form>
-                            <form id="register-form" action="{{url('register')}}" method="post"
+                            <form id="register-form" action="{{url('register')}}" method="post" enctype="multipart/form-data"
                                   onsubmit=" return onSubmitCLick()"
                                   role="form" style="display: none;">
+                                <div class="form-error">
+                                @if(Session::has('error'))
+                                    <span id="form-error" style="display: block;margin: 0 30px"
+                                          class="alert alert-danger">{{Session::get('error')}}</span>
+                                    <script>
+                                            $("#register-form").delay(100).fadeIn(100);
+                                            $("#login-form").fadeOut(100);
+                                            $('#login-form-link').removeClass('active');
+                                            $('#register-form-link').addClass('active');
+                                    </script>
+                                @endif
+                                </div>
                                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                                 <div class="form-group">
                                     <label>Loại đăng ký : </label>
@@ -138,6 +156,12 @@
                                            placeholder="Phone" value="">
                                     <span id="phone-error"
                                           class="input-error-msg"> Vui  lòng  nhap so dien thoai</span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Avatar : </label>
+                                    <input type="file" name="image" id="image" size="25"  accept=".jpg,.jpeg,.png">
+
                                 </div>
                                 <div class="form-group">
                                     <label>Trường : </label>

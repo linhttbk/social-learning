@@ -54,7 +54,7 @@
                             <div class="footer_links_container">
                                 <ul>
                                     <li><a href="{{route('home')}}">Trang chủ</a></li>
-                                    <li><a href="{{route('about')}}">Về chúng tôi</a></li>
+                                    <li><a href="{{route('about')}}">Giới thiệu</a></li>
                                     <li><a href="{{route('courses')}}">Khóa học</a></li>
                                     <li><a href="{{route('group_page')}}">Nhóm học tập</a></li>
                                     <li><a href="{{route('contact')}}">Contact</a></li>

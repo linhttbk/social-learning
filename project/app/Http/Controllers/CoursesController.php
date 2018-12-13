@@ -28,29 +28,38 @@ class CoursesController extends Controller
     public function showCourseDetail($id)
     {
         $course = Course::find($id);
-        $check_registered_course = DB::table("courseregistration")->where([["id_course", "=", $id],["uid", "=", Auth::user()->uid]])->get();
+        $check_registered_course = DB::table("CourseRegistration")->where([["id_course", "=", $id], ["uid", "=", Auth::user()->uid]])->get();
 //        dd($check_registered_course);
-        if(empty($check_registered_course[0])){
+        if (empty($check_registered_course[0])) {
             return view('course', compact('course'));
         } else {
             return view('view_course', compact('course'));
         }
     }
 
-    public function showCoursesPag(){
+    public function showCoursesPag()
+    {
         $result = DB::table('Course')->select(array('Course.*', 'User.name', DB::raw('(Select Count(CourseRegistration.id_course) from CourseRegistration where CourseRegistration.id_course = Course.id) as count_student')))
             ->leftJoin('User', 'Course.uid', '=', 'User.uid')
             ->paginate(6);
         return view('admin.courses.courses', compact('result'));
     }
-    public function showAllCoursesUser($id){
+
+    public function showAllCoursesUser($id)
+    {
         $result = DB::table('Course')->select(array('Course.*', 'User.*', DB::raw('(Select Count(CourseRegistration.id_course) from CourseRegistration where CourseRegistration.id_course = Course.id) as count_student')))
             ->join('User', 'Course.uid', '=', 'User.uid')
-            ->join('CourseRegistration','Course.id', '=', 'CourseRegistration.id_course')
-            ->where('CourseRegistration.uid' ,'=',$id)
+            ->join('CourseRegistration', 'Course.id', '=', 'CourseRegistration.id_course')
+            ->where('CourseRegistration.uid', '=', $id)
             ->paginate(6);
         $subject = DB::table('Subject')->get();
         return view('member.course.my_course', compact('result', 'subject'));
 
+    }
+
+    public function getCoursePlan()
+    {
+        $allCourse = DB::table('Course')->get();
+        return view('admin.courseplan.add-course-plan', ['allCourse' => $allCourse]);
     }
 }

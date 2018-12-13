@@ -39,84 +39,74 @@
                                     </ul>
                                     <!-- Notifications-->
                                 </div>
+
                                 <li style="display: inline; position:relative;" class="nav-item-dropmenu"><a
                                         id="notifications"
                                         rel="nofollow" data-target="#"
                                         href="#"
                                         class="badge-notifications"
-                                        data-badge="27"
+                                        data-badge="3"
                                         data-toggle="dropdown"
                                         aria-haspopup="true"
                                         aria-expanded="false"
                                         class="nav-link"><i
                                             class="fa fa-bell-o" style="color: white"></i></a>
-
                                     <ul class="dropdown-menu">
                                         <li class="head text-light bg-blue">
                                             <div class="row">
                                                 <div class="col-lg-12 col-sm-12 col-12">
-                                                    <span>Notifications (3)</span>
+                                                    @php
+                                                        $notifications = App\Models\Notification::where('uid_to', Auth::user()->uid)->take(3)->get();
+
+                                                    @endphp
+
+                                                    <span>Notifications ({{count($notifications)}})</span>
                                                     <a href="#" id="mark-notifications" class="float-right text-light">Mark
                                                         all as read</a>
                                                 </div>
                                             </div>
                                         </li>
                                         <ul class="notifications-item">
-                                            <li class="notification-box bg-gray">
-                                                <a href="#">
+                                            @foreach($notifications as $data)
 
-                                                    <div class="row">
-                                                        <div class="col-lg-3 col-sm-3 col-3 text-center">
-                                                            <img src="{{asset('images/avatar_default.jpg')}}"
-                                                                 class=" rounded-circle">
-                                                        </div>
-                                                        <div class="col-lg-8 col-sm-8 col-8">
-                                                            <strong class="text-info">David John<span>
-                                                            Lorem ipsum dolor sit amet, consectetur 222k2k2k2k2kk2k2k2k22kk2kk2k2
+                                                <li class="notification-box">
+                                                    <a href="#">
+
+                                                        <div class="row">
+                                                            <div class="col-lg-3 col-sm-3 col-3 text-center">
+                                                                <img
+                                                                    src="{{empty($data->avatar_from)?asset('admin/img/avatar-0.jpg'):$data->avatar_from}}"
+                                                                    class="rounded-circle">
+                                                            </div>
+                                                            <div class="col-lg-8 col-sm-8 col-8">
+                                                                <strong class="text-info">{{$data->from}} <span>
+                                                           {{$data->content}}
                                                         </span></strong>
 
-                                                            <small class="text-warning">27.11.2015, 15:00</small>
+                                                                <small class="text-warning">{{$data->send_at}}</small>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li class="notification-box">
-                                                <a href="#">
+                                                    </a>
+                                                </li>
+                                                {{--<li class="notification-box bg-gray">--}}
+                                                {{--<a href="#">--}}
 
-                                                    <div class="row">
-                                                        <div class="col-lg-3 col-sm-3 col-3 text-center">
-                                                            <img src="{{asset('admin/img/avatar-0.jpg')}}"
-                                                                 class="rounded-circle">
-                                                        </div>
-                                                        <div class="col-lg-8 col-sm-8 col-8">
-                                                            <strong class="text-info">David John <span>
-                                                            Lorem ipsum dolor sit amet, consectetur 222k2k2k2k2kk2k2k2k22kk2kk2k2
-                                                        </span></strong>
+                                                {{--<div class="row">--}}
+                                                {{--<div class="col-lg-3 col-sm-3 col-3 text-center">--}}
+                                                {{--<img src="{{asset('admin/img/avatar-0.jpg')}}"--}}
+                                                {{--class=" rounded-circle">--}}
+                                                {{--</div>--}}
+                                                {{--<div class="col-lg-8 col-sm-8 col-8">--}}
+                                                {{--<strong class="text-info">David John<span>--}}
+                                                {{--Lorem ipsum dolor sit amet, consectetur 222k2k2k2k2kk2k2k2k22kk2kk2k2--}}
+                                                {{--</span></strong>--}}
 
-                                                            <small class="text-warning">27.11.2015, 15:00</small>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li class="notification-box bg-gray">
-                                                <a href="#">
-
-                                                    <div class="row">
-                                                        <div class="col-lg-3 col-sm-3 col-3 text-center">
-                                                            <img src="{{asset('admin/img/avatar-0.jpg')}}"
-                                                                 class=" rounded-circle">
-                                                        </div>
-                                                        <div class="col-lg-8 col-sm-8 col-8">
-                                                            <strong class="text-info">David John<span>
-                                                            Lorem ipsum dolor sit amet, consectetur 222k2k2k2k2kk2k2k2k22kk2kk2k2
-                                                        </span></strong>
-
-                                                            <small class="text-warning">27.11.2015, 15:00</small>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-
+                                                {{--<small class="text-warning">27.11.2015, 15:00</small>--}}
+                                                {{--</div>--}}
+                                                {{--</div>--}}
+                                                {{--</a>--}}
+                                                {{--</li>--}}
+                                            @endforeach
                                         </ul>
 
                                         <li class="footer-notificatons">
@@ -129,7 +119,8 @@
                             @else
                                 <div class="top_bar_login ml-auto">
                                     <div class="login_button"><a href="{{route('login')}}" data-toggle="modal"
-                                                                 data-target=".bs-example-modal-lg">Đăng ký hoặc đăng nhập</a></div>
+                                                                 data-target=".bs-example-modal-lg">Đăng ký hoặc đăng
+                                            nhập</a></div>
                                 </div>
                             @endif
                         </div>
@@ -153,7 +144,7 @@
                         <nav class="main_nav_contaner ml-auto">
                             <ul class="main_nav">
                                 <li><a href="{{route('home')}}">Trang chủ</a></li>
-                                <li><a href="{{route('about')}}">Về chúng tôi</a></li>
+                                <li><a href="{{route('about')}}">Giới thiệu</a></li>
                                 <li><a href="{{route('courses')}}">Khóa học</a></li>
                                 <li><a href="{{route('group_page')}}">Nhóm học tập</a></li>
                                 <li><a href="{{route('document')}}">Tài liệu tham khảo</a></li>

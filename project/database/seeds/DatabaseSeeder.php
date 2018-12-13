@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([SubjectSeeder::class, UserTableSeeder::class, AdminTableSeeder::class, GroupUserTableSeeder::class,
             GroupMemberSeeder::class, ChapterSeeder::class, LessonSeeder::class,
-            CourseSeeder::class, CourseDetailSeeder::class,CourseRegistrationSeeder::class,DocumentTableSeeder::class,TestTableSeeder::class,]);
+            CourseSeeder::class, CourseDetailSeeder::class, CourseRegistrationSeeder::class, DocumentTableSeeder::class,
+            TestTableSeeder::class, QuestionTableSeeder::class, AnswerTableSeeder::class,NotificationSeeder::class,]);
     }
 }
