@@ -147,6 +147,7 @@
                                 <li><a href="{{route('about')}}">Giới thiệu</a></li>
                                 <li><a href="{{route('courses')}}">Khóa học</a></li>
                                 <li><a href="{{route('group_page')}}">Nhóm học tập</a></li>
+                                <li><a href="{{route('document')}}">Tài liệu tham khảo</a></li>
                                 <li><a href="{{route('contact')}}">Liên hệ</a></li>
                             </ul>
                             <div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>

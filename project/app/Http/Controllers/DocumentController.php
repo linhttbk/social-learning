@@ -76,4 +76,8 @@ class DocumentController extends Controller
         $document->status=0;
         $document->save();
     }
+    public function showDocument(){
+        $catalogs = DB::table('subject')->get();
+        return view('document', compact('catalogs'));
+    }
 }
