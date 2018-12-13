@@ -35,6 +35,8 @@ Route::get('contact', function () {
     return view('contact');
 })->name('contact');
 
+Route::get('document', 'DocumentController@showDocument')->name("document");
+
 Route::get('course', function () {
     return view('course');
 })->name('course');

@@ -54,7 +54,7 @@
                             <label>Ngày sinh : </label>
                             <input class="displayItem" style="color: black" placeholder="Ngày sinh" name="birthday"
                                    style="height: 45px"
-                                   id="datepicker" value="{{$user[0]->birthday}}" disabled/>
+                                   id="datepicker" value="{{date("d-m-Y", strtotime($user[0]->birthday))}}" disabled/>
                         </div>
 
                         <div class="form-group">
@@ -71,7 +71,7 @@
                         <div class="form-group">
                             <label>Email : </label>
                             <input style="color: black" type="email" name="email" id="email" tabindex="1"
-                                   class="form-control displayItem"
+                                   class="form-control"
                                    placeholder="Email Address" value="{{$user[0]->email}}" disabled>
                         </div>
                         <div class="form-group">

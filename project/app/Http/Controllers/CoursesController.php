@@ -35,7 +35,6 @@ class CoursesController extends Controller
         } else {
             return view('view_course', compact('course'));
         }
-
     }
 
     public function showCoursesPag(){
