@@ -1,5 +1,5 @@
 @extends('default')
-@section('title','Phat trien 2phan mem chuyen nghiep')
+@section('title','Phat trien phan mem chuyen nghiep')
 @section('css')
     <link rel="stylesheet" href="{{asset('css/bootstrap4/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('plugins/font-awesome-4.7.0/css/font-awesome.min.css')}}">
@@ -18,231 +18,141 @@
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
 @endsection
 @section('content')
-    <div class="container-group">
+    <?php $id_group = 1?>
+    <div class="container-group" style="margin-top: 110px">
         <div class="row">
             <div class="group-infor col-lg-3">
                 <div class="group-information">
                     <div class="group-name">
-                        <a href="#">Cong nghe web tien tien</a>
+                        <a href="#">Công nghệ web tiên tiến</a>
                     </div>
 
                     <div class="group-type">
-                        <span class="fa fa-lock">Nhom kin</span>
+                        <span class="fa fa-lock">Nhóm kín</span>
                     </div>
                     <div class="menu-group">
                         <ul class="menu-item">
-                            <li><a class="menu-item-link" href="#">Gioi thieu</a></li>
-                            <li><a class="menu-item-link active" href="#">Thao luan</a></li>
-                            <li><a class="menu-item-link" href="#">Thanh vien</a></li>
-                            <li><a class="menu-item-link" href="#">Tai lieu</a></li>
+                            <li><a class="menu-item-link" href="#">Giới thiệu</a></li>
+                            <li><a class="menu-item-link active" href="{{route('my_group',['groupId'=>$id_group])}}">Thảo
+                                    luận</a></li>
+                            <li><a class="menu-item-link" href="{{route('user_my_group',['groupId'=>$id_group])}}">Thành
+                                    viên</a></li>
+                            <li><a class="menu-item-link" href="#">Tài liệu</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="col-lg-6">
-                <div class="box-create-post card">
-                    <div class="option-post">
-                        Dang bai viet
-                    </div>
-                    <div class="content-post">
-                        <div class="row">
-                            <div class="col-sm-1">
-                                <img src="http://api.randomuser.me/portraits/men/49.jpg" alt="Scott Stevens"
-                                     class="rounded-circle"/>
+                <form enctype="multipart/form-data" action="{{route('my_post_data', ['groupId'=>$id_group])}}"
+                      method="post"
+                      onsubmit="return postDocument()">
+                    <div class="box-create-post card">
+                        <div class="option-post">
+                            Dang bai viet
+                        </div>
+                        <div class="content-post">
+                            <div class="row">
+                                <div class="col-sm-1">
+                                    <img
+                                        src="{{empty(Auth::user()->avatar)?asset('images/avatar_default.jpg'):Auth::user()->avatar}}"
+                                        alt="Scott Stevens"
+                                        class="rounded-circle"/>
 
-                            </div>
-                            <div class="col-sm-11">
-                                <div>
-                                    <form>
-                                        <textarea placeholder="Type post here"></textarea>
-                                    </form>
                                 </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="post-helper">
-                        <a href="#">Dang bai</a>
-                    </div>
-                </div>
-                <br>
-                <div class="card">
-                    <div class="card-header content-post">
-                        <div class="row user-name">
-                            <div class="col-sm-1">
-                                <img src="http://api.randomuser.me/portraits/men/49.jpg" class="rounded-circle">
-                            </div>
-                            <div class="my_col" style="column-width: 20px">
-                                <label><br></label>
-                            </div>
-                            <div class="col-sm-10">
-                                <span style="font-weight: bold;color: black">Vũ Văn Kiên</span>
-                                <br>
-                                <small>Hà Nội 11/11/2018</small>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            Hôm nay tôi buồn buồn  ?
-                            Hôm nay tôi buồn buồn  ?
-                            Hôm nay tôi buồn buồn  ?
-                            Hôm nay tôi buồn buồn  ?
-                            Hôm nay tôi buồn buồn  ?
-                        </div>
-                        <div class="row comment" style="padding-top: 30px">
-                            <div class="col-sm-2">
-                                <button type="button" class="btn btn-default">Like +1</button>
-                            </div>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" placeholder="Bình luận" onfocus="comment('comment-post-1')">
-                            </div>
-                            <div class="col-sm-2">
-                                <button type="button" class="btn btn-default">
-                                    <span class="glyphicon glyphicon-share-alt">Chia sẻ</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="row comment" id="comment-post-1" style="padding-top: 30px; display: none">
-                            <div class="col col-sm-12">
-                                <div class="card border">
-                                    <div id="post">
-                                        <div class="media p-2">
-                                            <img src="http://api.randomuser.me/portraits/men/49.jpg" alt="John Doe" class="mr-2 mt-2 rounded-circle" style="width:60px;">
-                                            <div class="media-body">
-                                                <h4>John Doe <small><i>Posted on February 19, 2016</i></small></h4>
-                                                <p>Lorem ipsum...</p>
-                                                <div class="media p-2">
-                                                    <img src="http://api.randomuser.me/portraits/men/49.jpg" alt="Jane Doe" class="mr-2 mt-2 rounded-circle" style="width:60px;">
-                                                    <div class="media-body">
-                                                        <h4>Jane Doe <small><i>Posted on February 20 2016</i></small></h4>
-                                                        <p>Lorem ipsum...</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="media p-2">
-                                            <img src="http://api.randomuser.me/portraits/men/49.jpg" alt="John Doe" class="mr-2 mt-2 rounded-circle" style="width:60px;">
-                                            <div class="media-body">
-                                                <h4>John Doe <small><i>Posted on February 19, 2016</i></small></h4>
-                                                <p>Lorem ipsum...</p>
-                                                <div class="media p-2">
-                                                    <img src="http://api.randomuser.me/portraits/men/49.jpg" alt="Jane Doe" class="mr-2 mt-2 rounded-circle" style="width:60px;">
-                                                    <div class="media-body">
-                                                        <h4>Jane Doe <small><i>Posted on February 20 2016</i></small></h4>
-                                                        <p>Lorem ipsum...</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="post media p-2">
-                                        <img src="http://api.randomuser.me/portraits/men/49.jpg" alt="John Doe" class=" align-self-center mr-2 mt-2 rounded-circle" style="width:60px;">
-                                        <div class="media-body" style="padding-top: 20px">
-                                            <div class="row">
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" placeholder="Nhập nội dung bình luận" id="post-comment">
-                                                </div>
-                                                <div class="col-sm-1">
-                                                    <button class="btn btn-default">Gửi</button>
-                                                </div>
-                                                <div class="col-sm-1"></div>
-                                                <div class="col-sm-1">
-                                                    <button class="btn btn-default" onclick="displayComment('comment-post-1')">Hủy</button>
-                                                </div>
-                                            </div>
-                                        </div>
+                                <div class="col-sm-11">
+                                    <div>
+                                        <textarea style="width: 100%" placeholder="Nhập nội dung bài đăng"
+                                                  id="data_post" name="data_post"></textarea>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="card" style="margin-top: 20px">
-                    <div class="card-header content-post">
-                        <div class="row user-name">
-                            <div class="col-sm-1">
-                                <img src="http://api.randomuser.me/portraits/men/49.jpg" class="rounded-circle">
+                        <div class="post-helper">
+                            <div>
+                                <label class="file">
+                                    <span class="file-label">Choose a file&hellip;</span>
+                                    <input type="file">
+                                    <span class="file-value" aria-hidden="true"></span>
+                                </label>
+                                <input type="submit" value="Đăng bài" class="btn btn-primary">
                             </div>
-                            <div class="my_col" style="column-width: 20px">
-                                <label><br></label>
-                            </div>
-                            <div class="col-sm-10">
-                                <span style="font-weight: bold;color: black">Vũ Văn Kiên</span>
-                                <br>
-                                <small>Hà Nội 11/11/2018</small>
-                            </div>
-
                         </div>
                     </div>
-                    <div class="card-body">
-                        <div class="row">
-                            Hôm nay tôi buồn buồn  ?
-                            Hôm nay tôi buồn buồn  ?
-                            Hôm nay tôi buồn buồn  ?
-                            Hôm nay tôi buồn buồn  ?
-                            Hôm nay tôi buồn buồn  ?
-                        </div>
-                        <div class="row comment" style="padding-top: 30px">
-                            <div class="col-sm-2">
-                                <button type="button" class="btn btn-default">Like +1</button>
-                            </div>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" placeholder="Bình luận" onfocus="comment('comment-post-2')">
-                            </div>
-                            <div class="col-sm-2">
-                                <button type="button" class="btn btn-default">
-                                    <span class="glyphicon glyphicon-share-alt">Chia sẻ</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="row comment" id="comment-post-2" style="padding-top: 30px; display: none">
-                            <div class="col col-sm-12">
-                                <div class="card border">
-                                    <div id="post">
-                                        <div class="media p-2">
-                                            <img src="http://api.randomuser.me/portraits/men/49.jpg" alt="John Doe" class="mr-2 mt-2 rounded-circle" style="width:60px;">
-                                            <div class="media-body">
-                                                <h4>John Doe <small><i>Posted on February 19, 2016</i></small></h4>
-                                                <p>Lorem ipsum...</p>
-                                                <div class="media p-2">
-                                                    <img src="http://api.randomuser.me/portraits/men/49.jpg" alt="Jane Doe" class="mr-2 mt-2 rounded-circle" style="width:60px;">
-                                                    <div class="media-body">
-                                                        <h4>Jane Doe <small><i>Posted on February 20 2016</i></small></h4>
-                                                        <p>Lorem ipsum...</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="media p-2">
-                                            <img src="http://api.randomuser.me/portraits/men/49.jpg" alt="John Doe" class="mr-2 mt-2 rounded-circle" style="width:60px;">
-                                            <div class="media-body">
-                                                <h4>John Doe <small><i>Posted on February 19, 2016</i></small></h4>
-                                                <p>Lorem ipsum...</p>
-                                                <div class="media p-2">
-                                                    <img src="http://api.randomuser.me/portraits/men/49.jpg" alt="Jane Doe" class="mr-2 mt-2 rounded-circle" style="width:60px;">
-                                                    <div class="media-body">
-                                                        <h4>Jane Doe <small><i>Posted on February 20 2016</i></small></h4>
-                                                        <p>Lorem ipsum...</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                    <br>
+                    {{csrf_field()}}
+                </form>
+                @if(!empty($listPost))
+                    @foreach($listPost as $key => $post)
+                        <div class="card" style="margin-top: 20px">
+                            <div class="card-header content-post">
+                                <div class="row user-name">
+                                    <div class="col-sm-1">
+                                        <img src="http://api.randomuser.me/portraits/men/49.jpg"
+                                             class="rounded-circle">
                                     </div>
-                                    <div class="post media p-2">
-                                        <img src="http://api.randomuser.me/portraits/men/49.jpg" alt="John Doe" class=" align-self-center mr-2 mt-2 rounded-circle" style="width:60px;">
-                                        <div class="media-body" style="padding-top: 20px">
-                                            <div class="row">
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" placeholder="Nhập nội dung bình luận" id="post-comment">
-                                                </div>
-                                                <div class="col-sm-1">
-                                                    <button class="btn btn-default">Gửi</button>
-                                                </div>
-                                                <div class="col-sm-1"></div>
-                                                <div class="col-sm-1">
-                                                    <button class="btn btn-default" onclick="displayComment('comment-post-2')">Hủy</button>
+                                    <div class="my_col" style="column-width: 20px">
+                                        <label><br></label>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <span style="font-weight: bold;color: black">{{$post->member->name}}</span>
+                                        <br>
+                                        <small>{{$post->create_at}}</small>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row" style="padding: 0 20px; color: black">{{$post->content}}
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <input class="form-control pull-left" id="btn-{{$post->id}}" type="button"
+                                               value="Bình luận" onclick="comment({{$post->id}})">
+                                    </div>
+                                </div>
+                                <div class="row" id="comment-post-{{$post->id}}" style="display: none">
+                                    <div class="col col-sm-12">
+                                        <div class="card border">
+                                            <div id="post">
+                                                @foreach($post->comments as $key => $comment)
+                                                    <div class="media p-2">
+                                                        <img src="http://api.randomuser.me/portraits/men/49.jpg"
+                                                             alt="John Doe" class="mr-2 mt-2 rounded-circle"
+                                                             style="width:60px;">
+                                                        <div class="media-body">
+                                                            <p>
+                                                                <b style="color: black">{{$comment->myComment->name}}</b><br>
+                                                                <small>{{$comment->create_at}}</small>
+                                                            </p>
+                                                            <p style="color: black">{{$comment->content}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="dropdown-divider"></div>
+                                                @endforeach
+                                            </div>
+                                            <div class="post media p-2">
+                                                <img src="http://api.randomuser.me/portraits/men/49.jpg"
+                                                     alt="John Doe"
+                                                     class=" align-self-center mr-2 mt-2 rounded-circle"
+                                                     style="width:60px;">
+                                                <div class="media-body" style="padding-top: 20px">
+                                                    <div class="row">
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control"
+                                                                   placeholder="Nhập nội dung bình luận"
+                                                                   id="post-comment">
+                                                        </div>
+                                                        <div class="col-sm-1">
+                                                            <button class="btn btn-default">Gửi</button>
+                                                        </div>
+                                                        <div class="col-sm-1"></div>
+                                                        <div class="col-sm-1">
+                                                            <button class="btn btn-default"
+                                                                    onclick="displayComment({{$post->id}})">Hủy
+                                                            </button>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -250,116 +160,35 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="card" style="margin-top: 20px">
-                    <div class="card-header content-post">
-                        <div class="row user-name">
-                            <div class="col-sm-1">
-                                <img src="http://api.randomuser.me/portraits/men/49.jpg" class="rounded-circle">
-                            </div>
-                            <div class="my_col" style="column-width: 20px">
-                                <label><br></label>
-                            </div>
-                            <div class="col-sm-10">
-                                <span style="font-weight: bold;color: black">Vũ Văn Kiên</span>
-                                <br>
-                                <small>Hà Nội 11/11/2018</small>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            Hôm nay tôi buồn buồn  ?
-                            Hôm nay tôi buồn buồn  ?
-                            Hôm nay tôi buồn buồn  ?
-                            Hôm nay tôi buồn buồn  ?
-                            Hôm nay tôi buồn buồn  ?
-                        </div>
-                        <div class="row comment" style="padding-top: 30px">
-                            <div class="col-sm-2">
-                                <button type="button" class="btn btn-default">Like +1</button>
-                            </div>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" placeholder="Bình luận" onfocus="comment('comment-post-3')">
-                            </div>
-                            <div class="col-sm-2">
-                                <button type="button" class="btn btn-default">
-                                    <span class="glyphicon glyphicon-share-alt">Chia sẻ</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="row comment" id="comment-post-3" style="padding-top: 30px; display: none">
-                            <div class="col col-sm-12">
-                                <div class="card border">
-                                    <div id="post">
-                                        <div class="media p-2">
-                                            <img src="http://api.randomuser.me/portraits/men/49.jpg" alt="John Doe" class="mr-2 mt-2 rounded-circle" style="width:60px;">
-                                            <div class="media-body">
-                                                <h4>John Doe <small><i>Posted on February 19, 2016</i></small></h4>
-                                                <p>Lorem ipsum...</p>
-                                                <div class="media p-2">
-                                                    <img src="http://api.randomuser.me/portraits/men/49.jpg" alt="Jane Doe" class="mr-2 mt-2 rounded-circle" style="width:60px;">
-                                                    <div class="media-body">
-                                                        <h4>Jane Doe <small><i>Posted on February 20 2016</i></small></h4>
-                                                        <p>Lorem ipsum...</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="media p-2">
-                                            <img src="http://api.randomuser.me/portraits/men/49.jpg" alt="John Doe" class="mr-2 mt-2 rounded-circle" style="width:60px;">
-                                            <div class="media-body">
-                                                <h4>John Doe <small><i>Posted on February 19, 2016</i></small></h4>
-                                                <p>Lorem ipsum...</p>
-                                                <div class="media p-2">
-                                                    <img src="http://api.randomuser.me/portraits/men/49.jpg" alt="Jane Doe" class="mr-2 mt-2 rounded-circle" style="width:60px;">
-                                                    <div class="media-body">
-                                                        <h4>Jane Doe <small><i>Posted on February 20 2016</i></small></h4>
-                                                        <p>Lorem ipsum...</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="post media p-2">
-                                        <img src="http://api.randomuser.me/portraits/men/49.jpg" alt="John Doe" class=" align-self-center mr-2 mt-2 rounded-circle" style="width:60px;">
-                                        <div class="media-body" style="padding-top: 20px">
-                                            <div class="row">
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" placeholder="Nhập nội dung bình luận" id="post-comment">
-                                                </div>
-                                                <div class="col-sm-1">
-                                                    <button class="btn btn-default">Gửi</button>
-                                                </div>
-                                                <div class="col-sm-1"></div>
-                                                <div class="col-sm-1">
-                                                    <button class="btn btn-default" onclick="displayComment('comment-post-3')">Hủy</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    @endforeach
+                @endif
             </div>
             <div class="col-lg-2"></div>
         </div>
     </div>
     <script>
         function comment(x) {
-            var status = document.getElementById(x).style.display;
-            if(status == "none"){
+            var status = document.getElementById('comment-post-' + x).style.display;
+
+            if (status == "none") {
                 status = 'block';
             }
-            document.getElementById(x).style.display = status;
+            document.getElementById('comment-post-' + x).style.display = status;
+            document.getElementById('btn-' + x).style.display = 'none';
         }
 
         function displayComment(x) {
-            document.getElementById(x).style.display = 'none';
+            document.getElementById('comment-post-' + x).style.display = 'none';
+            document.getElementById('btn-' + x).style.display = 'block';
+        }
+    </script>
+    <script>
+        function postDocument() {
+            var data = document.getElementById("data_post").value;
+            if ('' == data) {
+                return false;
+            }
+            return true;
         }
     </script>
 @endsection

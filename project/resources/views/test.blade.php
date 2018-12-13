@@ -8,12 +8,16 @@
     <link rel="stylesheet" href="{{asset('css/blog.css')}}">
     <link rel="stylesheet" href="{{asset('css/header.css')}}">
     <link rel="stylesheet" href="{{asset('css/quiz.css')}}">
+    <meta name="csrf-token" content="{{ csrf_token() }}"/>
 @endsection
 @section('js')
     <script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
     <script src="{{asset('js/header_search.js')}}"></script>
     <script src="{{asset('js/header.js')}}"></script>
     <script src="{{asset('js/countdowntimer.js')}}"></script>
+    <script src="{{asset('js/loading.js')}}"></script>
+    <script src="{{asset('js/ajax.lib.js')}}"></script>
+    <script src="{{asset('js/sweet_alert.js')}}"></script>
 
 @endsection
 @section('content')
@@ -24,81 +28,25 @@
                     <div class="rank-header">
                         <h3>Top 5</h3>
                     </div>
-                    <div class="rank-item">
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <img id="avatar-rank" class="rounded-circle"
-                                     src="{{asset('images/avatar_default.jpg')}}">
-                            </div>
-                            <div class="col-sm-9">
-                                <div class="rank-infor">
-                                    <span class="name">User name</span>
-                                    <span class="result" style="display: block">10/15</span>
+                    @if(!empty($topTest))
+                        @foreach($topTest as $data)
+                            <div class="rank-item">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <img id="avatar-rank" class="rounded-circle"
+                                             src="{{empty(($data->user)->avatar) ? asset('images/avatar_default.jpg'):($data->user)->avatar}}">
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <div class="rank-infor">
+                                            <span class="name">{{($data->user)->name}}</span>
+                                            <span class="result" style="display: block">{{$data->score.'/15'}}</span>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
 
-                    </div>
-                    <div class="rank-item">
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <img id="avatar-rank" class="rounded-circle"
-                                     src="{{asset('images/avatar_default.jpg')}}">
                             </div>
-                            <div class="col-sm-9">
-                                <div class="rank-infor">
-                                    <span class="name">User name</span>
-                                    <span class="result" style="display: block">10/15</span>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="rank-item">
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <img id="avatar-rank" class="rounded-circle"
-                                     src="{{asset('images/avatar_default.jpg')}}">
-                            </div>
-                            <div class="col-sm-9">
-                                <div class="rank-infor">
-                                    <span class="name">User name</span>
-                                    <span class="result" style="display: block">10/15</span>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="rank-item">
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <img id="avatar-rank" class="rounded-circle"
-                                     src="{{asset('images/avatar_default.jpg')}}">
-                            </div>
-                            <div class="col-sm-9">
-                                <div class="rank-infor">
-                                    <span class="name">User name</span>
-                                    <span class="result" style="display: block">10/15</span>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="rank-item">
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <img id="avatar-rank" class="rounded-circle"
-                                     src="{{asset('images/avatar_default.jpg')}}">
-                            </div>
-                            <div class="col-sm-9">
-                                <div class="rank-infor">
-                                    <span class="name">User name</span>
-                                    <span class="result" style="display: block">10/15</span>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
+                        @endforeach
+                    @endif
 
 
                 </div>
@@ -175,8 +123,11 @@
                     @endif
                 </div>
                 <div class="panel-submit">
-                    <input class="btn btn-primary center-block" type="button" value="Gửi bài thi"
-                           onclick="submitQuize()">
+                    <form>
+
+                        <input class="btn btn-primary center-block" type="button" value="Gửi bài thi"
+                               onclick="submitQuize()">
+                    </form>
                 </div>
             </div>
             <div class="col-xs-1 column"></div>
@@ -205,12 +156,48 @@
 
 
 <script type="text/javascript">
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 
     function submitQuize() {
         var array = @json($listQuestion);
-        submitQuiz(array);
-    }
+        var id_quiz = @json($id_quiz);
+        var id_chap = @json($id_chap);
+        var id_course = @json($id_course);
+        var countTrue = submitQuiz(array);
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 
+        $.ajax(
+            {
+                type: 'POST',
+                url: '/course/submit',
+                data: {
+                    score: countTrue,
+                    id_quiz: id_quiz,
+                    id_chap: id_chap,
+                    id_course: id_course,
+                    startAt: timeStart,
+                    endAt: new Date()
+                },
+
+
+            }).done(function (data) {
+
+            swal('Bạn đã đúng ' + countTrue + '/15 câu, xin chúc mừng!');
+
+        }).fail(function (jqXHR, ajaxOptions, thrownError) {
+
+            swal("Oops!", "Có lỗi xảy ra. vui lòng thử lại sau!", "error");
+
+        });
+    }
 
     $(function () {
         $('[data-toggle="tooltip"]').tooltip();

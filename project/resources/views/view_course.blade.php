@@ -123,7 +123,7 @@
                                             @if(!empty($test))
                                                 <div class="dropdown_item"><img
                                                         src="{{asset('images/ic_test.png')}}"/>
-                                                    <a href="{{route('do-quiz',['id'=>$course->id,'id_chap'=>$chapter->id])}}"
+                                                    <a href="{{route('do-quiz',['id'=>$course->id,'id_chap'=>$chapter->id,'id_quiz'=>$test->id])}}"
                                                        class="title-test">Test</a>
                                                     <div class="description-test">Description</div>
                                                 </div>

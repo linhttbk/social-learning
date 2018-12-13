@@ -1,17 +1,19 @@
 // Set the date we're counting down to
+var timeStart = new Date();
 var countDownDate = new Date().getTime() + 30 * 60 * 1000 + 2;
+
 
 // Update the count down every 1 second
 var x = setInterval(function () {
 
+
     // Get todays date and time
     var now = new Date().getTime();
-
     // Find the distance between now and the count down date
     var distance = countDownDate - now;
     if (distance < 0) {
         finishExam();
-        document.getElementById("timer").innerHTML = "Hết giờ"
+        document.getElementById("timer").innerHTML = "Hết giờ";
         clearInterval(x);
         var hours = 0;
         var minutes = 0;
@@ -27,7 +29,7 @@ var x = setInterval(function () {
     // Output the result in an element with id="demo"
     document.getElementById("timer").innerHTML = hours + "h "
         + minutes + "m " + seconds + "s ";
-    // If the count down is over, write some text 
+    // If the count down is over, write some text
 
 }, 1000);
 var numberQues = document.getElementsByName("ques");
@@ -83,23 +85,26 @@ function checkedRadio(optionsRadios) {
     var name = optionsRadios.name;
     var valueRadio = document.getElementsByName(name);
     var btnNumber = optionsRadios.value;
-    var numberQues = optionsRadios.value;
     var count = 0;
+    var number = 0;
     for (var i = 0; i < valueRadio.length; i++) {
         if (valueRadio[i].checked) {
-            document.getElementById("bt" + btnNumber).style.background = 'green';
+            document.getElementById("bt" + btnNumber).style.backgroundColor = 'green';
             break;
         }
     }
 
-
-    for (var j = 0; j < numberQues.length; j++) {
-        if (document.getElementById("bt" + (j + 1)).style.background = 'green') {
+    for (var j = 0; j < 15; j++) {
+        var id = "bt" + (j + 1);
+        var color = document.getElementById("bt" + (j + 1)).style.backgroundColor;
+        if (color == 'green') {
             count++;
         }
     }
-    document.getElementById("status").style.width = count / (numberQues.length) * 100 + "%";
-    document.getElementById("status1").innerText = Math.round(count / (numberQues.length) * 100 * 100) / 100 + "%";
+
+
+    document.getElementById("status").style.width = count / (15) * 100 + "%";
+    document.getElementById("status1").innerText = Math.round(count / (15) * 100 * 100) / 100 + "%";
 }
 
 
@@ -119,6 +124,9 @@ function submitQuiz(listQuestions) {
         }
 
     }
-    alert(countTrue);
+    return countTrue;
+
 
 }
+
+

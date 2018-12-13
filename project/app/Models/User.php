@@ -44,6 +44,17 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\Subject', 'id', 'id_sr');
     }
 
+    public function myPost()
+    {
+        return $this->hasMany('App\Models\Post', 'uid');
+    }
+
+    public function myComment()
+    {
+        return $this->hasMany('App\Models\Comment', 'uid');
+    }
+
+
 
     /**
      * The attributes that are mass assignable.
