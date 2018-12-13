@@ -12,6 +12,7 @@
         <li><a href="{{route('members')}}"> User Management </a></li>
         <li><a href="{{route('group-user')}}"> Group Management </a></li>
         <li><a href="{{route('document_management')}}"> Document Management </a></li>
+        <li><a href=""> Course Plan </a></li>
         <li><a href="{{route('forms')}}"> <i class="icon-padnote"></i>Forms </a></li>
         <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i
                     class="icon-interface-windows"></i>Example dropdown </a>
