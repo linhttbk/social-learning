@@ -59,7 +59,7 @@
                                             </div>
 
                                             <div class="wpuf-fields">
-                                                <input type="text" required="required" data-required="yes" data-type="text" name="guest_name" value="{{\Illuminate\Support\Facades\Auth::user()->uid}}" size="40" disabled>
+                                                <input type="text" required="required" data-required="yes" data-type="text" name="guest_name" value="<?php if(\Illuminate\Support\Facades\Auth::check()):?>{{\Illuminate\Support\Facades\Auth::user()->uid}}<?php endif;?>" size="40" disabled>
                                             </div>
                                         </li>
                                         <script type="text/javascript">
