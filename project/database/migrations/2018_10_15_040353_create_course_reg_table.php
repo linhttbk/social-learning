@@ -18,6 +18,7 @@ class CreateCourseRegTable extends Migration
             $table->integer('id_course');
             $table->foreign('id_course')->references('id')->on('Course');
             $table->string('uid', 30);
+            $table->foreign('uid')->references('uid')->on('User');
             $table->dateTime('date_reg');
             $table->timestamps();
         });

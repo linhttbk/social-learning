@@ -79,7 +79,7 @@
                                 </div>
                                 {{csrf_field()}}
                             </form>
-                            <form id="register-form" action="{{url('register')}}" method="post"
+                            <form id="register-form" action="{{url('register')}}" method="post" enctype="multipart/form-data"
                                   onsubmit=" return onSubmitCLick()"
                                   role="form" style="display: none;">
                                 <div class="form-error">
@@ -160,8 +160,8 @@
 
                                 <div class="form-group">
                                     <label>Avatar : </label>
-                                    <input type="file" name="image" id="image" size="25">
-                                    <span id="name-error" class="input-error-msg"> </span>
+                                    <input type="file" name="image" id="image" size="25"  accept=".jpg,.jpeg,.png">
+
                                 </div>
                                 <div class="form-group">
                                     <label>Trường : </label>

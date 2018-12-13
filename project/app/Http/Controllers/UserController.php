@@ -71,7 +71,7 @@ class UserController extends Controller
             ->orWhere('name', 'like', '%' . $key_search . '%')
             ->orWhere('email', 'like', '%' . $key_search . '%')
             ->paginate(10);
-        return view('admin.member', compact('totalUser', 'totalActive', 'user_pagination', 'key_search'));
+        return view('admin.member.member', compact('totalUser', 'totalActive', 'user_pagination', 'key_search'));
     }
 
     public function deleteUser($uid)

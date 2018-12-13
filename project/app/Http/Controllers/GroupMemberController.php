@@ -9,7 +9,6 @@ use App\Models\Post;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class GroupMemberController extends Controller
 {
@@ -116,6 +115,7 @@ class GroupMemberController extends Controller
             return back()->withInput()->with('error', 'Ban khong co quyen chinh sua nhom nay!');
         }
     }
+
     function postData(Request $request, $id_group)
     {
         $post = new Post();
@@ -136,7 +136,21 @@ class GroupMemberController extends Controller
         }
 
     }
-    function  showUserGroup(){
+
+    function showUserGroup($groupId)
+    {
+        $groupUser = GroupUser::find($groupId);
+        if (!empty($groupUser)) {
+            $adminGroup = $groupUser->owner;
+            $groupMember = $groupUser->members;
+            $countMember = count($groupUser->groupMember);
+            return view('group.user_my_group', [
+                'adminGroup' => $adminGroup,
+                'groupMember' => $groupMember,
+                'countMember' => $countMember
+            ]);
+        }
+
         return view('group.user_my_group');
     }
 

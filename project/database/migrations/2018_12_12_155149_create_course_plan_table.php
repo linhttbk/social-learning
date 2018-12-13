@@ -18,7 +18,7 @@ class CreateCoursePlanTable extends Migration
             $table->integer('id_lesson');
             $table->primary('id_course','id_lesson');
             $table->foreign('id_course')->references('id')->on('Course');
-            $table->foreign('id_lesson')->references('id')->on('chapter');
+            $table->foreign('id_lesson')->references('id')->on('Chapter');
             $table->date('opendate');
             $table->timestamps();
         });
