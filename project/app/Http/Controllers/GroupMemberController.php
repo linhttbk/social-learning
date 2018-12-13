@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\GroupMember;
 use App\Models\GroupRequest;
 use App\Models\GroupUser;
+use App\Models\Post;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,10 +36,14 @@ class GroupMemberController extends Controller
             , 'listOtherGroups' => $listOtherGroups, 'listRequestGroups' => $listRequestGroups]);
     }
 
+
     function showMyGroup($idGroup)
     {
+        $group = GroupUser::find($idGroup);
+//        $listPost = $group->getListPost()->get();
+        $listPost = $group->getListPost;
 
-        return view('group.my_group');
+        return view('group.my_group', ['listPost' => $listPost]);
     }
 
 
@@ -110,6 +115,29 @@ class GroupMemberController extends Controller
         } else {
             return back()->withInput()->with('error', 'Ban khong co quyen chinh sua nhom nay!');
         }
+    }
+    function postData(Request $request, $id_group)
+    {
+        $post = new Post();
+        $post->content = $request->data_post;
+        $post->uid = Auth::user()->uid;
+        $post->id_group = $id_group;
+        $post->create_at = Carbon::now();
+        if (!empty($request->file)) {
+            $file = $request->file('file');
+            $imageName = time() . '.' . $request->image->getClientOriginalExtension();
+            $filePath = 'images/' . $imageName;
+            if (!empty($currentAvatar)) Storage::disk('s3')->delete($currentAvatar);
+            Storage::disk('s3')->put($filePath, file_get_contents($file), 'public');
+            $imageSave = 'https://s3-ap-southeast-1.amazonaws.com/slearningteam/images/' . $imageName;
+            $post->url_attach = $imageSave;
+        } else {
+            echo "Không có file";
+        }
+
+    }
+    function  showUserGroup(){
+        return view('group.user_my_group');
     }
 
 }

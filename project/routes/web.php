@@ -49,7 +49,9 @@ Route::group(['prefix' => 'course'], function () {
     Route::post('register/{id}', 'CourseRegistrationController@registerCourse')->name('buy_course');
     Route::get('/register-course/{id}', 'CourseRegistrationController@goToBuyCourse')->name('course-reg');
     Route::get('/join-course/{id}', 'JoinCourseController@showViewCourse')->name('join-course');
-    Route::get('/join-course/{id}/{id_chap}/quiz','QuizController@showQuiz')->name('do-quiz');
+    Route::get('/join-course/{id}/{id_chap}/quiz/{id_quiz}', 'QuizController@showQuiz')->name('do-quiz');
+    Route::post('submit', 'QuizController@submitQuiz')->name('submit-quiz');
+
 
 });
 
@@ -67,10 +69,14 @@ Route::group(['prefix' => 'groups'], function () {
     Route::get('/cancel_group/{groupId}', 'GroupMemberController@quitGroup')->name('cancel-group');
 
     Route::get('/{groupId}/settings', 'GroupMemberController@gotoSetting')->name('go-setting');
+
+    Route::post('/{groupId}/post', 'GroupMemberController@postData')->name('my_post_data');
+    Route::get('/{groupId}/user_group', 'GroupMemberController@showUserGroup')->name('user_my_group');
+
 });
 
 Route::get('test', function () {
-    return view('test');
+    return view('welcome');
 });
 Route::get('test2', 'CoursesController@showAllCourses');
 
