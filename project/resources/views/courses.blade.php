@@ -208,7 +208,7 @@
                                             {{--</div>--}}
                                             <div class="latest_content">
                                                 <div class="latest_title"><a
-                                                        href="course.blade.php">{{$data->title}}</a></div>
+                                                        href="{{route('course_detail',['id'=>$data->id])}}">{{$data->title}}</a></div>
                                                 <div class="latest_tearcher"><a href="#">{{$data->name}}</a></div>
                                                 <div class="course_text"> {{$data->des}}</div>
                                                 <div

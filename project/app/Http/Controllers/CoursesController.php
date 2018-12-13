@@ -28,7 +28,9 @@ class CoursesController extends Controller
     public function showCourseDetail($id)
     {
         $course = Course::find($id);
+        if(Auth::check()){
         $check_registered_course = DB::table("CourseRegistration")->where([["id_course", "=", $id], ["uid", "=", Auth::user()->uid]])->get();
+        }
 //        dd($check_registered_course);
         if (empty($check_registered_course[0])) {
             return view('course', compact('course'));

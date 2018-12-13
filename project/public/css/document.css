@@ -121,12 +121,6 @@ a {
     background-color: transparent;
 }
 
-a:-webkit-any-link {
-    color: -webkit-link;
-    cursor: pointer;
-    text-decoration: underline;
-}
-
 ul.wpuf-form li {
     margin-left: 0;
     margin-bottom: 10px;
@@ -241,11 +235,11 @@ img {
     border: 0;
 }
 
-a:-webkit-any-link {
-    color: -webkit-link;
-    cursor: pointer;
-    text-decoration: underline;
-}
+/*a:-webkit-any-link {*/
+    /*color: -webkit-link;*/
+    /*cursor: pointer;*/
+    /*text-decoration: underline;*/
+/*}*/
 
 @media (max-width: 1140px) and (min-width: 768px){
     .td_module_6 .entry-title {

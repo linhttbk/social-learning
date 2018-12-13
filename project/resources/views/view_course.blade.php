@@ -108,7 +108,7 @@
                                                         </div>
                                                         <div class="dropdown_item_text">
                                                             <ol>
-                                                                <li><a title="Video" href="#"
+                                                                <li><a title="Video"
                                                                        onclick="myFunction('{{$data->url}}')">Xem
                                                                         video</a></li>
                                                                 <li><a title="Tải tài liệu" href='{{$data->url_doc}}'
