@@ -914,7 +914,7 @@ section
 }
 .title-test{
     margin-left: 10px;
-    color: black;
+    color: #0056b3;
     font-weight: bold;
     font-size: larger;
 }
@@ -1488,7 +1488,7 @@ video{
 }
 .title-test{
     margin-left: 10px;
-    color: black;
+    color: #0056b3;
     font-weight: bold;
     font-size: larger;
 }
@@ -1496,3 +1496,4 @@ video{
     margin-top: 10px;
     color: #8D8E90;
 }
+

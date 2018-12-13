@@ -108,10 +108,11 @@
                                                         </div>
                                                         <div class="dropdown_item_text">
                                                             <ol>
-                                                                <li><a title="Video" class="video"
+                                                                <li><a title="Video" href="#"
                                                                        onclick="myFunction('{{$data->url}}')">Xem
                                                                         video</a></li>
-                                                                <li><a title="Tải tài liệu" href=''>Tải tài liệu</a>
+                                                                <li><a title="Tải tài liệu" href='{{$data->url_doc}}'
+                                                                       download>Tải tài liệu</a>
                                                                 </li>
                                                             </ol>
                                                         </div>
@@ -125,7 +126,7 @@
                                                         src="{{asset('images/ic_test.png')}}"/>
                                                     <a href="{{route('do-quiz',['id'=>$course->id,'id_chap'=>$chapter->id,'id_quiz'=>$test->id])}}"
                                                        class="title-test">Test</a>
-                                                    <div class="description-test">Description</div>
+                                                    <div class="description-test">Bài kiểm tra cho chương</div>
                                                 </div>
                                             @endif
                                         </ul>

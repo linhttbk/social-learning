@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{asset('plugins/OwlCarousel2-2.2.1/animate.css')}}">
     <link rel="stylesheet" href="{{asset('css/general.css')}}">
     <link rel="stylesheet" href="{{asset('css/my_group.css')}}">
+    <link rel="stylesheet" href="{{asset('css/user_my_group.css')}}">
 
 @endsection
 @section('js')
@@ -42,14 +43,15 @@
             </div>
             <div class="col-lg-6">
                 <ul class="list-group">
-                    <li class="list-group-item active">
+                    <li class="list-group-item">
                         <div class="row">
                             <div class="col-sm-4">
-                                <h5>Thành viên</h5><i id="numberUser"></i>
+                                <h5>{{'Thành viên: '.$countMember }}</h5>
                             </div>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="myInput" onkeyup="myFunction()" placeholder="Tìm kiếm">
+                                    <input type="text" class="form-control" id="myInput" onkeyup="myFunction()"
+                                           placeholder="Tìm kiếm">
                                     <div class="input-group-append">
                                         <button class="btn btn-success" type="button">Search</button>
                                     </div>
@@ -58,144 +60,60 @@
                         </div>
                     </li>
                     <ul id="userGroup">
-                        <li class="list-group-item">
-                            <div class="card card-inner">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-sm-2">
-                                            <img style="width: 80px; height: 80px"
-                                                 src="http://api.randomuser.me/portraits/men/49.jpg"
-                                                 class="rounded-circle"/>
-                                            <hr>
-                                            <p class="text-center">Admin</p>
-                                        </div>
-                                        <div class="col-sm-10">
-                                            <p><a href="#"><h4><strong>Vũ Văn Kiên</strong></h4></a></p>
-                                            <p>Mô tả</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="card card-inner" style="margin: 0;">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-sm-2">
-                                            <img style="width: 80px; height: 80px"
-                                                 src="http://api.randomuser.me/portraits/men/49.jpg"
-                                                 class="rounded-circle"/>
-                                            <hr>
-                                            <p class="text-secondary text-center">Admin</p>
-                                        </div>
-                                        <div class="col-sm-10">
-                                            <p><a href="#"><h4><strong>Vũ Văn Tuyên</strong></h4></a></p>
-                                            <p>Mô tả</p>
+                        @if(isset($adminGroup))
+                            <li class="list-group-item">
+                                <div class="card card-inner">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-sm-2">
+                                                <img style="width: 80px; height: 80px"
+                                                     src="{{empty($adminGroup->avatar)?asset('images/avatar_default.jpg'):$adminGroup->avatar}}"
+                                                     class="rounded-circle"/>
+                                                <hr>
+                                                <p class="text-center">Admin</p>
+                                            </div>
+                                            <div class="col-sm-10">
+                                                <p><a href="#"><h4><strong>{{$adminGroup->name}}</strong></h4></a></p>
+                                                <p>{{$adminGroup->phone}}</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="card card-inner" style="margin: 0;">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-sm-2">
-                                            <img style="width: 80px; height: 80px"
-                                                 src="http://api.randomuser.me/portraits/men/49.jpg"
-                                                 class="rounded-circle"/>
-                                            <hr>
-                                            <p class="text-secondary text-center">Admin</p>
-                                        </div>
-                                        <div class="col-sm-10">
-                                            <p><a href="#"><h4><strong>Vũ Văn Tuyên</strong></h4></a></p>
-                                            <p>Mô tả</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="card card-inner" style="margin: 0;">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-sm-2">
-                                            <img style="width: 80px; height: 80px"
-                                                 src="http://api.randomuser.me/portraits/men/49.jpg"
-                                                 class="rounded-circle"/>
-                                            <hr>
-                                            <p class="text-secondary text-center">Admin</p>
-                                        </div>
-                                        <div class="col-sm-10">
-                                            <p><a href="#"><h4><strong>Vũ Văn Tuyên</strong></h4></a></p>
-                                            <p>Mô tả</p>
+                            </li>
+                        @endif
+                        @if(!empty($groupMember))
+                            @foreach($groupMember as $data)
+                                <li class="list-group-item">
+                                    <div class="card card-inner" style="margin: 0;">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-sm-2">
+                                                    <img style="width: 80px; height: 80px"
+                                                         src="{{empty($data->avatar)?asset('images/avatar_default.jpg'):$data->avatar}}"
+                                                         class="rounded-circle"/>
+                                                    <hr>
+                                                    <p class="text-secondary text-center">Thành viên</p>
+                                                </div>
+                                                <div class="col-sm-10">
+                                                    <p><a href="#"><h4><strong>{{$data->name}}</strong></h4></a></p>
+                                                    <p>{{$data->phone}}</p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="card card-inner" style="margin: 0;">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-sm-2">
-                                            <img style="width: 80px; height: 80px"
-                                                 src="http://api.randomuser.me/portraits/men/49.jpg"
-                                                 class="rounded-circle"/>
-                                            <hr>
-                                            <p class="text-secondary text-center">Admin</p>
-                                        </div>
-                                        <div class="col-sm-10">
-                                            <p><a href="#"><h4><strong>Vũ Văn Tuyên</strong></h4></a></p>
-                                            <p>Mô tả</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="card card-inner" style="margin: 0;">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-sm-2">
-                                            <img style="width: 80px; height: 80px"
-                                                 src="http://api.randomuser.me/portraits/men/49.jpg"
-                                                 class="rounded-circle"/>
-                                            <hr>
-                                            <p class="text-secondary text-center">Admin</p>
-                                        </div>
-                                        <div class="col-sm-10">
-                                            <p><a href="#"><h4><strong>Vũ Văn Tuyên</strong></h4></a></p>
-                                            <p>Mô tả</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="card card-inner" style="margin: 0;">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-sm-2">
-                                            <img style="width: 80px; height: 80px"
-                                                 src="http://api.randomuser.me/portraits/men/49.jpg"
-                                                 class="rounded-circle"/>
-                                            <hr>
-                                            <p class="text-secondary text-center">Admin</p>
-                                        </div>
-                                        <div class="col-sm-10">
-                                            <p><a href="#"><h4><strong>Vũ Văn Tuyên</strong></h4></a></p>
-                                            <p>Mô tả</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
+                                </li>
+                            @endforeach
+                        @endif
+
 
                     </ul>
                 </ul>
             </div>
-            <div class="col-lg-2"></div>
+            <div class="col-lg-3">
+                <div class="group-request">
+                    sdsdsd
+                </div>
+            </div>
         </div>
     </div>
     <script>
@@ -215,7 +133,8 @@
                 }
             }
         }
-        var number = document.getElementsByClassName('list-group-item').length-1;
+
+        var number = document.getElementsByClassName('list-group-item').length - 1;
         document.getElementById('numberUser').innerHTML = number;
     </script>
 @endsection

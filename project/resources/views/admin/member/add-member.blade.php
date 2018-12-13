@@ -115,8 +115,7 @@
 
                                         <div class="form-group">
                                             <label>Avatar : </label>
-                                            <input type="file" name="image" id="image" size="25">
-                                            <span id="name-error" class="input-error-msg"> Vui  lòng  nhap ten nguoi dung</span>
+                                            <input type="file" name="image" id="image" size="25"  accept=".jpg,.jpeg,.png">
                                         </div>
 
                                         <div class="form-group">
