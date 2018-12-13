@@ -65,7 +65,7 @@ function checkedRadio(optionsRadios) {
     // }
 
     for (var j = 0; j < numberQues.length; j++) {
-        if (document.getElementById("bt" + (j + 1)).style.background == 'green') {
+        if(document.getElementById("bt"+(j+1)).style.background == 'green'){
             count++;
         }
     }

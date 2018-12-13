@@ -19,7 +19,7 @@ class CreateQuestionTable extends Migration
             $table->foreign('id_chap')->references('id')->on('Chapter');
             $table->string('content');
             $table->string('true_answer');
-            $table->string('url_image');
+            $table->string('url_image')->nullable();
             $table->timestamps();
 
         });
