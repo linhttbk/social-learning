@@ -269,50 +269,18 @@
             </div>
             <div class="row courses_row">
             @if(!empty($result))
-                    @foreach($result as $data)
-                        <!-- Course -->
-                            <div class="col-lg-4 course_col">
-                                <div class="course">
-                                    <div class="course_image"><img src="images/course_1.jpg" alt=""></div>
-                                    <div class="course_body">
-                                        <h3 class="course_title"><a href="<?php ?>{{route('course_detail',['id'=>$data->id])}}">{{$data->title}}</a></h3>
-                                        <div class="course_teacher">{{$data->name}}</div>
-                                        <div class="course_text">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipi elitsed do eiusmod tempor</p>
-                                        </div>
-                                    </div>
-                                    <div class="course_footer">
-                                        <div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
-                                            <div class="course_info">
-                                                <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                                                <span>{{$data->count_student}}</span>
-                                            </div>
-                                            <span class='raty' style = 'margin:5px' id='9' data-score=4></span>
-                                            | Tổng số: <b  class='rate_count'>8</b>
-                                            <div class="course_price ml-auto">
-                                                @if($data->price==0)
-                                                    Free
-                                                @else
-                                                    ${{$data->price}}
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                    @endforeach
-                @else
+                @foreach($result as $data)
                     <!-- Course -->
                         <div class="col-lg-4 course_col">
                             <div class="course">
                                 <div class="course_image"><img src="images/course_1.jpg" alt=""></div>
                                 <div class="course_body">
                                     <h3 class="course_title"><a
-                                            href="{{route('course_detail',['id'=>$data->id])}}">{{$data->title}}</a>
+                                            href="<?php ?>{{route('course_detail',['id'=>$data->id])}}">{{$data->title}}</a>
                                     </h3>
                                     <div class="course_teacher">{{$data->name}}</div>
                                     <div class="course_text">
-                                        <p>{{$data->des}}</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipi elitsed do eiusmod tempor</p>
                                     </div>
                                 </div>
                                 <div class="course_footer">
@@ -335,17 +303,19 @@
                                 </div>
                             </div>
                         </div>
-            @endif
+                @endforeach
             @else
                 <!-- Course -->
                     <div class="col-lg-4 course_col">
                         <div class="course">
                             <div class="course_image"><img src="images/course_1.jpg" alt=""></div>
                             <div class="course_body">
-                                <h3 class="course_title"><a href="{{route('course')}}">Software Training</a></h3>
-                                <div class="course_teacher">Mr. John Taylor</div>
+                                <h3 class="course_title"><a
+                                        href="{{route('course_detail',['id'=>$data->id])}}">{{$data->title}}</a>
+                                </h3>
+                                <div class="course_teacher">{{$data->name}}</div>
                                 <div class="course_text">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipi elitsed do eiusmod tempor</p>
+                                    <p>{{$data->des}}</p>
                                 </div>
                             </div>
                             <div class="course_footer">
@@ -353,16 +323,22 @@
                                     class="course_footer_content d-flex flex-row align-items-center justify-content-start">
                                     <div class="course_info">
                                         <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                                        <span>20</span>
+                                        <span>{{$data->count_student}}</span>
                                     </div>
                                     <span class='raty' style='margin:5px' id='9' data-score=4></span>
                                     | Tổng số: <b class='rate_count'>8</b>
-                                    <div class="course_price ml-auto">$130</div>
+                                    <div class="course_price ml-auto">
+                                        @if($data->price==0)
+                                            Free
+                                        @else
+                                            ${{$data->price}}
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                @endif
+            @endif
             </div>
             <div class="row">
                 <div class="col">
