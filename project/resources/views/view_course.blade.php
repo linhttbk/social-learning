@@ -24,7 +24,7 @@
             if (isSupp == "") {
                 x.src = "mov_bbb.ogg";
             } else {
-                x.src = "{{asset("upload/video")}}"+"/"+name;
+                x.src = "{{asset("upload/video")}}" + "/" + name;
             }
             x.load();
         }
@@ -63,7 +63,7 @@
                         @endphp
                         @if($chapters->isEmpty())
                             <span
-                                    class="not-found">Not found Chapters for this course </span>
+                                class="not-found">Not found Chapters for this course </span>
                         @else
                             @foreach($chapters as $key => $chapter)
                                 @php
@@ -108,8 +108,11 @@
                                                         </div>
                                                         <div class="dropdown_item_text">
                                                             <ol>
-                                                                <li><a title="Video" class="video" onclick="myFunction('{{$data->url}}')">Xem video</a></li>
-                                                                <li><a  title="Tải tài liệu" href=''>Tải tài liệu</a></li>
+                                                                <li><a title="Video" class="video"
+                                                                       onclick="myFunction('{{$data->url}}')">Xem
+                                                                        video</a></li>
+                                                                <li><a title="Tải tài liệu" href=''>Tải tài liệu</a>
+                                                                </li>
                                                             </ol>
                                                         </div>
                                                     </div>
@@ -119,8 +122,9 @@
                                         <ul>
                                             @if(!empty($test))
                                                 <div class="dropdown_item"><img
-                                                            src="{{asset('images/ic_test.png')}}"/>
-                                                    <span class="title-test">Test</span>
+                                                        src="{{asset('images/ic_test.png')}}"/>
+                                                    <a href="{{route('do-quiz',['id'=>$course->id,'id_chap'=>$chapter->id])}}"
+                                                       class="title-test">Test</a>
                                                     <div class="description-test">Description</div>
                                                 </div>
                                             @endif
@@ -147,12 +151,21 @@
                         <div class="content-box">
                             <center>
                                 <!-- Histats.com  START  (standard)-->
-                                <script type="text/javascript">document.write(unescape("%3Cscript src=%27http://s10.histats.com/js15.js%27 type=%27text/javascript%27%3E%3C/script%3E"));</script>
-                                <a href="http://www.histats.com" target="_blank" title="hit counter" ><script  type="text/javascript" >
-                                        try {Histats.start(1,2138481,4,401,118,80,"00011111");
-                                            Histats.track_hits();} catch(err){};
-                                    </script></a>
-                                <noscript><a href="http://www.histats.com" target="_blank"><img  src="http://sstatic1.histats.com/0.gif?2138481&101" alt="hit counter" border="0"></a></noscript>
+                                <script
+                                    type="text/javascript">document.write(unescape("%3Cscript src=%27http://s10.histats.com/js15.js%27 type=%27text/javascript%27%3E%3C/script%3E"));</script>
+                                <a href="http://www.histats.com" target="_blank" title="hit counter">
+                                    <script type="text/javascript">
+                                        try {
+                                            Histats.start(1, 2138481, 4, 401, 118, 80, "00011111");
+                                            Histats.track_hits();
+                                        } catch (err) {
+                                        }
+                                        ;
+                                    </script>
+                                </a>
+                                <noscript><a href="http://www.histats.com" target="_blank"><img
+                                            src="http://sstatic1.histats.com/0.gif?2138481&101" alt="hit counter"
+                                            border="0"></a></noscript>
                                 <!-- Histats.com  END  -->
                             </center>
                         </div>
@@ -169,7 +182,8 @@
 
                                 <p>
                                     <a rel="nofollow" href="mailto:huybuivan5797@gmail.com">
-                                        <img style="margin-bottom:-3px" src="{{asset('images/email.png')}}"> Email: huybuivan5797@gmail.com
+                                        <img style="margin-bottom:-3px" src="{{asset('images/email.png')}}"> Email:
+                                        huybuivan5797@gmail.com
                                     </a>
                                 </p>
                                 <p>Facebook: <a href="https://www.facebook.com/huy.buivan.127"> Bùi Văn Huy</a></p>
@@ -182,7 +196,7 @@
                         </div>
                         <div class="content-box">
                             <a href="">
-                                <img  style="width: 188px" src="{{asset('images/ads.png')}}">
+                                <img style="width: 188px" src="{{asset('images/ads.png')}}">
                             </a>
                         </div>
                     </div>
