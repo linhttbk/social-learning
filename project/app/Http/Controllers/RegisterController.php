@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
+use File;
 
 class RegisterController extends Controller
 {
@@ -26,15 +27,15 @@ class RegisterController extends Controller
     }
 
     public function regis(Request $req)
-    {
-        $uid = $req->uid;
-        {
-            $email = $req->email;
-            if (User::find($uid)) {
-                return redirect('login')->with('exist', 'tai khoan da su dung');
-            } else if (User::where('email', $email)) {
-                return redirect('login')->with('exist', 'Email da su dung');
-            } else {
+    {   
+        $uid = $req->usernamereg;
+        $email = $req->email;
+        if (User::find($uid)) {
+            return back()->withInput()->with('error' ,'Tai khoan da su dung');
+        } else if (User::where('email', $email)->first()) {
+            return back()->withInput()->with('error' ,'Email da su dung');
+        } 
+        else {
                 $user = new User();
                 $account = new Account();
 
@@ -65,13 +66,20 @@ class RegisterController extends Controller
                     else if ($id_subreg == "Ngữ Văn")
                         $user->id_sr = 5;
                 }
+                if (!empty($req->image)) {
+                    $file = $req->file('image');
+                    $imageName = time() . '.' . $req->image->getClientOriginalExtension();
+                    $filePath = 'images/' . $imageName;
+                    Storage::disk('s3')->put($filePath, file_get_contents($file), 'public');
+                    $imageSave = 'https://s3-ap-southeast-1.amazonaws.com/slearningteam/images/' . $imageName;
+                    $user->avatar = $imageSave;
+                }
                 $user->save();
                 $account->save();
                 $this->activationService->sendActivationMail($user);
-                return redirect('login')->with('sucess', "Xác thực email để kích hoạt tài khoản");
+                return redirect('login')->with('success', "Xác thực email để kích hoạt tài khoản");
             }
         }
-    }
 
     public function activateUser($token)
     {

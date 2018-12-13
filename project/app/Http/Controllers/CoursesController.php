@@ -40,4 +40,8 @@ class CoursesController extends Controller
         return view('member.course.my_course', compact('result', 'subject'));
 
     }
+    public function getCoursePlan(){
+        $allCourse= DB::table('Course')->get();
+        return view('admin.courseplan.add-course-plan',['allCourse'=>$allCourse]);
+    }
 }
