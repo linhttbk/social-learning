@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 class QuizController extends Controller
 {
     //
-    function showQuiz($id_chap, $id_quiz, $id_course)
+    function showQuiz($id_course, $id_chap, $id_quiz)
     {
         $listQuestion = Question::where('id_chap', $id_chap)->inRandomOrder()->take(15)->get();
         $topTest = TestHistory::where('id_test', $id_quiz)->orderBy('score', 'DESC')->take(5)->get();
@@ -23,8 +23,8 @@ class QuizController extends Controller
     {
         $testHistory = new TestHistory();
         $testHistory->id_test = $request->id_quiz;
-        $testHistory->time_start = date('Y-m-d H:i:s', strtotime($request->startAt));
-        $testHistory->time_finish = date('Y-m-d H:i:s',strtotime($request->endAt));
+        $testHistory->time_start = $request->startAt;
+        $testHistory->time_finish = $request->endAt;
         $testHistory->uid = Auth::user()->uid;
         $testHistory->score = $request->score;
         $testHistory->save();

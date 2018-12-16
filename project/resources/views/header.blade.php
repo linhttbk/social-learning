@@ -25,7 +25,7 @@
                                 <div id="menu-user">
                                     <ul>
                                         <li class="infor-user"><a href="#"><img class="avatar"
-                                                                                src="{{empty(Auth::user()->avatar)?asset('images/avatar_default.jpg'):Auth::user()->avatar}}"
+                                                                                src="{{empty(Auth::user()->user->avatar)?asset('images/avatar_default.jpg'):Auth::user()->user->avatar}}"
                                                                                 alt="Xin chào "> {{((Auth::user())->user)->name}}
                                             </a>
                                             <ul class="sub-menu">

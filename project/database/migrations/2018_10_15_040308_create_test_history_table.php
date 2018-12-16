@@ -20,8 +20,8 @@ class CreateTestHistoryTable extends Migration
             $table->string('uid', 30);
             $table->foreign('uid')->references('uid')->on('User');
             $table->integer('score');
-            $table->dateTime('time_start');
-            $table->dateTime('time_finish');
+            $table->timestamp('time_start');
+            $table->timestamp('time_finish');
             $table->timestamps();
         });
     }
