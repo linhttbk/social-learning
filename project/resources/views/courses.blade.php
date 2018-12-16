@@ -88,8 +88,7 @@
                                                 </h3>
                                                 <div class="course_teacher"><a href="#">{{$data->name}}</a></div>
                                                 <div class="course_text">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipi elitsed do eiusmod
-                                                        tempor</p>
+                                                    <p>{{$data->des}}</p>
                                                 </div>
                                             </div>
                                             <div class="course_footer">

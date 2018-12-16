@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{{asset('plugins/font-awesome-4.7.0/css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('plugins/colorbox/colorbox.css')}}">
     <link rel="stylesheet" href="{{asset('css/blog_responsive.css')}}">
-    <link rel="stylesheet" href="{{asset('css/blog.css')}}">
+    <link rel="stylesheet" href="{{asset('css/general.css')}}">
     <link rel="stylesheet" href="{{asset('css/header.css')}}">
     <link rel="stylesheet" href="{{asset('css/quiz.css')}}">
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
@@ -86,7 +86,7 @@
                             </div>
                             <div class="panel-body">
                                 <div class="radio">
-                                    <label>
+                                    <label class="answer true">
                                         <input type="radio" name="{{'optionsRadios'.($key+1)}}" id="optionsRadios1"
                                                value="{{$key+1}}" data-answer="A"
                                                onchange="checkedRadio(this)">
@@ -114,19 +114,23 @@
                                                onchange="checkedRadio(this)"> {{($data->answer)->D}}
                                     </label>
                                 </div>
-                                <div class="hidden">
-                                    <label class="answer1" id="answer1">option4</label>
-                                </div>
+
 
                             </div>
                         @endforeach
+                            <div class="hidden">
+                                <label class="answer1" id="answer1" data-listquestion = "{{$listQuestion}}">option4</label>
+                                <label class="data2" id="data1" data-quiz = "{{$id_quiz}}">option5</label>
+                                <label class="data3" id="data2" data-chap = "{{$id_chap}}">option6</label>
+                                <label class="data4" id="data3" data-course = "{{$id_course}}">option6</label>
+                            </div>
                     @endif
                 </div>
                 <div class="panel-submit">
                     <form>
 
-                        <input class="btn btn-primary center-block" type="button" value="Gửi bài thi"
-                               onclick="submitQuize()">
+                        <input id="submitquiz" class="btn btn-primary center-block" type="button" value="Gửi bài thi"
+                              >
                     </form>
                 </div>
             </div>
@@ -156,11 +160,7 @@
 
 
 <script type="text/javascript">
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
+
 
     function submitQuize() {
         var array = @json($listQuestion);
