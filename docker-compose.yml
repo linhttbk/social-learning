@@ -1,43 +1,18 @@
 version: '3'
 services:
-  course:
+  app:
     build:
-      context: ./course
+      context: ./laravel
       dockerfile: Dockerfile
-    working_dir: /var/www/html/course
+    working_dir: /var/www/html/slearning
     depends_on: 
       - db
     volumes:
-      - ./course:/var/www/html/course
+      - ./laravel:/var/www/html/slearning
     links:
       - db
     ports:
-      - 8410:80
-  user:
-    build:
-      context: ./user
-      dockerfile: Dockerfile
-    working_dir: /var/www/html/user
-    volumes:
-      - ./user:/var/www/html/user
-    links:
-      - db
-
-    ports:
-      - 8420:80
-
-  api-gateway:
-    build:
-      context: ./api-gateway
-      dockerfile: Dockerfile
-    working_dir: /var/www/html/api-gateway
-    volumes:
-      - ./api-gateway:/var/www/html/api-gateway
-    links:
-      - course
-      - user
-    ports:
-      - 8430:80
+      - 8400:80
 
   db:
     image: mysql:5.7

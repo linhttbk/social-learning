@@ -10,7 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('xx',function (){
+    return 'project';
+});
 Route::get('/', function () {
     $result = \Illuminate\Support\Facades\DB::table('Course')->select(array('Course.*', 'User.*', DB::raw('(Select Count(CourseRegistration.id_course) from CourseRegistration where CourseRegistration.id_course = Course.id) as count_student')))
         ->join('User', 'Course.uid', '=', 'User.uid')
@@ -95,7 +97,8 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
 Route::group(['prefix' => 'admin-cp'], function () {
 
 
-    Route::get('members/search', 'UserController@searchUser')->name('search');
+
+
     Route::get('members/add', function () {
         return view('admin.member.add-member');
     })->name('add-member');
@@ -139,7 +142,10 @@ Route::group(['prefix' => 'admin-cp'], function () {
             return view('admin.forms');
         })->name('forms');
 
-        Route::get('courses', 'CoursesController@showCoursesPag')->name('admin-courses');
+        Route::get('courses', 'Admin\CourseController@showCoursesPag')->name('admin-courses');
+        Route::get('courses/search', 'Admin\CourseController@searchCourse')->name('search-courses');
+        Route::get('courses/add-course','Admin\CourseController@showAddCourse')->name('add-courses');
+        Route::post('courses/add-course','Admin\CourseController@addCourse')->name('add-course');
 
         Route::get('members/search', 'UserController@searchUser')->name('search');
 
