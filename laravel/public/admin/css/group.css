@@ -1,0 +1,87 @@
+.nav-top-group {
+    width: 100%;
+    margin-top: 20px;
+    display: inline-block;
+}
+
+.menu-top-group {
+    display: inline-block;
+    margin: auto;
+}
+
+.search-group {
+
+}
+
+.menu-top-group ul {
+    list-style: none;
+
+}
+
+.menu-top-group ul li {
+    display: inline-block;
+    margin-left: 10px;
+    color: #1d68a7;
+    font-size: 14px;
+}
+
+.menu-top-group ul li a {
+    border-right: 1px solid;
+    padding: 0 5px;
+
+}
+.menu-top-group ul li a:hover {
+    text-decoration: underline;
+    color: #235a81;
+
+}
+.menu-top-group ul li a span {
+    color: #636b6f;
+}
+
+.row {
+    margin-top: 20px;
+}
+
+.card {
+    margin-bottom: 10px;
+
+}
+
+.card div table thead tr th {
+    text-align: center;
+}
+
+.card div table tbody tr td {
+    text-align: center;
+}
+
+.tool-group {
+    width: 100%;
+    display: inline-block;
+}
+
+.tool-group input  {
+    vertical-align: -11%;
+}
+.tool-group label{
+    display: inline;
+    vertical-align: middle;
+}
+
+.tool-group i{
+    display: inline;
+    vertical-align: middle;
+    font-size: 14px;
+    margin-left: 20px;
+}
+.tool-group a{
+    display: inline;
+    vertical-align: middle;
+    margin-left: 15px;
+    color: black;
+}
+.tool-group a:hover{
+    text-decoration: underline;
+    color: #235a81;
+}

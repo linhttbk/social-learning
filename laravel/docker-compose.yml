@@ -1,0 +1,22 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /var/www/html/slearning
+    links:
+    - db
+    ports:
+    - 8400:80
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: Linhlol123@
+      MYSQL_DATABASE: Slearning
+      MYSQL_USER: linhtt
+      MYSQL_PASSWORD: Linhlol123@
+    ports:
+    - 33061:3306
+volumes:
+  dbdata:
