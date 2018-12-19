@@ -87,7 +87,7 @@
                             </div>
                             <div class="panel-body">
                                 <div class="radio">
-                                    <label class="answer true">
+                                    <label class="answer">
                                         <input type="radio" name="{{'optionsRadios'.($key+1)}}" id="optionsRadios1"
                                                value="{{$key+1}}" data-answer="A"
                                                onchange="checkedRadio(this)">
