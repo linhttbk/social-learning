@@ -142,24 +142,34 @@ table tbody tr th {
     background-color: #4CAF50;
     color: white;
 }
-#btn-up{
+
+#btn-up {
     padding: 5px 10px;
     background-color: #4CAF50;
     color: white;
     margin: 5px;
     border: none;
 }
-#btn-down{
+
+#btn-down {
     padding: 5px 10px;
     background-color: #4CAF50;
     color: white;
     margin: 5px;
     border: none;
 }
-#btn-delete{
+
+#btn-delete {
     padding: 5px 10px;
     background-color: #4CAF50;
     color: white;
     margin: 5px;
     border: none;
+}
+
+#pricecourse {
+    display: inline;
+    width: 200px;
+    margin-right: 10px;
+
 }

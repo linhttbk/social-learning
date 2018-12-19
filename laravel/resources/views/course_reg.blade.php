@@ -42,45 +42,47 @@
             <div class="course-container-title">Dang ky khoa hoc</div>
             @if(Session::has('error'))
                 <p class="alert alert-danger">{{Session::get('error')}}</p>
-                @elseif(Session::has('success'))
+            @elseif(Session::has('success'))
                 <p class="alert alert-success">{{Session::get('success')}}</p>
             @endif
             <div class="course-detail">
                 <div class="course_title">Tieng Anh 10</div>
                 <div class="course_information" style="text-align: center">
-                    <table style="display: inline-block">
-                        <tbody>
-                        <tr>
-                            <td>Giao Vien:</td>
-                            <td><a href="#">Nguyen Nhat Hai</a></td>
-                        </tr>
-                        <tr>
-                            <td>Start date:</td>
-                            <td>20-11-2018</td>
-                        </tr>
-                        <tr>
-                            <td>End date:</td>
-                            <td>20-12-2018</td>
-                        </tr>
-                        <tr>
-                            <td>Gia tien:</td>
-                            <td>150000 vnd</td>
-                        </tr>
-                        </tbody>
-                    </table>
+                    @if(!empty($course))
+                        <table style="display: inline-block">
+                            <tbody>
+                            <tr>
+                                <td>Giao Vien:</td>
+                                <td><a href="#">{{($course->user)->name}}</a></td>
+                            </tr>
+                            <tr>
+                                <td>Start date:</td>
+                                <td>{{date('d-m-Y', strtotime($course->start_date))}}</td>
+                            </tr>
+                            <tr>
+                                <td>End date:</td>
+                                <td>{{date('d-m-Y', strtotime($course->end_date))}}</td>
+                            </tr>
+                            <tr>
+                                <td>Gia tien:</td>
+                                <td>{{$course->price.''}}<span>&#8363;</span></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    @endif
                 </div>
 
             </div>
             <img src="{{Captcha::src()}}">
             <div class="error-captcha"></div>
-            <form method="post" action="{{route('buy_course',['id'=>$id])}}">
+            <form method="post" action="{{route('buy_course',['id'=> $course->id ])}}">
                 @csrf
                 @if ($errors->has('captcha'))
                     <span class="error-captcha">{{ $errors->first('captcha') }}</span>
-                    @endif
+                @endif
                 <input type="text" id="captcha" name="captcha">
                 {{--<div id="payment-course"><a href="{{route('buy_course',['id'=>$id])}}" class="btn btn-primary"> Thanh--}}
-                        {{--Toan</a>--}}
+                {{--Toan</a>--}}
                 {{--</div>--}}
                 <input type="submit" value="Thanh toan" class="btn btn-primary">
             </form>

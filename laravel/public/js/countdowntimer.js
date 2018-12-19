@@ -5,7 +5,6 @@ $(document).ready(function () {
     var id_quiz = $('#data1').data('quiz');
     var id_chap = $('#data2').data('chap');
     var id_course = $('#data3').data('course');
-
     var timeStart = new Date();
     var countDownDate = new Date().getTime() + 30 * 60 * 1000 + 2;
 
@@ -19,14 +18,13 @@ $(document).ready(function () {
         // Find the distance between now and the count down date
         var distance = countDownDate - now;
         if (distance < 0 && !isSubmit) {
-            finishExam();
-            document.getElementById("timer").innerHTML = "Hết giờ";
+            $("#timer").html("Hết giờ");
             clearInterval(x);
             var hours = 0;
             var minutes = 0;
             var seconds = 0;
-            var countTrue = submitQuiz(listquestion);
-            swal('Bạn đã đúng ' + countTrue + '/' + listquestion.length + ' câu, xin chúc mừng!');
+            var countTrue = checkTrue();
+            postQuiz(countTrue);
         } else {
             var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -43,9 +41,11 @@ $(document).ready(function () {
     }, 1000);
 
     $('#submitquiz').on('click', function () {
-        var listquestion = $('#answer1').data('listquestion');
-        var countTrue = submitQuiz(listquestion);
+        var countTrue = checkTrue();
+        postQuiz(countTrue);
+    });
 
+    function postQuiz(countTrue) {
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -67,78 +67,60 @@ $(document).ready(function () {
 
 
             }).done(function (data) {
-            clearInterval(x);
-            document.getElementById("timer").innerHTML = "Da nop bai";
-            isSubmit = true;
-            // swal('Bạn đã đúng ' + countTrue + '/15 câu, xin chúc mừng!').then((value) => {
-            //     swal(`The returned value is: ${value}`);
-            // });
-            swal(
-                {
-                    title: 'Ket qua',
-                    text: 'Bạn đã đúng ' + countTrue + '/' + listquestion.length + ' câu, xin chúc mừng!',
-                    type: 'success',
+            if (data.success == 1) {
+                clearInterval(x);
+                document.getElementById("timer").innerHTML = "Da nop bai";
+                isSubmit = true;
+                // swal('Bạn đã đúng ' + countTrue + '/15 câu, xin chúc mừng!').then((value) => {
+                //     swal(`The returned value is: ${value}`);
+                // });
+                swal(
+                    {
+                        title: 'Ket qua',
+                        text: 'Bạn đã đúng ' + countTrue + '/' + listquestion.length + ' câu, xin chúc mừng!',
+                        type: 'success',
 
-                }, function () {
-                    window.history.back();
-                });
+                    }, function () {
+
+                        var topTest = data.data;
+                        var panelRank = $('.panel-rank').eq(0);
+                        panelRank.empty();
+                        panelRank.append('<div class="rank-header">\n' +
+                            '                        <h3>Top 5</h3>\n' +
+                            '                    </div>');
+                        for (var i = 0; i < topTest.length; i++) {
+                            var topTestItem = topTest[i];
+                            var avatar = topTestItem.avatar != null ? topTestItem.avatar : '/images/avatar_default.jpg';
+                            panelRank.append('<div class="rank-item"> ' +
+                                                        '<div class="row">' +
+                                                            '<div class="col-sm-3">' +
+                                                                '<img id="avatar-rank" class="rounded-circle" ' +
+                                                                    'src="' + avatar + '">' +
+                                                            '</div>' +
+                                                            '<div class="col-sm-9"> ' +
+                                                                 '<div class="rank-infor"> ' +
+                                                                    ' <span class="name">' + topTestItem.name + '</span> ' +
+                                                                    ' <span class="result" style="display: block">' + topTestItem.score + '/15' + '</span> ' +
+                                                                 '</div> ' +
+                                                            '</div> ' +
+                                                        '</div>' +
+                                            '</div>');
+                        }
+
+                    });
+            }
+
 
         }).fail(function (jqXHR, ajaxOptions, thrownError) {
 
             swal("Oops!", "Có lỗi xảy ra. vui lòng thử lại sau!", "error");
 
         });
-    });
+    }
+
 
 });
-var numberQues = document.getElementsByName("ques");
 
-function checkAnswer() {
-    var count = 0;
-    if (numberDoExam < numberQues.length) {
-        document.getElementById("notification").innerText = "Bạn còn " + (numberQues.length - numberDoExam) + " chưa trả lời." +
-            "\n Bạn có muốn nộp bài không ?"
-    } else {
-        document.getElementById("notification").innerText = "Bạn có muốn nộp bài không ?"
-    }
-    $('#myModal').modal('show');
-    $('#finishexam').click(function () {
-        $('#myModal').modal('hide');
-        count = markScore();
-        alert("Bạn trả lời đúng " + count + "/" + numberQues.length + " câu");
-    });
-}
-
-function finishExam() {
-    var count1 = markScore();
-    alert("Bạn trả lời đúng " + count1 + "/" + numberQues.length + " câu");
-}
-
-function markScore() {
-    var count = 0;
-    for (var i = 0; i < numberQues.length; i++) {
-        var answer = getValueRadioChecked("optionsRadios" + (i + 1));
-        var result = document.getElementById("answer" + (i + 1)).textContent;
-        if (answer == result) {
-            count++;
-        }
-    }
-    return count;
-}
-
-function getValueRadioChecked(name) {
-    var value;
-    var radios = document.getElementsByName(name);
-    for (var i = 0; i < radios.length; i++) {
-        if (radios[i].checked) {
-            value = radios[i].value;
-            break;
-        }
-    }
-    return value;
-}
-
-var numberDoExam = 0;
 
 function checkedRadio(optionsRadios) {
     var name = optionsRadios.name;
@@ -166,6 +148,33 @@ function checkedRadio(optionsRadios) {
     document.getElementById("status1").innerText = Math.round(count / (15) * 100 * 100) / 100 + "%";
 }
 
+function checkTrue() {
+    var panelBody = $('div.ques .panel-body');
+    var countTrue = 0;
+    for (var i = 0; i < panelBody.length; i++) {
+        var panelBodyItem = panelBody.eq(i);
+        var answer = panelBodyItem.find('.question').eq(0);
+        var radio = panelBodyItem.find('.radio');
+        for (var j = 0; j < radio.length; j++) {
+            var radioItem = radio.eq(j);
+            var inputItem = radioItem.find('input:first');
+            if (inputItem.data('answer') == answer.data('answer')) {
+                if (inputItem.is(":checked")) {
+                    countTrue++;
+                }
+                radioItem.addClass('true');
+            } else {
+                if (inputItem.is(":checked")) {
+                    radioItem.addClass('wrong');
+                }
+            }
+        }
+
+    }
+    $('#submitquiz').prop('disabled', true);
+    return countTrue;
+
+}
 
 function submitQuiz(listQuestions) {
     var countTrue = 0;
@@ -173,13 +182,13 @@ function submitQuiz(listQuestions) {
         var valueRadio = document.getElementsByName('optionsRadios' + (parseInt(key) + 1));
 
         for (var i = 0; i < valueRadio.length; i++) {
-            if (valueRadio[i].checked) {
-                if (valueRadio[i].dataset.answer == listQuestions[key].true_answer) {
+            if (valueRadio[i].dataset.answer == listQuestions[key].true_answer) {
+                if (valueRadio[i].checked) {
                     countTrue++;
-                    break;
                 }
-
+                valueRadio[i].addClass('active');
             }
+
         }
 
     }

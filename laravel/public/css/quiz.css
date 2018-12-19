@@ -124,3 +124,9 @@
 .panel-body div.true{
     background-color: #1CA347;
 }
+.true{
+    background-color: #6DB46D;
+}
+.wrong{
+    background-color: #FF9191;
+}

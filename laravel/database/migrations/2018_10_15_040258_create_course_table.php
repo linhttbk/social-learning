@@ -16,13 +16,14 @@ class CreateCourseTable extends Migration
         Schema::create('Course', function (Blueprint $table) {
             $table->integer('id',11);
             $table->string('title');
-            $table->date('start_date');
-            $table->date('end_date');
+            $table->timestamp('start_date')->nullable();
+            $table->timestamp('end_date')->nullable();
             $table->double('price');
             $table->string('des');
-            $table->string('uid');
+            $table->string('uid',30);
             $table->integer('id_subject');
-            $table->foreign('id_subject')->references('id')->on('Subject');
+            $table->foreign('id_subject')->references('id')->on('Subject')->onDelete('cascade');
+            $table->foreign('uid')->references('uid')->on('User')->onDelete('cascade');
             $table->timestamps();
         });
     }
