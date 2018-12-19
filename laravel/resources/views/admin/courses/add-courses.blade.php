@@ -100,6 +100,12 @@
                                                    class="form-control">
                                             <span id="teacher-error" class="input-error-msg"> Vui long nhap mo ta cho khoa hoc</span>
                                         </div>
+                                        <div class="form-group">
+                                            <label>Gia khoa hoc: </label>
+                                            <input type="text" name="pricecourse" id="pricecourse" tabindex="2"
+                                                   class="form-control"><span>&#8363;</span>
+                                            <span id="teacher-error" class="input-error-msg"> Vui long nhap mo ta cho khoa hoc</span>
+                                        </div>
                                     </div>
 
                                     <div class="tab_content pd0" id="tab2" style="display: block;">
@@ -107,7 +113,7 @@
 
                                         <div class="form-group">
                                             <label>Ngày bat dau : </label>
-                                            <input type="date" name="startdate" min="1000-01-01"
+                                            <input type="date" name="startdate" min="1000-01-01" id="startdate"
                                                    max="3000-12-31" class="form-control"
                                                    value="{{\Illuminate\Support\Carbon::now()->toDateString()}}">
 
@@ -117,7 +123,7 @@
                                         <div class="form-group">
                                             <label>Ngày ket thuc : </label>
                                             <input type="date" name="enddate" min="1000-01-01"
-                                                   max="3000-12-31" class="form-control"
+                                                   max="3000-12-31" class="form-control" id="enddate"
                                                    value="{{\Illuminate\Support\Carbon::now()->addMonth(5)->toDateString()}}">
 
                                             <span id="enddate-error"
@@ -201,7 +207,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Chon giao vien</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -219,7 +225,9 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Huy bo</button>
+                        <button type="button" id="add-teacher" class="btn btn-primary" data-dismiss="modal">Luu lai</button>
+
                     </div>
                 </div>
             </div>

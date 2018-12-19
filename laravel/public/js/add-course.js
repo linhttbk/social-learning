@@ -122,11 +122,12 @@ $(document).ready(function () {
         for (var key in listTeachers) {
             var teacher = listTeachers[key];
             if (teacher.id_sr == id_subject) {
+                var avatar = teacher.avatar != null ? teacher.avatar : "/images/avatar_default.jpg";
                 list_teacher.append(' <a class="item-teacher-link" id="hello" href="#">\n' +
                     '                                        <div class="item-teacher">\n' +
                     '                                            <div class="avatar-teacher">' +
-                    ' <img src="{{asset("images/avatar_default.jpg")}}" class="rounded-circle"> <div class="infor-teacher">\n' +
-                    '                            <h5 data-infor= " ' + teacher.uid + '">' + teacher.name + '</h5>\n' +
+                    ' <img src="' + avatar + '" class="rounded-circle"> <div class="infor-teacher">\n' +
+                    '                            <h5 data-infor= "' + teacher.uid + '">' + teacher.name + '</h5>\n' +
                     '                            <span>' + teacher.title + '</span> </div>');
                 list_teacher.append('     </div>\n' +
                     '                                    </a>');
@@ -140,14 +141,19 @@ $(document).ready(function () {
         $('a').removeClass('active');
         $('div').removeClass('active');
         $(this).addClass("active");
-        var h5 = $(this).find('h5')[0];
-        var name = h5.innerHTML;
-        var uid = h5.dataset.infor;
+        return false;
+
+    });
+
+    $(document).on('click', "#add-teacher", function () {
+        var h5 = $('#modalTeacher a.active h5').eq(0);
+        var uid = h5.data('infor');
+        var name = h5.html();
+        $('div').removeClass('active');
+        $(this).addClass("active");
         var inputTeacher = document.getElementById('teachercourse');
         inputTeacher.value = name;
         inputTeacher.dataset.uid = uid;
-        return false;
-
     });
 
     $(document).on('click', "#btn-up", function () {
@@ -211,7 +217,6 @@ $(document).ready(function () {
                 listChapIds.splice(index - 1, 1);
                 // listChapIds = listChapIds.slice(0, index - 1 - 1).concat(listChapIds.slice(index - 1, listChapIds.length))
             }
-            alert(listChapIds);
             row.remove();
             updateIndex(index);
             updateLessonSelect();
@@ -219,8 +224,33 @@ $(document).ready(function () {
 
     });
     $(document).on('click', '#btn-submit', function () {
+
+        var coursenamereg = $('#coursenamereg').val();
+        var des = $('#des-course').val();
+        var listLesson = [];
+        var startDate = formatDateTime(new Date($('#startdate').val()));
+        var endDate = formatDateTime(new Date($('#enddate').val()));
+        var price = $('#pricecourse').val();
+        var idTeacher = $('#teachercourse').data('uid');
+        var idSubject = $('#mySelect').val();
+        if (!allnumeric(price) || price % 1000 !== 0) {
+            swal("Oops!", "Gia khoa hoc khong hop le", "error");
+            return;
+        }
+        if (coursenamereg === "" || des === "" || idTeacher == null) {
+            swal("Oops!", "Ban can dien day du thong tin", "error");
+            return;
+        }
         if (listChapIds.length > 0) {
-            var coursenamereg = $('#coursenamereg').val();
+
+            $('#bodyLesson input').each(function () {
+                listLesson.push({
+                        id: $(this).data('lessonid'),
+                        dateOpen: formatDateTime(new Date($(this).val()))
+
+                    }
+                );
+            });
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -233,13 +263,31 @@ $(document).ready(function () {
                     url: $(this).data('url'),
                     data: {
                         title: coursenamereg,
-                        listChapId: listChapIds,
-                    },
+                        listchapid: listChapIds,
+                        listlessons: listLesson,
+                        startdate: startDate,
+                        enddate: endDate,
+                        price: price,
+                        uid: idTeacher,
+                        des: des,
+                        id_subject: idSubject,
 
+                    },
+                    dataType: 'json',
 
                 }).done(function (data) {
+                if (data.success == 0) {
+                    swal("Oops!", "Có lỗi xảy ra. vui lòng thử lại sau!", "error");
+                } else {
+                    swal(
+                        {
+                            title: 'Thong bao',
+                            text: 'Them khoa hoc thanh cong',
+                            type: 'success',
 
-                swal('Them thanh cong');
+                        });
+                }
+
 
             }).fail(function (jqXHR, ajaxOptions, thrownError) {
 
@@ -310,9 +358,14 @@ $(document).ready(function () {
                             tbodyLesson.append('<tr><td>' + rowCount + '</td>' +
                                 '<td>' + (i + 1) + '</td>' +
                                 '<td>' + item.title + '</td>' +
-                                '<td> <input type="date"></td>' +
+                                '<td> <input type="date" data-lessonid="' + item.id + '"></td>' +
                                 '</tr>'
                             );
+                            var day = ("0" + now.getDate()).slice(-2);
+                            var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+                            var today = now.getFullYear() + "-" + (month) + "-" + (day);
+                            $('#bodyLesson input').val(today);
 
                         }
 
@@ -341,11 +394,19 @@ $(document).ready(function () {
                 tbodyLesson.append('<tr><td>' + rowCount + '</td>' +
                     '<td>' + (i + 1) + '</td>' +
                     '<td>' + item.title + '</td>' +
-                    '<td> <input type="date" value="' + formatDate(now) + '"></td>' +
+                    '<td> <input type="date" data-lessonid="' + item.id + '"></td>' +
                     '</tr>'
                 );
 
+                var day = ("0" + now.getDate()).slice(-2);
+                var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+                var today = now.getFullYear() + "-" + (month) + "-" + (day);
+                $('#bodyLesson input').val(today);
+
+
             }
+
         });
         pageMe('#bodyLesson', $('#myPagerLesson'), $('#bodyLesson'), true, false, totalRow);
 
@@ -419,12 +480,13 @@ $(document).ready(function () {
         for (var key in listTeachers) {
             var teacher = listTeachers[key];
             if (teacher.id_sr == id_subject) {
+                var avatar = teacher.avatar != null ? teacher.avatar : "/images/avatar_default.jpg";
                 list_teacher.html('');
                 list_teacher.append(' <a class="item-teacher-link" id="hello" href="#">\n' +
                     '                                        <div class="item-teacher">\n' +
                     '                                            <div class="avatar-teacher">' +
-                    ' <img src="{{asset("images/avatar_default.jpg")}}" class="rounded-circle"> <div class="infor-teacher">\n' +
-                    '                            <h5 data-infor= " ' + teacher.uid + '">' + teacher.name + '</h5>\n' +
+                    ' <img src="' + avatar + '" class="rounded-circle"> <div class="infor-teacher">\n' +
+                    '                            <h5 data-infor= "' + teacher.uid + '">' + teacher.name + '</h5>\n' +
                     '                            <span>' + teacher.title + '</span> </div>');
                 list_teacher.append('     </div>\n' +
                     '                                    </a>');
@@ -437,6 +499,7 @@ $(document).ready(function () {
         pageMe('#bodyLesson', $('#myPagerLesson'), $('#bodyLesson'), true, false, 0);
 
     });
+
     function formatDate(date) {
         var monthNames = [
             "January", "February", "March",
@@ -453,4 +516,25 @@ $(document).ready(function () {
     }
 });
 
+function formatDateTime(date) {
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var second = date.getSeconds();
+    return year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + second;
+}
 
+function formatNumber(num) {
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
+}
+
+function allnumeric(price) {
+    var numbers = /^[0-9]+$/;
+    if (price.match(numbers)) {
+
+        return true;
+    }
+    return false;
+}

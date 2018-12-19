@@ -17,8 +17,8 @@ class CreateCourseDetailTable extends Migration
             $table->integer('id_course');
             $table->integer('id_chap');
             $table->primary(['id_course','id_chap']);
-            $table->foreign('id_course')->references('id')->on('Course');
-            $table->foreign('id_chap')->references('id')->on('Chapter');
+            $table->foreign('id_course')->references('id')->on('Course')->onDelete('cascade');
+            $table->foreign('id_chap')->references('id')->on('Chapter')->onDelete('cascade');
             $table->timestamps();
 
         });

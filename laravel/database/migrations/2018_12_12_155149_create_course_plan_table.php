@@ -16,10 +16,10 @@ class CreateCoursePlanTable extends Migration
         Schema::create('CoursePlan', function (Blueprint $table) {
             $table->integer('id_course');
             $table->integer('id_lesson');
-            $table->primary('id_course','id_lesson');
-            $table->foreign('id_course')->references('id')->on('Course');
-            $table->foreign('id_lesson')->references('id')->on('Chapter');
-            $table->date('opendate');
+            $table->primary(array('id_course', 'id_lesson'));
+            $table->foreign('id_course')->references('id')->on('Course')->onDelete('cascade');
+            $table->foreign('id_lesson')->references('id')->on('Lesson')->onDelete('cascade');
+            $table->timestamp('opendate');
             $table->timestamps();
         });
     }

@@ -8,6 +8,7 @@ use Faker\Provider\DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class QuizController extends Controller
 {
@@ -24,11 +25,15 @@ class QuizController extends Controller
         $testHistory = new TestHistory();
         $testHistory->id_test = $request->id_quiz;
         $testHistory->time_start = $request->startAt;
-        $testHistory->time_finish = $request->endAt;
+        $testHistory->time_end = $request->endAt;
         $testHistory->uid = Auth::user()->uid;
         $testHistory->score = $request->score;
-        $testHistory->save();
+        if ($testHistory->save()) {
+            $topTest = DB::table('TestHistory')->select(array('TestHistory.*','User.name','User.avatar'))->join('User','User.uid','=','TestHistory.uid')
+                ->where('id_test','=',$request->id_quiz)->orderBy('score','DESC')->take(5)->get();
+            return response()->json(['success' => 1, 'data' => $topTest]);
+        }
 
-        return back()->withInput()->with('score', $request->score);
+        return response()->json(['success' => 0]);
     }
 }

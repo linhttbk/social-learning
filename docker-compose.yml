@@ -4,11 +4,11 @@ services:
     build:
       context: ./laravel
       dockerfile: Dockerfile
-    working_dir: /var/www/html/slearning
+    working_dir: /var/www/html/laravel
     depends_on: 
       - db
     volumes:
-      - ./laravel:/var/www/html/slearning
+      - ./laravel:/var/www/html/laravel
     links:
       - db
     ports:

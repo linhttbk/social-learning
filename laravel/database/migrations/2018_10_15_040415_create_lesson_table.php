@@ -16,7 +16,7 @@ class CreateLessonTable extends Migration
         Schema::create('Lesson', function (Blueprint $table) {
             $table->integer('id', 11);
             $table->integer('id_chapter');
-            $table->foreign('id_chapter')->references('id')->on('Chapter');
+            $table->foreign('id_chapter')->references('id')->on('Chapter')->onDelete('cascade');
             $table->string('title');
             $table->string('url');
             $table->string('url_doc');
