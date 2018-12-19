@@ -15,44 +15,49 @@ function searchTeacher() {
     }
 }
 
-function pageMe(element, showPrevNext, hidePageNumbers, numItems) {
+function pageMe(element, pager, tbody, showPrevNext, hidePageNumbers, numItems) {
     const perPage = 4;
-    var children = $('#myBody').children('tr');
+    var children = tbody.children('tr');
     var numPages = Math.ceil(numItems / perPage);
-    var pager = $('#myPager');
     pager.empty();
     pager.data("curr", 0);
-    if (showPrevNext) {
-        $('<li><a href="#" class="prev_link">«</a></li>').appendTo(pager);
-    }
-    var curr = 0;
-    while (numPages > curr && (hidePageNumbers == false)) {
-        $('<li><a href="#" class="page_link">' + (curr + 1) + '</a></li>').appendTo(pager);
-        curr++;
-    }
-    if (showPrevNext) {
-        $('<li><a href="#" class="next_link">»</a></li>').appendTo(pager);
-    }
-    pager.find('.page_link:first').addClass('active');
-    pager.find('.prev_link').hide();
-    if (numPages <= 1) {
-        pager.find('.next_link').hide();
-    }
-    pager.children().eq(1).addClass("active");
 
+    if (numPages > 1) {
+        if (showPrevNext) {
+            $('<li><a href="#" class="prev_link">«</a></li>').appendTo(pager);
+        }
+        var curr = 0;
+        while (numPages > curr && (hidePageNumbers == false)) {
+            $('<li><a href="#" class="page_link">' + (curr + 1) + '</a></li>').appendTo(pager);
+            curr++;
+        }
+        if (showPrevNext) {
+            $('<li><a href="#" class="next_link">»</a></li>').appendTo(pager);
+        }
+        pager.find('.page_link:first').addClass('active');
+        pager.find('.prev_link').hide();
+        if (numPages <= 1) {
+            pager.find('.prev_link').hide();
+            pager.find('.next_link').hide();
+        }
+        pager.children().eq(1).addClass("active");
+    }
     children.hide();
-    children.slice(0, perPage).show();
+    children.slice(0, perPage + 1).show();
     pager.find('li .page_link').click(function () {
         var clickedPage = $(this).html().valueOf() - 1;
-        goTo(children, pager, clickedPage, perPage, numPages);
+        var listItems = tbody.children('tr');
+        goTo(listItems, pager, clickedPage, perPage, numPages);
         return false;
     });
     pager.find('li .prev_link').click(function () {
-        previous(children, pager, perPage, numPages);
+        var listItems = tbody.children('tr');
+        previous(listItems, pager, perPage, numPages);
         return false;
     });
     pager.find('li .next_link').click(function () {
-        next(children, pager, perPage, numPages);
+        var listItems = tbody.children('tr');
+        next(listItems, pager, perPage, numPages);
         return false;
     });
 
@@ -61,9 +66,9 @@ function pageMe(element, showPrevNext, hidePageNumbers, numItems) {
 
 function goTo(children, pager, page, perPage, numPages) {
     var startAt = page * perPage,
-        endOn = startAt + perPage;
+        endOn = startAt + perPage + 1;
 
-    children.css('display', 'none').slice(startAt, endOn).show();
+    children.css('display', 'none').slice(startAt + 1, endOn).show();
 
     if (page >= 1) {
         pager.find('.prev_link').show();
@@ -95,10 +100,19 @@ function next(children, pager, perPage, numPages) {
     goTo(children, pager, goToPage, perPage, numPages);
 }
 
+Array.prototype.swap = function (x, y) {
+    if (x >= 0 && x < this.length && y >= 0 && y < this.length) {
+        var b = this[x];
+        this[x] = this[y];
+        this[y] = b;
+    }
+    return this;
+};
 
 $(document).ready(function () {
     var listChapIds = [];
     var listLessons = $('#data-lesson').data('lessons');
+    var now = new Date();
 
     $(function () {
         var id_subject = $('#mySelect').val();
@@ -141,14 +155,23 @@ $(document).ready(function () {
         var currentStt = row.find('td').eq(0).html();
         var previous = row.prev();
         var prevStt = previous.find('td').eq(0).html();
+        var visible = previous.find('td').eq(0).is(":visible");
         if (typeof prevStt !== "undefined") {
             row.detach();
             previous.before(row);
             row.find('td').eq(0).html(prevStt);
             previous.find('td').eq(0).html(currentStt);
+            if (!visible) {
+                previous.show();
+                row.hide();
+            } else {
+                row.fadeOut();
+                row.fadeIn();
+            }
             // draw the user's attention to it
-            row.fadeOut();
-            row.fadeIn();
+            listChapIds.swap(currentStt - 1, prevStt - 1);
+            updateLessonSelect();
+
         }
 
 
@@ -159,14 +182,22 @@ $(document).ready(function () {
         var currentStt = row.find('td').eq(0).html();
         var next = row.next();
         var nextStt = next.find('td').eq(0).html();
+        var visible = next.find('td').eq(0).is(":visible");
         if (typeof nextStt !== "undefined") {
             row.detach();
             next.after(row);
             row.find('td').eq(0).html(nextStt);
             next.find('td').eq(0).html(currentStt);
+            if (!visible) {
+                next.show();
+                row.hide();
+            } else {
+                row.fadeOut();
+                row.fadeIn();
+            }
             // draw the user's attention to it
-            row.fadeOut();
-            row.fadeIn();
+            listChapIds.swap(currentStt - 1, nextStt - 1);
+            updateLessonSelect();
         }
 
 
@@ -175,15 +206,21 @@ $(document).ready(function () {
     $(document).on('click', "#btn-delete", function () {
         var row = $(this).closest("tr");
         row.fadeOut('fast', function () {
+            var index = $("#table-select-chapter tbody tr").index(row);
+            if (index >= 1 && index <= listChapIds.length) {
+                listChapIds.splice(index - 1, 1);
+                // listChapIds = listChapIds.slice(0, index - 1 - 1).concat(listChapIds.slice(index - 1, listChapIds.length))
+            }
+            alert(listChapIds);
             row.remove();
-            updateIndex();
+            updateIndex(index);
+            updateLessonSelect();
         });
 
     });
     $(document).on('click', '#btn-submit', function () {
         if (listChapIds.length > 0) {
             var coursenamereg = $('#coursenamereg').val();
-            alert(coursenamereg);
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -220,7 +257,6 @@ $(document).ready(function () {
     });
     $(document).on('change', '.item-check', function () {
         if ($(this).prop("checked") == false) {
-            alert('hello');
             $("#chapter-all").prop("checked", false)
         }
         if ($(".item-check:checked").length == $(".item-check").length) {
@@ -248,6 +284,7 @@ $(document).ready(function () {
         var tbody = $('#table-select-chapter tbody');
         var tbodyLesson = $('#table-select-lesson tbody');
         var listChapters = $('#chapter-hidden').data('chapters');
+        var countLesson = 0;
         $('#table-chapter').find('tr').each(function () {
             var row = $(this);
             if (row.find('input[type="checkbox"]').is(':checked')) {
@@ -268,6 +305,7 @@ $(document).ready(function () {
                         );
                         const results = listLessons.filter(lesson => lesson.id_chapter === chapter.id);
                         for (let i = 0; i < results.length; i++) {
+                            countLesson++;
                             const item = results[i];
                             tbodyLesson.append('<tr><td>' + rowCount + '</td>' +
                                 '<td>' + (i + 1) + '</td>' +
@@ -278,20 +316,95 @@ $(document).ready(function () {
 
                         }
 
-
                     }
                 }
 
             }
         });
         $("#chapter-all").prop("checked", false);
-        pageMe('#myBody', true, false, listChapIds.length);
+        pageMe('#myBody', $('#myPager'), $('#myBody'), true, false, listChapIds.length);
+        pageMe('#bodyLesson', $('#myPagerLesson'), $('#bodyLesson'), true, false, countLesson);
     });
 
-    function updateIndex() {
+    function updateLessonSelect() {
+        var tbodyLesson = $('#table-select-lesson tbody');
+        tbodyLesson.empty();
+        tbodyLesson.append('<tr></tr>');
+        var rowCount = 0;
+        var totalRow = 0;
+        listChapIds.forEach(function (chapterId) {
+            rowCount++;
+            const results = listLessons.filter(lesson => lesson.id_chapter === chapterId);
+            for (let i = 0; i < results.length; i++) {
+                totalRow++;
+                const item = results[i];
+                tbodyLesson.append('<tr><td>' + rowCount + '</td>' +
+                    '<td>' + (i + 1) + '</td>' +
+                    '<td>' + item.title + '</td>' +
+                    '<td> <input type="date" value="' + formatDate(now) + '"></td>' +
+                    '</tr>'
+                );
+
+            }
+        });
+        pageMe('#bodyLesson', $('#myPagerLesson'), $('#bodyLesson'), true, false, totalRow);
+
+    }
+
+    function updateIndex(indexRm) {
+        var perPage = 4;
+        var numItems = listChapIds.length;
+        var numPages = Math.ceil(numItems / perPage);
+        var currentPage = $('#myPager').data('curr');
+
         $("#table-select-chapter tbody tr").each(function () {
+
+            if ($(this).index() <= (currentPage + 1) * perPage && $(this).index() > currentPage * perPage) {
+                $(this).show();
+            }
             $(this).find("td").first().html($(this).index());
         });
+        if (currentPage >= numPages) currentPage--;
+        var pager = $('#myPager');
+        pager.empty();
+        pager.data("curr", currentPage);
+
+        if (numPages > 1) {
+            $('<li><a href="#" class="prev_link">«</a></li>').appendTo(pager);
+
+            var curr = 0;
+            while (numPages > curr) {
+                $('<li><a href="#" class="page_link">' + (curr + 1) + '</a></li>').appendTo(pager);
+                curr++;
+            }
+            $('<li><a href="#" class="next_link">»</a></li>').appendTo(pager);
+            pager.find('.prev_link').hide();
+            if (numPages <= 1) {
+                pager.find('.prev_link').hide();
+                pager.find('.next_link').hide();
+            }
+            pager.children().eq(currentPage + 1).find('a').eq(0).addClass("active");
+
+            pager.find('li .page_link').click(function () {
+                var clickedPage = $(this).html().valueOf() - 1;
+                var listItems = $('#myBody').children('tr');
+                goTo(listItems, pager, clickedPage, perPage, numPages);
+                return false;
+            });
+            pager.find('li .prev_link').click(function () {
+                var listItems = $('#myBody').children('tr');
+                previous(listItems, pager, perPage, numPages);
+                return false;
+            });
+            pager.find('li .next_link').click(function () {
+                var listItems = $('#myBody').children('tr');
+                next(listItems, pager, perPage, numPages);
+                return false;
+            });
+        }
+        var listItems = $('#myBody').children('tr');
+        goTo(listItems, pager, currentPage, perPage, numPages);
+
     }
 
     $('#mySelect').on('change', function () {
@@ -299,6 +412,9 @@ $(document).ready(function () {
         var list_teacher = $('#list-teacher');
         var listTeachers = $('#hidden').data('teachers');
         $('#table-select-chapter tbody').empty();
+        $('#table-select-chapter tbody').append('<tr></tr>');
+        $('#table-select-lesson tbody').empty();
+        $('#table-select-lesson tbody').append('<tr></tr>');
 
         for (var key in listTeachers) {
             var teacher = listTeachers[key];
@@ -316,9 +432,25 @@ $(document).ready(function () {
             }
 
         }
-
+        listChapIds = [];
+        pageMe('#myBody', $('#myPager'), $('#myBody'), true, false, listChapIds.length);
+        pageMe('#bodyLesson', $('#myPagerLesson'), $('#bodyLesson'), true, false, 0);
 
     });
+    function formatDate(date) {
+        var monthNames = [
+            "January", "February", "March",
+            "April", "May", "June", "July",
+            "August", "September", "October",
+            "November", "December"
+        ];
+
+        var day = date.getDate();
+        var monthIndex = date.getMonth();
+        var year = date.getFullYear();
+
+        return day + ' ' + monthNames[monthIndex] + ' ' + year;
+    }
 });
 
 

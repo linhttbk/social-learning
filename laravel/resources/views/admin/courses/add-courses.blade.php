@@ -108,7 +108,8 @@
                                         <div class="form-group">
                                             <label>Ngày bat dau : </label>
                                             <input type="date" name="startdate" min="1000-01-01"
-                                                   max="3000-12-31" class="form-control">
+                                                   max="3000-12-31" class="form-control"
+                                                   value="{{\Illuminate\Support\Carbon::now()->toDateString()}}">
 
                                             <span id="startdate-error"
                                                   class="input-error-msg"> Vui  lòng  chon ngay bat dau</span>
@@ -116,7 +117,8 @@
                                         <div class="form-group">
                                             <label>Ngày ket thuc : </label>
                                             <input type="date" name="enddate" min="1000-01-01"
-                                                   max="3000-12-31" class="form-control">
+                                                   max="3000-12-31" class="form-control"
+                                                   value="{{\Illuminate\Support\Carbon::now()->addMonth(5)->toDateString()}}">
 
                                             <span id="enddate-error"
                                                   class="input-error-msg"> Vui  lòng   ngay ket thuc khoa hoc</span>
@@ -166,10 +168,13 @@
                                                     <th>Bat dau</th>
                                                 </tr>
                                                 </thead>
-                                                <tbody>
+                                                <tbody id="bodyLesson">
+                                                <tr>
 
+                                                </tr>
                                                 </tbody>
                                             </table>
+                                            <ul class="page-paginate" id="myPagerLesson"></ul>
                                         </div>
                                     </div>
 
