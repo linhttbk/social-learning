@@ -145,52 +145,12 @@
 
                         </div>
                         {{$result->links()}}
-                        {{--<div class="row pagination_row">--}}
-                        {{--<div class="col">--}}
-                        {{--<div--}}
-                        {{--class="pagination_container d-flex flex-row align-items-center justify-content-start">--}}
-                        {{--<ul class="pagination_list">--}}
-                        {{--<li class="active"><a href="#">1</a></li>--}}
-                        {{--<li><a href="#">2</a></li>--}}
-                        {{--<li><a href="#">3</a></li>--}}
-                        {{--<li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>--}}
-                        {{--</ul>--}}
-                        {{--<div class="courses_show_container ml-auto clearfix">--}}
-                        {{--<div class="courses_show_text">Showing <span class="courses_showing">1-6</span>--}}
-                        {{--of <span class="courses_total">26</span> results:--}}
-                        {{--</div>--}}
-                        {{--<div class="courses_show_content">--}}
-                        {{--<span>Show: </span>--}}
-                        {{--<select id="courses_show_select" class="courses_show_select">--}}
-                        {{--<option>06</option>--}}
-                        {{--<option>12</option>--}}
-                        {{--<option>24</option>--}}
-                        {{--<option>36</option>--}}
-                        {{--</select>--}}
-                        {{--</div>--}}
-                        {{--</div>--}}
-                        {{--</div>--}}
-                        {{--</div>--}}
-                        {{--</div>--}}
                     </div>
                 </div>
 
                 <!-- Courses Sidebar -->
                 <div class="col-lg-4">
                     <div class="sidebar">
-
-                        <!-- Categories -->
-                        <div class="sidebar_section">
-                            <div class="sidebar_section_title">Categories</div>
-                            <div class="sidebar_categories">
-                                @if(!empty($subject))
-                                    @php
-                                        showCategories($subject)
-
-                                    @endphp
-                                @endif
-                            </div>
-                        </div>
 
                         <!-- Latest Course -->
                         <div class="sidebar_section">
@@ -202,9 +162,6 @@
                                             @break
                                         @endif
                                         <div class="latest d-flex flex-row align-items-start justify-content-start">
-                                            {{--<div class="latest_image">--}}
-                                            {{--<div><img src={{is_null($data->avatar)?asset('images/latest_1.jpg'):$data->avatar}} alt=""></div>--}}
-                                            {{--</div>--}}
                                             <div class="latest_content">
                                                 <div class="latest_title"><a
                                                         href="{{route('course_detail',['id'=>$data->id])}}">{{$data->title}}</a></div>
