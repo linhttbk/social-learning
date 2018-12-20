@@ -18,30 +18,32 @@
 
 @endsection
 @section('js')
+    <script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
     <script src="{{asset('admin/js/html5.shiv.3.7.3.min.js')}}"></script>
     <script src="{{asset('admin/js/respond.min.js')}}"></script><![endif]-->
     <script src="{{asset('admin/js/add-member.js')}}"></script>
+    <script src="{{asset('admin/js/member.js')}}"></script>
 @endsection
 @section('content')
     <div class="content-inner">
         <!-- Page Header-->
         <header class="page-header">
             <div class="container-fluid">
-                <h2 class="no-margin-bottom">User Management</h2>
+                <h2 class="no-margin-bottom">Quản lý người dùng</h2>
             </div>
         </header>
         <!-- Breadcrumb-->
         <div class="breadcrumb-holder container-fluid">
             <ul class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{route('admin')}}">Home</a></li>
-                <li class="breadcrumb-item active">User Mangement</li>
+                <li class="breadcrumb-item"><a href="{{route('admin')}}">Trang chủ</a></li>
+                <li class="breadcrumb-item active">Quản lý người dùng</li>
             </ul>
         </div>
         <section class="tables">
             <div id="content-error">
                    <span id="form-error"
-                         class="alert alert-danger"> Vui  lòng  nhap day du thong tin</span></div>
+                         class="alert alert-danger"> Vui lòng nhập đầy đủ thông tin</span></div>
             @if(Session::has('error'))
                 <span id="form-error" style="display: block;margin: 0 30px"
                       class="alert alert-danger">{{Session::get('error')}}</span>
@@ -87,20 +89,20 @@
                                             <input type="text" name="usernamereg" id="usernamereg" tabindex="1"
                                                    class="form-control" placeholder="Username" value="">
                                             <span id="username-error"
-                                                  class="input-error-msg"> Vui  lòng  nhap tai khoan</span>
+                                                  class="input-error-msg">Vui lòng nhập tài khoản</span>
                                         </div>
                                         <div class="form-group">
                                             <label>Mật khẩu : </label>
                                             <input type="password" name="passwordreg" id="passwordreg" tabindex="2"
                                                    class="form-control" placeholder="Password">
-                                            <span id="pass-error" class="input-error-msg"> Vui long nhap mat khau</span>
+                                            <span id="pass-error" class="input-error-msg">Vui lòng nhập mật khẩu</span>
                                         </div>
                                         <div class="form-group">
                                             <label>Nhập lại mật khẩu: </label>
                                             <input type="password" name="repasswordreg" id="repasswordreg" tabindex="2"
                                                    class="form-control" placeholder="Xác nhận mật khẩu">
                                             <span id="repass-error"
-                                                  class="input-error-msg"> Mat khau khong trung khop</span>
+                                                  class="input-error-msg"> Mật khẩu không trùng khớp</span>
                                         </div>
                                     </div>
 
@@ -110,12 +112,13 @@
                                             <label>Họ tên : </label>
                                             <input type="text" name="name" id="name" tabindex="2" class="form-control"
                                                    placeholder="Name">
-                                            <span id="name-error" class="input-error-msg"> Vui  lòng  nhap ten nguoi dung</span>
+                                            <span id="name-error" class="input-error-msg"> Vui lòng nhập tên người dùng</span>
                                         </div>
 
                                         <div class="form-group">
                                             <label>Avatar : </label>
-                                            <input type="file" name="image" id="image" size="25"  accept=".jpg,.jpeg,.png">
+                                            <input type="file" name="image" id="image" size="25"
+                                                   accept=".jpg,.jpeg,.png">
                                         </div>
 
                                         <div class="form-group">
@@ -125,16 +128,16 @@
                                                    class="form-control">
 
                                             <span id="birthday-error"
-                                                  class="input-error-msg"> Vui  lòng  chon ngay thang nam sinh</span>
+                                                  class="input-error-msg">Vui lòng chọn ngày sinh</span>
                                         </div>
 
                                         <div class="form-group">
                                             <label>Giới tính : </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="sex" value="boy" checked>Nam
+                                                <input type="radio" name="sex" value="male" checked>Nam
                                             </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="sex" value="girl">Nữ
+                                                <input type="radio" name="sex" value="female">Nữ
                                             </label>
                                         </div>
                                         <div class="form-group">
@@ -142,14 +145,14 @@
                                             <input type="email" name="email" id="email" tabindex="1"
                                                    class="form-control"
                                                    placeholder="Email Address" value="">
-                                            <span id="mail-error" class="input-error-msg"> Vui  lòng  nhap email kich hoat tai khoan</span>
+                                            <span id="mail-error" class="input-error-msg">Vui lòng nhập email kích hoạt tài khoản</span>
                                         </div>
                                         <div class="form-group">
                                             <label>Điện thoại : </label>
                                             <input type="text" name="phone" id="phone" tabindex="1" class="form-control"
                                                    placeholder="Phone" value="">
                                             <span id="phone-error"
-                                                  class="input-error-msg"> Vui  lòng  nhap so dien thoai</span>
+                                                  class="input-error-msg">Vui lòng nhập số điện thoại</span>
                                         </div>
 
                                     </div>
@@ -163,7 +166,7 @@
                                                    placeholder="Trường" value="">
 
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group" id="form-grade">
                                             <label>Lớp : </label>
                                             <select class="form-control" name="grade">
                                                 <option value="10">Lớp 10</option>

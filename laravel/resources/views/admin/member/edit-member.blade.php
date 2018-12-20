@@ -19,6 +19,7 @@
 @endsection
 @section('js')
     <script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
+    <script src="{{asset('admin/js/member.js')}}"></script>
 
 @endsection
 @section('content')
@@ -51,7 +52,6 @@
                                 <ul class="tabs">
                                     <li class="activeTab"><a href="#tab1">Thông tin tài khoản</a></li>
                                     <li class=""><a href="#tab2">Thông tin cá nhân</a></li>
-                                    <li class=""><a href="#tab3">Thông tin đào tạo</a></li>
                                 </ul>
 
                                 <div class="tab_container">
@@ -60,7 +60,7 @@
                                         <div class="form-group">
                                             <label>Loại đăng ký : </label>
                                             <select class="form-control" name="type" id="mySelect"
-                                                    onchange="initValues()" disabled>
+                                                    onchange="initValues()" >
                                                 <option
                                                     <?php if ($user->type == 0) echo "selected"?>
                                                     value="0">Học sinh
@@ -145,7 +145,7 @@
                                             <label>Email : </label>
                                             <input type="email" name="email" id="email" tabindex="1"
                                                    class="form-control"
-                                                   placeholder="Email Address" value="{{$user->email}}">
+                                                   placeholder="Email Address" value="{{$user->email}}" >
                                             <span id="mail-error" class="input-error-msg"> Vui  lòng  nhap email kich hoat tai khoan</span>
                                         </div>
                                         <div class="form-group">
@@ -155,11 +155,6 @@
                                             <span id="phone-error"
                                                   class="input-error-msg"> Vui  lòng  nhap so dien thoai</span>
                                         </div>
-
-                                    </div>
-
-                                    <div class="tab_cont    ent pd0" id="tab3" style="display: block;">
-
                                         <div class="form-group">
                                             <label>Trường : </label>
                                             <input type="text" name="school" id="school" tabindex="1"
@@ -167,50 +162,52 @@
                                                    placeholder="Trường" value="{{$user->school}}">
 
                                         </div>
-                                        <div class="form-group">
-                                            <label>Lớp : </label>
-                                            <select class="form-control" name="grade" disabled>
-                                                <option
-                                                    <?php if ($user->grade == 10) echo "selected"?>
-                                                    value="10">Lớp 10
-                                                </option>
-                                                <option
-                                                    <?php if ($user->grade == 11) echo "selected"?>
-                                                    value="11">Lớp 11
-                                                </option>
-                                                <option
-                                                    <?php if ($user->grade == 12) echo "selected"?>
-                                                    value="12">Lớp 12
-                                                </option>
+                                            <div class="form-group" id="form-grade">
+                                                <label>Lớp : </label>
+                                                <select class="form-control" name="grade">
+                                                    <option
+                                                        <?php if ($user->grade == 10) echo "selected"?>
+                                                        value="10">Lớp 10
+                                                    </option>
+                                                    <option
+                                                        <?php if ($user->grade == 11) echo "selected"?>
+                                                        value="11">Lớp 11
+                                                    </option>
+                                                    <option
+                                                        <?php if ($user->grade == 12) echo "selected"?>
+                                                        value="12">Lớp 12
+                                                    </option>
 
-                                            </select>
-                                        </div>
-                                        <div class="form-group" id="teacher" name="subjectreg">
-                                            <label>Môn giảng dạy : </label>
-                                            <select class="form-control" disabled>
-                                                @foreach($subject as $sub)
-                                                    @if($sub->id > 5)
-                                                        <option
-                                                            class="fs-option" <?php if ($user->id_sr == $sub->id) echo selected?>>{{$sub->title}}</option>
-                                                    @endif
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="form-group" id="censors" name="subjectreg">
-                                            <label>Môn đăng ký kiểm duyệt : </label>
-                                            <select class="form-control" disabled>
-                                                <@foreach($subject as $sub)
-                                                    @if($sub->id < 6)
-                                                        <option
-                                                            class="fs-option" <?php if ($user->id_sr == $sub->id) echo selected?>>{{$sub->title}}</option>
-                                                    @endif
-                                                @endforeach
-                                            </select>
-                                        </div>
+                                                </select>
+                                            </div>
+                                            <div class="form-group" id="teacher" name="subjectreg">
+                                                <label>Môn giảng dạy : </label>
+                                                <select class="form-control"  name="subject_reg">
+                                                    @foreach($subject as $sub)
+                                                        @if($sub->id_parent!=null)
+                                                            <option value="{{$sub->id}}"
+                                                                class="fs-option" <?php if ($user->id_sr == $sub->id) echo "selected"?>>{{$sub->title}}</option>
+                                                        @endif
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="form-group" id="censors" name="subjectreg">
+                                                <label>Môn đăng ký kiểm duyệt : </label>
+                                                <select class="form-control" name="editor_reg" >
+                                                    <@foreach($subject as $sub)
+                                                        @if($sub->id_parent == null)
+                                                            <option value="{{$sub->id}}"
+                                                                class="fs-option" <?php if ($user->id_sr == $sub->id) echo "selected"?>>{{$sub->title}}</option>
+                                                        @endif
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                     </div>
+
+
                                 </div><!-- End tab_container-->
 
-                                <div class="form-group formSubmit" onsubmit="return OnsubmitClick()" >
+                                <div class="form-group formSubmit" onsubmit="return OnsubmitClick()">
                                     <input type="submit" class="button" value="Chỉnh sửa">
                                     <input type="reset" class="button" value="Hủy bỏ">
 
