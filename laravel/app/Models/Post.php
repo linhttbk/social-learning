@@ -22,4 +22,7 @@ class Post extends Model
     public function comments(){
         return $this->hasMany('App\Models\Comment', 'id_post');
     }
+    public function ownPost(){
+        return $this->belongsTo('App\Models\GroupUser', 'id_group');
+    }
 }

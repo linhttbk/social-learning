@@ -94,5 +94,21 @@ class CourseController extends Controller
         return response()->json(['success' => '0']);
     }
 
+    function deleteCourse(Request $request)
+    {
+        $course = Course::find($request->id);
+        if (!$course) {
+            return redirect('/admin-cp/courses')->with('error', 'Không tồn tại khóa học');
+        } else {
+            $course->delete();
+            return redirect('/admin-cp/courses')->with('success', 'Xóa thành công');
+        }
+
+    }
+
+    function editCourse(Request $request)
+    {
+            return back()->with('error', 'Chức năng hiện đang phát triển');
+    }
 
 }

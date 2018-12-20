@@ -9,6 +9,8 @@ use App\Models\Post;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class GroupMemberController extends Controller
 {
@@ -40,9 +42,9 @@ class GroupMemberController extends Controller
     {
         $group = GroupUser::find($idGroup);
 //        $listPost = $group->getListPost()->get();
-        $listPost = $group->getListPost;
-
-        return view('group.my_group', ['listPost' => $listPost]);
+        $listPost = $group->myListPost;
+        $listRequest = DB::table('GroupRequest')->where('id_group', $idGroup)->where('status', 0)->get();
+        return view('group.my_group', ['listPost' => $listPost, 'id_group' => $idGroup, 'listRequest' => $listRequest, 'group' => $group]);
     }
 
 
@@ -122,19 +124,22 @@ class GroupMemberController extends Controller
         $post->content = $request->data_post;
         $post->uid = Auth::user()->uid;
         $post->id_group = $id_group;
+
         $post->create_at = Carbon::now();
         if (!empty($request->file)) {
+            if ($request->file('file')->getClientSize() > 1048576) {
+                return back()->with('error', 'File dung lượng quá lớn');
+            }
             $file = $request->file('file');
-            $imageName = time() . '.' . $request->image->getClientOriginalExtension();
-            $filePath = 'images/' . $imageName;
-            if (!empty($currentAvatar)) Storage::disk('s3')->delete($currentAvatar);
+            $imageName = time() . '.' . $request->file->getClientOriginalExtension();
+            $filePath = 'document/' . $imageName;
             Storage::disk('s3')->put($filePath, file_get_contents($file), 'public');
-            $imageSave = 'https://s3-ap-southeast-1.amazonaws.com/slearningteam/images/' . $imageName;
+            $imageSave = 'https://s3-ap-southeast-1.amazonaws.com/slearningteam/document/' . $imageName;
             $post->url_attach = $imageSave;
-        } else {
-            echo "Không có file";
         }
+        $post->save();
 
+        return back()->with('success', 'Đăng bài thành công');
     }
 
     function showUserGroup($groupId)
@@ -147,11 +152,64 @@ class GroupMemberController extends Controller
             return view('group.user_my_group', [
                 'adminGroup' => $adminGroup,
                 'groupMember' => $groupMember,
-                'countMember' => $countMember
+                'countMember' => $countMember,
+                'groupId' => $groupId
             ]);
         }
 
         return view('group.user_my_group');
     }
+
+    function acceptRequestGroups(Request $request)
+    {
+        $update = DB::table('GroupRequest')->where('id', $request->id)->update(['status' => 1]);
+
+        if ($update) {
+            $groupRequest = GroupRequest::find($request->id);
+            $groupMember = new GroupMember();
+            $groupMember->id_group = $groupRequest->id_group;
+            $groupMember->uid = $groupRequest->uid;
+            $groupMember->add_uid = Auth::user()->uid;
+            $groupMember->role = 0;
+            $groupMember->join_date = Carbon::now();
+            $groupMember->save();
+            return back()->withInput()->with('success', 'Chấp nhận yêu cầu thành công');
+        } else {
+            return back()->withInput()->with('error', 'Đã có lỗi xảy ra.Vui lòng thử lại sau');
+        }
+    }
+
+    function acceptAllRequestGroups(Request $request)
+    {
+        $accept = DB::table('GroupRequest')->where('id_group', '=', $request->idGroup)->where('status', 0)->update(['status' => 1]);
+        if ($accept) {
+            $listRequest = $request->listRequest;
+            foreach ($listRequest as $data){
+                $groupRequest = GroupRequest::find($data->id);
+                $groupMember = new GroupMember();
+                $groupMember->id_group = $groupRequest->id_group;
+                $groupMember->uid = $groupRequest->uid;
+                $groupMember->add_uid = Auth::user()->uid;
+                $groupMember->role = 0;
+                $groupMember->join_date = Carbon::now();
+                $groupMember->save();
+            }
+
+            return back()->withInput()->with('success', 'Chấp nhận yêu cầu thành công');
+        } else {
+            return back()->withInput()->with('error', 'Đã có lỗi xảy ra.Vui lòng thử lại sau');
+        }
+    }
+
+    function destroyRequestGroups(Request $request)
+    {
+        $delete = DB::table('GroupRequest')->where('id', $request->id)->where('status', 0)->delete();
+        if ($delete) {
+            return back()->withInput()->with('success', 'Xóa yêu cầu thành công');
+        } else {
+            return back()->withInput()->with('error', 'Đã có lỗi xảy ra.Vui lòng thử lại sau');
+        }
+    }
+
 
 }

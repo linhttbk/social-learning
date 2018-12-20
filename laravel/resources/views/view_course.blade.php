@@ -32,7 +32,7 @@
             if (isSupp == "") {
                 x.src = "mov_bbb.ogg";
             } else {
-                x.src = "{{asset("upload/video")}}" + "/" + name;
+                x.src = name;
             }
             x.load();
         }
@@ -162,7 +162,7 @@
                 </div>
                 <div class="col-sm-7">
                     <div id="mediaspace" style="margin:5px;">
-                        <video id="myVideo" width="700" height="400" controls src="{{asset('upload/video/bai1.mp4')}}">
+                        <video id="myVideo" width="700" height="400" controls src="https://s3-ap-southeast-1.amazonaws.com/slearningteam/videos/Trailer.mp4">
                             Your browser does not support HTML5 video!
                         </video>
                         {{--<iframe id="myVideo" width="700" height="400" src="https://www.youtube.com/embed/dRu9hULOqYY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>--}}

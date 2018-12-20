@@ -74,6 +74,12 @@ Route::group(['prefix' => 'groups'], function () {
 
     Route::get('/request/{id}', 'GroupMemberController@requestGroups')->name('request-group');
 
+    Route::get('/acceptRequest/{id}', 'GroupMemberController@acceptRequestGroups')->name('acceptRequest-group');
+
+    Route::get('/acceptAllRequest/{idGroup}', 'GroupMemberController@acceptAllRequestGroups')->name('acceptAllRequest-group');
+
+    Route::get('/destroyRequest/{id}', 'GroupMemberController@destroyRequestGroups')->name('destroyRequest-group');
+
     Route::get('/cancel_request/{groupId}', 'GroupMemberController@cancelRequestGroup')->name('cancel-request');
 
     Route::get('/cancel_group/{groupId}', 'GroupMemberController@quitGroup')->name('cancel-group');
@@ -149,6 +155,9 @@ Route::group(['prefix' => 'admin-cp'], function () {
         Route::get('courses/search', 'Admin\CourseController@searchCourse')->name('search-courses');
         Route::get('courses/add-course', 'Admin\CourseController@showAddCourse')->name('add-courses');
         Route::post('courses/add-course', 'Admin\CourseController@addCourse')->name('add-course');
+
+        Route::get('courses/delete-course', 'Admin\CourseController@deleteCourse')->name('delete-course');
+        Route::get('courses/edit-course', 'Admin\CourseController@editCourse')->name('edit-course');
 
         Route::get('members/search', 'UserController@searchUser')->name('search');
 
