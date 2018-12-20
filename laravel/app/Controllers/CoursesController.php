@@ -1,13 +1,10 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Models\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
 class CoursesController extends Controller
 {
     public function showAllCourses()
@@ -15,18 +12,14 @@ class CoursesController extends Controller
         $result = DB::table('Course')->select(array('Course.*', 'User.*', DB::raw('(Select Count(CourseRegistration.id_course) from CourseRegistration where CourseRegistration.id_course = Course.id) as count_student')))
             ->join('User', 'Course.uid', '=', 'User.uid')
             ->paginate(6);
-
         $subject = DB::table('Subject')->get();
         return view('courses', compact('result', 'subject'));
-
     }
-
     public function showCourseDetailRegistered($id)
     {
         $course = Course::find($id);
         return view('view_course', compact('course'));
     }
-
     public function showCourseDetail($id)
     {
         $course = Course::find($id);
@@ -40,7 +33,6 @@ class CoursesController extends Controller
             return view('view_course', compact('course'));
         }
     }
-
     public function showAllCoursesUser($id)
     {
         $result = DB::table('Course')->select(array('Course.*', 'User.*', DB::raw('(Select Count(CourseRegistration.id_course) from CourseRegistration where CourseRegistration.id_course = Course.id) as count_student')))
@@ -50,9 +42,7 @@ class CoursesController extends Controller
             ->paginate(6);
         $subject = DB::table('Subject')->get();
         return view('member.course.my_course', compact('result', 'subject'));
-
     }
-
     public function getCoursePlan()
     {
         $allCourse = DB::table('Course')->get();
