@@ -99,10 +99,6 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
 });
 
 Route::group(['prefix' => 'admin-cp'], function () {
-
-
-
-
     Route::get('members/add', function () {
         return view('admin.member.add-member');
     })->name('add-member');
@@ -123,7 +119,7 @@ Route::group(['prefix' => 'admin-cp'], function () {
 
     Route::group(['middleware' => 'admin'], function () {
         Route::get('/', 'Admin\AdminController@index')->name('admin');
-
+        Route::get('Editor/', 'Editor\EditorController@index')->name('editor');
         Route::get('members', 'UserController@showAllUsers')->name('members');
 
         Route::get('document_management', 'DocumentController@showAllDocuments')->name('document_management');

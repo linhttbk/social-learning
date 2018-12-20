@@ -1,9 +1,16 @@
 <nav class="side-navbar">
     <!-- Sidebar Header-->
+    <br>
     <div class="sidebar-header d-flex align-items-center">
-        <div class="avatar"><img src="{{asset('admin/img/avatar-1.jpg')}}" alt="..."
-                                 class="img-fluid rounded-circle"></div>
-        
+        <div class="avatar">
+            <img src="{{asset('admin/img/avatar-1.jpg')}}" alt="..."
+                                 class="img-fluid rounded-circle">
+        </div>
+        <label style="font-size: 15px">
+            <br>&nbsp&nbsp&nbsp&nbsp&nbspXin chào!
+            <br>&nbsp&nbspThân Tài Linh
+        </label>
+
     </div>
     <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
     <ul class="list-unstyled">
