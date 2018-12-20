@@ -61,7 +61,12 @@ class LoginController extends Controller
         }
         if (Auth::attempt($arr, $remember)) {
 //             return  dd($request->urlback);
-            return redirect()->intended($request->urlback);
+            if (Auth::user()->emailverify)
+                return redirect()->intended($request->urlback);
+            else{
+                Auth::logout();
+                return back()->withInput()->with('error', 'Bạn cần xác thực tài khoản, chúng tôi đã gửi mã xác thực vào email của bạn, hãy kiểm tra và làm theo hướng dẫn.');
+            }
 //                return redirect()->intended(route('home',['user'=>$user]));
         } else {
 //            dd("That bai");
@@ -70,7 +75,8 @@ class LoginController extends Controller
 
     }
 
-    public  function getLogout(){
+    public function getLogout()
+    {
         Auth::logout();
         return redirect()->intended('login');
     }

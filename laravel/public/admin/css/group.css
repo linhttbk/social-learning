@@ -85,3 +85,11 @@
     text-decoration: underline;
     color: #235a81;
 }
+.pagination{
+    float: right;
+    margin-top: -25px;
+}
+tbody img{
+    width: 30px;
+    height: 30px;
+}

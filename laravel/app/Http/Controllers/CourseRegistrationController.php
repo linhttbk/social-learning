@@ -15,7 +15,7 @@ class CourseRegistrationController extends Controller
     //
     public function __construct()
     {
-        $this->middleware('auth')->only('registerCourse');
+        $this->middleware('auth');
     }
 
     public function registerCourse($id, Request $request)
