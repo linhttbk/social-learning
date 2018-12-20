@@ -1,9 +1,7 @@
 <?php
-
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-
 class CreateCoursePlanTable extends Migration
 {
     /**
@@ -13,7 +11,7 @@ class CreateCoursePlanTable extends Migration
      */
     public function up()
     {
-         Schema::create('CoursePlan', function (Blueprint $table) {
+        Schema::create('CoursePlan', function (Blueprint $table) {
             $table->integer('id_course');
             $table->integer('id_lesson');
             $table->primary(array('id_course', 'id_lesson'));
@@ -23,7 +21,6 @@ class CreateCoursePlanTable extends Migration
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *
