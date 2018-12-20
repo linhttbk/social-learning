@@ -18,6 +18,7 @@ class CreateGroupRequestTable extends Migration
             $table->string('uid', 30);// foreign key
             $table->integer('id_group');
             $table->foreign('id_group')->references('id')->on('GroupUser')->onDelete('cascade');// foreign key
+            $table->foreign('uid')->references('uid')->on('User')->onDelete('cascade');// foreign key
             $table->dateTime('request_time');
             $table->integer('status');
             $table->timestamps();

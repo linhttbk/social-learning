@@ -128,9 +128,9 @@
                                                         <td>Chua chay</td>
                                                     @endif
                                                     <td>
-                                                        <a href="{{route('get_edit_User', ['uid'=>$data->uid])}}"><img
+                                                        <a href="{{route('edit-course', ['id'=>$data->id])}}"><img
                                                                 src="{{asset('admin/img/icon/ic_edit.png')}}"></a>
-                                                        <a href="{{route('delete_User', ['uid'=>$data->uid])}}"><img
+                                                        <a href="{{route('delete-course', ['id'=>$data->id])}}"><img
                                                                 src="{{asset('admin/img/icon/ic_delete.png')}}"></a>
                                                     </td>
                                                 </tr>

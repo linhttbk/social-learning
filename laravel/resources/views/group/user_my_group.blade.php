@@ -20,7 +20,7 @@
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
 @endsection
 @section('content')
-    <div class="container-group" style="margin-top: 110px">
+    <div class="container-group" style="margin-top: 130px">
         <div class="row">
             <div class="group-infor col-lg-3">
                 <div class="group-information">
@@ -34,8 +34,8 @@
                     <div class="menu-group">
                         <ul class="menu-item">
                             <li><a class="menu-item-link" href="#">Giới thiệu</a></li>
-                            <li><a class="menu-item-link" href="#">Thảo luận</a></li>
-                            <li><a class="menu-item-link active" href="#">Thành viên</a></li>
+                            <li><a class="menu-item-link" href="{{route('my_group',['groupId'=>$groupId])}}">Thảo luận</a></li>
+                            <li><a class="menu-item-link active" href="">Thành viên</a></li>
                             <li><a class="menu-item-link" href="#">Tài liệu</a></li>
                         </ul>
                     </div>
@@ -109,11 +109,7 @@
                     </ul>
                 </ul>
             </div>
-            <div class="col-lg-3">
-                <div class="group-request">
-                    sdsdsd
-                </div>
-            </div>
+
         </div>
     </div>
     <script>
