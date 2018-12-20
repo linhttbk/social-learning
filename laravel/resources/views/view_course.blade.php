@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="{{asset('plugins/OwlCarousel2-2.2.1/animate.css')}}">
     <link rel="stylesheet" href="{{asset('css/course_responsive.css')}}">
     <link rel="stylesheet" href="{{asset('css/join_course.css')}}">
+    <link rel="stylesheet" href="{{asset('css/notifi.css')}}">
+    <link rel="stylesheet" href="{{asset('css/sweet.css')}}">
 @endsection
 
 @section('js')
@@ -17,6 +19,7 @@
     <script src="{{asset('js/course.js')}}"></script>
     <script src="{{asset('js/view_course.js')}}"></script>
     <script src="{{asset('js/header.js')}}"></script>
+    <script src="{{asset('js/sweet_alert.js')}}"></script>
     <script>
         function myFunction(name,id) {
             var y = '#showhide' + id;
@@ -57,14 +60,24 @@
             </div>
         </div>
     </div>
-
     <!-- Join Course -->
+    <?php if (!empty($learnlesson)): ?>
+        <script type="text/javascript">
+            swal(
+                    {
+                        title: 'Thong bao',
+                        text: '<?php echo $learnlesson[0]->title ?> <?php echo $learnlesson[0]->des ?> den thoi gian hoc"',
+                        type: 'success',
+                    });
+        </script>
+    <?php endif ?>
     <div class="profile">
         <div class="container">
             <div class="row">
                 <div class="col-sm-3" id="list_lesson">
                     <ul class="dropdowns">
                         @php $chapters = $course->chapters
+
                         @endphp
                         @if($chapters->isEmpty())
                             <span
