@@ -34,12 +34,6 @@
                             <form id="login-form" action="{{route('post_login')}}" method="post" role="form"
                                   style="display: block;" onsubmit="return onSubmitLogin()">
                                 @include('errors.note')
-                                <div class="form-error">
-                                    @if(Session::has('success'))
-                                        <span id="form-error" style="display: block;margin: 0 30px"
-                                              class="alert alert-success">{{Session::get('success')}}</span>
-                                    @endif
-                                </div>
                                 <div class="form-group">
                                     <label>Tài khoản : </label>
                                     <input type="text" name="username" id="username" tabindex="1" class="form-control"
@@ -79,20 +73,21 @@
                                 </div>
                                 {{csrf_field()}}
                             </form>
-                            <form id="register-form" action="{{url('register')}}" method="post" enctype="multipart/form-data"
+                            <form id="register-form" action="{{url('register')}}" method="post"
+                                  enctype="multipart/form-data"
                                   onsubmit=" return onSubmitCLick()"
                                   role="form" style="display: none;">
                                 <div class="form-error">
-                                @if(Session::has('error'))
-                                    <span id="form-error" style="display: block;margin: 0 30px"
-                                          class="alert alert-danger">{{Session::get('error')}}</span>
-                                    <script>
+                                    @if(Session::has('error-reg'))
+                                        <span id="form-error" style="display: block;margin: 0 30px"
+                                              class="alert alert-danger">{{Session::get('error-reg')}}</span>
+                                        <script>
                                             $("#register-form").delay(100).fadeIn(100);
                                             $("#login-form").fadeOut(100);
                                             $('#login-form-link').removeClass('active');
                                             $('#register-form-link').addClass('active');
-                                    </script>
-                                @endif
+                                        </script>
+                                    @endif
                                 </div>
                                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                                 <div class="form-group">
@@ -160,7 +155,7 @@
 
                                 <div class="form-group">
                                     <label>Avatar : </label>
-                                    <input type="file" name="image" id="image" size="25"  accept=".jpg,.jpeg,.png">
+                                    <input type="file" name="image" id="image" size="25" accept=".jpg,.jpeg,.png">
 
                                 </div>
                                 <div class="form-group">
@@ -175,27 +170,30 @@
                                         <option value="10">Lớp 10</option>
                                         <option value="11">Lớp 11</option>
                                         <option value="12">Lớp 12</option>
-
                                     </select>
                                 </div>
                                 <div class="form-group" id="teacher" name="subjectreg">
                                     <label>Môn giảng dạy : </label>
-                                    <select class="form-control">
-                                        <option class="fs-option">Toán</option>
-                                        <option class="fs-option">Lý</option>
-                                        <option class="fs-option">Hóa</option>
-                                        <option>Tiếng Anh</option>
-                                        <option>Ngữ Văn</option>
+                                    <select name="subject_reg" class="form-control">
+                                        @if(!empty($subject))
+                                            @foreach($subject as $data)
+                                                <option value="{{$data->id}}"
+                                                        class="fs-option">{{$data->title}}</option>
+
+                                            @endforeach
+                                        @endif
                                     </select>
                                 </div>
                                 <div class="form-group" id="censors" name="subjectreg">
                                     <label>Môn đăng ký kiểm duyệt : </label>
-                                    <select class="form-control">
-                                        <option>Toán</option>
-                                        <option>Lý</option>
-                                        <option>Hóa</option>
-                                        <option>Tiếng Anh</option>
-                                        <option>Ngữ Văn</option>
+                                    <select name="subject_editor_reg" class="form-control">
+                                        @if(!empty($subject))
+                                            @foreach($subject as $data)
+                                                <option value="{{$data->id}}"
+                                                        class="fs-option">{{$data->title}}</option>
+
+                                            @endforeach
+                                        @endif
                                     </select>
                                 </div>
                                 <div class="form-group">

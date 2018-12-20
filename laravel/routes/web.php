@@ -25,7 +25,8 @@ Route::get('xx', function () {
 
 
 Route::get('login', function () {
-    return view('login');
+    $subject = \Illuminate\Support\Facades\DB::table('Subject')->where('id_parent', '!=', null)->get();
+    return view('login', ['subject' => $subject]);
 })->name('login');
 
 Route::get('about', function () {
@@ -101,8 +102,6 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
 Route::group(['prefix' => 'admin-cp'], function () {
 
 
-
-
     Route::get('members/add', function () {
         return view('admin.member.add-member');
     })->name('add-member');
@@ -134,9 +133,9 @@ Route::group(['prefix' => 'admin-cp'], function () {
         Route::get('document_management/add_doccumeny', 'DocumentController@getAddDocument')->name('add_doccument');
         Route::post('document_management/add_doccumeny', 'DocumentController@postAddDocument')->name('post_add_document');
 
-        Route::get('course_plan','CoursesController@getCoursePlan')->name('course_plan');
-        Route::post('course_plan','CoursePlanController@getCourseDetail')->name('search_course_plan');
-        Route::get('courseplan/{$idcourse,$idchap}','CoursePlanController@getCoursePlanWith')->name('get_course_plan');
+        Route::get('course_plan', 'CoursesController@getCoursePlan')->name('course_plan');
+        Route::post('course_plan', 'CoursePlanController@getCourseDetail')->name('search_course_plan');
+        Route::get('courseplan/{$idcourse,$idchap}', 'CoursePlanController@getCoursePlanWith')->name('get_course_plan');
 
         Route::get('charts', function () {
             return view('admin.charts');
@@ -148,13 +147,14 @@ Route::group(['prefix' => 'admin-cp'], function () {
 
         Route::get('courses', 'Admin\CourseController@showCoursesPag')->name('admin-courses');
         Route::get('courses/search', 'Admin\CourseController@searchCourse')->name('search-courses');
-        Route::get('courses/add-course','Admin\CourseController@showAddCourse')->name('add-courses');
-        Route::post('courses/add-course','Admin\CourseController@addCourse')->name('add-course');
+        Route::get('courses/add-course', 'Admin\CourseController@showAddCourse')->name('add-courses');
+        Route::post('courses/add-course', 'Admin\CourseController@addCourse')->name('add-course');
 
         Route::get('members/search', 'UserController@searchUser')->name('search');
 
         Route::group(['prefix' => 'groups'], function () {
             Route::get('/', 'Admin\GroupUserController@showAllGroupUser')->name('group-user');
+            Route::post('delete', 'Admin\GroupUserController@deleteGroups');
         });
 
     });
