@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.82.0",
+            "version": "3.82.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "651557da601b70d5bbcc6a9c371e8f8b6314f679"
+                "reference": "f3c38c0d74fba49fdaa1ce856412ea1017513002"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/651557da601b70d5bbcc6a9c371e8f8b6314f679",
-                "reference": "651557da601b70d5bbcc6a9c371e8f8b6314f679",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/f3c38c0d74fba49fdaa1ce856412ea1017513002",
+                "reference": "f3c38c0d74fba49fdaa1ce856412ea1017513002",
                 "shasum": ""
             },
             "require": {
@@ -87,7 +87,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2018-12-18T23:04:30+00:00"
+            "time": "2018-12-19T22:35:44+00:00"
         },
         {
             "name": "aws/aws-sdk-php-laravel",
@@ -1335,7 +1335,7 @@
                 {
                     "name": "Luís Otávio Cobucci Oblonczyk",
                     "email": "lcobucci@gmail.com",
-                    "role": "developer"
+                    "role": "Developer"
                 }
             ],
             "description": "A simple library to work with JSON Web Token and JSON Web Signature",

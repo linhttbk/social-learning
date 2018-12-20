@@ -16,6 +16,7 @@ class CreatePostTable extends Migration
         Schema::create('Post', function (Blueprint $table) {
             $table->integer('id', 11);
             $table->string('content');
+            $table->string('url')->nullable();
             $table->integer('id_group')->nullable();
             $table->foreign('id_group')->references('id')->on('GroupUser');
             $table->string('uid', 30);

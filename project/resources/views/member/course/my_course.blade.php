@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{asset('css/course_responsive.css')}}">
     <link rel="stylesheet" href="{{asset('css/my_course.css')}}">
     <link rel="stylesheet" href="{{asset('css/header.css')}}">
+    <meta name="csrf-token" content="{{ csrf_token() }}"/>
 
 @endsection
 @section('js')
