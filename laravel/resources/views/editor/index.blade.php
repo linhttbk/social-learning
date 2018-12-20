@@ -58,222 +58,66 @@
                         </li>
                         <li class="nav-item active">
                             <a href="#"><u>Tài liệu đang chờ</u>&nbsp;<span
-                                        class="badge badge-danger badge-pill">12</span></a>
+                                    class="badge badge-danger badge-pill">{{$totalUnCheck}}</span></a>
                         </li>
                         <div class="dropdown-divider"></div>
                         <li class="nav-item">
-                            <a href="#"><u>Tài liệu đã đăng</u>&nbsp;<span
-                                        class="badge badge-success badge-pill">12</span></a>
+                            <a href="#"><u>Tài liệu đã duyệt</u>&nbsp;<span
+                                    class="badge badge-success badge-pill">{{$totalCheck}}</span></a>
                         </li>
                     </ul>
                 </nav>
             </div>
             <div class="col-lg-9" style="background-color: white">
-                <div class="card" style="margin-top: 20px">
-                    <div class="card-header">
-                        <div class="row">
-                            <div class="col-lg-1">
-                                <img src="http://api.randomuser.me/portraits/men/49.jpg"
-                                     class="rounded-circle">
+
+                @if(!empty($document))
+                    @foreach ($document as $data)
+                        <div class="card" style="margin-top: 20px">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-lg-1">
+                                        <img src="http://api.randomuser.me/portraits/men/49.jpg"
+                                             class="rounded-circle">
+                                    </div>
+                                    <div class="my_col" style="column-width: 70px">
+                                        <label><br></label>
+                                    </div>
+                                    <div class="col col-sm-7">
+                                        <span style="font-weight: bold;color: black">{{$data->name}}</span>
+                                        <br>
+                                        <small>{{$data->created_at}}</small>
+                                    </div>
+                                    <div class="col-lg-1 pull-right dropdown">
+                                        <a href="#"><i class='fa fa-caret-down'
+                                                       style='font-size:24px;padding-left: 100px'></i></a>
+                                        <ul class="list-group">
+                                            <li class="list-group-item">
+                                                <a href="#"><i class='fa fa-check'>&nbsp;Chấp nhận</i></a>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <a href="#">
+                                                    <i class='fa fa-times-circle'>&nbsp;Hủy</i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="my_col" style="column-width: 70px">
-                                <label><br></label>
-                            </div>
-                            <div class="col col-sm-7">
-                                <span style="font-weight: bold;color: black">Vũ Văn Kiên</span>
-                                <br>
-                                <small>12h00 17/12/2018</small>
-                            </div>
-                            <div class="col-lg-1 pull-right dropdown">
-                                <a href="#"><i class='fa fa-caret-down' style='font-size:24px;padding-left: 100px'></i></a>
-                                <ul class="list-group">
-                                    <li class="list-group-item">
-                                        <a href="#"><i class='fa fa-check'>&nbsp;Chấp nhận</i></a>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <a href="#">
-                                            <i class='fa fa-times-circle'>&nbsp;Hủy</i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">Mô tả :</div>
-                        <div class="row" style="padding: 0 20px; color: black">Đề thi Toán THPT chuyên Thái Bình
-                        </div>
-                        <div class="row">Link :</div>
-                        <div class="row" style="padding: 0 20px; color: black">
-                            <iframe src="https://drive.google.com/file/d/0B--xz5SoSs0FdVZNMFUwT1hNMDA/preview"
-                                    width="100%" height="300"></iframe>
-                        </div>
-                    </div>
-                </div>
-                <div class="card" style="margin-top: 20px">
-                    <div class="card-header">
-                        <div class="row">
-                            <div class="col-lg-1">
-                                <img src="http://api.randomuser.me/portraits/men/49.jpg"
-                                     class="rounded-circle">
-                            </div>
-                            <div class="my_col" style="column-width: 70px">
-                                <label><br></label>
-                            </div>
-                            <div class="col col-sm-7">
-                                <span style="font-weight: bold;color: black">Vũ Văn Kiên</span>
-                                <br>
-                                <small>12h00 17/12/2018</small>
-                            </div>
-                            <div class="col-lg-1 pull-right dropdown">
-                                <a href="#"><i class='fa fa-caret-down' style='font-size:24px;padding-left: 100px'></i></a>
-                                <ul class="list-group">
-                                    <li class="list-group-item">
-                                        <a href="#"><i class='fa fa-check'>&nbsp;Chấp nhận</i></a>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <a href="#">
-                                            <i class='fa fa-times-circle'>&nbsp;Hủy</i>
-                                        </a>
-                                    </li>
-                                </ul>
+                            <div class="card-body">
+                                <div class="row" style="color: black">Mô tả :</div>
+                                <div class="row" style="padding: 0 20px; color: black">{{$data->des}}
+                                </div>
+                                <div class="row" style="color: black">Link :<a href="{{$data->url}}" download>Tải về</a>
+                                </div>
+                                <div class="row" style="padding: 0 20px; color: black">
+                                    <iframe
+                                        src="{{$data->url}}"
+                                        width="640" height="300"></iframe>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">Mô tả :</div>
-                        <div class="row" style="padding: 0 20px; color: black">Đề thi Toán THPT chuyên Thái Bình
-                        </div>
-                        <div class="row">Link :</div>
-                        <div class="row" style="padding: 0 20px; color: black">
-                            <iframe src="https://drive.google.com/file/d/1WSSBONuveDp6qQs_9Ucthc1x8AmH-0Aa/preview"
-                                    width="640" height="300"></iframe>
-                        </div>
-                    </div>
-                </div>
-                <div class="card" style="margin-top: 20px">
-                    <div class="card-header">
-                        <div class="row">
-                            <div class="col-lg-1">
-                                <img src="http://api.randomuser.me/portraits/men/49.jpg"
-                                     class="rounded-circle">
-                            </div>
-                            <div class="my_col" style="column-width: 70px">
-                                <label><br></label>
-                            </div>
-                            <div class="col col-sm-7">
-                                <span style="font-weight: bold;color: black">Vũ Văn Kiên</span>
-                                <br>
-                                <small>12h00 17/12/2018</small>
-                            </div>
-                            <div class="col-lg-1 pull-right dropdown">
-                                <a href="#"><i class='fa fa-caret-down' style='font-size:24px;padding-left: 100px'></i></a>
-                                <ul class="list-group">
-                                    <li class="list-group-item">
-                                        <a href="#"><i class='fa fa-check'>&nbsp;Chấp nhận</i></a>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <a href="#">
-                                            <i class='fa fa-times-circle'>&nbsp;Hủy</i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">Mô tả :</div>
-                        <div class="row" style="padding: 0 20px; color: black">Đề thi Toán THPT chuyên Thái Bình
-                        </div>
-                        <div class="row">Link :</div>
-                        <div class="row" style="padding: 0 20px; color: black">
-                            <iframe src="https://drive.google.com/file/d/1WSSBONuveDp6qQs_9Ucthc1x8AmH-0Aa/preview"
-                                    width="640" height="300"></iframe>
-                        </div>
-                    </div>
-                </div>
-                <div class="card" style="margin-top: 20px">
-                    <div class="card-header">
-                        <div class="row">
-                            <div class="col-lg-1">
-                                <img src="http://api.randomuser.me/portraits/men/49.jpg"
-                                     class="rounded-circle">
-                            </div>
-                            <div class="my_col" style="column-width: 70px">
-                                <label><br></label>
-                            </div>
-                            <div class="col col-sm-7">
-                                <span style="font-weight: bold;color: black">Vũ Văn Kiên</span>
-                                <br>
-                                <small>12h00 17/12/2018</small>
-                            </div>
-                            <div class="col-lg-1 pull-right dropdown">
-                                <a href="#"><i class='fa fa-caret-down' style='font-size:24px;padding-left: 100px'></i></a>
-                                <ul class="list-group">
-                                    <li class="list-group-item">
-                                        <a href="#"><i class='fa fa-check'>&nbsp;Chấp nhận</i></a>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <a href="#">
-                                            <i class='fa fa-times-circle'>&nbsp;Hủy</i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">Mô tả :</div>
-                        <div class="row" style="padding: 0 20px; color: black">Đề thi Toán THPT chuyên Thái Bình
-                        </div>
-                        <div class="row">Link :</div>
-                        <div class="row" style="padding: 0 20px; color: black">
-                            <iframe src="https://drive.google.com/file/d/1WSSBONuveDp6qQs_9Ucthc1x8AmH-0Aa/preview"
-                                    width="640" height="300"></iframe>
-                        </div>
-                    </div>
-                </div>
-                <div class="card" style="margin-top: 20px">
-                    <div class="card-header">
-                        <div class="row">
-                            <div class="col-lg-1">
-                                <img src="http://api.randomuser.me/portraits/men/49.jpg"
-                                     class="rounded-circle">
-                            </div>
-                            <div class="my_col" style="column-width: 70px">
-                                <label><br></label>
-                            </div>
-                            <div class="col col-sm-7">
-                                <span style="font-weight: bold;color: black">Vũ Văn Kiên</span>
-                                <br>
-                                <small>12h00 17/12/2018</small>
-                            </div>
-                            <div class="col-lg-1 pull-right dropdown">
-                                <a href="#"><i class='fa fa-caret-down' style='font-size:24px;padding-left: 100px'></i></a>
-                                <ul class="list-group">
-                                    <li class="list-group-item">
-                                        <a href="#"><i class='fa fa-check'>&nbsp;Chấp nhận</i></a>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <a href="#">
-                                            <i class='fa fa-times-circle'>&nbsp;Hủy</i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">Mô tả :</div>
-                        <div class="row" style="padding: 0 20px; color: black">Đề thi Toán THPT chuyên Thái Bình
-                        </div>
-                        <div class="row">Link :</div>
-                        <div class="row" style="padding: 0 20px; color: black">
-                            <iframe src="https://drive.google.com/file/d/1WSSBONuveDp6qQs_9Ucthc1x8AmH-0Aa/preview"
-                                    width="640" height="300"></iframe>
-                        </div>
-                    </div>
-                </div>
+                    @endforeach
+                @endif
             </div>
         </div>
     </div>
