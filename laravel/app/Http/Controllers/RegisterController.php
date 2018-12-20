@@ -5,8 +5,12 @@ namespace App\Http\Controllers;
 use App\Classes\ActivationService;
 use App\Jobs\SendWelcomeEmail;
 use App\Models\Account;
+use App\Models\Chapter;
+use App\Models\EditorRegistration;
+use App\Models\Test;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -57,6 +61,7 @@ class RegisterController extends Controller
                 $user->id_sr = $request->subject_reg;
 
             } else if ($request->type == '2') {
+
                 $user->id_sr = $request->subject_editor_reg;
             }
             if (!empty($request->image)) {
@@ -70,6 +75,14 @@ class RegisterController extends Controller
             $user->save();
             $account->save();
             $this->activationService->sendActivationMail($user);
+            if ($request->type == '2') {
+                $editor = new EditorRegistration();
+                $editor->uid = $user->uid;
+                $editor->score = 0;
+                $editor->date_reg = Carbon::now();
+                $editor->status = 0;
+                $editor->save();
+            }
             return redirect('login')->with('success', "Xác thực email để kích hoạt tài khoản");
         }
     }

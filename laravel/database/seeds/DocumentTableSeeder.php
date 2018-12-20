@@ -18,7 +18,7 @@ class DocumentTableSeeder extends Seeder
                 'id_subject' => 6,
                 'url' => 'https://docs.google.com/spreadsheets/d/1SEou2Fkq5BbeTJM25BhhbMn7isH_WHidliD79CNbS6o/edit#gid=135497270',
                 'uid' => 'linhluv1',
-                'status' => '0',
+                'status' => random_int(0,1),
                 'des' => 'Tai lieu Tiếng Anh 10'
             ];
         }
@@ -27,7 +27,7 @@ class DocumentTableSeeder extends Seeder
                 'id_subject' => 9,
                 'url' => 'https://github.com/LeonelLopez84/lumen_crud/blob/735874067c810655db97db1e7bfe6fc9e4d29f31/apidoc.json',
                 'uid' => 'linhluv1',
-                'status' => '0',
+                'status' => random_int(0,1),
                 'des' => 'Tai lieu Toán 10'
             ];
         }
@@ -36,7 +36,7 @@ class DocumentTableSeeder extends Seeder
                 'id_subject' => 15,
                 'url' => 'https://github.com/LeonelLopez84/lumen_crud/blob/735874067c810655db97db1e7bfe6fc9e4d29f31/apidoc.json',
                 'uid' => 'linhluv1',
-                'status' => '0',
+                'status' => random_int(0,1),
                 'des' => 'Tai lieu Hoá 10'
             ];
         }

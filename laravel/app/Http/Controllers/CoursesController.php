@@ -1,4 +1,4 @@
-<!-- <?php
+<?php
 
 namespace App\Http\Controllers;
 
@@ -28,19 +28,19 @@ class CoursesController extends Controller
         return view('view_course', compact('course'));
     }
 
-//     public function showCourseDetail($id)
-//     {
-//         $course = Course::find($id);
-//         if (Auth::check()) {
-//             $check_registered_course = DB::table("CourseRegistration")->where([["id_course", "=", $id], ["uid", "=", Auth::user()->uid]])->get();
-//         }
-// //        dd($check_registered_course);
-//         if (empty($check_registered_course[0])) {
-//             return view('course', compact('course'));
-//         } else {
-//             return view('view_course', compact('course'));
-//         }
-//     }
+     public function showCourseDetail($id)
+     {
+         $course = Course::find($id);
+         if (Auth::check()) {
+             $check_registered_course = DB::table("CourseRegistration")->where([["id_course", "=", $id], ["uid", "=", Auth::user()->uid]])->get();
+         }
+ //        dd($check_registered_course);
+         if (empty($check_registered_course[0])) {
+             return view('course', compact('course'));
+         } else {
+             return view('view_course', compact('course'));
+         }
+     }
 
     public function showAllCoursesUser($id)
     {
@@ -84,4 +84,4 @@ class CoursesController extends Controller
         return response()->json(['success' => 1, 'score' => $score]);
     }
 }
- -->
+

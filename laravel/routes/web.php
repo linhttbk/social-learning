@@ -49,6 +49,8 @@ Route::get('course', function () {
 
 Route::get('courses', 'CoursesController@showAllCourses')->name('courses');
 
+Route::get('editor/', 'Editor\EditorController@index')->name('editor');
+Route::post('editor/submit', 'Editor\EditorController@submitQuiz');
 
 Route::group(['prefix' => 'course'], function () {
 
@@ -120,7 +122,7 @@ Route::group(['prefix' => 'admin-cp'], function () {
 
     Route::group(['middleware' => 'admin'], function () {
         Route::get('/', 'Admin\AdminController@index')->name('admin');
-        Route::get('Editor/', 'Editor\EditorController@index')->name('editor');
+
         Route::get('members', 'UserController@showAllUsers')->name('members');
 
         Route::get('document_management', 'DocumentController@showAllDocuments')->name('document_management');

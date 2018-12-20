@@ -4,6 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Account;
+use App\Models\Chapter;
+use App\Models\EditorRegistration;
+use App\Models\Question;
+use App\Models\Test;
+use App\Models\TestHistory;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -61,9 +66,37 @@ class LoginController extends Controller
         }
         if (Auth::attempt($arr, $remember)) {
 //             return  dd($request->urlback);
-            if (Auth::user()->emailverify)
-                return redirect()->intended($request->urlback);
-            else{
+            if (Auth::user()->emailverify) {
+                if (Auth::user()->user->type == 2) {
+                    $uid = Auth::user()->uid;
+                    $editor = EditorRegistration::where('uid', $uid)->first();
+                    if (!empty($editor)) {
+                        if ($editor->status == 1) {
+                            return redirect()->route('editor');
+                        } else if ($editor->score == 0) {
+                            $chap = Chapter::where('id_subject', Auth::user()->user->id_sr)->inRandomOrder()->take(1)->first();
+                            $test = Test::where('id_subject', Auth::user()->user->id_sr)->first();
+
+                            if (!empty($chap) && !empty($test)){
+                                $listQuestion = Question::where('id_chap', $chap->id)->inRandomOrder()->take(15)->get();
+                                $topTest = TestHistory::where('id_test', $test->id)->orderBy('score', 'DESC')->take(5)->get();
+                                return view('editor_quiz', ['listQuestion' => $listQuestion, 'id_quiz' => $test->id, 'id_chap' => $chap->id, 'uid' => $editor->uid, 'topTest' => $topTest]);
+                            }
+
+                        } else {
+                            Auth::logout();
+                            return back()->withInput()->with('error', 'Bạn chưa được chấp thuận đăng ký.');
+                        }
+                    } else {
+                        Auth::logout();
+                        return back()->withInput()->with('error', 'Bạn chưa được chấp thuận đăng ký.');
+                    }
+
+                } else {
+                    return redirect()->intended($request->urlback);
+                }
+
+            } else {
                 Auth::logout();
                 return back()->withInput()->with('error', 'Bạn cần xác thực tài khoản, chúng tôi đã gửi mã xác thực vào email của bạn, hãy kiểm tra và làm theo hướng dẫn.');
             }
