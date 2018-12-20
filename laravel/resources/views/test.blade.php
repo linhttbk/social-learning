@@ -1,5 +1,5 @@
 @extends('default')
-@section('title','Blog')
+@section('title','Examination')
 @section('css')
     <link rel="stylesheet" href="{{asset('css/bootstrap4/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('plugins/font-awesome-4.7.0/css/font-awesome.min.css')}}">
