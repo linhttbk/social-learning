@@ -19,12 +19,6 @@ class AdminTableSeeder extends Seeder
             'name' => 'Than Linh',
             'email' => 'linhcuong1212.@gmail.com',
             'password' => bcrypt('123456')]
-            ,
-            ['uid' => 'linhluv1',
-            'isAdmin' => '0',
-            'name' => 'Than Linh',
-            'email' => 'linhcuong1212.@gmail.com',
-            'password' => bcrypt('123456')]
 
         ]);
     }

@@ -72,6 +72,60 @@ class TestTableSeeder extends Seeder
 
             ],
         ];
+        $tests2 = [[
+            'id_subject' => 6,
+
+        ], [
+            'id_subject' => 7,
+
+        ], [
+            'id_subject' => 8,
+
+        ], [
+            'id_subject' => 9,
+
+        ],
+            [
+                'id_subject' => 10,
+
+            ],
+            [
+                'id_subject' => 11,
+
+            ],
+            [
+                'id_subject' => 12,
+
+            ],
+            [
+                'id_subject' => 13,
+
+            ],
+            [
+                'id_subject' => 14,
+
+            ], [
+                'id_subject' => 15,
+
+            ], [
+                'id_subject' => 16,
+
+            ],
+            [
+                'id_subject' => 17,
+
+            ], [
+                'id_subject' => 18,
+
+            ], [
+                'id_subject' => 19,
+
+            ], [
+                'id_subject' => 20,
+
+            ],
+        ];
         DB::table('Test')->insert($tests);
+        DB::table('Test')->insert($tests2);
     }
 }
