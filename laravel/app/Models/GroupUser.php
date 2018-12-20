@@ -24,4 +24,7 @@ class GroupUser extends Model
         return $this->hasManyThrough('App\Models\User', 'App\Models\GroupMember', 'id_group', 'uid', 'id', 'uid')
             ->where('GroupMember.role', '!=', 2);
     }
+    public function posts(){
+        return $this->hasMany('App\Models\Post', 'id_group', 'id');
+    }
 }

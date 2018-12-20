@@ -14,11 +14,18 @@
     <link rel="stylesheet" href="{{asset('admin/css/custom.css')}}">
     <link rel="shortcut icon" href="{{asset('admin/img/favicon.ico')}}">
     <link rel="stylesheet" href="{{asset('admin/css/group.css')}}">
+    <link rel="stylesheet" href="{{asset('css/sweet.css')}}">
+    <meta name="csrf-token" content="{{ csrf_token() }}"/>
 @endsection
 @section('js')
+    <script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    <script src="{{asset('admin/js/group.js')}}"></script>
+    <script src="{{asset('js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('js/ajax.lib.js')}}"></script>
+    <script src="{{asset('js/sweet_alert.js')}}"></script>
 @endsection
 @section('content')
     <div class="content-inner">
@@ -64,64 +71,33 @@
                                     <thead>
                                     <tr>
                                         <th></th>
-                                        <th>Name</th>
-                                        <th>Description</th>
-                                        <th>Type</th>
-                                        <th>Members</th>
-                                        <th>Posts</th>
-                                        <th>Date Created</th>
-                                        <th>Owner</th>
+                                        <th>Ten</th>
+                                        <th>Mo Ta</th>
+                                        <th>Kieu nhom</th>
+                                        <th>Thanh vien</th>
+                                        <th>Bai dang</th>
+                                        <th>Ngay tao</th>
+                                        <th>Admin</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td><input type="checkbox" class="checkitem"></td>
-                                        <td><a>Group A</a></td>
-                                        <td> This is group A</td>
-                                        <td> Public</td>
-                                        <td> 50</td>
-                                        <td> 12</td>
-                                        <td> 20-12-2018</td>
-                                        <td><a><img width="30px" height="30px"
-                                                    src="{{asset('admin/img/avatar-2.jpg')}}">Than Linh</a></td>
+                                    @if(!empty($results))
+                                        @foreach($results as $data)
+                                            <tr>
+                                                <td><input value="{{$data->id}}" type="checkbox" class="checkitem"></td>
+                                                <td><a>{{$data->title}}</a></td>
+                                                <td> {{$data->des}}</td>
+                                                <td> {{$data->mode?'Kin':'Cong khai'}}</td>
+                                                <td> {{$data->members}}</td>
+                                                <td> {{$data->posts}}</td>
+                                                <td> {{date('d-m-Y', strtotime($data->group_create_at))}}</td>
+                                                <td><a><img width="30px" height="30px"
+                                                            src="{{$data->avatar?$data->avatar: asset('images/avatar_default.jpg')}}">{{$data->name}}
+                                                    </a></td>
 
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox" class="checkitem"></td>
-                                        <td><a>Group A</a></td>
-                                        <td> This is group A</td>
-                                        <td> Public</td>
-                                        <td> 50</td>
-                                        <td> 12</td>
-                                        <td> 20-12-2018</td>
-                                        <td><a><img width="30px" height="30px"
-                                                    src="{{asset('admin/img/avatar-2.jpg')}}">Than Linh</a></td>
-
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox" class="checkitem"></td>
-                                        <td><a>Group A</a></td>
-                                        <td> This is group A</td>
-                                        <td> Public</td>
-                                        <td> 50</td>
-                                        <td> 12</td>
-                                        <td> 20-12-2018</td>
-                                        <td><a><img width="30px" height="30px"
-                                                    src="{{asset('admin/img/avatar-2.jpg')}}">Than Linh</a></td>
-
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox" class="checkitem"></td>
-                                        <td><a>Group A</a></td>
-                                        <td> This is group A</td>
-                                        <td> Public</td>
-                                        <td> 50</td>
-                                        <td> 12</td>
-                                        <td> 20-12-2018</td>
-                                        <td><a><img width="30px" height="30px"
-                                                    src="{{asset('admin/img/avatar-2.jpg')}}">Than Linh</a></td>
-
-                                    </tr>
+                                            </tr>
+                                        @endforeach
+                                    @endif
 
 
                                     </tbody>
@@ -133,7 +109,11 @@
                             <label>Check all</label>
                             <i>With selected</i>
                             <a href="#"> <img src="{{asset('admin/img/group/ic_edit_group.png')}}">Edit</a>
-                            <a href="#"><img src="{{asset('admin/img/group/ic_delete_group.png')}}">Delete</a>
+                            <a id="delete-group" data-url="/admin-cp/groups/delete" href="#"><img
+                                    src="{{asset('admin/img/group/ic_delete_group.png')}}">Delete</a>
+                        </div>
+                        <div id="paginate">
+                            {{ $results->links() }}
                         </div>
                     </div>
                 </div>
