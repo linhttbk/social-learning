@@ -18,7 +18,12 @@
     <script src="{{asset('js/view_course.js')}}"></script>
     <script src="{{asset('js/header.js')}}"></script>
     <script>
-        function myFunction(name) {
+        function myFunction(name,id) {
+            var y = '#showhide' + id;
+            $(y).removeClass('fa-play-circle-o');
+            $(y).addClass('fa-check-circle');
+
+
             var x = document.getElementById("myVideo");
             isSupp = x.canPlayType("video/mp4");
             if (isSupp == "") {
@@ -63,7 +68,7 @@
                         @endphp
                         @if($chapters->isEmpty())
                             <span
-                                class="not-found">Not found Chapters for this course </span>
+                                    class="not-found">Not found Chapters for this course </span>
                         @else
                             @foreach($chapters as $key => $chapter)
                                 @php
@@ -76,8 +81,8 @@
                                     <li>
                                         <div class="dropdown_item">
                                             <div class="dropdown_item_title">
-                                                <span>Chapter {{$key+1}}:</span>
-                                                {{$chapter->title}}
+                                                <span>Chapter {{$key+1}}:<br>{{$chapter->title}}</span>
+                                                <i id="" class="fa fa-play-circle-o" style="font-size:28px; color: green"></i>
                                             </div>
                                             <div class="dropdown_item_text">
                                                 <p>{{$chapter->des}}</p>
@@ -89,12 +94,13 @@
                                     <li class="has_children">
                                         <div class="dropdown_item">
                                             <div class="dropdown_item_title">
-                                                <span>Chapter {{$key+1}}:</span>
-                                                {{$chapter->title}}
+                                                <span>Chapter {{$key+1}}:<br>{{$chapter->title}}</span>
+                                                <i id="" class="fa fa-play-circle-o" style="font-size:28px; color: green"></i>
                                             </div>
                                             <div class="dropdown_item_text">
                                                 <p>{{$chapter->des}}</p>
                                             </div>
+
                                         </div>
                                         <ul>
                                             @foreach($lesson as $key2=>$data)
@@ -102,15 +108,20 @@
                                                     <div class="dropdown_item">
                                                         <div class="dropdown_item_title">
                                                             <span>Lesson {{$key2+1}}:</span> {{$data->title}}
+                                                            <i id="showhide{{$data->id}}" class="fa fa-play-circle-o" style="font-size:28px; color: green"></i>
                                                         </div>
+
+
+
                                                         <div class="dropdown_item_text">
                                                             <p>{{$data->des}}</p>
                                                         </div>
                                                         <div class="dropdown_item_text">
                                                             <ol>
-                                                                <li><a title="Video"
-                                                                       onclick="myFunction('{{$data->url}}')">Xem
-                                                                        video</a></li>
+                                                                <li><a title="Video" style="color: #007bff;"
+                                                                       onclick="myFunction('{{$data->url}}', {{$data->id}})">Xem
+                                                                        video</a>
+                                                                </li>
                                                                 <li><a title="Tải tài liệu" href='{{$data->url_doc}}'
                                                                        download>Tải tài liệu</a>
                                                                 </li>
@@ -123,7 +134,7 @@
                                         <ul>
                                             @if(!empty($test))
                                                 <div class="dropdown_item"><img
-                                                        src="{{asset('images/ic_test.png')}}"/>
+                                                            src="{{asset('images/ic_test.png')}}"/>
                                                     <a href="{{route('do-quiz',['id'=>$course->id,'id_chap'=>$chapter->id,'id_quiz'=>$test->id])}}"
                                                        class="title-test">Test</a>
                                                     <div class="description-test">Bài kiểm tra cho chương</div>
@@ -138,7 +149,7 @@
                 </div>
                 <div class="col-sm-7">
                     <div id="mediaspace" style="margin:5px;">
-                        <video id="myVideo" width="700" height="400" controls src="{{asset('upload/video/bai2.mp4')}}">
+                        <video id="myVideo" width="700" height="400" controls src="{{asset('upload/video/bai1.mp4')}}">
                             Your browser does not support HTML5 video!
                         </video>
                         {{--<iframe id="myVideo" width="700" height="400" src="https://www.youtube.com/embed/dRu9hULOqYY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>--}}
@@ -153,7 +164,7 @@
                             <center>
                                 <!-- Histats.com  START  (standard)-->
                                 <script
-                                    type="text/javascript">document.write(unescape("%3Cscript src=%27http://s10.histats.com/js15.js%27 type=%27text/javascript%27%3E%3C/script%3E"));</script>
+                                        type="text/javascript">document.write(unescape("%3Cscript src=%27http://s10.histats.com/js15.js%27 type=%27text/javascript%27%3E%3C/script%3E"));</script>
                                 <a href="http://www.histats.com" target="_blank" title="hit counter">
                                     <script type="text/javascript">
                                         try {
@@ -165,8 +176,8 @@
                                     </script>
                                 </a>
                                 <noscript><a href="http://www.histats.com" target="_blank"><img
-                                            src="http://sstatic1.histats.com/0.gif?2138481&101" alt="hit counter"
-                                            border="0"></a></noscript>
+                                                src="http://sstatic1.histats.com/0.gif?2138481&101" alt="hit counter"
+                                                border="0"></a></noscript>
                                 <!-- Histats.com  END  -->
                             </center>
                         </div>

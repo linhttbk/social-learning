@@ -16,9 +16,9 @@ class CreateCourseRegTable extends Migration
         Schema::create('CourseRegistration', function (Blueprint $table) {
             $table->integer('id', 11);
             $table->integer('id_course');
-            $table->foreign('id_course')->references('id')->on('Course');
+            $table->foreign('id_course')->references('id')->on('Course')->onDelete('cascade');
             $table->string('uid', 30);
-            $table->foreign('uid')->references('uid')->on('User');
+            $table->foreign('uid')->references('uid')->on('User')->onDelete('cascade');
             $table->dateTime('date_reg');
             $table->timestamps();
         });

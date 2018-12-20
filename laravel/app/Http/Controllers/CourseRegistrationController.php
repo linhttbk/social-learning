@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\CourseRegistration;
 use Carbon\Carbon;
 use Faker\Provider\DateTime;
@@ -35,6 +36,7 @@ class CourseRegistrationController extends Controller
 
     public function goToBuyCourse($id)
     {
-        return view('course_reg', compact('id'));
+        $course = Course::find($id);
+        return view('course_reg', compact('course'));
     }
 }

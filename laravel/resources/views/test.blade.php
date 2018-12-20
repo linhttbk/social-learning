@@ -86,6 +86,7 @@
                                 </h5>
                             </div>
                             <div class="panel-body">
+                                <div class="question" data-answer="{{$data->true_answer}}"></div>
                                 <div class="radio">
                                     <label class="answer">
                                         <input type="radio" name="{{'optionsRadios'.($key+1)}}" id="optionsRadios1"

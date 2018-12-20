@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Chapter;
 use App\Models\Course;
+use App\Models\CourseDetail;
 use App\Models\Lesson;
 use App\Models\Subject;
 use App\Models\User;
@@ -48,17 +49,50 @@ class CourseController extends Controller
         $lessons = Lesson::all();
         $teachers = DB::table('User')->join('Subject', 'User.id_sr', '=', 'Subject.id')
             ->where('type', 1)->get();
-        return view('admin.courses.add-courses', compact('allSubject', 'teachers', 'chapters','lessons'));
+        return view('admin.courses.add-courses', compact('allSubject', 'teachers', 'chapters', 'lessons'));
     }
 
     public function addCourse(Request $request)
     {
-        $listChapId = $request->listChapId;
+        $listChapId = $request->listchapid;
+        $listLessons = $request->listlessons;
+        $course = new Course();
+        $course->title = $request->title;
+        $course->start_date = $request->startdate;
+        $course->end_date = $request->enddate;
+        $course->des = $request->des;
+        $course->price = $request->price;
+        $course->uid = $request->uid;
+        $course->id_subject = $request->id_subject;
         $result = '';
-        foreach ($listChapId as $data){
-            $result .= $data;
+
+        if ($course->save()) {
+            $id = $course->id;
+            foreach ($listChapId as $data) {
+                $listCourseDetail[] = [
+                    'id_course' => $id,
+                    'id_chap' => $data
+
+                ];
+
+            }
+            foreach ($listLessons as $data) {
+                $listPlan[] = [
+                    'id_course' => $id,
+                    'id_lesson' => $data['id'],
+                    'opendate' => $data['dateOpen']
+
+                ];
+            }
+            if ($listCourseDetail != null)
+                DB::table('CourseDetail')->insert($listCourseDetail);
+            if ($listPlan != null)
+                DB::table('CoursePlan')->insert($listPlan);
+            return response()->json(['success' => '1']);
         }
 
-        return $result ;
+        return response()->json(['success' => '0']);
     }
+
+
 }

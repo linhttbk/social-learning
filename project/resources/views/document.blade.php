@@ -40,6 +40,49 @@
                 <div class="col-lg-8">
                     <div class="td-pb-span8 td-main-content" role="main">
                         <div class="td-ss-main-content">
+                            <div class="td-page-header">
+                                <h1 class="entry-title td-page-title">
+                                    <span>Tìm kiếm Tài Liệu</span>
+                                </h1>
+                            </div>
+                            <div class="td-page-content">
+                                <p>Khu vực dành cho tác giả và thành viên tìm kiếm tài liệu<br>
+                                </p>
+                                <form class="wpuf-form-add wpuf-form-layout1" action="" method="post">
+                                    <ul class="wpuf-form form-label-left">
+                                        <li class="wpuf-el category" data-label="Danh mục">
+                                            <div class="wpuf-label">
+                                                <label for="category">Danh mục <span class="required">*</span></label>
+                                            </div>
+                                            <div class="wpuf-fields wpuf_category_select_1414_1412">
+                                                <select data-required="yes" data-type="select" name="category[]" id="category[]" class="category wpuf_category_1412">
+                                                    <option value="-1">Chọn danh mục</option>
+                                                    <option value=""></option>
+                                                    <!-- kiem tra danh muc co danh muc con hay khong -->
+                                                    <?php foreach ($catalogs as $row):?>
+                                                    <?php if(($row->id) < 6):?>
+                                                    <optgroup label="<?php echo $row->title?>">
+                                                        <?php foreach ($catalogs as $sub):?>
+                                                        <?php if($sub->id_parent == $row->id):?>
+                                                        <option value="<?php echo $sub->id?>">
+                                                            <?php echo $sub->title?>
+                                                        </option>
+                                                        <?php endif;?>
+                                                        <?php endforeach;?>
+                                                    </optgroup>
+                                                    <?php endif;?>
+                                                    <?php endforeach;?>
+                                                </select>
+                                            </div>
+                                            <script type="text/javascript">
+                                                wpuf_conditional_items.push({"condition_status":"no","cond_field":[""],"cond_operator":["="],"cond_option":[""],"cond_logic":"all","name":"category_select_1414"});
+                                            </script>
+                                        </li>
+                                    </ul>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="td-ss-main-content">
                             <div class="clearfix"></div>
                             <div class="td-page-header">
                                 <h1 class="entry-title td-page-title">

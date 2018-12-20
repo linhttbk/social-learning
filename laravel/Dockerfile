@@ -9,8 +9,8 @@ RUN yum install -y php71w php71w-common php71w-gd php71w-phar php71w-xml php71w-
 RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/bin/composer
 COPY httpd.conf /etc/httpd/conf/httpd.conf
-COPY . /var/www/html/slearning
-WORKDIR /var/www/html/slearning
+COPY . /var/www/html/laravel
+WORKDIR /var/www/html/laravel
 
 
 CMD     ["/usr/sbin/httpd","-D","FOREGROUND"]
