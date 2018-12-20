@@ -28,8 +28,6 @@ $(document).ready(function () {
         uiLibrary: 'bootstrap'
     });
 
-    document.getElementById("teacher").style.display = "none";
-    document.getElementById("censors").style.display = "none";
     $(window).onload = initValues();
 
 
@@ -130,15 +128,19 @@ $(document).ready(function () {
 
 function initValues() {
     var type = document.getElementById("mySelect").value;
-    document.getElementById("teacher").style.display = "none";
-
     if (type == "0") {
+        document.getElementById("form-grade").style.display = "block";
         document.getElementById("teacher").style.display = "none";
         document.getElementById("censors").style.display = "none";
 
     } else if (type == "1") {
+        document.getElementById("form-grade").style.display = "none";
         document.getElementById("teacher").style.display = "block";
         document.getElementById("censors").style.display = "none";
+    } else if (type == "2") {
+        document.getElementById("form-grade").style.display = "none";
+        document.getElementById("teacher").style.display = "none";
+        document.getElementById("censors").style.display = "block";
     }
 
 }

@@ -16,9 +16,11 @@
     <link rel="shortcut icon" href="{{asset('admin/img/favicon.ico')}}">
 @endsection
 @section('js')
+    <script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    <script src="{{asset('admin/js/member.js')}}"></script>
 @endsection
 <!-- Main Navbar-->
 @section('content')
@@ -32,8 +34,8 @@
         <!-- Breadcrumb-->
         <div class="breadcrumb-holder container-fluid">
             <ul class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{route('admin')}}">Home</a></li>
-                <li class="breadcrumb-item active">User Mangement</li>
+                <li class="breadcrumb-item"><a href="{{route('admin')}}">Trang chủ</a></li>
+                <li class="breadcrumb-item active">Quản lý người dùng</li>
             </ul>
         </div>
         <section class="tables">
@@ -44,31 +46,29 @@
                         <div class="col-lg-4" id="total-user">
                             @if(isset($totalUser))
                                 <div class="card">
-                                    {{$totalUser}} Total Users
-                                </div>
-                            @else
-                                <div class="card">
-                                    0 Total Users
+                                    {{' Tổng số thành viên '.$totalUser}}
                                 </div>
                             @endif
 
                         </div>
                         <div class="col-lg-4" id="active-user">
                             <div class="card">
-                                {{$totalActive}} Total Active Users
+                                {{'Đã kích hoạt '.$totalActive}}
                             </div>
                         </div>
                         <div class="col-lg-4" id="add-new-user">
                             <div class="card" id="card-add-user">
-                               <a id="add-user" href="{{route('add-member')}}" style="display: inline-block"> <div id="card-overlay">+</div></a>
-                                Add New User
+                                <a id="add-user" href="{{route('add-member')}}" style="display: inline-block">
+                                    <div id="card-overlay">+</div>
+                                </a>
+                                Thêm thành viên
                             </div>
                         </div>
                     </div>
                 </div>
                 <div>
                     <div id="title-card">
-                        <div style="display: inline-block;">Data user</div>
+                        <div style="display: inline-block;">Thông tin thành viên</div>
                         @include('errors.note')
                         <div style=" float:right;display: inline-block">
 
@@ -89,15 +89,15 @@
                                         <thead>
 
                                         <tr>
-                                            <th>No</th>
-                                            <th>User's Id</th>
-                                            <th>Name</th>
+                                            <th>STT</th>
+                                            <th>Tài khoản</th>
+                                            <th>Tên</th>
                                             <th>Email</th>
-                                            <th>Phone</th>
-                                            <th>BirthDay</th>
-                                            <th>Role</th>
-                                            <th>Status</th>
-                                            <th>Actions</th>
+                                            <th>Điện thoại</th>
+                                            <th>Ngày sinh</th>
+                                            <th>Vai trò</th>
+                                            <th>Trạng thái</th>
+                                            <th>Hành động</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -113,26 +113,28 @@
                                                     <td>{{$data->birthday}}</td>
                                                     @switch($data->type)
                                                         @case(0)
-                                                        <td>Student</td>
+                                                        <td>Học sinh</td>
                                                         @break
                                                         @case(1)
-                                                        <td>Teacher</td>
+                                                        <td>Giáo viên</td>
                                                         @break
                                                         @case(2)
-                                                        <td>Editor</td>
+                                                        <td>Kiểm duyệt viên</td>
                                                         @break
                                                         @default
-                                                        <td>Student</td>
+                                                        <td>Học sinh</td>
                                                         @break
                                                     @endswitch
-                                                    @if ($data->status==1)
-                                                        <td>Online</td>
+                                                    @if ($data->emailverify==1)
+                                                        <td>Đã kích hoạt</td>
                                                     @else
-                                                        <td>Offline</td>
+                                                        <td>Chưa kích hoạt</td>
                                                     @endif
                                                     <td>
-                                                        <a href="{{route('get_edit_User', ['uid'=>$data->uid])}}"><img src="{{asset('admin/img/icon/ic_edit.png')}}"></a>
-                                                        <a href="{{route('delete_User', ['uid'=>$data->uid])}}"><img src="{{asset('admin/img/icon/ic_delete.png')}}"></a>
+                                                        <a href="{{route('get_edit_User', ['uid'=>$data->uid])}}"><img
+                                                                src="{{asset('admin/img/icon/ic_edit.png')}}"></a>
+                                                        <a href="{{route('delete_User', ['uid'=>$data->uid])}}"><img
+                                                                src="{{asset('admin/img/icon/ic_delete.png')}}"></a>
                                                     </td>
                                                 </tr>
                                             @endforeach

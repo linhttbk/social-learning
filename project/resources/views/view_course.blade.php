@@ -149,7 +149,7 @@
                 </div>
                 <div class="col-sm-7">
                     <div id="mediaspace" style="margin:5px;">
-                        <video id="myVideo" width="700" height="400" controls src="{{asset('upload/video/bai1.mp4')}}">
+                        <video id="myVideo" width="700" height="400" controls src="https://drive.google.com/open?id=1bgX0KU2aprLmkEohl86jBQLh8i45SNS1">
                             Your browser does not support HTML5 video!
                         </video>
                         {{--<iframe id="myVideo" width="700" height="400" src="https://www.youtube.com/embed/dRu9hULOqYY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>--}}

@@ -10,21 +10,86 @@
     <link rel="stylesheet" href="{{asset('css/course_responsive.css')}}">
     <link rel="stylesheet" href="{{asset('css/my_course.css')}}">
     <link rel="stylesheet" href="{{asset('css/header.css')}}">
+    <link rel="stylesheet" href="{{asset('css/sweet.css')}}">
+    <meta name="csrf-token" content="{{ csrf_token() }}"/>
 
 @endsection
 @section('js')
     <script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
     <script src="{{asset('js/my_course.js')}}"></script>
     <script src="{{asset('js/header.js')}}"></script>
+    <script src="{{asset('js/sweet_alert.js')}}"></script>
     <script type="text/javascript" src="{{asset('raty/jquery.raty.min.js')}}"></script>
     <script type="text/javascript">
-        $(function() {
+        $(function () {
             $.fn.raty.defaults.path = "{{asset('raty/img')}}";
             $('.raty').raty({
-                score: function() {
+                score: function () {
                     return $(this).attr('data-score');
                 },
-                readOnly  : true,
+                readOnly: true,
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //raty
+            $('#binhluan').hide();
+            $('#submit-comment').on('click', function () {
+                var score = $('#ratebar').data('score');
+                var idCourse = $('#ratebar').data('idcourse');
+                var comment = $('#comment').val();
+                if (comment == "") {
+                    swal("Oops!", "Vui lòng điền comment!", "error");
+                } else {
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    $.ajax(
+                        {
+                            type: 'POST',
+                            url: '',
+                            data: {
+                                id: idCourse,
+                                score: score,
+                                comment: comment
+                            },
+                            dataType: 'json',
+
+                        }).done(function (data) {
+                        if (data.success == 1) {
+                            $('#ratebar').data('score', data.score);
+                            swal(
+                                {
+                                    title: 'Thong bao',
+                                    text: 'Gui danh gia thanh cong',
+                                    type: 'success',
+
+
+                                });
+                            $('#binhluan').hide();
+                        }
+
+
+                    }).fail(function (jqXHR, ajaxOptions, thrownError) {
+
+                        swal("Oops!", "Có lỗi xảy ra. vui lòng thử lại sau!", "error");
+
+                    });
+                }
+
+            });
+            $('.raty_detailt').raty({
+                score: function () {
+                    return $(this).attr('data-score');
+                },
+                half: true,
+                click: function (score, evt) {
+                    $('#binhluan').show();
+
+                }
             });
         });
     </script>
@@ -78,33 +143,43 @@
                                         {{--<div class="course_image"><img src="images/course_4.jpg" alt=""></div>--}}
                                         <div class="course_body">
                                             <h3 class="course_title"><a
-                                                    href="{{route('course_detail_registered',['id'=>$data->id])}}">{{$data->title}}</a>
+                                                        href="{{route('course_detail_registered',['id'=>$data->id])}}">{{$data->title}}</a>
                                             </h3>
                                             <div class="course_teacher"><a href="#">{{$data->name}}</a></div>
                                             <div class="course_text">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipi elitsed do eiusmod
-                                                    tempor</p>
+                                                <p>{{$data->des}}</p>
                                             </div>
                                         </div>
                                         <div class="course_footer">
                                             <div
-                                                class="course_footer_content d-flex flex-row align-items-center justify-content-start">
+                                                    class="course_footer_content d-flex flex-row align-items-center justify-content-start">
                                                 <div class="course_info">
                                                     <i class="fa fa-graduation-cap" aria-hidden="true"></i>
                                                     <span>{{$data->count_student}}</span>
                                                 </div>
-                                                {{--<div class="course_info">--}}
-                                                    {{--<i class="fa fa-star" aria-hidden="true"></i>--}}
-                                                    {{--<span>5 Ratings</span>--}}
-                                                {{--</div>--}}
-                                                <span class='raty' style = 'margin:5px' id='$data->id' data-score=4></span>
-                                                | Tổng số: <b  class='rate_count'>8</b>
+                                                <div id="rate-content">
+                                                    <span class='raty raty_detailt' style='margin:5px' id="ratebar"
+                                                          data-score="{{$data->score}}" data-idcourse="{{$data->id}}"></span>
+                                                </div>
                                                 <div class="course_price ml-auto">
                                                     @if($data->price==0)
                                                         Free
                                                     @else
                                                         ${{$data->price}}
                                                     @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="course_footer" id="binhluan" style="padding-bottom: 10px">
+                                            <label>Bình luận:</label>
+                                            <div class="footer-comment input-group mb-3">
+                                                <div class="input-group add-on">
+                                                    <input class="form-control" placeholder="Search" name="srch-term"
+                                                           id="comment" type="text" required>
+                                                    <div class="input-group-btn">
+                                                        <button class="btn btn-default" id="submit-comment"
+                                                                type="submit"><i class="fa fa-paper-plane"></i></button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -119,13 +194,13 @@
                         <div class="sidebar_section">
                             <div class="sidebar_section_title"> Thông báo</div>
                         </div>
-                        <div class="notify-item" >
+                        <div class="notify-item">
                             <a href="#"> Bài học x của khóa học y cần phải mở ngày hôm
                                 nay </a><span>By Admin 5 phut truoc</span></div>
                         <div class="notify-item" style="color: red">
                             <a href="#"> Bài học x của khóa học y cần phải mở ngày hôm
                                 nay </a><span>By Admin 5 phut truoc</span></div>
-                        <div class="notify-all" >
+                        <div class="notify-all">
                             <a href="#" class="btn btn-primary">Xem tat ca</a>
                         </div>
                     </div>

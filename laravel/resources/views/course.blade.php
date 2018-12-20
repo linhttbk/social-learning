@@ -29,9 +29,9 @@
                     <div class="col">
                         <div class="breadcrumbs">
                             <ul>
-                                <li><a href="{{route('home')}}">Home</a></li>
-                                <li><a href="{{route('courses')}}">Courses</a></li>
-                                <li>Course Details</li>
+                                <li><a href="{{route('home')}}">Trang chủ</a></li>
+                                <li><a href="{{route('courses')}}">Khóa học</a></li>
+                                <li>Chi tiết khóa học</li>
                             </ul>
                         </div>
                     </div>
@@ -56,19 +56,19 @@
 
                                 <!-- Course Info Item -->
                                 <div class="course_info_item">
-                                    <div class="course_info_title">Teacher:</div>
+                                    <div class="course_info_title">Giáo viên:</div>
                                     <div class="course_info_text"><a href="#">{{($course->user)->name}}</a></div>
                                 </div>
 
                                 <!-- Course Info Item -->
                                 <div class="course_info_item">
-                                    <div class="course_info_title">Reviews:</div>
+                                    <div class="course_info_title">Đánh giá:</div>
                                     <div class="rating_r rating_r_4"><i></i><i></i><i></i><i></i><i></i></div>
                                 </div>
 
                                 <!-- Course Info Item -->
                                 <div class="course_info_item">
-                                    <div class="course_info_title">Categories:</div>
+                                    <div class="course_info_title">Môn học:</div>
                                     <div class="course_info_text"><a href="#">{{($course->subject)->title}}</a>
                                     </div>
                                 </div>
@@ -81,9 +81,9 @@
                             <!-- Course Tabs -->
                             <div class="course_tabs_container">
                                 <div class="tabs d-flex flex-row align-items-center justify-content-start">
-                                    <div class="tab active">description</div>
-                                    <div class="tab">content</div>
-                                    <div class="tab">reviews</div>
+                                    <div class="tab active">Mô tả</div>
+                                    <div class="tab">Nội dung</div>
+                                    <div class="tab">Đánh giá</div>
                                 </div>
                                 <div class="tab_panels">
 
@@ -95,96 +95,6 @@
                                                 <p>{{$course->des}}.</p>
                                             </div>
 
-                                            {{--<div class="tab_panel_faq">--}}
-                                            {{--<div class="tab_panel_title">FAQ</div>--}}
-
-                                            {{--<!-- Accordions -->--}}
-                                            {{--<div class="accordions">--}}
-
-                                            {{--<div class="elements_accordions">--}}
-
-                                            {{--<div class="accordion_container">--}}
-                                            {{--<div class="accordion d-flex flex-row align-items-center">--}}
-                                            {{--<div>Can I just enroll in a single course?</div>--}}
-                                            {{--</div>--}}
-                                            {{--<div class="accordion_panel">--}}
-                                            {{--<p>Lorem ipsun gravida nibh vel velit auctor aliquet.--}}
-                                            {{--Aenean--}}
-                                            {{--sollicitudin, lorem quis bibendum auci elit--}}
-                                            {{--consequat--}}
-                                            {{--ipsutis sem nibh id elit. Duis sed odio sit amet--}}
-                                            {{--nibh--}}
-                                            {{--vulputate cursus a.</p>--}}
-                                            {{--</div>--}}
-                                            {{--</div>--}}
-
-                                            {{--<div class="accordion_container">--}}
-                                            {{--<div--}}
-                                            {{--class="accordion d-flex flex-row align-items-center active">--}}
-                                            {{--<div>I'm not interested in the entire Specialization?--}}
-                                            {{--</div>--}}
-                                            {{--</div>--}}
-                                            {{--<div class="accordion_panel">--}}
-                                            {{--<p>Lorem ipsun gravida nibh vel velit auctor aliquet.--}}
-                                            {{--Aenean--}}
-                                            {{--sollicitudin, lorem quis bibendum auci elit--}}
-                                            {{--consequat--}}
-                                            {{--ipsutis sem nibh id elit. Duis sed odio sit amet--}}
-                                            {{--nibh--}}
-                                            {{--vulputate cursus a.</p>--}}
-                                            {{--</div>--}}
-                                            {{--</div>--}}
-
-                                            {{--<div class="accordion_container">--}}
-                                            {{--<div class="accordion d-flex flex-row align-items-center">--}}
-                                            {{--<div>What is the refund policy?</div>--}}
-                                            {{--</div>--}}
-                                            {{--<div class="accordion_panel">--}}
-                                            {{--<p>Lorem ipsun gravida nibh vel velit auctor aliquet.--}}
-                                            {{--Aenean--}}
-                                            {{--sollicitudin, lorem quis bibendum auci elit--}}
-                                            {{--consequat--}}
-                                            {{--ipsutis sem nibh id elit. Duis sed odio sit amet--}}
-                                            {{--nibh--}}
-                                            {{--vulputate cursus a.</p>--}}
-                                            {{--</div>--}}
-                                            {{--</div>--}}
-
-                                            {{--<div class="accordion_container">--}}
-                                            {{--<div class="accordion d-flex flex-row align-items-center">--}}
-                                            {{--<div>What background knowledge is necessary?</div>--}}
-                                            {{--</div>--}}
-                                            {{--<div class="accordion_panel">--}}
-                                            {{--<p>Lorem ipsun gravida nibh vel velit auctor aliquet.--}}
-                                            {{--Aenean--}}
-                                            {{--sollicitudin, lorem quis bibendum auci elit--}}
-                                            {{--consequat--}}
-                                            {{--ipsutis sem nibh id elit. Duis sed odio sit amet--}}
-                                            {{--nibh--}}
-                                            {{--vulputate cursus a.</p>--}}
-                                            {{--</div>--}}
-                                            {{--</div>--}}
-
-                                            {{--<div class="accordion_container">--}}
-                                            {{--<div class="accordion d-flex flex-row align-items-center">--}}
-                                            {{--<div>Do i need to take the courses in a specific order?--}}
-                                            {{--</div>--}}
-                                            {{--</div>--}}
-                                            {{--<div class="accordion_panel">--}}
-                                            {{--<p>Lorem ipsun gravida nibh vel velit auctor aliquet.--}}
-                                            {{--Aenean--}}
-                                            {{--sollicitudin, lorem quis bibendum auci elit--}}
-                                            {{--consequat--}}
-                                            {{--ipsutis sem nibh id elit. Duis sed odio sit amet--}}
-                                            {{--nibh--}}
-                                            {{--vulputate cursus a.</p>--}}
-                                            {{--</div>--}}
-                                            {{--</div>--}}
-
-                                            {{--</div>--}}
-
-                                            {{--</div>--}}
-                                            {{--</div>--}}
                                         </div>
                                     </div>
 
@@ -470,7 +380,7 @@
 
                             <!-- Feature -->
                             <div class="sidebar_section">
-                                <div class="sidebar_section_title">Course Feature</div>
+                                <div class="sidebar_section_title">Thông tin khóa học</div>
                                 <div class="sidebar_feature">
                                     <div class="course_price">{{$course->price==0?'Free':'$'.$course->price}}</div>
 
@@ -480,7 +390,7 @@
                                         <!-- Feature -->
                                         <div class="feature d-flex flex-row align-items-center justify-content-start">
                                             <div class="feature_title"><i class="fa fa-clock-o"
-                                                                          aria-hidden="true"></i><span>Begin:</span>
+                                                                          aria-hidden="true"></i><span>Bắt đầu:</span>
                                             </div>
 
                                             <div
@@ -488,7 +398,7 @@
                                         </div>
                                         <div class="feature d-flex flex-row align-items-center justify-content-start">
                                             <div class="feature_title"><i class="fa fa-clock-o"
-                                                                          aria-hidden="true"></i><span>End:</span>
+                                                                          aria-hidden="true"></i><span>Kết thúc:</span>
                                             </div>
 
                                             <div
@@ -498,7 +408,7 @@
                                         <!-- Feature -->
                                         <div class="feature d-flex flex-row align-items-center justify-content-start">
                                             <div class="feature_title"><i class="fa fa-file-text-o"
-                                                                          aria-hidden="true"></i><span>Chapter:</span>
+                                                                          aria-hidden="true"></i><span>Chương:</span>
                                             </div>
                                             <div class="feature_text ml-auto">{{count($course->chapters)}}</div>
                                         </div>
@@ -506,39 +416,37 @@
                                         <!-- Feature -->
                                         <div class="feature d-flex flex-row align-items-center justify-content-start">
                                             <div class="feature_title"><i class="fa fa-question-circle-o"
-                                                                          aria-hidden="true"></i><span>Lectures:</span>
+                                                                          aria-hidden="true"></i><span>Bài học:</span>
                                             </div>
                                             <div class="feature_text ml-auto">6</div>
                                         </div>
 
                                         <!-- Feature -->
                                         <div class="feature d-flex flex-row align-items-center justify-content-start">
-                                            <div class="feature_title"><i class="fa fa-list-alt"
-                                                                          aria-hidden="true"></i><span>Lectures:</span>
-                                            </div>
-                                            <div class="feature_text ml-auto">Yes</div>
-                                        </div>
-
-                                        <!-- Feature -->
-                                        <div class="feature d-flex flex-row align-items-center justify-content-start">
                                             <div class="feature_title"><i class="fa fa-users"
-                                                                          aria-hidden="true"></i><span>Students Registration:</span>
+                                                                          aria-hidden="true"></i><span>Học viên:</span>
                                             </div>
                                             <div class="feature_text ml-auto">{{count($course->registrations)}}</div>
                                         </div>
                                         <div class="feature d-flex flex-row align-items-center justify-content-start">
                                             <div class="feature_title"><i class="fa fa-cart-plus"
-                                                                          aria-hidden="true"></i><span>Register now:</span>
+                                                                          aria-hidden="true"></i><span>Đăng ký ngay:</span>
                                             </div>
                                             <div class="feature_text ml-auto">
-                                                @if($course->start_date > Carbon\Carbon::now())
+                                                @if($course->end_date > Carbon\Carbon::now())
+                                                    @if(Auth::user()->user->type == 1)
+                                                        <a
+                                                                class="btn btn-primary disabled  btn-xs " href="#"> Không hợp lệ
+                                                        </a>
+                                                    @else
                                                     <a
                                                         class="btn btn-primary btn-xs"
-                                                        href="{{route('course-reg',['id'=>$course->id])}}"> Register
+                                                        href="{{route('course-reg',['id'=>$course->id])}}"> Đăng ký
                                                     </a>
+                                                    @endif
                                                 @else
                                                     <a
-                                                        class="btn btn-primary disabled  btn-xs " href="#"> Expired
+                                                        class="btn btn-primary disabled  btn-xs " href="#"> Hết hạn
                                                     </a>
                                                 @endif
                                             </div>
@@ -550,7 +458,7 @@
 
                             <!-- Feature -->
                             <div class="sidebar_section">
-                                <div class="sidebar_section_title">Teacher</div>
+                                <div class="sidebar_section_title">Giáo viên</div>
                                 <div class="sidebar_teacher">
                                     <div
                                         class="teacher_title_container d-flex flex-row align-items-center justify-content-start">
@@ -561,41 +469,8 @@
                                         </div>
                                         <div class="teacher_title">
                                             <div class="teacher_name"><a href="#">{{($course->user)->name}}</a></div>
-                                            <div class="teacher_position">Marketing & Management</div>
+
                                         </div>
-                                    </div>
-                                    <div class="teacher_meta_container">
-                                        <!-- Teacher Rating -->
-                                        <div
-                                            class="teacher_meta d-flex flex-row align-items-center justify-content-start">
-                                            <div class="teacher_meta_title">Average Rating:</div>
-                                            <div class="teacher_meta_text ml-auto"><span>4.7</span><i class="fa fa-star"
-                                                                                                      aria-hidden="true"></i>
-                                            </div>
-                                        </div>
-                                        <!-- Teacher Review -->
-                                        <div
-                                            class="teacher_meta d-flex flex-row align-items-center justify-content-start">
-                                            <div class="teacher_meta_title">Review:</div>
-                                            <div class="teacher_meta_text ml-auto"><span>12k</span><i
-                                                    class="fa fa-comment"
-                                                    aria-hidden="true"></i>
-                                            </div>
-                                        </div>
-                                        <!-- Teacher Quizzes -->
-                                        <div
-                                            class="teacher_meta d-flex flex-row align-items-center justify-content-start">
-                                            <div class="teacher_meta_title">Quizzes:</div>
-                                            <div class="teacher_meta_text ml-auto"><span>600</span><i class="fa fa-user"
-                                                                                                      aria-hidden="true"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="teacher_info">
-                                        <p>Hi! I am Masion, I’m a marketing & management eros pulvinar velit laoreet,
-                                            sit
-                                            amet egestas erat dignissim. Sed quis rutrum tellus, sit amet viverra felis.
-                                            Cras sagittis sem sit amet urna feugiat rutrum nam nulla ipsum.</p>
                                     </div>
                                 </div>
                             </div>

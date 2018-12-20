@@ -23,7 +23,7 @@ class UserController extends Controller
             $totalActive = 0;
             foreach ($user as $data) {
                 echo $data->name . ' ' . $data->status;
-                if ($data->status == 1) {
+                if ($data->emailverify == 1) {
                     $totalActive++;
                 }
             }
@@ -45,7 +45,7 @@ class UserController extends Controller
         $totalUser = $user->count();
         $totalActive = 0;
         foreach ($user as $data) {
-            if ($data->status == 1) {
+            if ($data->emailverify == 1) {
                 $totalActive++;
             }
         }
@@ -102,6 +102,15 @@ class UserController extends Controller
         $user->birthday = date("Y-m-d", strtotime($request->birthday));
         $user->email = $request->email;
         $user->school = $request->school;
+        $user->type = $request->type;
+        if ($request->type == '1' || $request->type = '2') {
+            $user->id_sr = $request->subject_reg;
+        } else if ($request->type = '2') {
+            $user->id_sr = $request->editor_reg;
+        } else {
+            $user->grade = $request->grade;
+        }
+
         if ($request->changPassword == "on") {
             $account->password = bcrypt($request->password);
         }
@@ -127,9 +136,9 @@ class UserController extends Controller
         $uid = $request->usernamereg;
         $email = $request->email;
         if (User::find($uid)) {
-            return back()->withInput()->with('error' ,'Tai khoan da su dung');
+            return back()->withInput()->with('error', 'Tai khoan da su dung');
         } else if (User::where('email', $email)->first()) {
-            return back()->withInput()->with('error' ,'Email da su dung');
+            return back()->withInput()->with('error', 'Email da su dung');
         } else {
             $user = new User();
             $account = new Account();

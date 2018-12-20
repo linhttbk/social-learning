@@ -283,7 +283,7 @@
         var icon = 'starOn';                                 // Up:   [x.76 .. x.99]
 
         if (this.opt.halfShow && rest < this.opt.round.up) { // Half: [x.26 .. x.75]
-          icon = 'starHalf';
+          icon = 'starOn';
         } else if (rest < this.opt.round.full) {             // Down: [x.00 .. x.5]
           icon = 'starOff';
         }
