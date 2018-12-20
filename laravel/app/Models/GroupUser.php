@@ -27,4 +27,9 @@ class GroupUser extends Model
     public function posts(){
         return $this->hasMany('App\Models\Post', 'id_group', 'id');
     }
+
+    public function myListPost()
+    {
+        return $this->hasMany('App\Models\Post', 'id_group', 'id');
+    }
 }

@@ -70,15 +70,17 @@
                                 @endif
                                 <div class="row">
                                     <div class=" col-sm-3">
-                                        <img src="{{empty($dataGroup->thumb_url)?asset('images/bg_group_default.jpg'):$dataGroup->thumb_url}}" alt="Scott Stevens"
-                                             class="rounded-circle"/>
+                                        <img
+                                            src="{{empty($dataGroup->thumb_url)?asset('images/bg_group_default.jpg'):$dataGroup->thumb_url}}"
+                                            alt="Scott Stevens"
+                                            class="rounded-circle"/>
                                     </div>
                                     <div class="col-sm-9">
                                         <div class="row">
                                             <div class="col-sm-9">
-                                                <a href="#"><span
+                                                <a href="{{route('my_group',['groupId'=>$dataGroup->id])}}"><span
                                                         class="name-group">{{$dataGroup->title}}</span></a><br/>
-                                                <span> {{($dataGroup->members)->count() }} thành viên</span>
+                                                <span> {{($dataGroup->members)->count() + 1 }} thành viên</span>
                                             </div>
                                             <div id="root-request" class="col-sm-3">
                                                 <div>
@@ -116,15 +118,17 @@
                                 @endif
                                 <div class="row">
                                     <div class=" col-sm-3">
-                                        <img src="{{empty($dataGroup->thumb_url)?asset('images/bg_group_default.jpg'):$dataGroup->thumb_url}}" alt="Scott Stevens"
-                                             class="rounded-circle"/>
+                                        <img
+                                            src="{{empty($dataGroup->thumb_url)?asset('images/bg_group_default.jpg'):$dataGroup->thumb_url}}"
+                                            alt="Scott Stevens"
+                                            class="rounded-circle"/>
                                     </div>
                                     <div class="col-sm-9">
                                         <div class="row">
                                             <div class="col-sm-9">
-                                                <a href="#"><span
+                                                <a href="{{route('my_group',['groupId'=>$dataGroup->id])}}"><span
                                                         class="name-group">{{$dataGroup->title}}</span></a><br/>
-                                                <span> {{($dataGroup->members)->count() }} thành viên</span>
+                                                <span> {{($dataGroup->members)->count() +1 }} thành viên</span>
                                             </div>
                                             <div id="root-request" class="col-sm-3">
                                                 <div>
@@ -173,15 +177,17 @@
                                 @endif
                                 <div class="row">
                                     <div class=" col-sm-3">
-                                        <img src="{{empty($dataJoin->thumb_url)?asset('images/bg_group_default.jpg'):$dataJoin->thumb_url}}" alt="Scott Stevens"
-                                             class="rounded-circle"/>
+                                        <img
+                                            src="{{empty($dataJoin->thumb_url)?asset('images/bg_group_default.jpg'):$dataJoin->thumb_url}}"
+                                            alt="Scott Stevens"
+                                            class="rounded-circle"/>
                                     </div>
                                     <div class="col-sm-9">
                                         <div class="row">
                                             <div class="col-sm-9">
-                                                <a href="#"><span
+                                                <a href="{{route('my_group',['groupId'=>$dataJoin->id])}}"><span
                                                         class="name-group">{{$dataJoin->title}}</span></a><br/>
-                                                <span> {{($dataJoin->members)->count() }} thành viên</span>
+                                                <span> {{($dataJoin->members)->count()+1 }} thành viên</span>
                                             </div>
                                             <div id="root-request" class="col-sm-3">
                                                 <div>
@@ -219,15 +225,17 @@
                                 @endif
                                 <div class="row">
                                     <div class=" col-sm-3">
-                                        <img src="{{empty($dataJoin->thumb_url)?asset('images/bg_group_default.jpg'):$dataJoin->thumb_url}}" alt="Scott Stevens"
-                                             class="rounded-circle"/>
+                                        <img
+                                            src="{{empty($dataJoin->thumb_url)?asset('images/bg_group_default.jpg'):$dataJoin->thumb_url}}"
+                                            alt="Scott Stevens"
+                                            class="rounded-circle"/>
                                     </div>
                                     <div class="col-sm-9">
                                         <div class="row">
                                             <div class="col-sm-9">
-                                                <a href="#"><span
+                                                <a href="{{route('my_group',['groupId'=>$dataJoin->id])}}"><span
                                                         class="name-group">{{$dataJoin->title}}</span></a><br/>
-                                                <span> {{($dataJoin->members)->count() }} thành viên</span>
+                                                <span> {{($dataJoin->members)->count() +1}} thành viên</span>
                                             </div>
                                             <div id="root-request" class="col-sm-3">
                                                 <div>
@@ -275,15 +283,17 @@
                                 @endif
                                 <div class="row">
                                     <div class=" col-sm-3">
-                                        <img src="{{empty($dataReg->thumb_url)?asset('images/bg_group_default.jpg'):$dataReg->thumb_url}}" alt="Scott Stevens"
-                                             class="rounded-circle"/>
+                                        <img
+                                            src="{{empty($dataReg->thumb_url)?asset('images/bg_group_default.jpg'):$dataReg->thumb_url}}"
+                                            alt="Scott Stevens"
+                                            class="rounded-circle"/>
                                     </div>
                                     <div class="col-sm-9">
                                         <div class="row">
                                             <div class="col-sm-9">
                                                 <a href="#"><span
                                                         class="name-group">{{$dataReg->title}}</span></a><br/>
-                                                <span> {{($dataReg->members)->count() }} thành viên</span>
+                                                <span> {{($dataReg->members)->count() +1}} thành viên</span>
                                             </div>
                                             <div id="root-request" class="col-sm-3">
                                                 <div>
@@ -322,15 +332,17 @@
                                 @endif
                                 <div class="row">
                                     <div class=" col-sm-3">
-                                        <img src="{{empty($dataRequest->thumb_url)?asset('images/bg_group_default.jpg'):$dataRequest->thumb_url}}" alt="Scott Stevens"
-                                             class="rounded-circle"/>
+                                        <img
+                                            src="{{empty($dataRequest->thumb_url)?asset('images/bg_group_default.jpg'):$dataRequest->thumb_url}}"
+                                            alt="Scott Stevens"
+                                            class="rounded-circle"/>
                                     </div>
                                     <div class="col-sm-9">
                                         <div class="row">
                                             <div class="col-sm-9">
                                                 <a href="#"><span
                                                         class="name-group">{{$dataRequest->title}}</span></a><br/>
-                                                <span> {{($dataRequest->members)->count() }} thành viên</span>
+                                                <span> {{($dataRequest->members)->count()+1}} thành viên</span>
                                             </div>
                                             <div id="root-request" class="col-sm-3">
                                                 <div>
@@ -379,15 +391,17 @@
                                 @endif
                                 <div class="row">
                                     <div class=" col-sm-3">
-                                        <img src="{{empty($dataOther->thumb_url)?asset('images/bg_group_default.jpg'):$dataOther->thumb_url}}" alt="Scott Stevens"
-                                             class="rounded-circle"/>
+                                        <img
+                                            src="{{empty($dataOther->thumb_url)?asset('images/bg_group_default.jpg'):$dataOther->thumb_url}}"
+                                            alt="Scott Stevens"
+                                            class="rounded-circle"/>
                                     </div>
                                     <div class="col-sm-9">
                                         <div class="row">
                                             <div class="col-sm-9">
                                                 <a href="#"><span
                                                         class="name-group">{{$dataOther->title}}</span></a><br/>
-                                                <span> {{($dataOther->members)->count() }} thành viên</span>
+                                                <span> {{($dataOther->members)->count() +1 }} thành viên</span>
                                             </div>
                                             <div class="col-sm-3">
                                                 <a id="request-group"
@@ -414,15 +428,17 @@
                                 @endif
                                 <div class="row">
                                     <div class=" col-sm-3">
-                                        <img src="{{empty($dataOther->thumb_url)?asset('images/bg_group_default.jpg'):$dataOther->thumb_url}}" alt="Scott Stevens"
-                                             class="rounded-circle"/>
+                                        <img
+                                            src="{{empty($dataOther->thumb_url)?asset('images/bg_group_default.jpg'):$dataOther->thumb_url}}"
+                                            alt="Scott Stevens"
+                                            class="rounded-circle"/>
                                     </div>
                                     <div class="col-sm-9">
                                         <div class="row">
                                             <div class="col-sm-9">
                                                 <a href="#"><span
                                                         class="name-group">{{$dataOther->title}}</span></a><br/>
-                                                <span> {{($dataOther->members)->count() }} thành viên</span>
+                                                <span> {{($dataOther->members)->count()+1}} thành viên</span>
                                             </div>
                                             <div class="col-sm-3">
                                                 <a id="request-group"

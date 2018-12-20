@@ -20,6 +20,7 @@ class CreatePostTable extends Migration
             $table->integer('id_group')->nullable();
             $table->foreign('id_group')->references('id')->on('GroupUser');
             $table->string('uid', 30);
+            $table->string('url_attach')->nullable();
             $table->dateTime('create_at');
             $table->dateTime('update_at')->nullable();
             $table->timestamps();
