@@ -24,6 +24,7 @@
     <script src="{{asset('js/ajax.lib.js')}}"></script>
     <script src="{{asset('js/sweet_alert.js')}}"></script>
     <script src="{{asset('js/add-course.js')}}"></script>
+    <script src="{{asset('admin/js/course.js')}}"></script>
 @endsection
 @section('content')
     <div class="content-inner">

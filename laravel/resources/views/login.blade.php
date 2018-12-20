@@ -133,10 +133,10 @@
                                 <div class="form-group">
                                     <label>Giới tính : </label>
                                     <label class="radio-inline">
-                                        <input type="radio" name="sex" value="boy" checked>Nam
+                                        <input type="radio" name="sex" value="male" checked>Nam
                                     </label>
                                     <label class="radio-inline">
-                                        <input type="radio" name="sex" value="girl">Nữ
+                                        <input type="radio" name="sex" value="female">Nữ
                                     </label>
                                 </div>
                                 <div class="form-group">

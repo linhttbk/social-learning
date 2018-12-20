@@ -1,4 +1,6 @@
 $(document).ready(function () {
+        $('.side-navbar li').removeClass('active');
+        $('.side-navbar li').eq(3).addClass('active');
 
 
     $('#delete-group').on('click', function () {
