@@ -28,6 +28,36 @@
             });
         });
     </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            //raty
+            $('.raty_detailt').raty({
+                score: function() {
+                    return $(this).attr('data-score');
+                },
+                half    : true,
+                click: function(score, evt) {
+                    var rate_count = $('.rate_count');
+                    var rate_count_total = rate_count.text();
+                    $.ajax({
+                        url: '',
+                        type: 'POST',
+                        data: {'id':'','score':score},
+                        dataType: 'json',
+                        success: function(data)
+                        {
+                            if(data.complete)
+                            {
+                                var total = parseInt(rate_count_total)+1;
+                                rate_count.html(parseInt(total));
+                            }
+                            alert(data.msg);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 @endsection
 @section('content')
     <!-- Home -->
@@ -97,7 +127,7 @@
                                                     {{--<i class="fa fa-star" aria-hidden="true"></i>--}}
                                                     {{--<span>5 Ratings</span>--}}
                                                 {{--</div>--}}
-                                                <span class='raty' style = 'margin:5px' id='$data->id' data-score=4></span>
+                                                <span class='raty raty_detailt' style = 'margin:5px' id='$data->id' data-score=4></span>
                                                 | Tổng số: <b  class='rate_count'>8</b>
                                                 <div class="course_price ml-auto">
                                                     @if($data->price==0)
