@@ -14,10 +14,18 @@ class AdminTableSeeder extends Seeder
     {
         //
         DB::table('Admin')->insert([
-            'uid' => 'linhluv1',
+            ['uid' => 'linhluv1',
+            'isAdmin' => '1',
             'name' => 'Than Linh',
             'email' => 'linhcuong1212.@gmail.com',
-            'password' => bcrypt('123456'),
+            'password' => bcrypt('123456')]
+            ,
+            ['uid' => 'linhluv1',
+            'isAdmin' => '0',
+            'name' => 'Than Linh',
+            'email' => 'linhcuong1212.@gmail.com',
+            'password' => bcrypt('123456')]
+
         ]);
     }
 }
