@@ -78,7 +78,7 @@ class DocumentController extends Controller
     }
     public function showDocument(){
         $catalogs = DB::table('Subject')->get();
-        $document = DB::table('Document')->get();
+        $document = DB::table('document')->get();
         return view('document', compact('catalogs', 'document'));
     }
 }
