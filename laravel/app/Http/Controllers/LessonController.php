@@ -24,11 +24,11 @@ class LessonController extends Controller
             'uid' => Auth::user()->uid,
             'time_start' => Carbon::now(),
         ];
-        $item = DB::table('learningprogress')->where('uid', Auth::user()->uid)->where('id_lesson', $id_lesson)->first();
+        $item = DB::table('LearningProgress')->where('uid', Auth::user()->uid)->where('id_lesson', $id_lesson)->first();
         if (empty($item)) {
-            DB::table('learningprogress')->insert($learningprograss);
+            DB::table('LearningProgress')->insert($learningprograss);
         } else {
-            DB::table('learningprogress')->update($learningprograss);
+            DB::table('LearningProgress')->update($learningprograss);
         }
         return view('view_course', compact('course', 'lessoncurrent'));
     }
