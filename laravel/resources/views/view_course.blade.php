@@ -26,15 +26,14 @@
             $(y).removeClass('fa-play-circle-o');
             $(y).addClass('fa-check-circle');
 
-
-            var x = document.getElementById("myVideo");
-            isSupp = x.canPlayType("video/mp4");
-            if (isSupp == "") {
-                x.src = "mov_bbb.ogg";
-            } else {
-                x.src = name;
-            }
-            x.load();
+            // var x = document.getElementById("myVideo");
+            // isSupp = x.canPlayType("video/mp4");
+            // if (isSupp == "") {
+            //     x.src = "mov_bbb.ogg";
+            // } else {
+            //     x.src = name;
+            // }
+            // x.load();
         }
     </script>
 
@@ -121,17 +120,15 @@
                                                     <div class="dropdown_item">
                                                         <div class="dropdown_item_title">
                                                             <span>Lesson {{$key2+1}}:</span> {{$data->title}}
-                                                            <i id="showhide{{$data->id}}" class="fa fa-play-circle-o" style="font-size:28px; color: green"></i>
+                                                            <i id="showhide{{$data->id}}" class="fa {{(empty(\Illuminate\Support\Facades\DB::table('learningprogress')->where('uid', (\Illuminate\Support\Facades\Auth::user()->uid))->where('id_lesson', $key2)->first())?"fa-check-circle":"fa-play-circle-o")}}" style="font-size:28px; color: green"></i>
                                                         </div>
-
-
 
                                                         <div class="dropdown_item_text">
                                                             <p>{{$data->des}}</p>
                                                         </div>
                                                         <div class="dropdown_item_text">
                                                             <ol>
-                                                                <li><a title="Video" style="color: #007bff;"
+                                                                <li><a title="Video" style="color: #007bff;" href="{{route('view_lesson', ['id'=>$course->id, 'id_lesson'=>$data->id])}}"
                                                                        onclick="myFunction('{{$data->url}}', {{$data->id}})">Xem
                                                                         video</a>
                                                                 </li>
@@ -162,7 +159,7 @@
                 </div>
                 <div class="col-sm-7">
                     <div id="mediaspace" style="margin:5px;">
-                        <video id="myVideo" width="700" height="400" controls src="https://s3-ap-southeast-1.amazonaws.com/slearningteam/videos/Trailer.mp4">
+                        <video id="myVideo" width="700" height="400" controls src="{{(empty($lessoncurrent))?"https://s3-ap-southeast-1.amazonaws.com/slearningteam/videos/Trailer.mp4":$lessoncurrent->url}}">
                             Your browser does not support HTML5 video!
                         </video>
                         {{--<iframe id="myVideo" width="700" height="400" src="https://www.youtube.com/embed/dRu9hULOqYY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>--}}
