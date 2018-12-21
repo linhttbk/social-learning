@@ -18,7 +18,7 @@ class CreatePostTable extends Migration
             $table->string('content');
             $table->string('url')->nullable();
             $table->integer('id_group')->nullable();
-            $table->foreign('id_group')->references('id')->on('GroupUser');
+            $table->foreign('id_group')->references('id')->on('GroupUser')->onDelete('cascade');
             $table->string('uid', 30);
             $table->string('url_attach')->nullable();
             $table->dateTime('create_at');
