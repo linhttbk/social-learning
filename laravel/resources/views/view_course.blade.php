@@ -120,7 +120,7 @@
                                                     <div class="dropdown_item">
                                                         <div class="dropdown_item_title">
                                                             <span>Lesson {{$key2+1}}:</span> {{$data->title}}
-                                                            <i id="showhide{{$data->id}}" class="fa {{(empty(\Illuminate\Support\Facades\DB::table('learningprogress')->where('uid', (\Illuminate\Support\Facades\Auth::user()->uid))->where('id_lesson', $key2)->first())?"fa-check-circle":"fa-play-circle-o")}}" style="font-size:28px; color: green"></i>
+                                                            <i id="showhide{{$data->id}}" class="fa {{(!empty(\Illuminate\Support\Facades\DB::table('LearningProgress')->where('uid', (\Illuminate\Support\Facades\Auth::user()->uid))->where('id_lesson', $data->id)->first())?"fa-check-circle":"fa-play-circle-o")}}" style="font-size:28px; color: green"></i>
                                                         </div>
 
                                                         <div class="dropdown_item_text">

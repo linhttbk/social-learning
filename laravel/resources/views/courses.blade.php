@@ -98,8 +98,8 @@
                                                         <i class="fa fa-graduation-cap" aria-hidden="true"></i>
                                                         <span>{{$data->count_student}}</span>
                                                     </div>
-                                                    <span class='raty' style = 'margin:5px' id='9' data-score=4></span>
-                                                    | Tổng số: <b  class='rate_count'>8</b>
+                                                    <span class='raty' style = 'margin:5px' id='9' data-score={{$data->score}}></span>
+                                                    | Tổng số: <b  class='rate_count'>{{$data->countVote}}</b>
                                                     <div class="course_price ml-auto">
                                                         @if($data->price==0)
                                                             Free

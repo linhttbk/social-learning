@@ -184,43 +184,61 @@
                                     <!-- Reviews -->
                                     <div class="tab_panel tab_panel_3">
                                         <div class="tab_panel_title">Course Review</div>
-
-                                        <!-- Rating -->
+                                    @php
+                                        $sum = \Illuminate\Support\Facades\DB::table('Rate')->where('id_course',$course->id)->count('vote');
+                                    $avg = \Illuminate\Support\Facades\DB::table('Rate')->where('id_course',$course->id)->average('vote');
+                                    if($avg==null) $avg=0;
+                                    $avg = number_format((float)$avg, 1);
+                                    @endphp
+                                    <!-- Rating -->
                                         <div class="review_rating_container">
                                             <div class="review_rating">
-                                                <div class="review_rating_num">4.5</div>
+                                                <div
+                                                    class="review_rating_num">{{$avg}}</div>
                                                 <div class="review_rating_stars">
-                                                    <div class="rating_r rating_r_4">
+                                                    <div class="{{'rating_r rating_r_'.number_format((float)$avg, 0)}}">
                                                         <i></i><i></i><i></i><i></i><i></i>
                                                     </div>
                                                 </div>
-                                                <div class="review_rating_text">(28 Ratings)</div>
+                                                <div class="review_rating_text">({{ $sum}} Ratings)</div>
                                             </div>
                                             <div class="review_rating_bars">
                                                 <ul>
                                                     <li><span>5 Star</span>
+                                                        @php
+                                                            $vote5 = \Illuminate\Support\Facades\DB::table('Rate')->where('id_course',$course->id)->where('vote',5)->count();
+                                                            $vote4 = \Illuminate\Support\Facades\DB::table('Rate')->where('id_course',$course->id)->where('vote',4)->count();
+                                                            $vote3 = \Illuminate\Support\Facades\DB::table('Rate')->where('id_course',$course->id)->where('vote',3)->count();
+                                                            $vote2 = \Illuminate\Support\Facades\DB::table('Rate')->where('id_course',$course->id)->where('vote',2)->count();
+                                                            $vote1 = \Illuminate\Support\Facades\DB::table('Rate')->where('id_course',$course->id)->where('vote',1)->count();
+                                                        @endphp
                                                         <div class="review_rating_bar">
-                                                            <div style="width:90%;"></div>
+                                                            <div
+                                                                style="width:{{$sum!=0? ($vote5*100/$sum) .'%;':'0%;'}}"></div>
                                                         </div>
                                                     </li>
                                                     <li><span>4 Star</span>
                                                         <div class="review_rating_bar">
-                                                            <div style="width:75%;"></div>
+                                                            <div
+                                                                style="width:{{$sum!=0? ($vote4*100/$sum) .'%;':'0%;'}}"></div>
                                                         </div>
                                                     </li>
                                                     <li><span>3 Star</span>
                                                         <div class="review_rating_bar">
-                                                            <div style="width:32%;"></div>
+                                                            <div
+                                                                style="width:{{$sum!=0? ($vote3*100/$sum) .'%;':'0%;'}}"></div>
                                                         </div>
                                                     </li>
                                                     <li><span>2 Star</span>
                                                         <div class="review_rating_bar">
-                                                            <div style="width:10%;"></div>
+                                                            <div
+                                                                style="width:{{$sum!=0? ($vote2*100/$sum) .'%;':'0%;'}}"></div>
                                                         </div>
                                                     </li>
                                                     <li><span>1 Star</span>
                                                         <div class="review_rating_bar">
-                                                            <div style="width:3%;"></div>
+                                                            <div
+                                                                style="width:{{$sum!=0? ($vote1*100/$sum) .'%;':'0%;'}};"></div>
                                                         </div>
                                                     </li>
                                                 </ul>
@@ -230,140 +248,52 @@
                                         <!-- Comments -->
                                         <div class="comments_container">
                                             <ul class="comments_list">
-                                                <li>
-                                                    <div
-                                                        class="comment_item d-flex flex-row align-items-start jutify-content-start">
-                                                        <div class="comment_image">
-                                                            <div><img src="images/comment_1.jpg" alt=""></div>
-                                                        </div>
-                                                        <div class="comment_content">
-                                                            <div
-                                                                class="comment_title_container d-flex flex-row align-items-center justify-content-start">
-                                                                <div class="comment_author"><a href="#">Milley
-                                                                        Cyrus</a>
-                                                                </div>
-                                                                <div class="comment_rating">
-                                                                    <div class="rating_r rating_r_4">
-                                                                        <i></i><i></i><i></i><i></i><i></i></div>
-                                                                </div>
-                                                                <div class="comment_time ml-auto">1 day ago</div>
+
+                                                @foreach($listRate as $rateItem)
+                                                    <li>
+                                                        <div
+                                                            class="comment_item d-flex flex-row align-items-start jutify-content-start">
+                                                            <div class="comment_image">
+                                                                <div><img style="width: 50px; height: 50px;" class="rounded-circle"
+                                                                        src="{{$rateItem->avatar!=null?$rateItem->avatar:asset('images/avatar_default.jpg')}}"
+                                                                        alt=""></div>
                                                             </div>
-                                                            <div class="comment_text">
-                                                                <p>There are many variations of passages of Lorem
-                                                                    Ipsum
-                                                                    available, but the majority have alteration in
-                                                                    some
-                                                                    form, by injected humour.</p>
-                                                            </div>
-                                                            <div
-                                                                class="comment_extras d-flex flex-row align-items-center justify-content-start">
-                                                                <div class="comment_extra comment_likes"><a
-                                                                        href="#"><i
-                                                                            class="fa fa-heart"
-                                                                            aria-hidden="true"></i><span>15</span></a>
-                                                                </div>
-                                                                <div class="comment_extra comment_reply"><a
-                                                                        href="#"><i
-                                                                            class="fa fa-reply"
-                                                                            aria-hidden="true"></i><span>Reply</span></a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <ul>
-                                                        <li>
-                                                            <div
-                                                                class="comment_item d-flex flex-row align-items-start jutify-content-start">
-                                                                <div class="comment_image">
-                                                                    <div><img src="images/comment_2.jpg" alt="">
+                                                            <div class="comment_content">
+                                                                <div
+                                                                    class="comment_title_container d-flex flex-row align-items-center justify-content-start">
+                                                                    <div class="comment_author"><a
+                                                                            href="#">{{$rateItem->name}}</a>
                                                                     </div>
-                                                                </div>
-                                                                <div class="comment_content">
-                                                                    <div
-                                                                        class="comment_title_container d-flex flex-row align-items-center justify-content-start">
-                                                                        <div class="comment_author"><a href="#">John
-                                                                                Tyler</a></div>
-                                                                        <div class="comment_rating">
-                                                                            <div class="rating_r rating_r_4">
-                                                                                <i></i><i></i><i></i><i></i><i></i>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="comment_time ml-auto">1 day ago
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="comment_text">
-                                                                        <p>There are many variations of passages of
-                                                                            Lorem
-                                                                            Ipsum available, but the majority have
-                                                                            alteration in some form, by injected
-                                                                            humour.</p>
+                                                                    <div class="comment_rating">
+                                                                        <div
+                                                                            class="{{'rating_r rating_r_'.$rateItem->vote}}">
+                                                                            <i></i><i></i><i></i><i></i><i></i></div>
                                                                     </div>
                                                                     <div
-                                                                        class="comment_extras d-flex flex-row align-items-center justify-content-start">
-                                                                        <div class="comment_extra comment_likes"><a
-                                                                                href="#"><i class="fa fa-heart"
-                                                                                            aria-hidden="true"></i><span>15</span></a>
-                                                                        </div>
-                                                                        <div class="comment_extra comment_reply"><a
-                                                                                href="#"><i class="fa fa-reply"
-                                                                                            aria-hidden="true"></i><span>Reply</span></a>
-                                                                        </div>
+                                                                        class="comment_time ml-auto">{{$rateItem->created_at}}</div>
+                                                                </div>
+                                                                <div class="comment_text">
+                                                                    <p>{{$rateItem->comment}}</p>
+                                                                </div>
+                                                                <div
+                                                                    class="comment_extras d-flex flex-row align-items-center justify-content-start">
+                                                                    <div class="comment_extra comment_likes"><a
+                                                                            href="#"><i
+                                                                                class="fa fa-heart"
+                                                                                aria-hidden="true"></i><span>15</span></a>
+                                                                    </div>
+                                                                    <div class="comment_extra comment_reply"><a
+                                                                            href="#"><i
+                                                                                class="fa fa-reply"
+                                                                                aria-hidden="true"></i><span>Reply</span></a>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li>
-                                                    <div
-                                                        class="comment_item d-flex flex-row align-items-start jutify-content-start">
-                                                        <div class="comment_image">
-                                                            <div><img src="images/comment_3.jpg" alt=""></div>
                                                         </div>
-                                                        <div class="comment_content">
-                                                            <div
-                                                                class="comment_title_container d-flex flex-row align-items-center justify-content-start">
-                                                                <div class="comment_author"><a href="#">Milley
-                                                                        Cyrus</a>
-                                                                </div>
-                                                                <div class="comment_rating">
-                                                                    <div class="rating_r rating_r_4">
-                                                                        <i></i><i></i><i></i><i></i><i></i></div>
-                                                                </div>
-                                                                <div class="comment_time ml-auto">1 day ago</div>
-                                                            </div>
-                                                            <div class="comment_text">
-                                                                <p>There are many variations of passages of Lorem
-                                                                    Ipsum
-                                                                    available, but the majority have alteration in
-                                                                    some
-                                                                    form, by injected humour.</p>
-                                                            </div>
-                                                            <div
-                                                                class="comment_extras d-flex flex-row align-items-center justify-content-start">
-                                                                <div class="comment_extra comment_likes"><a
-                                                                        href="#"><i
-                                                                            class="fa fa-heart"
-                                                                            aria-hidden="true"></i><span>15</span></a>
-                                                                </div>
-                                                                <div class="comment_extra comment_reply"><a
-                                                                        href="#"><i
-                                                                            class="fa fa-reply"
-                                                                            aria-hidden="true"></i><span>Reply</span></a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
+                                                    </li>
+                                                @endforeach
                                             </ul>
-                                            <div class="add_comment_container">
-                                                <div class="add_comment_title">Add a review</div>
-                                                <div class="add_comment_text">You must be <a href="#">logged</a> in
-                                                    to
-                                                    post
-                                                    a comment.
-                                                </div>
-                                            </div>
+
                                         </div>
                                     </div>
 
@@ -436,13 +366,14 @@
                                                 @if($course->end_date > Carbon\Carbon::now())
                                                     @if(Auth::user()->user->type == 1)
                                                         <a
-                                                                class="btn btn-primary disabled  btn-xs " href="#"> Không hợp lệ
+                                                            class="btn btn-primary disabled  btn-xs " href="#"> Không
+                                                            hợp lệ
                                                         </a>
                                                     @else
-                                                    <a
-                                                        class="btn btn-primary btn-xs"
-                                                        href="{{route('course-reg',['id'=>$course->id])}}"> Đăng ký
-                                                    </a>
+                                                        <a
+                                                            class="btn btn-primary btn-xs"
+                                                            href="{{route('course-reg',['id'=>$course->id])}}"> Đăng ký
+                                                        </a>
                                                     @endif
                                                 @else
                                                     <a

@@ -13,10 +13,9 @@ class CoursesController extends Controller
 {
     public function showAllCourses()
     {
-        $result = DB::table('Course')->select(array('Course.*', 'User.*', DB::raw('(Select Count(CourseRegistration.id_course) from CourseRegistration where CourseRegistration.id_course = Course.id) as count_student')))
+        $result = DB::table('Course')->select(array('Course.*', 'User.*',DB::raw('(Select count(vote) from Rate where id_course= Course.id) as countVote'),DB::raw('(Select avg(vote) from Rate where id_course= Course.id) as score'), DB::raw('(Select Count(CourseRegistration.id_course) from CourseRegistration where CourseRegistration.id_course = Course.id) as count_student')))
             ->join('User', 'Course.uid', '=', 'User.uid')
             ->paginate(6);
-
         $subject = DB::table('Subject')->get();
         return view('courses', compact('result', 'subject'));
 
@@ -31,6 +30,9 @@ class CoursesController extends Controller
     public function showCourseDetail($id)
     {
         $course = Course::find($id);
+        $listRate = DB::table('Rate')->select(array('Rate.*','User.name','User.avatar'))
+            ->join('User','Rate.uid','=','User.uid')
+            ->where('id_course',$id)->get();
         $course_plan = DB::table('CoursePlan')->where('id_course', '=', $id)->get();
         $mytime = Carbon::now();
         if (Auth::check()) {
@@ -38,7 +40,7 @@ class CoursesController extends Controller
         }
 //        dd($check_registered_course);
         if (empty($check_registered_course[0])) {
-            return view('course', compact('course'));
+            return view('course', compact('course','listRate'));
         } else {
             foreach ($course_plan as $key => $value) {
                 if (date("Y-m-d", strtotime($value->opendate)) == date("Y-m-d", strtotime($mytime->toDateTimeString()))) {
@@ -48,11 +50,11 @@ class CoursesController extends Controller
                         DB::table('notification')->insert(
                             ['from' => "Admin", 'uid_to' => Auth::user()->uid, 'content' => "Bạn có bài học " . $learnlesson[0]->title . " " . $learnlesson[0]->des . " đến thời gian cần học", 'send_at' => Carbon::now(), 'url_redirect' => url('/') . "/course/" . $id, 'avatar_from' => "https://s3-ap-southeast-1.amazonaws.com/slearningteam/images/1544512849.png"]
                         );
-                        return view('view_course', compact('course', 'learnlesson'));
+                        return view('view_course', compact('course', 'learnlesson','listRate'));
                     }
                 }
             }
-            return view('view_course', compact('course'));
+            return view('view_course', compact('course','listRate'));
         }
     }
 
