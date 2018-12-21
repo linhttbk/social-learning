@@ -56,13 +56,12 @@ Route::group(['prefix' => 'course'], function () {
 
     Route::get('/{id}', 'CoursesController@showCourseDetail')->name('course_detail');
     Route::get('registered/{id}', 'CoursesController@showCourseDetail')->name('course_detail_registered');
+    Route::get('registered/{id}/{id_lesson}', 'LessonController@showLesson')->name('view_lesson');
     Route::post('register/{id}', 'CourseRegistrationController@registerCourse')->name('buy_course');
     Route::get('/register-course/{id}', 'CourseRegistrationController@goToBuyCourse')->name('course-reg');
     Route::get('/join-course/{id}', 'JoinCourseController@showViewCourse')->name('join-course');
     Route::get('/join-course/{id}/{id_chap}/quiz/{id_quiz}', 'QuizController@showQuiz')->name('do-quiz');
     Route::post('submit', 'QuizController@submitQuiz')->name('submit-quiz');
-
-
 });
 
 Route::group(['prefix' => 'groups'], function () {
