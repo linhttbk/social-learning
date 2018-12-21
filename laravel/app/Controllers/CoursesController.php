@@ -24,6 +24,7 @@ class CoursesController extends Controller
     {
         $course = Course::find($id);
         $course_plan=DB::table('CoursePlan')->where('id_course','=',$id)->get();
+
         $mytime = Carbon::now();
         if (Auth::check()) {
             $check_registered_course = DB::table("CourseRegistration")->where([["id_course", "=", $id], ["uid", "=", Auth::user()->uid]])->get();

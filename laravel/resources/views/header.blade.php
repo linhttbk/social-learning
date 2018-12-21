@@ -45,7 +45,7 @@
                                         rel="nofollow" data-target="#"
                                         href="#"
                                         class="badge-notifications"
-                                        data-badge="3"
+                                        data-badge="{{App\Models\Notification::where('uid_to', Auth::user()->uid)->count()}}"
                                         data-toggle="dropdown"
                                         aria-haspopup="true"
                                         aria-expanded="false"
@@ -56,11 +56,11 @@
                                             <div class="row">
                                                 <div class="col-lg-12 col-sm-12 col-12">
                                                     @php
-                                                        $notifications = App\Models\Notification::where('uid_to', Auth::user()->uid)->take(3)->get();
+                                                        $notifications = App\Models\Notification::where('uid_to', Auth::user()->uid)->get();
 
                                                     @endphp
 
-                                                    <span>Notifications ({{count($notifications)}})</span>
+                                                    <span>Notifications ({{App\Models\Notification::where('uid_to', Auth::user()->uid)->count()}})</span>
                                                     <a href="#" id="mark-notifications" class="float-right text-light">Mark
                                                         all as read</a>
                                                 </div>
@@ -70,7 +70,7 @@
                                             @foreach($notifications as $data)
 
                                                 <li class="notification-box">
-                                                    <a href="#">
+                                                    <a href="{{$data->url_redirect}}">
 
                                                         <div class="row">
                                                             <div class="col-lg-3 col-sm-3 col-3 text-center">
