@@ -143,7 +143,7 @@
                                         {{--<div class="course_image"><img src="images/course_4.jpg" alt=""></div>--}}
                                         <div class="course_body">
                                             <h3 class="course_title"><a
-                                                        href="{{route('course_detail_registered',['id'=>$data->id])}}">{{$data->title}}</a>
+                                                    href="{{route('course_detail_registered',['id'=>$data->id])}}">{{$data->title}}</a>
                                             </h3>
                                             <div class="course_teacher"><a href="#">{{$data->name}}</a></div>
                                             <div class="course_text">
@@ -152,14 +152,15 @@
                                         </div>
                                         <div class="course_footer">
                                             <div
-                                                    class="course_footer_content d-flex flex-row align-items-center justify-content-start">
+                                                class="course_footer_content d-flex flex-row align-items-center justify-content-start">
                                                 <div class="course_info">
                                                     <i class="fa fa-graduation-cap" aria-hidden="true"></i>
                                                     <span>{{$data->count_student}}</span>
                                                 </div>
                                                 <div id="rate-content">
                                                     <span class='raty raty_detailt' style='margin:5px' id="ratebar"
-                                                          data-score="{{$data->score}}" data-idcourse="{{$data->id}}"></span>
+                                                          data-score="{{$data->score}}"
+                                                          data-idcourse="{{$data->id}}"></span>
                                                 </div>
                                                 <div class="course_price ml-auto">
                                                     @if($data->price==0)
@@ -190,16 +191,20 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
+                    @php
+                        $notifications = App\Models\Notification::where('uid_to', Auth::user()->uid)->take(3)->get();
+
+                    @endphp
                     <div class="sidebar">
                         <div class="sidebar_section">
                             <div class="sidebar_section_title"> Thông báo</div>
                         </div>
-                        <div class="notify-item">
-                            <a href="#"> Bài học x của khóa học y cần phải mở ngày hôm
-                                nay </a><span>By Admin 5 phut truoc</span></div>
-                        <div class="notify-item" style="color: red">
-                            <a href="#"> Bài học x của khóa học y cần phải mở ngày hôm
-                                nay </a><span>By Admin 5 phut truoc</span></div>
+                        @foreach($notifications as $data)
+                            <div class="notify-item">
+                                <a href="{{$data->url_redirect}}"> {{$data->content}} </a><span>By {{$data->from .' ' . $data->send_at}} </span></div>
+                        @endforeach
+
+
                         <div class="notify-all">
                             <a href="#" class="btn btn-primary">Xem tat ca</a>
                         </div>
