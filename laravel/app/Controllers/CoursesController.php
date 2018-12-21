@@ -23,6 +23,8 @@ class CoursesController extends Controller
     public function showCourseDetail($id)
     {
         $course = Course::find($id);
+        $course_plan=DB::table('CoursePlan')->where('id_course','=',$id)->get();
+        $mytime = Carbon::now();
         if (Auth::check()) {
             $check_registered_course = DB::table("CourseRegistration")->where([["id_course", "=", $id], ["uid", "=", Auth::user()->uid]])->get();
         }
@@ -30,6 +32,18 @@ class CoursesController extends Controller
         if (empty($check_registered_course[0])) {
             return view('course', compact('course'));
         } else {
+        	foreach ($course_plan as $key => $value) {
+        		if(date("Y-m-d", strtotime($value->opendate))==date("Y-m-d",strtotime($mytime->toDateTimeString()))){
+        			$checklearn=DB::table('LearningProgress')->where([['id_lesson',"=",$value->id_lesson],["uid","=",Auth::user()->uid]])->get();
+        			if(empty($checklearn[0])){
+                        $learnlesson=DB::table("Lesson")->where("id","=",$value->id_lesson)->get();
+                        DB::table('Notification')->insert(
+                              ['from'=>"Admin",'uid_to'=>Auth::user()->uid,'content'=>"Bạn có bài học ".$learnlesson[0]->title." ".$learnlesson[0]->des." đến thời gian cần học",'send_at'=>carbon::now(),'url_redirect'=>url('/')."/course/".$id,'avatar_from'=>"https://s3-ap-southeast-1.amazonaws.com/slearningteam/images/1544512849.png"]
+                        );
+        				return view('view_course',compact('course','learnlesson'));
+        			}
+        		}
+        	}
             return view('view_course', compact('course'));
         }
     }
